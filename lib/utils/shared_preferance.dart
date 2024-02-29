@@ -7,7 +7,7 @@ class SharedPreference {
   static GetStorage getStorage = GetStorage();
   static String accessKey = 'accessKey';
   static String refreshKey = 'refreshKey';
-  // static String userNameKey = 'userNameKey';
+ static String rolekey = 'rolekey';
   // static String firstNameKey = 'firstNameKey';
   // static String lastNameKey = 'lastNameKey';
   // static String mobileKey = 'mobileKey';
@@ -16,7 +16,7 @@ class SharedPreference {
 
   static storeUserPreference(
       {
-      // String? username,
+       String? role,
       // String? firstName,
       // String? lastName,
       // String? mobile,
@@ -24,7 +24,7 @@ class SharedPreference {
       refresh}) {
     getStorage.write(accessKey, access);
     getStorage.write(refreshKey, refresh);
-    // getStorage.write(userNameKey, username);
+     getStorage.write(rolekey, role);
     // getStorage.write(firstNameKey, firstName);
     // getStorage.write(lastNameKey, lastName);
     // getStorage.write(mobileKey, mobile);
@@ -41,7 +41,7 @@ class SharedPreference {
   static clearUser() {
     getStorage.remove(accessKey);
     getStorage.remove(refreshKey);
-    // getStorage.remove(userNameKey);
+     getStorage.remove(rolekey);
     // getStorage.remove(firstNameKey);
     // getStorage.remove(lastNameKey);
     // getStorage.remove(mobileKey);

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/modules/dashboard/profile/language_setting/controllers/language_setting_controller.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/language_setting/controllers/language_setting_controller.dart';
 import 'package:home_brigadier/services/apis/toast.dart';
 
 class EmailLoginController extends GetxController {

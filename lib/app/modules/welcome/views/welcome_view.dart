@@ -1,23 +1,14 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:get/instance_manager.dart';
-import 'package:get/utils.dart';
+
 import 'package:home_brigadier/app/modules/welcome/views/page_builder.dart';
-import 'package:home_brigadier/app/routes/app_pages.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/media_query.dart';
+import 'package:home_brigadier/user_role/user_role.dart';
 import 'package:home_brigadier/utils/shared_preferance.dart';
 import 'package:home_brigadier/widget/c_filled_btn.dart';
 
 import '../controllers/welcome_controller.dart';
-
 
 class WelcomeView extends GetView<WelcomeController> {
   const WelcomeView({Key? key}) : super(key: key);
@@ -86,8 +77,8 @@ class WelcomeView extends GetView<WelcomeController> {
                                             if (controller.currentPage.value
                                                 .isEqual(2)) {
                                               SharedPreference.isNewUser();
-                                              Get.offAndToNamed(
-                                                  Routes.EMAIL_LOGIN);
+                                              Get.off(
+                                                  () => const UserRoleView());
                                             }
                                           }).paddingSymmetric(horizontal: 20),
                                     ]))).paddingOnly(
