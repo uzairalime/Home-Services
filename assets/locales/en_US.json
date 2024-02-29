@@ -1,0 +1,329 @@
+{
+  "required_field": "Required Field",
+  "minimum_1_required": "Minimum 1 Required",
+  "exit_dialog": {
+    "exit": "Exit?",
+    "verify": "Are you sure you want to Exit?",
+    "cancel": "cancel",
+    "ok": "Ok"
+  },
+  "connectivity": {
+    "connection_error": "Connection Error",
+    "no_internet": "No Internet Connection",
+    "refresh": "Refresh"
+  },
+  "dashboard": {
+    "items": {
+      "home": "Home",
+      "bookings": "Bookings",
+      "start_earning": "Start Earning",
+      "faq": "Faq",
+      "profile": "Profile"
+    },
+    "profile": {
+      "name": "Name",
+      "userName": "UserName",
+      "mobile": "Mobile",
+      "edit_profile": "Edit Profile",
+      "_edit_profile": {
+        "phone_number": "Phone Number",
+        "address": "Address",
+        "update": "Update"
+      },
+      "notification": "Notification",
+      "_notification": {
+        "sound": "Sound",
+        "vibrate": "Vibrate",
+        "special_offer": "Special Offer",
+        "promo_discount": "Promo % Discount",
+        "payment": "Payment",
+        "cashBack": "CashBack"
+      },
+      "payment": "Payment",
+      "_payment": {
+        "payment_method": "Payment Method",
+        "user_msg": "Please select a payment refund method",
+        "google_pay": "Google pay",
+        "apple_pay": "Apple Pay",
+        "master_card": "Master Card",
+        "add_a_card": "Add a Card",
+        "_add_a_card": {
+          "card_number": "Card Number",
+          "full_name": "Full Name",
+          "add_card": "Add Card",
+          "dialog": {
+            "succeed": "Card Added Successfully",
+            "msg": "You can now use your card to make payments"
+          }
+        }
+      },
+      "language": "Language",
+      "_language": {
+        "english": "English",
+        "arabic": "Arabic"
+      },
+      "privacy_policy": "Privacy Policy",
+      "_privacy_policy": {
+        "detail_0": "Since we value your privacy, we will treat your personal information in accordance with the guidelines outlined in this policy. On our website, cookies are used. You provide your consent for us to use cookies in line with this policy by using our website and accepting its conditions. Which types of data do we gather? These are the types of personal information that we might gather, keep, and use Information about your computer and about your visits to and use of this website (including your IP address, geographical location, browser type and version, operating system, referral source, length of visit, page views and website navigation)Information relating to any transactions carried out between you and us on or in relation to this website, including information relating to any purchases you make of our goods or services (including booking a cleaner through Home Brigadier)Information that you provide to us for the purpose of registering with us (including your name, address and email address)Information that you provide to us for the purpose of subscribing to our website services, email notifications and/or newsletters (including your name and email address)You must first get the agreement of the individual whose personal information you are disclosing to us, granting us permission to share and process that information in compliance with our privacy policy.No third parties will keep, rent, share, sell, or lease any credit/debit card details or personally identifying information.",
+        "txt_1": "Using Your Personal Information",
+        "detail_1": "We will use your personal information for the following purposes:Managing our website and improving your browsing experience by personalizing it.Sending you statements, invoices, and collecting payments.Sending you non-marketing commercial communications.Fulfilling your requests for email notifications, newsletters, and other marketing communications, if you have given us explicit consent.",
+        "txt_2": "Disclosure of Personal Information",
+        "detail_2": "We may disclose your personal information to:Our employees, officers, agents, suppliers, or subcontractors, as reasonably necessary for the purposes described in this Privacy Policy.Any member of our group of companies (including subsidiaries and ultimate holding company) as required for the purposes outlined in this policy.To comply with legal obligations, ongoing legal proceedings, or to establish, exercise, or defend our legal rights (including sharing information with third parties to prevent fraud and reduce credit risk).",
+        "txt_3": "Cookies",
+        "detail_3": "A cookie is a file that is sent by a web server to a web browser and kept by the browser that contains an identifier, which is a string of letters and numbers. Every time a browser requests a page from the server, the identifier is subsequently provided back to the server. The web server can now recognize and follow the web browser as a result. On the website, we might utilize both session and persistent cookies. When you close your browser, session cookies are removed from your machine.The information generated relating to our website is used to create reports about the use of the website.",
+        "txt_4": "International data transfers",
+        "detail_4": "To provide our services, we may process, store, and transfer the data we collect between the countries in which we operate. By submitting personal information to our website, you explicitly consent to such data transfers.",
+        "txt_5": "Security of your personal information",
+        "detail_5": "We take your privacy and data security seriously. We have implemented appropriate organizational and technical security measures to protect your personal information. Your data is stored on our password- and firewall-protected, secure servers. Encryption technology is used to secure electronic transactions conducted through our website.",
+        "txt_6": "Your rights",
+        "detail_6": "You have the right to request access to your personal data, and we will provide this information as permitted by law. If you wish to opt out of our use of your personal information for marketing purposes, please email us at contact@homebrigadier.com. In many cases, you will have the option to provide explicit consent for the use of your data for marketing purposes or to decline such use.",
+        "txt_7": "Third party websites",
+        "detail_7": "Our website may contain links to third-party websites. Please note that this Privacy Policy applies solely to our website and services. We are not responsible for the privacy policies or practices of third-party websites. We encourage you to review the privacy policies of any third-party sites you may visit.",
+        "txt_8": "Data Collection for Reservations",
+        "detail_8": "To provide our residential services, we collect information including your home address, phone number, email address, latitude, and longitude. This data is essential for us to contact you and locate your address for service delivery. If you wish to have this data removed, please email us at contact@homebrigadier.com with your request."
+      },
+      "help_centre": "Help Centre",
+      "invite_a_friend": "Invite A Friend",
+      "_invite_a_friend": {
+        "invite_friend": "Invite Friend",
+        "invite": "Invite"
+      },
+      "logout": "Logout",
+      "_logout": {
+        "warning_msg": "Are you Sure",
+        "cancel": "Cancel",
+        "yes": "Yes, Logout"
+      }
+    }
+  },
+  "start_earning_item": {
+    "villa_number": "Flat/Villa No. building Area",
+    "area": "Area",
+    "service_info": "Service Information",
+    "txt": "Once you'have filled out this form, our team will be in touch with you to facilitate your service listing",
+    "full_name": "Full Name",
+    "enter_full_name": "Enter Your Full Name",
+    "selected_catg": "Selected Category",
+    "enter_select_catg": "Select Category",
+    "discription": "Description",
+    "enter_decription": "Enter Your Description",
+    "select_working_hour": "Select Working Hour",
+    "enter_from_hours": "From Hour",
+    "enter_till_hours": "Till Hour",
+    "selct_working_days": "Select Working Days",
+
+    "rate_per_hour": "Rate Per Hour",
+    "enter_rate": "AED",
+    "for_location": "For Location",
+    "address": "Address",
+    "enter_address": "Enter Your Address",
+    "upload_picture": "Upload Picture",
+    "tap_to_upload": "Tap here to Select Image",
+    "submit": "Submit",
+    "villa_number": "Flat/Villa No. building Area",
+    "area": "Area"
+  },
+  "faq_items": {
+    "faq": "Faq",
+    "tabba_items": {
+      "general": "General",
+      "account": "Account",
+      "service": "Service",
+      "payment": "Payment",
+      "appliance": "Appliance",
+      "Plumbing": "Plumbing",
+      "shifting": "Shifting"
+    },
+    "enter_search": "Search",
+    "questions_item": {
+      "what_hamb": "What is HomeBrigadier",
+      "what_hamb_detail": "HomeBrigadier is the leading online marketplace for home services in the Middle East that allows residents to book different services online and compare quotes. With HomeBrigadier, you can also check ratings and read customer reviews of each service provider, empowering you to make informed decisions",
+      "why_hamb": "Why HomeBrigadier?",
+      "why_hamb_detail": "HomeBrigadier offers a seamless and efficient platform to discover and book vetted home services online. Our network comprises reliable and licensed professionals, each undergoing rigorous vetting to ensure topnotch service quality. Benefit from instant booking confirmations at fixed rates, and for certain services, schedule them for the same day with just a four hour notice. Our dedicated customer service is available seven days a week to address any inquiries promptly. Experience the ease, speed, and hassle free process of finding and securing home services with HomeBrigadier.",
+      "booking_hamo": "How do I make a booking?",
+      "booking_hamo_detail": "You can easily book a service in 4 simple steps:\\n1. Tell us how long you would like the professionals to stay.\\n2. Schedule a date and time.\\n3. Share your location and contact details.\\n4. Pay and Confirm the booking!\n",
+      "how_pay_service": "How do I pay for service?",
+      "how_pay_service_detail": "You can choose to pay for the service using a credit card online or with cash once the task has been completed. If you opt to pay with a credit card, we will process the payment before the service is delivered, ensuring a smoother transaction. We will also notify you through the app and via email to keep you informed about the payment status and any other relevant details.\n",
+      "cancel_change_service": "Can I change or cancel my service?",
+      "cancel_change_service_detail": "Yes. You will have the option to cancel or modify your booking up to 24 hours before the service starts. If you cancel or change your booking less than 24 hours in advance of the booking, then you might have to pay a late cancellation/modification fee.",
+      "personal_info": "How will my personal information be used?",
+      "personal_info_detail": "We value your privacy. Your personal contact information will only be used by HomeBrigadier and the companies you select to communicate your personalized quotes."
+    }
+  },
+  "log_in_item": {
+    "msg": "Login",
+    "enter_phone": "Enter Phone Number",
+    "sign_in": "Sign in",
+    "or": "Don't have an account",
+    "sign_up": "Sign Up"
+  },
+  "verifyOtp_items": {
+    "enter_pin": "Enter OTP",
+    "name": "Verify OTP",
+    "code_msg": "Code has been send to",
+    "resend": "Resend code in...",
+    "verify": "Verify"
+  },
+
+  "home_screen_items": {
+    "search_for": "Search for:",
+    "special_offer": "Special Offers",
+    "see_all": "See All",
+    "services": "Services",
+    "most_popular_services": "Most Popular Services"
+  },
+  "user_profile_item": {
+    "user_ptofile": "User Profile",
+    "jobs": "Jobs",
+    "services": "Services",
+    "booking": "Booking",
+    "all_services": "All Services"
+  },
+  "category_items": {
+    "catagory_button": "Booking",
+    "floor_price": "Floor Price",
+    "about_me": "About Me",
+    "photos_videos": "Photos & Videos"
+  },
+  "house_cleaning_items": {
+    "house_cleaning": "House Cleaning",
+    "how_many_hours": "How many hours should they stay?",
+    "hours": "Hours",
+    "how_many_cleaner": "How many Cleaners do you need?",
+    "cleaners": "Cleaners",
+    "how_often_need_claning": "How Often do you need cleaning?",
+    "once": "Once",
+    "weekly": "Weekly",
+    "Bi_weekly": "Bi-Weekly",
+    "Mutilple_time": "Mulitple Time a Week",
+    "did_need_material": "Did you need Cleaning materials",
+    "yes": "Yes",
+    "no": "NO",
+    "addditional_charges_aed": "An additional charges of AED 4/hr applies for sleaning material",
+    "special_insutuction": "Do you Have any special instruction?",
+    "example_insutruction": "Example you are not at home, or You will need to bring a gate pass . I will not be at home and leaving the key under mat etc.",
+    "cont_button": "Continue -"
+  },
+  "booking_detail_items": {
+    "booking_detail": "Booking Details",
+    "select_date": "Select Date",
+    "choose_start_time": "Choose Start Time",
+    "continue_button": "Continue -"
+  },
+  "location_view_items": {
+    "Location_address_view": "Your Address/Location",
+    "location_details": "Location Details",
+    "address": "Address",
+    "continue_button": "Continue -"
+  },
+  "painting_items": {
+    "painting": "painting",
+    "how_many_hours": "How many hours should they stay?",
+    "hours": "Hours",
+    "size_of_your_home": "What is the size of your home?",
+    "studio": "Studio",
+    "1_br": "1 BR",
+    "2_br": "2 Br",
+    "3_br": "3 Br",
+    "4_br": "4 Br",
+    "villa": "Villa",
+    "continue_button": "Continue -",
+    "special_insutuction": "Do you Have any special instruction?",
+    "example_insutruction": "Example you are not at home, or You will need to bring a gate pass . I will not be at home and leaving the key under mat etc."
+  },
+  "applience_items": {
+    "applience_service": "Applience Services",
+    "choose_applience": "Choose the applience service you need",
+    "washing_mach": "Washinig Machine",
+    "refrig": "Refrigarator",
+    "dispancer": "Dispancer",
+    "air_condi": "Air Conditioner",
+    "grilling_machine": "Grilling Machine",
+    "washers": "Washers",
+    "drayer": "Drayers",
+    "machnic": "Machnic",
+    "continue_button": "Continue -$20"
+  },
+  "plumbing_repairing_item": {
+    "plumbing_reparing": "PLumbing Reparing",
+    "how_many_hours": "How many hours should they stay?",
+    "hours": "Hours",
+    "what_kind_of_service": "What kind of service do you need",
+    "basin_sink": "Basin & Sink",
+    "grouting": "Grouting",
+    "bath_fiting": "Bath Fiting",
+    "motors": "Motors",
+    "toilets": "Toilets",
+    "tap_mixer": "Tap & Mixer",
+    "draining_pipes": "Draining Pipes",
+    "water_tank": "Water Tank"
+  },
+  "tailor_items": {
+    "tailor": "Tailoring",
+    "pieces": "Pieces",
+    "what_kind_of_service": "What kind of service do you need",
+    "new_stitching": "New Stitching",
+    "alteration": "Altersstion",
+    "others": "Others",
+    "book_now": "Book Now",
+    "how_many_peices": "How many pieces do you need?"
+  },
+  "special_offer_items": {
+    "special_offer": "Special Offers"
+  },
+
+  "edit_services": {
+    "service_info": "Service Information",
+    "txt": "Once you'have filled out this form, our team will be in touch with you to facilitate your service listing",
+    "full_name": "Full Name",
+    "enter_full_name": "Enter Your Full Name",
+    "selected_catg": "Selected Category",
+    "enter_select_catg": "Select Category",
+    "discription": "Description",
+    "enter_decription": "Enter Your Description",
+    "select_working_hour": "Select Working Hour",
+    "enter_from_hours": "From Hour",
+    "enter_till_hours": "Till Hour",
+    "selct_working_days": "Select Working Days",
+
+    "rate_per_hour": "Rate Per Hour",
+    "enter_rate": "AED",
+    "for_location": "For Location",
+    "address": "Address",
+    "enter_address": "Enter Your Address",
+    "upload_picture": "Upload Picture",
+    "submit": "Submit",
+    "update": "Update"
+  },
+
+  "my_jobs": {
+    "date": "Date",
+    "time": "Time",
+    "price": "price",
+    "aed": "AED",
+    "no_of_hours": "No Of Hours",
+    "description": "Description",
+    "booking_status": "Booking status"
+  },
+
+  "my_booking": {
+    "date": "Date",
+    "time": "Time",
+    "price": "price",
+    "aed": "AED",
+    "booking_status": "Booking status"
+  },
+
+  "ac_reparing_items": {
+    "reparing": "Reparing",
+    "how_many_hours": "How many hours should they stay?",
+    "hours": "Hours",
+    "what_kind_of_service": "What kind of service do you need",
+    "ac_service": "Ac Service",
+    "ac_repaire": "Ac Repair",
+    "ac_install": "Ac Install",
+    "ac_uninstall": "Ac Uninstall",
+    "gas_refil": "Gas Refill"
+  },
+  "km_away": "km away"
+}
