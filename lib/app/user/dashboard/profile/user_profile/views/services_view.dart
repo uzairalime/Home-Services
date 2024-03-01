@@ -48,8 +48,7 @@ class MyServicesView extends GetView<UserProfileController> {
                     ),
                   )); // or a loading indicator widget
                 } else if (snapshot.hasError) {
-                  return const Center(
-                      child: Text('No data found\n check Internet connection'));
+                  return const Center(child: Text('No data found\n check Internet connection'));
                 } else {
                   List<MyServicesRespModel>? services = snapshot.data;
 
@@ -62,38 +61,31 @@ class MyServicesView extends GetView<UserProfileController> {
                           child: Card(
                               elevation: 8,
                               shadowColor: AppColor.greylight,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
+                              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                              shape:
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               child: Center(
                                 child: ExpansionTile(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    initiallyExpanded:
-                                        index == 0 ? true : false,
+                                        borderRadius: BorderRadius.circular(12)),
+                                    initiallyExpanded: index == 0 ? true : false,
                                     leading: SizedBox(
                                       height: 100,
                                       width: 100,
                                       child: CachedNetworkImage(
                                           imageUrl:
                                               "https://homebrigadier.fly.dev${services![index].files![0].file}",
-                                          imageBuilder: (context,
-                                                  imageProvider) =>
-                                              Container(
-                                                  width: 100,
-                                                  height: 100,
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      image: DecorationImage(
-                                                        image: imageProvider,
-                                                        fit: BoxFit.cover,
-                                                      ))),
+                                          imageBuilder: (context, imageProvider) => Container(
+                                              width: 100,
+                                              height: 100,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  image: DecorationImage(
+                                                    image: imageProvider,
+                                                    fit: BoxFit.cover,
+                                                  ))),
                                           placeholder: (context, url) =>
-                                              const Center(
-                                                  child:
-                                                      CircularProgressIndicator()),
+                                              const Center(child: CircularProgressIndicator()),
                                           errorWidget: (context, url, error) =>
                                               const Icon(Icons.error)),
                                     ),
@@ -111,13 +103,11 @@ class MyServicesView extends GetView<UserProfileController> {
                                             "${LocaleKeys.my_jobs_aed.tr} ${services[index].rate}/hr"),
                                     children: [
                                       Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             CText(
                                               textAlign: TextAlign.start,
-                                              text:
-                                                  '${services[index].description}',
+                                              text: '${services[index].description}',
                                             )
                                                 .paddingSymmetric(vertical: 5)
                                                 .marginSymmetric(vertical: 5),
@@ -125,28 +115,19 @@ class MyServicesView extends GetView<UserProfileController> {
                                             //
                                             Row(
                                                 mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Row(
                                                     children: [
-                                                      const Icon(
-                                                          Icons
-                                                              .pin_drop_outlined,
-                                                          color:
-                                                              AppColor.primary),
+                                                      const Icon(Icons.pin_drop_outlined,
+                                                          color: AppColor.primary),
                                                       SizedBox(
-                                                        width: mediaQueryWidth(
-                                                                context) *
-                                                            0.5,
+                                                        width: mediaQueryWidth(context) * 0.5,
                                                         child: Text(
                                                           softWrap: true,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                                          overflow: TextOverflow.ellipsis,
                                                           "${services[index].address}",
-                                                        ).paddingSymmetric(
-                                                            vertical: 5),
+                                                        ).paddingSymmetric(vertical: 5),
                                                       ),
                                                     ],
                                                   ),
@@ -156,12 +137,8 @@ class MyServicesView extends GetView<UserProfileController> {
                                                     child: IconButton(
                                                       splashRadius: 25,
                                                       onPressed: () {
-                                                       // resetValue(controller);
-                                                        Get.to(() =>
-                                                            EditUserService(
-                                                                serviceModel:
-                                                                    services[
-                                                                        index]));
+                                                        // resetValue(controller);
+                                                        Get.to(() => const EditUserService());
                                                       },
                                                       icon: const Icon(
                                                         Icons.edit_outlined,
@@ -169,11 +146,9 @@ class MyServicesView extends GetView<UserProfileController> {
                                                       ).marginOnly(bottom: 10),
                                                     ),
                                                   )
-                                                ]).marginOnly(
-                                                top: 5, bottom: 20),
+                                                ]).marginOnly(top: 5, bottom: 20),
                                           ]).marginSymmetric(
-                                          horizontal:
-                                              mediaQueryWidth(context) * 0.1)
+                                          horizontal: mediaQueryWidth(context) * 0.1)
                                     ]),
                               )).marginOnly(top: 10),
                         );

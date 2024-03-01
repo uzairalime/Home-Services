@@ -4,27 +4,24 @@ import 'dart:io';
 import 'package:dio/dio.dart' as deo;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/user_profile_view.dart';
-import 'package:home_brigadier/model/user_services_models/my_service_post_model.dart';
-import 'package:home_brigadier/services/apis/toast.dart';
-import 'package:home_brigadier/utils/animation_dialog.dart';
 
 import '../../../../../consts/static_data.dart';
+import '../../../../../model/user_services_models/my_service_post_model.dart';
+import '../../../../../services/apis/toast.dart';
+import '../../../../../utils/animation_dialog.dart';
+import '../../profile/user_profile/views/user_profile_view.dart';
 
 class PostService {
   static deo.Dio dio = deo.Dio();
 
   static Future<int?> postMyService(
-      {
-        
-        required context,
-        
-        required String name,
+      {required context,
+      required String name,
       required String description,
       required String category,
       required String address,
       required String location,
-      required String fileId,
+      required List<String> fileId,
       required List<String> weekDays,
       required String from_hour,
       required String to_hour,
@@ -43,12 +40,14 @@ class PostService {
         description: description.toString(),
         category: category.toString().trim(),
         address: address.toString(),
-        files: [fileId.toString()],
+        files: fileId,
         location: location.toString(),
         openingHours: openingHours,
         rate: rate.toString());
 
-    // print(jsonEncode(model));
+    // log(StaticData.accessToken);
+    //
+    // log(jsonEncode(model));
 
     try {
       final response = await dio.post(
@@ -56,8 +55,8 @@ class PostService {
         data: jsonEncode(model),
       );
       if (response.statusCode == 201) {
-       // showsnackbar("Service add Successfully");
-       // Get.to(() => const UserProfileView());
+        // showsnackbar("Service add Successfully");
+        // Get.to(() => const UserProfileView());
         showDialog(
             context: context,
             barrierDismissible: false,
@@ -68,11 +67,11 @@ class PostService {
         });
       }
     } on SocketException catch (_) {
-      showsnackbar("Error: Check Internet Connection");
+      showsnackbar("Error: Check Internet Connection", true);
 
       // print("SocketException: $e");
     } catch (e) {
-      showsnackbar("Failed to Upload: Try again");
+      showsnackbar("Failed to Upload: Try again", true);
 
       //print("Error: $e");
     }

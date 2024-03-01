@@ -11,10 +11,9 @@ import '../controllers/dashboard_controller.dart';
 class UserDashboardView extends GetView<UserDashboardController> {
   const UserDashboardView({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
+    Get.put(UserDashboardController());
     return GetBuilder<UserDashboardController>(
         init: UserDashboardController(),
         builder: (builderContext) {
@@ -27,38 +26,38 @@ class UserDashboardView extends GetView<UserDashboardController> {
 
             /// bottomNavigationBar
             bottomNavigationBar: GetBuilder<HomeController>(builder: (obj) {
-              return
-                   BottomNavigationBar(
-                    selectedLabelStyle:  TextStyle(overflow: TextOverflow.visible,fontSize: mediaQueryHeight(context)*0.015),
-      unselectedLabelStyle:  TextStyle(overflow: TextOverflow.visible,fontSize: mediaQueryHeight(context)*0.015),
-                      type: BottomNavigationBarType.fixed,
-                      fixedColor: AppColor.secondary,
-                      currentIndex: controller.currentIndex.value,
-                      onTap: (index) => controller.changePage(index),
-                      items: [
-                        BottomNavigationBarItem(
-                          
-                          
-                          icon: SvgPicture.asset("assets/icons/ic_home_outlined.svg"),
-                          activeIcon: SvgPicture.asset("assets/icons/ic_home_filled.svg"),
-                          label: LocaleKeys.dashboard_items_home.tr,
-                        ),
-                     
-                        BottomNavigationBarItem(
-                          icon: const Icon(Icons.question_mark),
-                          activeIcon: const Icon(Icons.question_mark),
-                          label: LocaleKeys.dashboard_items_faq.tr,
-                        ),
-                        BottomNavigationBarItem(
-                          icon: SvgPicture.asset("assets/icons/ic_profile_circled_outlined.svg"),
-                          activeIcon:
-                              SvgPicture.asset("assets/icons/ic_profile_circled_filled.svg"),
-                          label: LocaleKeys.dashboard_items_profile.tr,
-                        ),
-                      ],
-                    );
-                 
-                            
+              return BottomNavigationBar(
+                selectedLabelStyle: TextStyle(
+                    overflow: TextOverflow.visible, fontSize: mediaQueryHeight(context) * 0.015),
+                unselectedLabelStyle: TextStyle(
+                    overflow: TextOverflow.visible, fontSize: mediaQueryHeight(context) * 0.015),
+                type: BottomNavigationBarType.fixed,
+                fixedColor: AppColor.secondary,
+                currentIndex: controller.currentIndex.value,
+                onTap: (index) => controller.changePage(index),
+                items: [
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset("assets/icons/ic_home_outlined.svg"),
+                    activeIcon: SvgPicture.asset("assets/icons/ic_home_filled.svg"),
+                    label: LocaleKeys.dashboard_items_home.tr,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset("assets/icons/ic_booking_outlined.svg"),
+                    activeIcon: SvgPicture.asset("assets/icons/ic_booking_filled.svg"),
+                    label: LocaleKeys.dashboard_items_bookings.tr,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: const Icon(Icons.question_mark),
+                    activeIcon: const Icon(Icons.question_mark),
+                    label: LocaleKeys.dashboard_items_faq.tr,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset("assets/icons/ic_profile_circled_outlined.svg"),
+                    activeIcon: SvgPicture.asset("assets/icons/ic_profile_circled_filled.svg"),
+                    label: LocaleKeys.dashboard_items_profile.tr,
+                  ),
+                ],
+              );
             }),
           );
         });

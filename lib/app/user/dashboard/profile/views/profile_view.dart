@@ -1,131 +1,65 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:home_brigadier/app/routes/app_pages.dart';
+import 'package:home_brigadier/app/seller/dashboard/views/dashboard_view.dart';
+import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/utils/isolate_manager.dart';
 import 'package:home_brigadier/utils/shared_preferance.dart';
 
-import 'package:shimmer/shimmer.dart';
-
 import '../../../../../consts/app_color.dart';
 import '../../../../../consts/media_query.dart';
+import '../../../../../user_role/user_role.dart';
 import '../../../../../widget/cText.dart';
 import '../../../../../widget/c_filled_btn.dart';
+import '../../../../modules/login/email_login/views/email_login_view.dart';
 import '../controllers/profile_controller.dart';
 
-class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+class UserProfileView extends GetView<ProfileController> {
+  const UserProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileController());
-
+    final con = Get.put(ProfileController());
     // final svgTheme = Theme.of(context).textTheme.titleMedium!.color;
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
     controller.getUserInfo();
-    return GetBuilder(
-        init: Get.put(ProfileController()),
-        builder: (builderContext) {
-          return Scaffold(
-            body: StreamBuilder(
-              stream: controller.getUserInfo().asStream(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  // Show shimmer while loading
-                  return Center(
-                    child: Shimmer.fromColors(
-                      baseColor: Colors.grey.shade300,
-                      highlightColor: Colors.grey.shade100,
-                      child:
-                          const YourShimmerWidget(), // Replace YourShimmerWidget with your own shimmer widget
-                    ),
-                  );
-                } else if (controller.userName.value.isEmpty) {
-                  // Handle empty state
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
-                  // Show actual content
-                  return Scaffold(
-                    appBar: AppBar(
-                      leading: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Container(
-                            decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                            ),
-                            child: Center(
-                                child: Image.asset(
-                                    "assets/images/ic_splash.png"))),
-                      ),
-                      title: CText(
-                        text: LocaleKeys.dashboard_items_profile.tr,
-                        fontWeight: FontWeight.bold,
-                        color: txtTheme,
-                        fontsize: mediaQueryHeight(context) * 0.025,
-                      ),
-                    ),
-                    body: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Obx(() => InkWell(
-                              borderRadius: BorderRadius.circular(50),
-                              onTap: () {
-                                // controller.pickImage();
-                                Get.toNamed(Routes.USER_PROFILE);
-                              },
-                              child: ProfilePic(
-                                image: CachedNetworkImageProvider(
-                                  "https://homebrigadier.fly.dev${controller.files[0]}",
-                                ),
-                              ),
-                            )),
-                        const SizedBox(height: 20),
-                        CText(
-                          textAlign: TextAlign.center,
-                          text:
-                              "${LocaleKeys.dashboard_profile_name.tr} : ${controller.firstName.value}",
-                          fontWeight: FontWeight.w500,
-                          fontsize: titleLarge,
-                        ),
-                        CText(
-                          textAlign: TextAlign.center,
-                          text:
-                              "${LocaleKeys.dashboard_profile_userName.tr}: ${controller.userName.value}",
-                          fontWeight: FontWeight.w500,
-                          fontsize: titleSmall,
-                        ),
-                        CText(
-                          textAlign: TextAlign.center,
-                          text:
-                              "${LocaleKeys.dashboard_profile_mobile.tr}: ${controller.mobile.value}",
-                          fontWeight: FontWeight.w500,
-                          fontsize: titleSmall,
-                        ),
-                        const SizedBox(height: 30),
-                        Expanded(
-                          child: SettingListView(
-                            number: controller.userName.value,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-              },
+    return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              child: Center(child: Image.asset("assets/images/ic_splash.png"))),
+        ),
+        title: CText(
+          text: LocaleKeys.dashboard_items_profile.tr,
+          fontWeight: FontWeight.bold,
+          color: txtTheme,
+          fontsize: mediaQueryHeight(context) * 0.025,
+        ),
+      ),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: SettingListView(
+              number: controller.userName.value,
+              controller: controller,
             ),
-          );
-        });
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -207,7 +141,12 @@ class ProfilePic extends StatelessWidget {
 
 class SettingListView extends StatelessWidget {
   final String? number;
-  const SettingListView({super.key, this.number});
+  final ProfileController controller;
+  const SettingListView({
+    super.key,
+    this.number,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -215,12 +154,42 @@ class SettingListView extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: ListView(physics: const BouncingScrollPhysics(), children: [
         SettingListItem(
-            onTap: () => Get.toNamed((Routes.EDIT_PROFILE_SETTING), arguments: number),
-            
+            // onTap: () => Get.to(() => EditUserService),
             SettingList(
+                trailing: Switch.adaptive(
+                  activeTrackColor: AppColor.secondary.withOpacity(0.3),
+                  activeColor: AppColor.secondary,
+                  value: controller.isSeller,
+                  onChanged: (value) async {
+                    if (value == true) {
+                      SharedPreference.storeRole(role: "seller");
+
+                      controller.checkRole();
+
+                      SharedPreference.getToken();
+                      if (StaticData.refreshToken.isNotEmpty) {
+                        int refreshTokenResult = await IsolateManager.refreshToken();
+                        if (refreshTokenResult == 200) {
+                          Get.to(const SellerDashboardView());
+                        } else {
+                          Get.offAll(() => const EmailLoginView());
+                        }
+                      } else {
+                        Get.offAll(() => const EmailLoginView());
+                      }
+                    } else if (value == false) {
+                      SharedPreference.storeRole(role: "buyer");
+
+                      controller.checkRole();
+                      Get.offAll(() => const UserDashboardView());
+                    }
+                  },
+                ),
                 leading: const Icon(CupertinoIcons.person),
-                title: LocaleKeys.dashboard_profile_edit_profile.tr)),
-           Divider(color: AppColor.greylight,),
+                title: "Switch Mode")),
+        Divider(
+          color: AppColor.greylight,
+        ),
         SettingListItem(
             onTap: () => Get.toNamed((Routes.NOTIFICATION_SETTING)),
             SettingList(
@@ -243,7 +212,7 @@ class SettingListView extends StatelessWidget {
             SettingList(
                 leading: const Icon(Icons.language),
                 title: LocaleKeys.dashboard_profile_language.tr)),
-       Divider(
+        Divider(
           color: AppColor.greylight,
         ),
         SettingListItem(
@@ -269,9 +238,10 @@ class SettingListView extends StatelessWidget {
               });
         },
             SettingList(
-                leading: const Icon(Icons.logout), title: LocaleKeys.dashboard_profile_logout.tr))
-       ,Divider(color: AppColor.greylight,),
-      
+                leading: const Icon(Icons.logout), title: LocaleKeys.dashboard_profile_logout.tr)),
+        Divider(
+          color: AppColor.greylight,
+        ),
       ]),
     );
   }
@@ -315,15 +285,13 @@ class SettingListView extends StatelessWidget {
                               StaticData.firstName = '';
                               StaticData.lastName = '';
                               StaticData.mobile = '';
-                              SharedPreference.clearUser();
+                              StaticData.role = '';
+                              SharedPreference.clearToken();
+                              SharedPreference.clearRole();
 
                               /// terminate isolate
                               isolateManager.terminateIsolate();
-                              Get.offAllNamed(Routes.EMAIL_LOGIN);
-                               GetStorage _storage = GetStorage();
-                               _storage.remove("role");
-
-                                  
+                              Get.offAll(() => const UserRoleView());
                             },
                             height: 56,
                             btnBg: AppColor.secondary))

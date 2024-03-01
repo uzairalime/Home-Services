@@ -5,4 +5,5 @@ class StaticData {
   static String firstName = '';
   static String lastName = '';
   static String mobile = '';
+  static String role = '';
 }

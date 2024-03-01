@@ -4,26 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/routes/app_pages.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/user_profile_view.dart';
+import 'package:home_brigadier/app/seller/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/user_role/user_role.dart';
 import 'package:home_brigadier/utils/isolate_manager.dart';
 import 'package:home_brigadier/utils/shared_preferance.dart';
-
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../consts/app_color.dart';
 import '../../../../../consts/media_query.dart';
 import '../../../../../widget/cText.dart';
 import '../../../../../widget/c_filled_btn.dart';
+import '../../../../user/dashboard/views/dashboard_view.dart';
 import '../controllers/profile_controller.dart';
 
-class SellerProfileView extends GetView<ProfileController> {
+class SellerProfileView extends GetView<SellerProfileController> {
   const SellerProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProfileController());
+    Get.put(SellerProfileController());
 
     // final svgTheme = Theme.of(context).textTheme.titleMedium!.color;
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
@@ -31,7 +33,7 @@ class SellerProfileView extends GetView<ProfileController> {
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
     controller.getUserInfo();
     return GetBuilder(
-        init: Get.put(ProfileController()),
+        init: Get.put(SellerProfileController()),
         builder: (builderContext) {
           return Scaffold(
             body: StreamBuilder(
@@ -60,12 +62,9 @@ class SellerProfileView extends GetView<ProfileController> {
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
                             decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
+                              borderRadius: BorderRadius.all(Radius.circular(12)),
                             ),
-                            child: Center(
-                                child: Image.asset(
-                                    "assets/images/ic_splash.png"))),
+                            child: Center(child: Image.asset("assets/images/ic_splash.png"))),
                       ),
                       title: CText(
                         text: LocaleKeys.dashboard_items_profile.tr,
@@ -81,8 +80,9 @@ class SellerProfileView extends GetView<ProfileController> {
                         Obx(() => InkWell(
                               borderRadius: BorderRadius.circular(50),
                               onTap: () {
+                                Get.to(() => const UserProfileView());
                                 // controller.pickImage();
-                                Get.toNamed(Routes.USER_PROFILE);
+                                // Get.toNamed(Routes.USER_PROFILE);
                               },
                               child: ProfilePic(
                                 image: CachedNetworkImageProvider(
@@ -116,6 +116,7 @@ class SellerProfileView extends GetView<ProfileController> {
                         Expanded(
                           child: SettingListView(
                             number: controller.userName.value,
+                            controller: controller,
                           ),
                         ),
                       ],
@@ -193,8 +194,7 @@ class ProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      CircleAvatar(
-          backgroundImage: image, radius: mediaQueryWidth(context) * 0.13),
+      CircleAvatar(backgroundImage: image, radius: mediaQueryWidth(context) * 0.13),
       Positioned(
           bottom: mediaQueryHeight(context) * 0.005,
           right: mediaQueryWidth(context) * 0.02,
@@ -208,7 +208,12 @@ class ProfilePic extends StatelessWidget {
 
 class SettingListView extends StatelessWidget {
   final String? number;
-  const SettingListView({super.key, this.number});
+  final SellerProfileController controller;
+  const SettingListView({
+    super.key,
+    this.number,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -216,11 +221,28 @@ class SettingListView extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: ListView(physics: const BouncingScrollPhysics(), children: [
         SettingListItem(
-            onTap: () =>
-                Get.toNamed((Routes.EDIT_PROFILE_SETTING), arguments: number),
+            onTap: () => Get.toNamed((Routes.EDIT_PROFILE_SETTING), arguments: number),
             SettingList(
+                trailing: Switch.adaptive(
+                  activeTrackColor: AppColor.secondary.withOpacity(0.3),
+                  activeColor: AppColor.secondary,
+                  value: controller.isSeller,
+                  onChanged: (value) {
+                    if (value == true) {
+                      SharedPreference.storeRole(role: "seller");
+
+                      controller.checkRole();
+                      Get.offAll(() => const SellerDashboardView());
+                    } else if (value == false) {
+                      SharedPreference.storeRole(role: "buyer");
+
+                      controller.checkRole();
+                      Get.offAll(() => const UserDashboardView());
+                    }
+                  },
+                ),
                 leading: const Icon(CupertinoIcons.person),
-                title: LocaleKeys.dashboard_profile_edit_profile.tr)),
+                title: "Switch Mode")),
         Divider(
           color: AppColor.greylight,
         ),
@@ -272,8 +294,7 @@ class SettingListView extends StatelessWidget {
               });
         },
             SettingList(
-                leading: const Icon(Icons.logout),
-                title: LocaleKeys.dashboard_profile_logout.tr)),
+                leading: const Icon(Icons.logout), title: LocaleKeys.dashboard_profile_logout.tr)),
         Divider(
           color: AppColor.greylight,
         ),
@@ -284,8 +305,7 @@ class SettingListView extends StatelessWidget {
   Widget buildBottomSheetContent(BuildContext context) {
     return Container(
         width: mediaQueryWidth(context),
-        padding:
-            EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
+        padding: EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -294,48 +314,45 @@ class SettingListView extends StatelessWidget {
                   text: LocaleKeys.dashboard_profile__logout_warning_msg.tr,
                   fontsize: Theme.of(context).textTheme.titleLarge!.fontSize),
               Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                            flex: 1,
-                            child: CFilledBtn(
-                                text: LocaleKeys
-                                    .dashboard_profile__logout_cancel.tr,
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                height: 56,
-                                textColor: AppColor.secondary,
-                                btnBg: AppColor.grey.withOpacity(0.3))),
-                        const SizedBox(width: 10),
-                        Expanded(
-                            flex: 2,
-                            child: CFilledBtn(
-                                text:
-                                    LocaleKeys.dashboard_profile__logout_yes.tr,
-                                onPressed: () {
-                                  IsolateManager isolateManager =
-                                      IsolateManager();
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                    Expanded(
+                        flex: 1,
+                        child: CFilledBtn(
+                            text: LocaleKeys.dashboard_profile__logout_cancel.tr,
+                            onPressed: () {
+                              Get.back();
+                            },
+                            height: 56,
+                            textColor: AppColor.secondary,
+                            btnBg: AppColor.grey.withOpacity(0.3))),
+                    const SizedBox(width: 10),
+                    Expanded(
+                        flex: 2,
+                        child: CFilledBtn(
+                            text: LocaleKeys.dashboard_profile__logout_yes.tr,
+                            onPressed: () {
+                              IsolateManager isolateManager = IsolateManager();
 
-                                  /// clear tokens
-                                  StaticData.accessToken = '';
-                                  StaticData.refreshToken = '';
-                                  StaticData.userName = '';
-                                  StaticData.firstName = '';
-                                  StaticData.lastName = '';
-                                  StaticData.mobile = '';
-                                  SharedPreference.clearUser();
+                              /// clear tokens
+                              StaticData.accessToken = '';
+                              StaticData.refreshToken = '';
+                              StaticData.userName = '';
+                              StaticData.firstName = '';
+                              StaticData.lastName = '';
+                              StaticData.mobile = '';
+                              StaticData.role = '';
 
-                                  /// terminate isolate
-                                  isolateManager.terminateIsolate();
-                                  Get.offAll(()=>const UserRoleView());
-                                },
-                                height: 56,
-                                btnBg: AppColor.secondary))
-                      ]))
+                              SharedPreference.clearToken();
+                              SharedPreference.clearRole();
+
+                              /// terminate isolate
+                              isolateManager.terminateIsolate();
+                              Get.offAll(() => const UserRoleView());
+                            },
+                            height: 56,
+                            btnBg: AppColor.secondary))
+                  ]))
             ]));
   }
 }

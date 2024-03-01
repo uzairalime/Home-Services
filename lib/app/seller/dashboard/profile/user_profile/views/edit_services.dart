@@ -2,6 +2,7 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
+import 'package:home_brigadier/consts/global_variable.dart';
 
 import '../../../../../../consts/app_color.dart';
 import '../../../../../../consts/const.dart';
@@ -14,8 +15,7 @@ import '../../../../../../widget/c_text_field.dart';
 import '../controllers/user_profile_controller.dart';
 
 class EditUserService extends StatefulWidget {
-  final MyServicesRespModel? serviceModel;
-  const EditUserService({this.serviceModel, super.key});
+  const EditUserService({super.key});
 
   @override
   State<EditUserService> createState() => _EditUserServiceState();
@@ -30,13 +30,13 @@ class _EditUserServiceState extends State<EditUserService> {
     controller = Get.put(UserProfileController());
     con = Get.find();
 
-    List<RespOpeningHours>? openingHours = widget.serviceModel!.openingHours;
-    controller.nameController.text = widget.serviceModel!.name!;
-    controller.descController.text = widget.serviceModel!.description!;
-    controller.rateController.text = widget.serviceModel!.rate!;
-    controller.addressController.text = widget.serviceModel!.address!;
+    List<RespOpeningHours>? openingHours = GlobalVariable.serviceModel.openingHours;
+    controller.nameController.text = GlobalVariable.serviceModel.name!;
+    controller.descController.text = GlobalVariable.serviceModel.description!;
+    controller.rateController.text = GlobalVariable.serviceModel.rate!;
+    controller.addressController.text = GlobalVariable.serviceModel.address!;
     controller.previousImage =
-        "https://homebrigadier.fly.dev${widget.serviceModel!.files![0].file}";
+        "https://homebrigadier.fly.dev${GlobalVariable.serviceModel.files![0].file}";
     for (var element in openingHours!) {
       if (controller.selectedWeekdays.contains(element.weekday)) {
       } else {
@@ -69,8 +69,7 @@ class _EditUserServiceState extends State<EditUserService> {
                       child: SingleChildScrollView(
                         controller: controller.scrollController,
                         physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -78,8 +77,7 @@ class _EditUserServiceState extends State<EditUserService> {
                               width: double.maxFinite,
                               child: CText(
                                   textAlign: TextAlign.start,
-                                  text:
-                                      LocaleKeys.edit_services_service_info.tr,
+                                  text: LocaleKeys.edit_services_service_info.tr,
                                   fontsize: 30,
                                   fontWeight: FontWeight.w500),
                             ),
@@ -92,8 +90,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                   style: const TextStyle(color: Colors.grey),
                                 )),
 
-                            title(
-                                context, LocaleKeys.edit_services_full_name.tr),
+                            title(context, LocaleKeys.edit_services_full_name.tr),
                             CTextField(
                               contentPadding: 15,
                               hint: LocaleKeys.edit_services_enter_full_name.tr,
@@ -109,8 +106,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                 return null;
                               },
                             ),
-                            title(context,
-                                LocaleKeys.edit_services_selected_catg.tr),
+                            title(context, LocaleKeys.edit_services_selected_catg.tr),
                             Directionality(
                               textDirection: TextDirection.ltr,
                               child: CustomDropdown<String>(
@@ -120,31 +116,23 @@ class _EditUserServiceState extends State<EditUserService> {
                                     }
                                     return null;
                                   },
-                                  initialItem:
-                                      controller.selectedCategory.value,
+                                  initialItem: controller.selectedCategory.value,
                                   decoration: CustomDropdownDecoration(
                                       errorStyle: const TextStyle(fontSize: 13),
-                                      expandedBorder:
-                                          Border.all(color: AppColor.primary),
-                                      closedBorder: controller
-                                              .categoryFocus.value
+                                      expandedBorder: Border.all(color: AppColor.primary),
+                                      closedBorder: controller.categoryFocus.value
                                           ? Border.all(color: AppColor.primary)
-                                          : Border.all(
-                                              color: Colors.transparent),
-                                      closedFillColor:
-                                          AppColor.greylight.withOpacity(0.1)),
-                                  hintText: LocaleKeys
-                                      .edit_services_enter_select_catg.tr,
+                                          : Border.all(color: Colors.transparent),
+                                      closedFillColor: AppColor.greylight.withOpacity(0.1)),
+                                  hintText: LocaleKeys.edit_services_enter_select_catg.tr,
                                   items: controller.menuItems,
                                   onChanged: (newValue) {
-                                    controller.selectedCategory.value =
-                                        newValue;
+                                    controller.selectedCategory.value = newValue;
                                     controller.onSelectCategory(newValue);
                                     controller.update();
                                   }),
                             ),
-                            title(context,
-                                LocaleKeys.edit_services_discription.tr),
+                            title(context, LocaleKeys.edit_services_discription.tr),
                             CTextField(
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -153,18 +141,14 @@ class _EditUserServiceState extends State<EditUserService> {
                                   return null;
                                 },
                                 contentPadding: 15,
-                                hint: LocaleKeys
-                                    .edit_services_enter_decription.tr,
+                                hint: LocaleKeys.edit_services_enter_decription.tr,
                                 controller: controller.descController,
                                 borderColor: Colors.transparent,
                                 borderRadius: 12,
                                 maxLines: 5,
                                 filled: true,
                                 fillColor: Colors.grey.withOpacity(0.1)),
-                            title(
-                                context,
-                                LocaleKeys
-                                    .edit_services_select_working_hour.tr),
+                            title(context, LocaleKeys.edit_services_select_working_hour.tr),
                             Directionality(
                               textDirection: TextDirection.ltr,
                               child: Row(children: [
@@ -177,26 +161,19 @@ class _EditUserServiceState extends State<EditUserService> {
                                           return null;
                                         },
                                         decoration: CustomDropdownDecoration(
-                                            errorStyle:
-                                                const TextStyle(fontSize: 12),
-                                            expandedBorder: Border.all(
-                                                color: AppColor.primary),
-                                            closedBorder: Border.all(
-                                                color: Colors.transparent),
-                                            closedFillColor: AppColor.greylight
-                                                .withOpacity(0.1)),
+                                            errorStyle: const TextStyle(fontSize: 12),
+                                            expandedBorder: Border.all(color: AppColor.primary),
+                                            closedBorder: Border.all(color: Colors.transparent),
+                                            closedFillColor: AppColor.greylight.withOpacity(0.1)),
                                         hintBuilder: (context, hint) {
                                           return Text(hint,
                                               style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: AppColor.grey));
+                                                  fontSize: 14, color: AppColor.grey));
                                         },
-                                        hintText: LocaleKeys
-                                            .edit_services_enter_from_hours.tr,
+                                        hintText: LocaleKeys.edit_services_enter_from_hours.tr,
                                         items: controller.hours,
                                         onChanged: (newValue) {
-                                          controller.selectedFrom.value =
-                                              convertTo24Hour(newValue);
+                                          controller.selectedFrom.value = convertTo24Hour(newValue);
                                           // print(controller.selectedFrom.value);
                                         })),
                                 const SizedBox(width: 30),
@@ -209,32 +186,24 @@ class _EditUserServiceState extends State<EditUserService> {
                                           return null;
                                         },
                                         decoration: CustomDropdownDecoration(
-                                          errorStyle:
-                                              const TextStyle(fontSize: 13),
-                                          expandedBorder: Border.all(
-                                              color: AppColor.primary),
-                                          closedBorder: Border.all(
-                                              color: Colors.transparent),
-                                          closedFillColor: AppColor.greylight
-                                              .withOpacity(0.1),
+                                          errorStyle: const TextStyle(fontSize: 13),
+                                          expandedBorder: Border.all(color: AppColor.primary),
+                                          closedBorder: Border.all(color: Colors.transparent),
+                                          closedFillColor: AppColor.greylight.withOpacity(0.1),
                                         ),
                                         hintBuilder: (context, hint) {
                                           return Text(hint,
                                               style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: AppColor.grey));
+                                                  fontSize: 14, color: AppColor.grey));
                                         },
-                                        hintText: LocaleKeys
-                                            .edit_services_enter_till_hours.tr,
+                                        hintText: LocaleKeys.edit_services_enter_till_hours.tr,
                                         items: controller.hours,
                                         onChanged: (newValue) {
-                                          controller.selectedTill.value =
-                                              convertTo24Hour(newValue);
+                                          controller.selectedTill.value = convertTo24Hour(newValue);
                                         }))
                               ]),
                             ),
-                            title(context,
-                                LocaleKeys.edit_services_selct_working_days.tr),
+                            title(context, LocaleKeys.edit_services_selct_working_days.tr),
 
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,44 +212,36 @@ class _EditUserServiceState extends State<EditUserService> {
                                   height: 80,
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: controller
-                                                  .selectedWeekdays.isEmpty
+                                          color: controller.selectedWeekdays.isEmpty
                                               ? AppColor.red
                                               : Colors.transparent),
                                       borderRadius: BorderRadius.circular(12),
-                                      color:
-                                          AppColor.greylight.withOpacity(0.1)),
+                                      color: AppColor.greylight.withOpacity(0.1)),
                                   child: ListView(
                                     physics: const BouncingScrollPhysics(),
                                     scrollDirection: Axis.horizontal,
-                                    children:
-                                        controller.weekdays.map((weekday) {
+                                    children: controller.weekdays.map((weekday) {
                                       return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 4),
+                                        padding: const EdgeInsets.symmetric(horizontal: 4),
                                         child: ChoiceChip(
                                           shape: StadiumBorder(
                                               side: BorderSide(
-                                                  color: controller
-                                                          .selectedWeekdays
-                                                          .contains(weekday)
-                                                      ? Colors.transparent
-                                                      : AppColor.primary)),
-                                          labelPadding:
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 7, vertical: 3),
+                                                  color:
+                                                      controller.selectedWeekdays.contains(weekday)
+                                                          ? Colors.transparent
+                                                          : AppColor.primary)),
+                                          labelPadding: const EdgeInsets.symmetric(
+                                              horizontal: 7, vertical: 3),
                                           backgroundColor: AppColor.white,
                                           selectedColor: AppColor.primary,
                                           showCheckmark: false,
                                           label: Text(weekday,
                                               style: TextStyle(
-                                                  color: controller
-                                                          .selectedWeekdays
-                                                          .contains(weekday)
-                                                      ? AppColor.white
-                                                      : Colors.black)),
-                                          selected: controller.selectedWeekdays
-                                              .contains(weekday),
+                                                  color:
+                                                      controller.selectedWeekdays.contains(weekday)
+                                                          ? AppColor.white
+                                                          : Colors.black)),
+                                          selected: controller.selectedWeekdays.contains(weekday),
                                           onSelected: (isSelected) {
                                             controller.toggleSelection(weekday);
                                             controller.update();
@@ -299,8 +260,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                     : const SizedBox()
                               ],
                             ),
-                            title(context,
-                                LocaleKeys.edit_services_rate_per_hour.tr),
+                            title(context, LocaleKeys.edit_services_rate_per_hour.tr),
                             Directionality(
                               textDirection: TextDirection.ltr,
                               child: CTextField(
@@ -316,8 +276,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                   suffix: Container(
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                        color:
-                                            AppColor.greylight.withOpacity(0.2),
+                                        color: AppColor.greylight.withOpacity(0.2),
                                         borderRadius: const BorderRadius.only(
                                             topRight: Radius.circular(12),
                                             bottomRight: Radius.circular(12))),
@@ -338,8 +297,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                   borderRadius: 12),
                             ),
                             // const SizedBox(height: 30),
-                            title(context,
-                                LocaleKeys.edit_services_for_location.tr),
+                            title(context, LocaleKeys.edit_services_for_location.tr),
                             // SizedBox(
                             //   width: mediaQueryWidth(context),
                             //   height: mediaQueryHeight(context) * 0.4,
@@ -380,8 +338,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                 filled: true,
                                 keyboardType: TextInputType.streetAddress,
                                 fillColor: Colors.grey.withOpacity(0.1)),
-                            title(context,
-                                LocaleKeys.edit_services_upload_picture.tr),
+                            title(context, LocaleKeys.edit_services_upload_picture.tr),
                             Container(
                                 height: 200,
                                 width: double.infinity,
@@ -389,44 +346,29 @@ class _EditUserServiceState extends State<EditUserService> {
                                     color: Colors.grey.withOpacity(0.1),
                                     borderRadius: BorderRadius.circular(12)),
                                 child: InkWell(
-                                    onTap: () =>
-                                        controller.pickImageFromGallery(),
+                                    onTap: () => controller.pickImageFromGallery(),
                                     child: Container(
                                         height: 200,
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                             color: Colors.grey.withOpacity(0.1),
-                                            borderRadius:
-                                                BorderRadius.circular(12)),
+                                            borderRadius: BorderRadius.circular(12)),
                                         child: controller.imgUploading.value
-                                            ? const Center(
-                                                child:
-                                                    CircularProgressIndicator())
-                                            : controller.selectedImage.value !=
-                                                    null
+                                            ? const Center(child: CircularProgressIndicator())
+                                            : controller.selectedImage.value != null
                                                 ? ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
+                                                    borderRadius: BorderRadius.circular(12),
                                                     child: Image.file(
-                                                        controller.selectedImage
-                                                            .value!,
+                                                        controller.selectedImage.value!,
                                                         fit: BoxFit.cover))
                                                 : Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                        const Icon(Icons
-                                                            .image_outlined),
+                                                        const Icon(Icons.image_outlined),
                                                         Text(LocaleKeys
-                                                            .edit_services_upload_picture
-                                                            .tr)
+                                                            .edit_services_upload_picture.tr)
                                                       ])))),
                             const SizedBox(height: 30),
                             Align(
@@ -434,41 +376,31 @@ class _EditUserServiceState extends State<EditUserService> {
                                 child: CButton(
                                     ontab: () async {
                                       controller.update();
-                                      int? id = widget.serviceModel!.id;
+                                      int? id = GlobalVariable.serviceModel.id;
 
                                       if (_formKey.currentState!.validate()) {
                                         if (id != null) {
                                           controller.updateUserService(
                                               id: id,
-                                              name: controller
-                                                  .nameController.text,
-                                              description: controller
-                                                  .descController.text,
+                                              name: controller.nameController.text,
+                                              description: controller.descController.text,
                                               category: convertToCamelCase(
-                                                  controller
-                                                      .selectedCategory.value),
-                                              address: controller
-                                                  .addressController.text,
+                                                  controller.selectedCategory.value),
+                                              address: controller.addressController.text,
                                               location: cPosition,
                                               fileId: controller.fileId == ''
-                                                  ? widget.serviceModel!
-                                                      .files![0].id
+                                                  ? GlobalVariable.serviceModel.files![0].id
                                                       .toString()
                                                   : controller.fileId,
-                                              weekDays:
-                                                  controller.selectedWeekdays,
-                                              from_hour:
-                                                  controller.selectedFrom.value,
-                                              to_hour:
-                                                  controller.selectedTill.value,
-                                              rate: controller
-                                                  .rateController.text);
+                                              weekDays: controller.selectedWeekdays,
+                                              from_hour: controller.selectedFrom.value,
+                                              to_hour: controller.selectedTill.value,
+                                              rate: controller.rateController.text);
                                         }
                                       } else {
                                         controller.scrollController.animateTo(
                                           0.0,
-                                          duration:
-                                              const Duration(milliseconds: 500),
+                                          duration: const Duration(milliseconds: 500),
                                           curve: Curves.easeInOut,
                                         );
                                       }
@@ -487,8 +419,7 @@ class _EditUserServiceState extends State<EditUserService> {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColor.greylight.withOpacity(0.1)),
+            borderRadius: BorderRadius.circular(12), color: AppColor.greylight.withOpacity(0.1)),
         child: child);
   }
 
@@ -496,8 +427,7 @@ class _EditUserServiceState extends State<EditUserService> {
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
     return Padding(
         padding: const EdgeInsets.only(top: 18, bottom: 8),
-        child: CText(
-            textAlign: TextAlign.start, text: text, fontsize: titleLarge));
+        child: CText(textAlign: TextAlign.start, text: text, fontsize: titleLarge));
   }
 }
 

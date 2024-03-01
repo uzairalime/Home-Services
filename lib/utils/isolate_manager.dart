@@ -31,7 +31,7 @@ class IsolateManager {
         var data = RefreshTokenModel.fromJson(response.data);
         if (data.refresh != null || data.refresh != '') {
           print("Dio refresh response : ${data.refresh}");
-          await SharedPreference.storeUserPreference(
+          await SharedPreference.storeToken(
             access: data.access,
             refresh: data.refresh,
           );
