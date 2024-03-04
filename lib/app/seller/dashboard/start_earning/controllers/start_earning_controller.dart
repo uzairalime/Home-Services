@@ -5,7 +5,6 @@ import 'package:dio/dio.dart' as deo;
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/start_earning/controllers/service_post.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../consts/const.dart';
@@ -13,23 +12,16 @@ import '../../../../../consts/static_data.dart';
 import '../../../../../generated/locales.g.dart';
 import '../../../../../model/user_services_models/my_services_resp_model.dart';
 import '../../../../../services/apis/toast.dart';
+import '../../../../user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import '../../profile/user_profile/controllers/user_profile_controller.dart';
 
 class StartEarningController extends GetxController {
   TextEditingController villaController = TextEditingController();
   ScrollController scrollController = ScrollController();
+  final ImagePicker picker = ImagePicker();
 
-  var weekdays = [
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday"
-  ];
-
-  var menuItems = [
+  var weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+  final List<String> menuItems = [
     'Cleaning',
     'Painting',
     'Tailor',
@@ -42,7 +34,8 @@ class StartEarningController extends GetxController {
     'Plumbing',
     'Ac Repair'
   ].obs;
-  var selectedCategory = 'Cleaning'.obs;
+
+  var selectedCategory;
   var selectedWeekdays = <String>['monday'].obs;
   var selectedFrom = ''.obs;
   var selectedTill = ''.obs;
@@ -51,11 +44,28 @@ class StartEarningController extends GetxController {
   var tillFocus = false.obs;
   var rateFocus = false.obs;
   RxBool isLoading = false.obs;
-  RxBool imgUploading = false.obs;
-  XFile? pickedFile;
-  Rx<File?> selectedImage = Rx<File?>(null);
+  RxBool profileUploading = false.obs;
+  RxBool frontUploading = false.obs;
+  RxBool backUploading = false.obs;
+  RxBool workingUploading = false.obs;
+
+  XFile? profilePickedFile;
+  Rx<File?> selectedProfileImage = Rx<File?>(null);
+
+  XFile? frontPickedFile;
+  Rx<File?> selectedFrontImage = Rx<File?>(null);
+
+  XFile? backPickedFile;
+  Rx<File?> selectedBackImage = Rx<File?>(null);
+
+  XFile? workingPickedFile;
+  Rx<File?> selectedworkingImage = Rx<File?>(null);
+
   deo.Dio dio = deo.Dio();
-  String fileId = '';
+  String profileFileId = '';
+  String workingFileId = '';
+  String frontFileId = '';
+  String backFileId = '';
 
   final bookingController = BookingController();
 
@@ -79,17 +89,70 @@ class StartEarningController extends GetxController {
     '05 PM',
   ].obs;
 
-  Future<void> pickImageFromGallery() async {
-    final ImagePicker picker = ImagePicker();
-
+  Future<void> pickProfileImage() async {
     try {
-      pickedFile = await picker.pickImage(
+      profilePickedFile = await picker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 50, // Adjust the image quality as needed
       );
-      if (pickedFile != null) {
-        selectedImage.value = File(pickedFile!.path);
-        postFile();
+      if (profilePickedFile != null) {
+        selectedProfileImage.value = File(profilePickedFile!.path);
+
+        postProfilePic();
+      } else {
+        // print('No image selected.');
+      }
+    } catch (e) {
+      //print('Error picking image: $e');
+    }
+  }
+
+  Future<void> pickIdFrontImage() async {
+    try {
+      frontPickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50, // Adjust the image quality as needed
+      );
+      if (frontPickedFile != null) {
+        selectedFrontImage.value = File(frontPickedFile!.path);
+
+        postFrontPic();
+      } else {
+        // print('No image selected.');
+      }
+    } catch (e) {
+      //print('Error picking image: $e');
+    }
+  }
+
+  Future<void> pickIdBackImage() async {
+    try {
+      backPickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50, // Adjust the image quality as needed
+      );
+      if (backPickedFile != null) {
+        selectedBackImage.value = File(backPickedFile!.path);
+
+        postBackPic();
+      } else {
+        // print('No image selected.');
+      }
+    } catch (e) {
+      //print('Error picking image: $e');
+    }
+  }
+
+  Future<void> pickWorkingImage() async {
+    try {
+      workingPickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50, // Adjust the image quality as needed
+      );
+      if (workingPickedFile != null) {
+        selectedworkingImage.value = File(workingPickedFile!.path);
+
+        postWorkingPic();
       } else {
         // print('No image selected.');
       }
@@ -123,7 +186,7 @@ class StartEarningController extends GetxController {
   }
 
   void onSelectCategory(String item) {
-    selectedCategory.value = item;
+    selectedCategory = item;
   }
 
   void toggleSelection(String weekday) {
@@ -135,39 +198,6 @@ class StartEarningController extends GetxController {
     print(selectedWeekdays);
   }
 
-  Future<void> postFile() async {
-    RespFiles files = RespFiles();
-    imgUploading.value = true;
-    update();
-    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
-
-    try {
-      await pickedFile!.readAsBytes().then((imageBytes) async {
-        deo.FormData data = deo.FormData.fromMap(({
-          "file": deo.MultipartFile.fromBytes(imageBytes,
-              filename: pickedFile!.path)
-        }));
-
-        await dio
-            .post("https://homebrigadier.fly.dev/api/service/file/", data: data)
-            .then((value) {
-          //print("file response ${value.data}");
-          files = RespFiles.fromJson(value.data);
-          fileId = files.id!;
-          print(fileId);
-          showsnackbar("Image Upload Successfully");
-        });
-      });
-    } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection");
-    } catch (e) {
-      showsnackbar("failed to upload: file already exist");
-    } finally {
-      imgUploading.value = false;
-      update();
-    }
-  }
-
   Future<void> addNewService(context) async {
     isLoading.value = true;
     update();
@@ -176,8 +206,8 @@ class StartEarningController extends GetxController {
               context: context,
               name: nameController.text,
               description: descController.text,
-              fileId: fileId,
-              category: convertToCamelCase(selectedCategory.value),
+              fileId: [profileFileId, frontFileId, backFileId, workingFileId],
+              category: convertToCamelCase(selectedCategory),
               address: "${villaController.text}${addressController.text}",
               weekDays: selectedWeekdays,
               rate: rateController.text,
@@ -193,11 +223,126 @@ class StartEarningController extends GetxController {
     }
   }
 
+  Future<void> postProfilePic() async {
+    RespFiles files = RespFiles();
+    profileUploading.value = true;
+    update();
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+
+    try {
+      await profilePickedFile!.readAsBytes().then((imageBytes) async {
+        deo.FormData data = deo.FormData.fromMap(
+            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: "profile_img")}));
+
+        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
+          //print("file response ${value.data}");
+          files = RespFiles.fromJson(value.data);
+          profileFileId = files.id!;
+          print("profileFileId $profileFileId");
+          showsnackbar("Image Upload Successfully");
+        });
+      });
+    } on SocketException catch (_) {
+      showsnackbar("failed to upload: check internet connection");
+    } catch (e) {
+      showsnackbar("failed to upload: file already exist");
+    } finally {
+      profileUploading.value = false;
+      update();
+    }
+  }
+
+  Future<void> postWorkingPic() async {
+    RespFiles files = RespFiles();
+    workingUploading.value = true;
+    update();
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+
+    try {
+      await workingPickedFile!.readAsBytes().then((imageBytes) async {
+        deo.FormData data = deo.FormData.fromMap(
+            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: "working_img")}));
+
+        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
+          //print("file response ${value.data}");
+          files = RespFiles.fromJson(value.data);
+          workingFileId = files.id!;
+          print("workingFileId $workingFileId");
+          showsnackbar("Image Upload Successfully");
+        });
+      });
+    } on SocketException catch (_) {
+      showsnackbar("failed to upload: check internet connection");
+    } catch (e) {
+      showsnackbar("failed to upload: file already exist");
+    } finally {
+      workingUploading.value = false;
+      update();
+    }
+  }
+
+  Future<void> postFrontPic() async {
+    RespFiles files = RespFiles();
+    frontUploading.value = true;
+    update();
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+
+    try {
+      await frontPickedFile!.readAsBytes().then((imageBytes) async {
+        deo.FormData data = deo.FormData.fromMap(
+            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: "front_img")}));
+
+        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
+          //print("file response ${value.data}");
+          files = RespFiles.fromJson(value.data);
+          frontFileId = files.id!;
+          print("frontFileId $frontFileId");
+          showsnackbar("Image Upload Successfully");
+        });
+      });
+    } on SocketException catch (_) {
+      showsnackbar("failed to upload: check internet connection");
+    } catch (e) {
+      showsnackbar("failed to upload: file already exist");
+    } finally {
+      frontUploading.value = false;
+      update();
+    }
+  }
+
+  Future<void> postBackPic() async {
+    RespFiles files = RespFiles();
+    backUploading.value = true;
+    update();
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+
+    try {
+      await backPickedFile!.readAsBytes().then((imageBytes) async {
+        deo.FormData data = deo.FormData.fromMap(
+            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: "back_img")}));
+
+        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
+          //print("file response ${value.data}");
+          files = RespFiles.fromJson(value.data);
+          backFileId = files.id!;
+          print("backFileId $backFileId");
+          showsnackbar("Image Upload Successfully");
+        });
+      });
+    } on SocketException catch (_) {
+      showsnackbar("failed to upload: check internet connection");
+    } catch (e) {
+      showsnackbar("failed to upload: file already exist");
+    } finally {
+      backUploading.value = false;
+      update();
+    }
+  }
+
   clearController() {
     nameController.clear();
     descController.clear();
-    fileId = '';
-    selectedCategory.value = '';
+    selectedCategory = '';
     villaController.clear();
     addressController.clear();
     rateController.clear();

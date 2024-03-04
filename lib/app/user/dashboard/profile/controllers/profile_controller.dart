@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../../consts/static_data.dart';
 import '../../../../../model/user_model.dart';
+import '../../../../../utils/shared_preferance.dart';
 
 class ProfileController extends GetxController {
   late ApiHelper apiHelper;
@@ -17,6 +20,7 @@ class ProfileController extends GetxController {
   RxList files = [].obs;
   RxList services = [].obs;
   RxBool isLoading = true.obs;
+  bool isSeller = false;
 
   final ImagePicker _picker = ImagePicker();
   final Rx<XFile?> _pickedFile = Rx<XFile?>(null);
@@ -35,6 +39,7 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
+    checkRole();
     apiHelper = ApiHelper();
     super.onInit();
   }
@@ -76,6 +81,22 @@ class ProfileController extends GetxController {
       print('Error retrieving data: $error');
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<void> checkRole() async {
+    await SharedPreference.getRole();
+    log("profile role ${StaticData.role}");
+
+    if (StaticData.role == 'seller') {
+      isSeller = true;
+      log(isSeller.toString());
+      update();
+    } else if (StaticData.role == "buyer") {
+      isSeller = false;
+      log(isSeller.toString());
+
+      update();
     }
   }
 }

@@ -1,25 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 
 import '../../../../../../services/apis/toast.dart';
 import '../../../../../../utils/otp_resp_model.dart';
 import '../../../../../../utils/shared_preferance.dart';
-import '../../../../../routes/app_pages.dart';
 import '../../../../../seller/dashboard/views/dashboard_view.dart';
 
 class PinController extends GetxController {
-  
-   String role = "seller";
-
-   
-
+  String role = "seller";
 
   TextEditingController otpController = TextEditingController();
   Dio dio = Dio();
@@ -40,32 +33,19 @@ class PinController extends GetxController {
 
       if (response.statusCode == 200) {
         var data = OtpResponseModel.fromJson(response.data);
-        // StaticData.accessToken = data.access.toString();
-        // StaticData.refreshToken = data.refresh.toString();
-        // StaticData.userName = data.username.toString();
-        // StaticData.firstName = data.firstName.toString();
-        // StaticData.lastName = data.lastName.toString();
-        // StaticData.mobile = data.mobile.toString();
 
         /// store UserPreference
-        await SharedPreference.storeUserPreference(access: data.access, refresh: data.refresh);
+        await SharedPreference.storeToken(access: data.access, refresh: data.refresh);
 
-                 GetStorage _storage= GetStorage();
-                 _storage.write("role", role);
+        // GetStorage _storage = GetStorage();
+        // _storage.write("role", role);
+        SharedPreference.storeRole(role: "seller");
 
-
-
-                 if(role == "seller"){
-                          Get.off(()=>const SellerDashboardView());
-
-
-                 }else{
-              Get.offAllNamed(Routes.DASHBOARD);
-
-
-                 }
-
-
+        if (role == "seller") {
+          Get.off(() => const SellerDashboardView());
+        } else {
+          Get.off(const UserDashboardView());
+        }
       }
     } on SocketException catch (_) {
       showsnackbar("Failed to Sign in: Check Internet Connection", true);

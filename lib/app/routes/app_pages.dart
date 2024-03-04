@@ -4,33 +4,6 @@ import 'package:home_brigadier/app/seller/dashboard/bookings/bindings/bookings_b
 import 'package:home_brigadier/app/seller/dashboard/bookings/views/bookings_view.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/about_matadata/bindings/about_matadata_binding.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/about_matadata/views/about_matadata_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/bindings/profile_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/customer_service/bindings/customer_service_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/customer_service/views/customer_service_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/edit_profile_setting/bindings/edit_profile_setting_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/edit_profile_setting/views/edit_profile_setting_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/help_center/FAQ/bindings/faq_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/help_center/FAQ/views/faq_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/help_center/bindings/help_center_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/help_center/contact_us/bindings/contact_us_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/help_center/contact_us/views/contact_us_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/help_center/views/help_center_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/invite_friend/bindings/invite_friend_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/invite_friend/views/invite_friend_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/language_setting/bindings/language_setting_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/language_setting/views/language_setting_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/logout/bindings/logout_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/logout/views/logout_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/notification_setting/bindings/notification_setting_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/notification_setting/views/notification_setting_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/payment_setting/bindings/payment_setting_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/payment_setting/views/payment_setting_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/privacy_policy/bindings/privacy_policy_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/privacy_policy/views/privacy_policy_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/security_setting/bindings/security_setting_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/security_setting/views/security_setting_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/bindings/user_profile_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/user_profile_view.dart';
 import 'package:home_brigadier/app/user/dashboard/calender/bindings/calender_binding.dart';
 import 'package:home_brigadier/app/user/dashboard/calender/views/calender_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/bindings/all_services_binding.dart';
@@ -75,12 +48,10 @@ import 'package:home_brigadier/app/user/dashboard/inbox/chats/user_chat/bindings
 import 'package:home_brigadier/app/user/dashboard/inbox/chats/user_chat/views/user_chat_view.dart';
 import 'package:home_brigadier/app/user/dashboard/inbox/chats/views/chats_view.dart';
 import 'package:home_brigadier/app/user/dashboard/inbox/views/inbox_view.dart';
-import 'package:home_brigadier/app/user/dashboard/profile/views/profile_view.dart';
 import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 
 import '../modules/account_setup/bindings/account_setup_binding.dart';
 import '../modules/account_setup/views/account_setup_view.dart';
-
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/email_login/bindings/email_login_binding.dart';
 import '../modules/login/email_login/forget_password/bindings/forget_password_binding.dart';
@@ -243,80 +214,80 @@ class AppPages {
             ),
           ],
         ),
-        GetPage(
-          name: _Paths.PROFILE,
-          page: () => const ProfileView(),
-          binding: ProfileBinding(),
-          children: [
-            GetPage(
-              name: _Paths.EDIT_PROFILE_SETTING,
-              page: () => const EditProfileSettingView(),
-              binding: EditProfileSettingBinding(),
-            ),
-            GetPage(
-              name: _Paths.NOTIFICATION_SETTING,
-              page: () => const NotificationSettingView(),
-              binding: NotificationSettingBinding(),
-            ),
-            GetPage(
-              name: _Paths.PAYMENT_SETTING,
-              page: () => const PaymentSettingView(),
-              binding: PaymentSettingBinding(),
-            ),
-            GetPage(
-              name: _Paths.SECURITY_SETTING,
-              page: () => const SecuritySettingView(),
-              binding: SecuritySettingBinding(),
-            ),
-            GetPage(
-              name: _Paths.LANGUAGE_SETTING,
-              page: () => const LanguageSettingView(),
-              binding: LanguageSettingBinding(),
-            ),
-            GetPage(
-              name: _Paths.PRIVACY_POLICY,
-              page: () => const PrivacyPolicyView(),
-              binding: PrivacyPolicyBinding(),
-            ),
-            GetPage(
-              name: _Paths.HELP_CENTER,
-              page: () => const HelpCenterView(),
-              binding: HelpCenterBinding(),
-              children: [
-                GetPage(
-                  name: _Paths.FAQ,
-                  page: () => const FaqView(),
-                  binding: FaqBinding(),
-                ),
-                GetPage(
-                  name: _Paths.CONTACT_US,
-                  page: () => const ContactUsView(),
-                  binding: ContactUsBinding(),
-                ),
-              ],
-            ),
-            GetPage(
-              name: _Paths.CUSTOMER_SERVICE,
-              page: () => const CustomerServiceView(),
-              binding: CustomerServiceBinding(),
-            ),
-            GetPage(
-              name: _Paths.LOGOUT,
-              page: () => const LogoutView(),
-              binding: LogoutBinding(),
-            ),
-            GetPage(
-              name: _Paths.INVITE_FRIEND,
-              page: () => const InviteFriendView(),
-              binding: InviteFriendBinding(),
-            ),
-            GetPage(
-              name: _Paths.USER_PROFILE,
-              page: () => const UserProfileView(),
-              binding: UserProfileBinding(),
-            ),
-          ],
-        ),
+        // GetPage(
+        //   name: _Paths.PROFILE,
+        //   page: () => const ProfileView(),
+        //   binding: ProfileBinding(),
+        //   children: [
+        //     GetPage(
+        //       name: _Paths.EDIT_PROFILE_SETTING,
+        //       page: () => const EditProfileSettingView(),
+        //       binding: EditProfileSettingBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.NOTIFICATION_SETTING,
+        //       page: () => const NotificationSettingView(),
+        //       binding: NotificationSettingBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.PAYMENT_SETTING,
+        //       page: () => const PaymentSettingView(),
+        //       binding: PaymentSettingBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.SECURITY_SETTING,
+        //       page: () => const SecuritySettingView(),
+        //       binding: SecuritySettingBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.LANGUAGE_SETTING,
+        //       page: () => const LanguageSettingView(),
+        //       binding: LanguageSettingBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.PRIVACY_POLICY,
+        //       page: () => const PrivacyPolicyView(),
+        //       binding: PrivacyPolicyBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.HELP_CENTER,
+        //       page: () => const HelpCenterView(),
+        //       binding: HelpCenterBinding(),
+        //       children: [
+        //         GetPage(
+        //           name: _Paths.FAQ,
+        //           page: () => const FaqView(),
+        //           binding: FaqBinding(),
+        //         ),
+        //         GetPage(
+        //           name: _Paths.CONTACT_US,
+        //           page: () => const ContactUsView(),
+        //           binding: ContactUsBinding(),
+        //         ),
+        //       ],
+        //     ),
+        //     GetPage(
+        //       name: _Paths.CUSTOMER_SERVICE,
+        //       page: () => const CustomerServiceView(),
+        //       binding: CustomerServiceBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.LOGOUT,
+        //       page: () => const LogoutView(),
+        //       binding: LogoutBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.INVITE_FRIEND,
+        //       page: () => const InviteFriendView(),
+        //       binding: InviteFriendBinding(),
+        //     ),
+        //     GetPage(
+        //       name: _Paths.USER_PROFILE,
+        //       page: () => const UserProfileView(),
+        //       binding: UserProfileBinding(),
+        //     ),
+        //   ],
+        // ),
         GetPage(
           name: _Paths.START_EARNING,
           page: () => const StartEarningView(),

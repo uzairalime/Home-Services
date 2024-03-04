@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/routes/app_pages.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
+import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/consts/app_color.dart';
+import 'package:home_brigadier/consts/static_data.dart';
+import 'package:home_brigadier/utils/shared_preferance.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:video_player/video_player.dart';
 
@@ -43,8 +48,7 @@ class _UserRoleViewState extends State<UserRoleView> {
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15))),
+                          topLeft: Radius.circular(15), topRight: Radius.circular(15))),
                 ),
               ),
               Container(
@@ -79,33 +83,31 @@ class _UserRoleViewState extends State<UserRoleView> {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.offAndToNamed(Routes.DASHBOARD);
+                            SharedPreference.storeRole(role: "buyer");
+                            SharedPreference.getRole();
+                            Get.off(() => const UserDashboardView());
+                            log("buyer Rolr ${StaticData.role}");
 
                             Get.put(HomeController());
-
                           },
                           child: Container(
                             height: height * 0.18,
                             width: width * 0.4,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.1),
-                                    spreadRadius: 5,
-                                    blurRadius: 7,
-                                    offset: const Offset(0, 1),
-                                  ),
-                                ],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15)),
+                            decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(0, 1),
+                              ),
+                            ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 SizedBox(
                                     height: 40,
                                     width: 40,
-                                    child: Image.asset(
-                                        "assets/images/ic_find.png")),
+                                    child: Image.asset("assets/images/ic_find.png")),
                                 const CText(
                                   text: "Find a Service",
                                   fontWeight: FontWeight.bold,
@@ -129,25 +131,21 @@ class _UserRoleViewState extends State<UserRoleView> {
                           child: Container(
                             height: height * 0.18,
                             width: width * 0.4,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.1),
-                                    spreadRadius: 5,
-                                    blurRadius: 7,
-                                    offset: const Offset(0, 1),
-                                  ),
-                                ],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15)),
+                            decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(0, 1),
+                              ),
+                            ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 SizedBox(
                                     height: 40,
                                     width: 40,
-                                    child: Image.asset(
-                                        "assets/images/ic_selling.png")),
+                                    child: Image.asset("assets/images/ic_selling.png")),
                                 const CText(
                                   text: "Selling a Service",
                                   fontWeight: FontWeight.bold,

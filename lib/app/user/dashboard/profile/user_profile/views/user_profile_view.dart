@@ -29,12 +29,9 @@ class UserProfileView extends GetView<UserProfileController> {
                   color: txtTheme,
                   fontsize: mediaQueryHeight(context) * 0.025),
               bottom: TabBar(
-                  labelStyle: TextStyle(
-                      fontSize: titleSmall, fontWeight: FontWeight.bold),
-                  unselectedLabelStyle:
-                      TextStyle(fontSize: titleSmall, color: AppColor.grey),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: mediaQueryWidth(context) * 0.05),
+                  labelStyle: TextStyle(fontSize: titleSmall, fontWeight: FontWeight.bold),
+                  unselectedLabelStyle: TextStyle(fontSize: titleSmall, color: AppColor.grey),
+                  padding: EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
                   automaticIndicatorColorAdjustment: true,
                   indicatorWeight: 3,
                   tabs: [
@@ -59,8 +56,7 @@ class ProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      CircleAvatar(
-          backgroundImage: image, radius: mediaQueryWidth(context) * 0.13),
+      CircleAvatar(backgroundImage: image, radius: mediaQueryWidth(context) * 0.13),
       Positioned(
           bottom: mediaQueryHeight(context) * 0.005,
           right: mediaQueryWidth(context) * 0.02,

@@ -4,7 +4,6 @@ import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/offer_model.dart';
@@ -17,6 +16,7 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import '../../../../../model/category_name_model.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
+  static HomeController get to => Get.find();
   TextEditingController search = TextEditingController();
 
   RxString currentWord = ''.obs;
@@ -27,8 +27,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   //// === for hide
 
   bool showAppbar = true; //this is to show app bar
-  ScrollController scrollBottomBarController =
-      ScrollController(); // set controller on scrolling
+  ScrollController scrollBottomBarController = ScrollController(); // set controller on scrolling
   bool isScrollingDown = false;
   bool show = true;
   double bottomBarHeight = 75;
@@ -52,7 +51,6 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   }
 
   final ApiHelper _apiHelper = ApiHelper();
-  static HomeController get to => Get.find();
   SfRangeValues values = const SfRangeValues(40.0, 80.0);
   bool isSearch = false;
 
@@ -131,8 +129,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
           sendPort.send(subWord);
           sleep(Duration(milliseconds: 300)); // Adjust the delay as needed
         }
-        sleep(
-            Duration(milliseconds: 1000)); // Delay before the reverse animation
+        sleep(Duration(milliseconds: 1000)); // Delay before the reverse animation
 
         for (int i = word.length - 1; i >= 0; i--) {
           final String subWord = word.substring(0, i);
@@ -145,16 +142,14 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   void myScroll() async {
     scrollBottomBarController.addListener(() {
-      if (scrollBottomBarController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
+      if (scrollBottomBarController.position.userScrollDirection == ScrollDirection.reverse) {
         if (!isScrollingDown) {
           isScrollingDown = true;
           showAppbar = false;
           hideBottomBar();
         }
       }
-      if (scrollBottomBarController.position.userScrollDirection ==
-          ScrollDirection.forward) {
+      if (scrollBottomBarController.position.userScrollDirection == ScrollDirection.forward) {
         if (isScrollingDown) {
           isScrollingDown = false;
           showAppbar = true;
@@ -166,15 +161,13 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   getServices(String category) async {
     servicelist.clear();
-    final response = await _apiHelper.get(category == "All"
-        ? "user/service"
-        : "user/service/?category=$category");
+    final response = await _apiHelper
+        .get(category == "All" ? "user/service" : "user/service/?category=$category");
 
     final data = response.data;
 
-    List<ServicesModel> serviceList = (data as List)
-        .map((serviceJson) => ServicesModel.fromJson(serviceJson))
-        .toList();
+    List<ServicesModel> serviceList =
+        (data as List).map((serviceJson) => ServicesModel.fromJson(serviceJson)).toList();
 
     servicelist.clear();
 
@@ -190,9 +183,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
     final data = response.data;
 
-    List<CetegoryModel> categoryList = (data as List)
-        .map((categoryJson) => CetegoryModel.fromJson(categoryJson))
-        .toList();
+    List<CetegoryModel> categoryList =
+        (data as List).map((categoryJson) => CetegoryModel.fromJson(categoryJson)).toList();
 
     categorylist.clear();
 
@@ -209,9 +201,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
     final data = response.data;
 
-    List<OfferModel> offerList = (data as List)
-        .map((offerJson) => OfferModel.fromJson(offerJson))
-        .toList();
+    List<OfferModel> offerList =
+        (data as List).map((offerJson) => OfferModel.fromJson(offerJson)).toList();
 
     offerlist.clear();
 

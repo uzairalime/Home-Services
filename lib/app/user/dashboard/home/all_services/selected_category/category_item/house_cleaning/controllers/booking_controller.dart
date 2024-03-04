@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:home_brigadier/consts/const.dart';
 import 'package:home_brigadier/model/booking_response_model.dart';
 import 'package:home_brigadier/model/post_booking_model.dart';
@@ -28,18 +31,19 @@ class BookingController extends GetxController {
 
   TextEditingController addressController = TextEditingController();
 
-  // Set<Marker> mapmarker = {};
+  Set<Marker> mapmarker = {};
 
   @override
   void onInit() {
-    // mapmarker.add(
-    //   const Marker(
-    //     markerId: MarkerId("1"),
-    //     position: LatLng(25.168282, 55.250286),
-    //   ),
-    // );
-    // moveCameraToLocation(const LatLng(25.168282, 55.250286));
-
+    if (Platform.isAndroid) {
+      mapmarker.add(
+        const Marker(
+          markerId: MarkerId("1"),
+          position: LatLng(25.168282, 55.250286),
+        ),
+      );
+      moveCameraToLocation(const LatLng(25.168282, 55.250286));
+    }
     super.onInit();
   }
 
@@ -48,8 +52,7 @@ class BookingController extends GetxController {
 
   DateTime selectedtime = DateTime.now();
   var s = "";
-    DateTime start = DateTime.now();
-
+  DateTime start = DateTime.now();
 
   DateTime lastday = DateTime.now().add(const Duration(days: 365));
   ServicesModel? servicemodel;
@@ -57,11 +60,11 @@ class BookingController extends GetxController {
   final ApiHelper _apiHelper = ApiHelper();
 
   // ====== google map show
-  // GoogleMapController? mapController;
-  // LatLng? latLng;
-  // addlatlong(LatLng val) {
-  //   latLng = val;
-  // }
+  GoogleMapController? mapController;
+  LatLng? latLng;
+  addlatlong(LatLng val) {
+    latLng = val;
+  }
 
   void setServicesModel(ServicesModel model) {
     servicemodel = model;
@@ -138,8 +141,6 @@ class BookingController extends GetxController {
 
   onClanederControllerClear() {
     selectedDate = DateTime.now();
-
-    
   }
 
   Future<bool> _handleLocationPermission(context) async {
@@ -149,23 +150,22 @@ class BookingController extends GetxController {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services')));
+          content: Text('Location services are disabled. Please enable the services')));
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Location permissions are denied')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Location permissions are denied')));
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location permissions are permanently denied, we cannot request permissions.')));
+          content:
+              Text('Location permissions are permanently denied, we cannot request permissions.')));
       return false;
     }
     return true;
@@ -191,8 +191,7 @@ class BookingController extends GetxController {
 
   Future<void> _getAddressFromLatLng(Position position) async {
     print("location call");
-    await placemarkFromCoordinates(
-            currentPosition!.latitude, currentPosition!.longitude)
+    await placemarkFromCoordinates(currentPosition!.latitude, currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
 
@@ -219,8 +218,7 @@ class BookingController extends GetxController {
     final hour = hours.value;
     final cleaers = cleaner.value;
     final material = selectedmaterial.value;
-    final bill =
-        ((rate * hour) * cleaers) + (material == "Yes" ? (hour * 4) : 0);
+    final bill = ((rate * hour) * cleaers) + (material == "Yes" ? (hour * 4) : 0);
 
     total.value = bill;
   }
@@ -245,54 +243,60 @@ class BookingController extends GetxController {
 
   // show googel map
 
-  // void pickLocation(LatLng location) {
-  //   mapmarker.clear();
+  void pickLocation(LatLng location) {
+    if (Platform.isAndroid) {
+      mapmarker.clear();
 
-  //   mapmarker.add(
-  //     Marker(
-  //       markerId: const MarkerId("1"),
-  //       position: location,
-  //     ),
-  //   );
+      mapmarker.add(
+        Marker(
+          markerId: const MarkerId("1"),
+          position: location,
+        ),
+      );
 
-  //   latLng = location;
-  //   moveCameraToLocation(location);
-  //   update();
-  // }
+      latLng = location;
+      moveCameraToLocation(location);
+      update();
+    }
+  }
 
-  // void moveCameraToLocation(LatLng location) {
-  //   mapController?.animateCamera(CameraUpdate.newLatLng(location));
-  //   // searchAddress(location);
-  //   update();
-  // }
+  void moveCameraToLocation(LatLng location) {
+    if (Platform.isAndroid) {
+      mapController?.animateCamera(CameraUpdate.newLatLng(location));
+      searchAddress(location);
+      update();
+    }
+  }
 
-  // Future<void> searchAddress(LatLng location) async {
-  //   try {
-  //     List<Placemark> placemarks = await placemarkFromCoordinates(
-  //       location.latitude,
-  //       location.longitude,
-  //     );
+  Future<void> searchAddress(LatLng location) async {
+    if (Platform.isAndroid) {
+      try {
+        List<Placemark> placemarks = await placemarkFromCoordinates(
+          location.latitude,
+          location.longitude,
+        );
 
-  //     if (placemarks.isNotEmpty) {
-  //       Placemark place = placemarks.first;
+        if (placemarks.isNotEmpty) {
+          Placemark place = placemarks.first;
 
-  //       currentAddress.value =
-  //           '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
+          currentAddress.value =
+              '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
 
-  //       addressController.text = currentAddress.value;
-  //       logger.d("location is ${place.country}");
-  //       update();
-  //     } else {
-  //       // Handle case where no placemarks are found
-  //       print('No placemarks found for the given coordinates');
-  //       update();
-  //     }
-  //   } catch (e) {
-  //     // Handle any errors that might occur
-  //     print('Error during reverse geocoding: $e');
-  //     update();
-  //   }
-  // }
+          addressController.text = currentAddress.value;
+          logger.d("location is ${place.country}");
+          update();
+        } else {
+          // Handle case where no placemarks are found
+          print('No placemarks found for the given coordinates');
+          update();
+        }
+      } catch (e) {
+        // Handle any errors that might occur
+        print('Error during reverse geocoding: $e');
+        update();
+      }
+    }
+  }
 
   clearONCleaningPageRemove() {
     hours.value = 1;
