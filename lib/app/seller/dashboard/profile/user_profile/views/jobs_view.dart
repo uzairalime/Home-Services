@@ -27,7 +27,7 @@ class MyJobsView extends GetView<MyJobsController> {
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
-              child: Center(child: Image.asset("assets/images/ic_splash.png"))),
+              child: Center(child: Image.asset("assets/images/app_icon.jpg"))),
         ),
         title: CText(
             text: LocaleKeys.user_profile_item_jobs.tr,
@@ -52,7 +52,8 @@ class MyJobsView extends GetView<MyJobsController> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const ShimmerWidget.circular(width: 70, height: 70),
+                                const ShimmerWidget.circular(
+                                    width: 70, height: 70),
                                 ShimmerWidget.rectangular(
                                   height: mediaQueryHeight(context) * 0.07,
                                   width: mediaQueryWidth(context) * 0.7,
@@ -108,13 +109,16 @@ class MyJobsView extends GetView<MyJobsController> {
                       return Card(
                           elevation: 8,
                           shadowColor: AppColor.greylight,
-                          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
                           child: Center(
                             child: ExpansionTile(
-                                childrenPadding: const EdgeInsets.symmetric(horizontal: 15),
-                                shape:
-                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                childrenPadding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
                                 initiallyExpanded: index == 0 ? true : false,
                                 leading: SizedBox(
                                   height: 100,
@@ -122,17 +126,20 @@ class MyJobsView extends GetView<MyJobsController> {
                                   child: CachedNetworkImage(
                                       imageUrl:
                                           "https://homebrigadier.fly.dev${model.service.files[0].file}",
-                                      imageBuilder: (context, imageProvider) => Container(
-                                          width: 100,
-                                          height: 100,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                image: imageProvider,
-                                                fit: BoxFit.cover,
-                                              ))),
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                              width: 100,
+                                              height: 100,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  image: DecorationImage(
+                                                    image: imageProvider,
+                                                    fit: BoxFit.cover,
+                                                  ))),
                                       placeholder: (context, url) =>
-                                          const Center(child: CircularProgressIndicator()),
+                                          const Center(
+                                              child:
+                                                  CircularProgressIndicator()),
                                       errorWidget: (context, url, error) =>
                                           const Icon(Icons.error)),
                                 ),
@@ -140,7 +147,8 @@ class MyJobsView extends GetView<MyJobsController> {
                                         fontsize: titleMedium,
                                         textAlign: TextAlign.start,
                                         color: AppColor.black,
-                                        text: model.service.category.displayName,
+                                        text:
+                                            model.service.category.displayName,
                                         fontWeight: FontWeight.bold)
                                     .paddingOnly(bottom: 10),
                                 subtitle: CText(
@@ -151,13 +159,16 @@ class MyJobsView extends GetView<MyJobsController> {
                                   const Divider(),
                                   Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               CText(
-                                                text: LocaleKeys.my_jobs_date.tr,
+                                                text:
+                                                    LocaleKeys.my_jobs_date.tr,
                                                 fontsize: titleMedium,
                                                 fontWeight: FontWeight.bold,
                                               ).marginOnly(bottom: 5),
@@ -183,18 +194,22 @@ class MyJobsView extends GetView<MyJobsController> {
                                   const Divider(),
                                   Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               CText(
-                                                text: LocaleKeys.my_jobs_price.tr,
+                                                text:
+                                                    LocaleKeys.my_jobs_price.tr,
                                                 fontsize: titleMedium,
                                                 fontWeight: FontWeight.bold,
                                               ).marginOnly(bottom: 5),
                                               CText(
-                                                text: "${LocaleKeys.my_jobs_aed.tr} ${model.price}",
+                                                text:
+                                                    "${LocaleKeys.my_jobs_aed.tr} ${model.price}",
                                               ).paddingSymmetric(vertical: 5)
                                             ]),
                                         //
@@ -215,13 +230,16 @@ class MyJobsView extends GetView<MyJobsController> {
                                   const Divider(),
                                   Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               CText(
-                                                text: LocaleKeys.my_jobs_no_of_hours.tr,
+                                                text: LocaleKeys
+                                                    .my_jobs_no_of_hours.tr,
                                                 fontsize: titleMedium,
                                                 fontWeight: FontWeight.bold,
                                               ).marginOnly(bottom: 5),
@@ -236,13 +254,16 @@ class MyJobsView extends GetView<MyJobsController> {
                                   const Divider(),
                                   Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               CText(
-                                                text: LocaleKeys.my_jobs_description.tr,
+                                                text: LocaleKeys
+                                                    .my_jobs_description.tr,
                                                 fontsize: titleMedium,
                                                 fontWeight: FontWeight.bold,
                                               ).marginOnly(bottom: 5),
@@ -270,13 +291,16 @@ class MyJobsView extends GetView<MyJobsController> {
                                   const Divider(),
                                   Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               CText(
-                                                text: LocaleKeys.my_jobs_booking_status.tr,
+                                                text: LocaleKeys
+                                                    .my_jobs_booking_status.tr,
                                                 fontsize: titleMedium,
                                                 fontWeight: FontWeight.bold,
                                               ).marginOnly(bottom: 5),
@@ -284,9 +308,11 @@ class MyJobsView extends GetView<MyJobsController> {
                                         //
                                         Column(children: [
                                           Card(
-                                            color: AppColor.greylight.withOpacity(0.3),
+                                            color: AppColor.greylight
+                                                .withOpacity(0.3),
                                             elevation: 0,
-                                            child: CText(text: model.status).paddingAll(5),
+                                            child: CText(text: model.status)
+                                                .paddingAll(5),
                                           )
                                         ]),
                                       ]).marginSymmetric(vertical: 5),
@@ -295,7 +321,8 @@ class MyJobsView extends GetView<MyJobsController> {
                                   const Divider(),
                                   Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         const Icon(Icons.pin_drop_outlined,
                                             color: AppColor.primary),

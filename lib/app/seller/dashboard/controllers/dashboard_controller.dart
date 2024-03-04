@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/jobs_view.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/services_view.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/views/profile_view.dart';
 
 import '../../../../utils/isolate_manager.dart';
@@ -30,7 +31,7 @@ class SellerDashboardController extends GetxController {
   final List<Widget> pages = [
     const MyJobsView(),
     const StartEarningView(),
-    // const FaqView(),
-    const SellerProfileView()
+    const MyServicesView(),
+    const SellerProfileView(),
   ];
 }
