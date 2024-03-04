@@ -25,7 +25,8 @@ class ConnectivityService {
     });
   }
 
-  static checkInternetConnectivity({required AnimationController controller}) async {
+  static checkInternetConnectivity(
+      {required AnimationController controller}) async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       controller.addStatusListener((status) {
@@ -61,10 +62,14 @@ class ConnectivityService {
           if (refreshTokenResult == 200) {
             Get.to(const SellerDashboardView());
           } else {
-            Get.offAll(() => const EmailLoginView());
+            Get.offAll(() => const EmailLoginView(
+                  role: 'seller',
+                ));
           }
         } else {
-          Get.offAll(() => const EmailLoginView());
+          Get.offAll(() => const EmailLoginView(
+                role: 'seller',
+              ));
         }
       } else if (StaticData.role == "buyer") {
         SharedPreference.getToken();
