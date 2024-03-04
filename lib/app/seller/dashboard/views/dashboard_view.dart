@@ -27,9 +27,11 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
             bottomNavigationBar: GetBuilder<HomeController>(builder: (obj) {
               return BottomNavigationBar(
                 selectedLabelStyle: TextStyle(
-                    overflow: TextOverflow.visible, fontSize: mediaQueryHeight(context) * 0.015),
+                    overflow: TextOverflow.visible,
+                    fontSize: mediaQueryHeight(context) * 0.015),
                 unselectedLabelStyle: TextStyle(
-                    overflow: TextOverflow.visible, fontSize: mediaQueryHeight(context) * 0.015),
+                    overflow: TextOverflow.visible,
+                    fontSize: mediaQueryHeight(context) * 0.015),
                 type: BottomNavigationBarType.fixed,
                 fixedColor: AppColor.secondary,
                 currentIndex: controller.currentIndex.value,
@@ -42,8 +44,10 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
                   //   label: LocaleKeys.dashboard_items_home.tr,
                   // ),
                   BottomNavigationBarItem(
-                    icon: SvgPicture.asset("assets/icons/ic_booking_outlined.svg"),
-                    activeIcon: SvgPicture.asset("assets/icons/ic_booking_filled.svg"),
+                    icon: SvgPicture.asset(
+                        "assets/icons/ic_booking_outlined.svg"),
+                    activeIcon:
+                        SvgPicture.asset("assets/icons/ic_booking_filled.svg"),
                     label: LocaleKeys.user_profile_item_jobs.tr,
                   ),
                   BottomNavigationBarItem(
@@ -56,14 +60,26 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
                     ),
                     label: LocaleKeys.dashboard_items_start_earning.tr,
                   ),
+                  const BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.home_repair_service,
+                    ),
+                    activeIcon: Icon(
+                      Icons.home_repair_service,
+                      color: AppColor.secondary,
+                    ),
+                    label: "Services",
+                  ),
                   // BottomNavigationBarItem(
                   //   icon: const Icon(Icons.question_mark),
                   //   activeIcon: const Icon(Icons.question_mark),
                   //   label: LocaleKeys.dashboard_items_faq.tr,
                   // ),
                   BottomNavigationBarItem(
-                    icon: SvgPicture.asset("assets/icons/ic_profile_circled_outlined.svg"),
-                    activeIcon: SvgPicture.asset("assets/icons/ic_profile_circled_filled.svg"),
+                    icon: SvgPicture.asset(
+                        "assets/icons/ic_profile_circled_outlined.svg"),
+                    activeIcon: SvgPicture.asset(
+                        "assets/icons/ic_profile_circled_filled.svg"),
                     label: LocaleKeys.dashboard_items_profile.tr,
                   ),
                 ],
