@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/routes/app_pages.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/invite_friend/views/invite_friend_view.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/language_setting/views/language_setting_view.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/notification_setting/views/notification_setting_view.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/payment_setting/views/payment_setting_view.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/privacy_policy/views/privacy_policy_view.dart';
 import 'package:home_brigadier/app/seller/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/consts/static_data.dart';
@@ -193,7 +198,7 @@ class SettingListView extends StatelessWidget {
           color: AppColor.greylight,
         ),
         SettingListItem(
-            onTap: () => Get.toNamed((Routes.NOTIFICATION_SETTING)),
+            onTap: () => Get.to(() => const NotificationSettingView()),
             SettingList(
                 leading: SvgPicture.asset("assets/icons/ic_notification.svg",
                     color: AppColor.black.withOpacity(0.5)),
@@ -202,7 +207,7 @@ class SettingListView extends StatelessWidget {
           color: AppColor.greylight,
         ),
         SettingListItem(
-            onTap: () => Get.toNamed((Routes.PAYMENT_SETTING)),
+            onTap: () => Get.to(() => const PaymentSettingView()),
             SettingList(
                 leading: const Icon(Icons.account_balance_wallet_outlined),
                 title: LocaleKeys.dashboard_profile_payment.tr)),
@@ -210,7 +215,7 @@ class SettingListView extends StatelessWidget {
           color: AppColor.greylight,
         ),
         SettingListItem(
-            onTap: () => Get.toNamed((Routes.LANGUAGE_SETTING)),
+            onTap: () => Get.to(() => const LanguageSettingView()),
             SettingList(
                 leading: const Icon(Icons.language),
                 title: LocaleKeys.dashboard_profile_language.tr)),
@@ -218,7 +223,7 @@ class SettingListView extends StatelessWidget {
           color: AppColor.greylight,
         ),
         SettingListItem(
-            onTap: () => Get.toNamed((Routes.PRIVACY_POLICY)),
+            onTap: () => Get.to(() => const PrivacyPolicyView()),
             SettingList(
                 leading: const Icon(Icons.lock_outline),
                 title: LocaleKeys.dashboard_profile_privacy_policy.tr)),
@@ -226,7 +231,7 @@ class SettingListView extends StatelessWidget {
           color: AppColor.greylight,
         ),
         SettingListItem(
-            onTap: () => Get.toNamed((Routes.INVITE_FRIEND)),
+            onTap: () => Get.to(() => const InviteFriendView()),
             SettingList(
                 leading: const Icon(Icons.people_alt_outlined),
                 title: LocaleKeys.dashboard_profile_invite_a_friend.tr)),
