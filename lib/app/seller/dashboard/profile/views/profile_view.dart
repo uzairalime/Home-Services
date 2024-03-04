@@ -58,23 +58,22 @@ class SellerProfileView extends GetView<SellerProfileController> {
                   // Show actual content
                   return Scaffold(
                     appBar: AppBar(
-                      leading: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Container(
-                            decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                            ),
-                            child: Center(
-                                child:
-                                    Image.asset("assets/images/app_icon.jpg"))),
+                      leading: Container(
+                        margin: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("assets/images/app_icon.jpg")),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          // color: AppColor.secondary
+                        ),
+                        // child: SvgPicture.asset("assets/icons/ic_logo.svg")
                       ),
                       title: CText(
-                        text: LocaleKeys.dashboard_items_profile.tr,
-                        fontWeight: FontWeight.bold,
-                        color: txtTheme,
-                        fontsize: mediaQueryHeight(context) * 0.025,
-                      ),
+                          text: LocaleKeys.dashboard_items_profile.tr,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontsize: mediaQueryHeight(context) * 0.025),
                     ),
                     body: Column(
                       mainAxisSize: MainAxisSize.max,

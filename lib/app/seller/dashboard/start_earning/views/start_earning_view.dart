@@ -68,7 +68,7 @@ class StartEarningView extends GetView<StartEarningController> {
                                     text: controller.nameController.text,
                                     textAlign: TextAlign.center)),
                             Container(
-                              margin: const EdgeInsets.only(top: 20),
+                              margin: const EdgeInsets.only(top: 0),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 30),
                               decoration: BoxDecoration(
@@ -79,6 +79,7 @@ class StartEarningView extends GetView<StartEarningController> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  title(context, "Upload Profile Pic"),
                                   profilePic(context),
                                   title(
                                       context,

@@ -18,29 +18,29 @@ class MyServicesView extends GetView<UserProfileController> {
   Widget build(BuildContext context) {
     final titleMedium = Theme.of(context).textTheme.titleMedium!.fontSize;
 
-    return GetBuilder(
-        init: Get.put(UserProfileController()),
-        builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              leading: Container(
-                margin: const EdgeInsets.all(10),
-                padding: const EdgeInsets.all(8.0),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/app_icon.jpg")),
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  // color: AppColor.secondary
-                ),
-                // child: SvgPicture.asset("assets/icons/ic_logo.svg")
-              ),
-              title: CText(
-                  text: "My Services",
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontsize: mediaQueryHeight(context) * 0.025),
-            ),
-            body: FutureBuilder<List<MyServicesRespModel>>(
+    return Scaffold(
+      appBar: AppBar(
+        leading: Container(
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(8.0),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/app_icon.jpg")),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            // color: AppColor.secondary
+          ),
+          // child: SvgPicture.asset("assets/icons/ic_logo.svg")
+        ),
+        title: CText(
+            text: "My Services",
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontsize: mediaQueryHeight(context) * 0.025),
+      ),
+      body: GetBuilder(
+          init: Get.put(UserProfileController()),
+          builder: (context) {
+            return FutureBuilder<List<MyServicesRespModel>>(
                 future: controller.fetchServices(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -205,8 +205,8 @@ class MyServicesView extends GetView<UserProfileController> {
                           );
                         });
                   }
-                }),
-          );
-        });
+                });
+          }),
+    );
   }
 }

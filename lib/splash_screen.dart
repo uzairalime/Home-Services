@@ -4,7 +4,6 @@ import 'package:home_brigadier/connectivity_service.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -12,7 +11,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
 
@@ -20,7 +20,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void initState() {
     super.initState();
 
-    controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     animation = Tween<double>(begin: 0, end: 1).animate(controller);
     controller.forward();
     ConnectivityService.checkInternetConnectivity(controller: controller);
@@ -53,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     height: 120,
                     width: 120,
                     // color: Colors.white,
-                    child: Image.asset("assets/images/ic_splash.png"),
+                    child: Image.asset("assets/images/app_icon.jpg"),
                   ),
                   SizedBox(height: size.height * 0.02),
                   const CText(

@@ -23,7 +23,7 @@ class BookingsView extends GetView<BookingsController> {
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
-              child: Center(child: Image.asset("assets/images/ic_splash.png"))),
+              child: Center(child: Image.asset("assets/images/app_icon.jpg"))),
         ),
         title: CText(
             text: LocaleKeys.dashboard_items_bookings.tr,

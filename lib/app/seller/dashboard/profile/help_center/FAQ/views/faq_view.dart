@@ -17,8 +17,6 @@ class FaqView extends GetView<FaqController> {
 
   @override
   Widget build(BuildContext context) {
-    
-    
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
 
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
@@ -36,7 +34,7 @@ class FaqView extends GetView<FaqController> {
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                     child: Center(
-                        child: Image.asset("assets/images/ic_splash.png"))),
+                        child: Image.asset("assets/images/app_icon.jpg"))),
               ),
               title: CText(
                   text: LocaleKeys.faq_items_faq.tr,
