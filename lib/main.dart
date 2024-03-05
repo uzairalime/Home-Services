@@ -29,7 +29,7 @@ Future<void> main() async {
   runApp(
     GetMaterialApp(
       translationsKeys: AppTranslation.translations,
-      locale: localeValue() == "Arabic" ? const Locale('ar', 'SA') : const Locale('en', 'US'),
+      locale: localeValue() == "العربية" ? const Locale('ar', 'SA') : const Locale('en', 'US'),
       fallbackLocale: const Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
       title: "home_brigadier",
