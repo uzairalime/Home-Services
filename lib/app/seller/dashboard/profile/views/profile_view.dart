@@ -247,7 +247,7 @@ class SettingListView extends StatelessWidget {
                   },
                 ),
                 leading: const Icon(CupertinoIcons.person),
-                title: "Switch Mode")),
+                title: LocaleKeys.switch_mode.tr)),
         Divider(
           color: AppColor.greylight,
         ),

@@ -11,12 +11,12 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
+  static const required_field = 'required_field';
+  static const minimum_1_required = 'minimum_1_required';
   static const exit_dialog_exit = 'exit_dialog_exit';
   static const exit_dialog_verify = 'exit_dialog_verify';
   static const exit_dialog_cancel = 'exit_dialog_cancel';
   static const exit_dialog_ok = 'exit_dialog_ok';
-  static const required_field = 'required_field';
-  static const minimum_1_required = 'minimum_1_required';
   static const connectivity_connection_error = 'connectivity_connection_error';
   static const connectivity_no_internet = 'connectivity_no_internet';
   static const connectivity_refresh = 'connectivity_refresh';
@@ -152,20 +152,6 @@ class LocaleKeys {
       'start_earning_item_enter_till_hours';
   static const start_earning_item_selct_working_days =
       'start_earning_item_selct_working_days';
-  static const start_earning_item_weekdays_monday =
-      'start_earning_item_weekdays_monday';
-  static const start_earning_item_weekdays_tuesday =
-      'start_earning_item_weekdays_tuesday';
-  static const start_earning_item_weekdays_wednesday =
-      'start_earning_item_weekdays_wednesday';
-  static const start_earning_item_weekdays_thursday =
-      'start_earning_item_weekdays_thursday';
-  static const start_earning_item_weekdays_friday =
-      'start_earning_item_weekdays_friday';
-  static const start_earning_item_weekdays_saturday =
-      'start_earning_item_weekdays_saturday';
-  static const start_earning_item_weekdays_sunday =
-      'start_earning_item_weekdays_sunday';
   static const start_earning_item_rate_per_hour =
       'start_earning_item_rate_per_hour';
   static const start_earning_item_enter_rate = 'start_earning_item_enter_rate';
@@ -371,22 +357,15 @@ class LocaleKeys {
       'edit_services_enter_till_hours';
   static const edit_services_selct_working_days =
       'edit_services_selct_working_days';
-  static const edit_services_weekdays_monday = 'edit_services_weekdays_monday';
-  static const edit_services_weekdays_tuesday =
-      'edit_services_weekdays_tuesday';
-  static const edit_services_weekdays_wednesday =
-      'edit_services_weekdays_wednesday';
-  static const edit_services_weekdays_thursday =
-      'edit_services_weekdays_thursday';
-  static const edit_services_weekdays_friday = 'edit_services_weekdays_friday';
-  static const edit_services_weekdays_saturday =
-      'edit_services_weekdays_saturday';
-  static const edit_services_weekdays_sunday = 'edit_services_weekdays_sunday';
   static const edit_services_rate_per_hour = 'edit_services_rate_per_hour';
   static const edit_services_enter_rate = 'edit_services_enter_rate';
   static const edit_services_for_location = 'edit_services_for_location';
   static const edit_services_address = 'edit_services_address';
   static const edit_services_enter_address = 'edit_services_enter_address';
+  static const edit_services_emirates_id = 'edit_services_emirates_id';
+  static const edit_services_front = 'edit_services_front';
+  static const edit_services_back = 'edit_services_back';
+  static const edit_services_select_image = 'edit_services_select_image';
   static const edit_services_upload_picture = 'edit_services_upload_picture';
   static const edit_services_submit = 'edit_services_submit';
   static const edit_services_update = 'edit_services_update';
@@ -415,6 +394,8 @@ class LocaleKeys {
       'ac_reparing_items_ac_uninstall';
   static const ac_reparing_items_gas_refil = 'ac_reparing_items_gas_refil';
   static const km_away = 'km_away';
+  static const switch_mode = 'switch_mode';
+  static const upload_profile_pic = 'upload_profile_pic';
   static const painting_items_special_insutuction =
       'painting_items_special_insutuction';
   static const painting_items_example_insutruction =
@@ -424,12 +405,12 @@ class LocaleKeys {
 
 class Locales {
   static const ar_SA = {
+    'required_field': 'يتطلب حقلا',
+    'minimum_1_required': 'الحد الأدنى 1 مطلوب',
     'exit_dialog_exit': 'هل ترغب في الخروج؟',
     'exit_dialog_verify': 'هل أنت متأكد أنك تريد الخروج؟',
     'exit_dialog_cancel': 'إلغاء',
     'exit_dialog_ok': 'موافق',
-    'required_field': 'يتطلب حقلا',
-    'minimum_1_required': 'الحد الأدنى 1 مطلوب',
     'connectivity_connection_error': 'خطأ في الاتصال',
     'connectivity_no_internet': 'لا يوجد اتصال بالإنترنت',
     'connectivity_refresh': 'تحديث',
@@ -519,13 +500,6 @@ class Locales {
     'start_earning_item_enter_from_hours': 'من ساعة',
     'start_earning_item_enter_till_hours': 'حتى الساعة',
     'start_earning_item_selct_working_days': 'حدد أيام العمل',
-    'start_earning_item_weekdays_monday': 'الاثنين',
-    'start_earning_item_weekdays_tuesday': 'يوم الثلاثاء',
-    'start_earning_item_weekdays_wednesday': 'الأربعاء',
-    'start_earning_item_weekdays_thursday': 'يوم الخميس',
-    'start_earning_item_weekdays_friday': 'جمعة',
-    'start_earning_item_weekdays_saturday': 'السبت',
-    'start_earning_item_weekdays_sunday': 'الأحد',
     'start_earning_item_rate_per_hour': 'سعر لكل ساعة',
     'start_earning_item_enter_rate': 'درهم',
     'start_earning_item_for_location': 'للموقع',
@@ -583,7 +557,7 @@ class Locales {
     'user_profile_item_services': 'خدمات',
     'user_profile_item_booking': 'الحجز',
     'user_profile_item_all_services': 'جميع الخدمات',
-    'category_items_catagory_button': 'احجز الآن',
+    'category_items_catagory_button': 'الحجز',
     'category_items_floor_price': 'السعر الأدنى',
     'category_items_about_me': 'نبذة عني',
     'category_items_photos_videos': 'الصور والفيديوهات',
@@ -611,7 +585,7 @@ class Locales {
     'booking_detail_items_select_date': 'اختر التاريخ',
     'booking_detail_items_choose_start_time': 'اختر وقت البداية',
     'booking_detail_items_continue_button': 'متابعة -',
-    'location_view_items_Location_address_view': 'جلسة',
+    'location_view_items_Location_address_view': 'عنوانك/موقعك',
     'location_view_items_location_details': 'تفاصيل الموقع',
     'location_view_items_address': 'العنوان',
     'location_view_items_continue_button': 'متابعة -',
@@ -664,31 +638,28 @@ class Locales {
     'special_offer_items_special_offer': 'عروض خاصة',
     'edit_services_service_info': 'معلومات الخدمة',
     'edit_services_txt':
-        'بمجرد ملء هذا النموذج، سيتواصل معك فريقنا لتسهيل قائمة الخدمة الخاصة بك',
+        'بمجرد ملء هذا النموذج، سيتصل فريقنا بك لتسهيل قائمة خدماتك',
     'edit_services_full_name': 'الاسم الكامل',
     'edit_services_enter_full_name': 'أدخل اسمك الكامل',
-    'edit_services_selected_catg': 'الفئة المختارة',
-    'edit_services_enter_select_catg': 'اختر الفئة',
-    'edit_services_discription': 'وصف',
-    'edit_services_enter_decription': 'أدخل الوصف الخاص بك',
-    'edit_services_select_working_hour': 'حدد ساعة العمل',
-    'edit_services_enter_from_hours': 'من ساعة',
-    'edit_services_enter_till_hours': 'حتى الساعة',
-    'edit_services_selct_working_days': 'حدد أيام العمل',
-    'edit_services_weekdays_monday': 'الاثنين',
-    'edit_services_weekdays_tuesday': 'يوم الثلاثاء',
-    'edit_services_weekdays_wednesday': 'الأربعاء',
-    'edit_services_weekdays_thursday': 'يوم الخميس',
-    'edit_services_weekdays_friday': 'جمعة',
-    'edit_services_weekdays_saturday': 'السبت',
-    'edit_services_weekdays_sunday': 'الأحد',
-    'edit_services_rate_per_hour': 'سعر لكل ساعة',
+    'edit_services_selected_catg': 'الفئة المحددة',
+    'edit_services_enter_select_catg': 'حدد الفئة',
+    'edit_services_discription': 'الوصف',
+    'edit_services_enter_decription': 'أدخل وصفك',
+    'edit_services_select_working_hour': 'حدد ساعات العمل',
+    'edit_services_enter_from_hours': 'من الساعة',
+    'edit_services_enter_till_hours': 'إلى الساعة',
+    'edit_services_selct_working_days': 'اختر أيام العمل',
+    'edit_services_rate_per_hour': 'السعر لكل ساعة',
     'edit_services_enter_rate': 'درهم',
     'edit_services_for_location': 'للموقع',
-    'edit_services_address': 'عنوان',
+    'edit_services_address': 'العنوان',
     'edit_services_enter_address': 'أدخل عنوانك',
-    'edit_services_upload_picture': 'تحميل الصورة',
-    'edit_services_submit': 'يُقدِّم',
+    'edit_services_emirates_id': 'الهوية الإماراتية',
+    'edit_services_front': 'الواجهة',
+    'edit_services_back': 'الخلف',
+    'edit_services_select_image': 'اختر صورة',
+    'edit_services_upload_picture': 'قم بتحميل صور عملك',
+    'edit_services_submit': 'إرسال',
     'edit_services_update': 'تحديث',
     'my_jobs_date': 'التاريخ',
     'my_jobs_time': 'الوقت',
@@ -711,15 +682,17 @@ class Locales {
     'ac_reparing_items_ac_install': 'تركيب التكييف',
     'ac_reparing_items_ac_uninstall': 'إزالة التكييف',
     'ac_reparing_items_gas_refil': 'تعبئة الغاز',
-    'km_away': 'على بعد كم',
+    'km_away': 'على بعد كم',
+    'switch_mode': 'تبديل الوضع',
+    'upload_profile_pic': 'تحميل صورة الملف الشخصي',
   };
   static const en_US = {
+    'required_field': 'Required Field',
+    'minimum_1_required': 'Minimum 1 Required',
     'exit_dialog_exit': 'Exit?',
     'exit_dialog_verify': 'Are you sure you want to Exit?',
     'exit_dialog_cancel': 'cancel',
     'exit_dialog_ok': 'Ok',
-    'required_field': 'Required Field',
-    'minimum_1_required': 'Minimum 1 Required',
     'connectivity_connection_error': 'Connection Error',
     'connectivity_no_internet': 'No Internet Connection',
     'connectivity_refresh': 'Refresh',
@@ -814,13 +787,6 @@ class Locales {
     'start_earning_item_enter_from_hours': 'From Hour',
     'start_earning_item_enter_till_hours': 'Till Hour',
     'start_earning_item_selct_working_days': 'Select Working Days',
-    'start_earning_item_weekdays_monday': 'Monday',
-    'start_earning_item_weekdays_tuesday': 'Tuesday',
-    'start_earning_item_weekdays_wednesday': 'wednesday',
-    'start_earning_item_weekdays_thursday': 'Thursday',
-    'start_earning_item_weekdays_friday': 'Friday',
-    'start_earning_item_weekdays_saturday': 'Saturday',
-    'start_earning_item_weekdays_sunday': 'Sunday',
     'start_earning_item_rate_per_hour': 'Rate Per Hour',
     'start_earning_item_enter_rate': 'AED',
     'start_earning_item_for_location': 'For Location',
@@ -878,7 +844,7 @@ class Locales {
     'user_profile_item_services': 'Services',
     'user_profile_item_booking': 'Booking',
     'user_profile_item_all_services': 'All Services',
-    'category_items_catagory_button': 'Book Now',
+    'category_items_catagory_button': 'Booking',
     'category_items_floor_price': 'Floor Price',
     'category_items_about_me': 'About Me',
     'category_items_photos_videos': 'Photos & Videos',
@@ -897,7 +863,7 @@ class Locales {
     'house_cleaning_items_yes': 'Yes',
     'house_cleaning_items_no': 'NO',
     'house_cleaning_items_addditional_charges_aed':
-        'An additional charges of AED 4/hr applies for cleaning material',
+        'An additional charges of AED 4/hr applies for sleaning material',
     'house_cleaning_items_special_insutuction':
         'Do you Have any special instruction?',
     'house_cleaning_items_example_insutruction':
@@ -907,7 +873,7 @@ class Locales {
     'booking_detail_items_select_date': 'Select Date',
     'booking_detail_items_choose_start_time': 'Choose Start Time',
     'booking_detail_items_continue_button': 'Continue -',
-    'location_view_items_Location_address_view': 'Location',
+    'location_view_items_Location_address_view': 'Your Address/Location',
     'location_view_items_location_details': 'Location Details',
     'location_view_items_address': 'Address',
     'location_view_items_continue_button': 'Continue -',
@@ -973,19 +939,16 @@ class Locales {
     'edit_services_enter_from_hours': 'From Hour',
     'edit_services_enter_till_hours': 'Till Hour',
     'edit_services_selct_working_days': 'Select Working Days',
-    'edit_services_weekdays_monday': 'Monday',
-    'edit_services_weekdays_tuesday': 'Tuesday',
-    'edit_services_weekdays_wednesday': 'wednesday',
-    'edit_services_weekdays_thursday': 'Thursday',
-    'edit_services_weekdays_friday': 'Friday',
-    'edit_services_weekdays_saturday': 'Saturday',
-    'edit_services_weekdays_sunday': 'Sunday',
     'edit_services_rate_per_hour': 'Rate Per Hour',
     'edit_services_enter_rate': 'AED',
     'edit_services_for_location': 'For Location',
     'edit_services_address': 'Address',
     'edit_services_enter_address': 'Enter Your Address',
-    'edit_services_upload_picture': 'Upload Picture',
+    'edit_services_emirates_id': 'Emirates ID',
+    'edit_services_front': 'Front',
+    'edit_services_back': 'Back',
+    'edit_services_select_image': 'Select Image',
+    'edit_services_upload_picture': 'Upload Your Work',
     'edit_services_submit': 'Submit',
     'edit_services_update': 'Update',
     'my_jobs_date': 'Date',
@@ -1011,5 +974,7 @@ class Locales {
     'ac_reparing_items_ac_uninstall': 'Ac Uninstall',
     'ac_reparing_items_gas_refil': 'Gas Refill',
     'km_away': 'km away',
+    'switch_mode': 'Switch Mode',
+    'upload_profile_pic': 'Upload Profile Pic',
   };
 }

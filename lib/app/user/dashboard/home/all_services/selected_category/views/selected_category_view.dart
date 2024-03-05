@@ -20,6 +20,7 @@ import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/service_model.dart';
+import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
@@ -82,7 +83,8 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     );
   }
 
-  CategoryItemCard(ServicesModel service_model, BuildContext context, CetegoryModel categ_model) {
+  CategoryItemCard(ServicesModel service_model, BuildContext context,
+      CetegoryModel categ_model) {
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
 
@@ -107,8 +109,8 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     double endLatitude = emp[0];
     double endLongitude = emp[1];
 
-    double distanceInMeters =
-        Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
+    double distanceInMeters = Geolocator.distanceBetween(
+        startLatitude, startLongitude, endLatitude, endLongitude);
     var km = distanceInMeters / 1000;
 
     return InkWell(
@@ -117,7 +119,8 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
       },
       child: Card(
           shadowColor: AppColor.greylight.withOpacity(.4),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           child: Column(children: [
             SizedBox(
               width: double.maxFinite,
@@ -134,10 +137,12 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                         borderRadius: BorderRadius.circular(15),
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
-                          imageUrl: "https://homebrigadier.fly.dev${service_model.files![0].file}",
+                          imageUrl:
+                              "https://homebrigadier.fly.dev${service_model.files![0].file}",
                           placeholder: (context, url) =>
                               const Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
                         ),
                       ),
                     ),
@@ -175,22 +180,27 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                                         "${formatTime(service_model.openingHours![0].fromHour.toString())} - ",
                                     fontsize: titleSmall),
                                 CText(
-                                    text: formatTime(
-                                        service_model.openingHours![0].toHour.toString()),
+                                    text: formatTime(service_model
+                                        .openingHours![0].toHour
+                                        .toString()),
                                     fontsize: titleSmall)
                               ]),
                               SizedBox(
                                 height: 30,
                                 child: Center(
-                                  child: ListView(scrollDirection: Axis.horizontal, children: [
-                                    // const Icon(Icons.calendar_month,
-                                    //     size: 20),
-                                    // const SizedBox(width: 5),
-                                    for (var i in service_model.openingHours!)
-                                      days(
-                                          name: getAbbreviatedWeekday(i.weekday!),
-                                          size: titleSmall!),
-                                  ]),
+                                  child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        // const Icon(Icons.calendar_month,
+                                        //     size: 20),
+                                        // const SizedBox(width: 5),
+                                        for (var i
+                                            in service_model.openingHours!)
+                                          days(
+                                              name: getAbbreviatedWeekday(
+                                                  i.weekday!),
+                                              size: titleSmall!),
+                                      ]),
                                 ),
                               ),
                             ])),
@@ -206,9 +216,12 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Row(children: [
-                        const Icon(Icons.pin_drop_outlined, color: AppColor.secondary),
+                        const Icon(Icons.pin_drop_outlined,
+                            color: AppColor.secondary),
                         const SizedBox(width: 5),
-                        CText(text: "${km.toInt()} ${LocaleKeys.km_away.tr}", fontsize: titleSmall),
+                        CText(
+                            text: "${km.toInt()} ${LocaleKeys.km_away.tr}",
+                            fontsize: titleSmall),
                       ]),
                       bottomButton(
                           model: service_model,
@@ -238,7 +251,8 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     return [];
   }
 
-  bottomButton({txt, required IconData icon, size, required ServicesModel model}) {
+  bottomButton(
+      {txt, required IconData icon, size, required ServicesModel model}) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -302,7 +316,19 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
 
                 Get.to(() => HouseCleaningBookingView());
             }
+// <<<<<<< usman
 
+// =======
+
+//           } else {
+//             showsnackbar("please login", true);
+//             Get.to(() => const EmailLoginView(
+//                   role: "buyer",
+//                 ));
+//           }
+
+
+// >>>>>>> main
             // Get.to(() => CategoryItemView(
             //       model: model,
             //     ));

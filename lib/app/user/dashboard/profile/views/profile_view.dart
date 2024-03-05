@@ -179,10 +179,14 @@ class SettingListView extends StatelessWidget {
                         if (refreshTokenResult == 200) {
                           Get.to(const SellerDashboardView());
                         } else {
-                          Get.offAll(() => const EmailLoginView());
+                          Get.offAll(() => const EmailLoginView(
+                                role: 'seller',
+                              ));
                         }
                       } else {
-                        Get.offAll(() => const EmailLoginView());
+                        Get.offAll(() => const EmailLoginView(
+                              role: 'seller',
+                            ));
                       }
                     } else if (value == false) {
                       SharedPreference.storeRole(role: "buyer");
@@ -193,7 +197,7 @@ class SettingListView extends StatelessWidget {
                   },
                 ),
                 leading: const Icon(CupertinoIcons.person),
-                title: "Switch Mode")),
+                title: LocaleKeys.switch_mode.tr)),
         Divider(
           color: AppColor.greylight,
         ),
