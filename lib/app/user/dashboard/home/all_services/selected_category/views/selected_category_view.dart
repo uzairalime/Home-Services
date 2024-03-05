@@ -20,6 +20,7 @@ import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/service_model.dart';
+import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
@@ -315,6 +316,14 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
 
                 Get.to(() => HouseCleaningBookingView());
             }
+
+          } else {
+            showsnackbar("please login", true);
+            Get.to(() => const EmailLoginView(
+                  role: "buyer",
+                ));
+          }
+
 
             // Get.to(() => CategoryItemView(
             //       model: model,

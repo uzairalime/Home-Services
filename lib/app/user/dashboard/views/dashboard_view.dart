@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/media_query.dart';
+import 'package:home_brigadier/consts/static_data.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../controllers/dashboard_controller.dart';
@@ -44,6 +45,7 @@ class UserDashboardView extends GetView<UserDashboardController> {
                         SvgPicture.asset("assets/icons/ic_home_filled.svg"),
                     label: LocaleKeys.dashboard_items_home.tr,
                   ),
+// <<<<<<< hanan
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(
                         "assets/icons/ic_booking_outlined.svg"),
@@ -51,6 +53,16 @@ class UserDashboardView extends GetView<UserDashboardController> {
                         SvgPicture.asset("assets/icons/ic_booking_filled.svg"),
                     label: LocaleKeys.dashboard_items_bookings.tr,
                   ),
+// =======
+//                   if (StaticData.refreshToken.isNotEmpty)
+//                     BottomNavigationBarItem(
+//                       icon: SvgPicture.asset(
+//                           "assets/icons/ic_booking_outlined.svg"),
+//                       activeIcon: SvgPicture.asset(
+//                           "assets/icons/ic_booking_filled.svg"),
+//                       label: LocaleKeys.dashboard_items_bookings.tr,
+//                     ),
+// >>>>>>> main
                   BottomNavigationBarItem(
                     icon: const Icon(Icons.question_mark),
                     activeIcon: const Icon(Icons.question_mark),

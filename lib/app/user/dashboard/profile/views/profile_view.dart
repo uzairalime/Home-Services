@@ -179,10 +179,14 @@ class SettingListView extends StatelessWidget {
                         if (refreshTokenResult == 200) {
                           Get.to(const SellerDashboardView());
                         } else {
-                          Get.offAll(() => const EmailLoginView());
+                          Get.offAll(() => const EmailLoginView(
+                                role: 'seller',
+                              ));
                         }
                       } else {
-                        Get.offAll(() => const EmailLoginView());
+                        Get.offAll(() => const EmailLoginView(
+                              role: 'seller',
+                            ));
                       }
                     } else if (value == false) {
                       SharedPreference.storeRole(role: "buyer");

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:home_brigadier/app/modules/login/email_login/forget_password/controllers/pin_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/media_query.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
@@ -17,6 +18,8 @@ class EmailLoginView extends GetView<EmailLoginController> {
 
   @override
   Widget build(BuildContext context) {
+    final con = Get.put(PinController());
+    con.getrole(role!);
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     Get.put(EmailLoginController());

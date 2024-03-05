@@ -19,6 +19,10 @@ class PinController extends GetxController {
 
   RxBool isLoading = false.obs;
 
+  getrole(String val) {
+    role = val;
+  }
+
   Future<void> generateToken({phone, otp}) async {
     try {
       isLoading.value = true;
