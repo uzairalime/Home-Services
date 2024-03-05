@@ -316,15 +316,19 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
 
                 Get.to(() => HouseCleaningBookingView());
             }
+// <<<<<<< usman
 
-          } else {
-            showsnackbar("please login", true);
-            Get.to(() => const EmailLoginView(
-                  role: "buyer",
-                ));
-          }
+// =======
+
+//           } else {
+//             showsnackbar("please login", true);
+//             Get.to(() => const EmailLoginView(
+//                   role: "buyer",
+//                 ));
+//           }
 
 
+// >>>>>>> main
             // Get.to(() => CategoryItemView(
             //       model: model,
             //     ));

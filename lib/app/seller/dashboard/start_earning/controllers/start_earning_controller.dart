@@ -228,11 +228,14 @@ class StartEarningController extends GetxController {
     profileUploading.value = true;
     update();
     dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+    dio.options.headers['Content-Type'] = 'multipart/form-data';
 
     try {
       await profilePickedFile!.readAsBytes().then((imageBytes) async {
-        deo.FormData data = deo.FormData.fromMap(
-            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: "profile_img")}));
+        deo.FormData data = deo.FormData.fromMap(({
+          "file": deo.MultipartFile.fromBytes(imageBytes,
+              filename: 'profile_img.${selectedProfileImage.value!.path.split('.').last}')
+        }));
 
         await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
           //print("file response ${value.data}");
@@ -260,8 +263,10 @@ class StartEarningController extends GetxController {
 
     try {
       await workingPickedFile!.readAsBytes().then((imageBytes) async {
-        deo.FormData data = deo.FormData.fromMap(
-            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: "working_img")}));
+        deo.FormData data = deo.FormData.fromMap(({
+          "file": deo.MultipartFile.fromBytes(imageBytes,
+              filename: 'working_img.${selectedworkingImage.value!.path.split('.').last}')
+        }));
 
         await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
           //print("file response ${value.data}");
@@ -289,8 +294,10 @@ class StartEarningController extends GetxController {
 
     try {
       await frontPickedFile!.readAsBytes().then((imageBytes) async {
-        deo.FormData data = deo.FormData.fromMap(
-            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: "front_img")}));
+        deo.FormData data = deo.FormData.fromMap(({
+          "file": deo.MultipartFile.fromBytes(imageBytes,
+              filename: 'front_img.${selectedFrontImage.value!.path.split('.').last}')
+        }));
 
         await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
           //print("file response ${value.data}");
@@ -318,8 +325,10 @@ class StartEarningController extends GetxController {
 
     try {
       await backPickedFile!.readAsBytes().then((imageBytes) async {
-        deo.FormData data = deo.FormData.fromMap(
-            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: "back_img")}));
+        deo.FormData data = deo.FormData.fromMap(({
+          "file": deo.MultipartFile.fromBytes(imageBytes,
+              filename: 'back_img.${selectedBackImage.value!.path.split('.').last}')
+        }));
 
         await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
           //print("file response ${value.data}");

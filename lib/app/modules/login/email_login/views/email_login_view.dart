@@ -14,6 +14,7 @@ import '../forget_password/views/forgot_pin_entering.dart';
 
 class EmailLoginView extends GetView<EmailLoginController> {
   final String? role;
+
   const EmailLoginView({Key? key, this.role}) : super(key: key);
 
   @override

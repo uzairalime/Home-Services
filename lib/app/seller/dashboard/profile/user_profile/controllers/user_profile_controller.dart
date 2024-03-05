@@ -5,6 +5,7 @@ import 'package:dio/dio.dart' as deo;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/user_profile_view.dart';
+import 'package:home_brigadier/consts/global_variable.dart';
 import 'package:home_brigadier/consts/static_data.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -20,17 +21,9 @@ class UserProfileController extends GetxController {
 
   ScrollController scrollController = ScrollController();
 
+  String profileFileId = '';
 
-
-  var weekdays = [
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday"
-  ];
+  var weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
   var menuItems = [
     'Cleaning',
     'Painting',
@@ -53,12 +46,22 @@ class UserProfileController extends GetxController {
   var tillFocus = false.obs;
   var rateFocus = false.obs;
   RxBool isLoading = false.obs;
-  RxBool imgUploading = false.obs;
-  XFile? pickedFile;
-  Rx<File?> selectedImage = Rx<File?>(null);
-  deo.Dio dio = deo.Dio();
+  RxBool profileUploading = false.obs;
+  RxBool frontUploading = false.obs;
+  RxBool backUploading = false.obs;
+  RxBool workingUploading = false.obs;
 
-  String fileId = '';
+  List<String> imgUrlList = List.empty(growable: true);
+
+  XFile? profilePickedFile;
+  Rx<File?> selectedProfileImage = Rx<File?>(null);
+  XFile? frontPickedFile;
+  Rx<File?> selectedFrontImage = Rx<File?>(null);
+  XFile? backPickedFile;
+  Rx<File?> selectedBackImage = Rx<File?>(null);
+  XFile? workingPickedFile;
+  Rx<File?> selectedWorkingImage = Rx<File?>(null);
+  deo.Dio dio = deo.Dio();
 
   // final bookingController = BookingController();
 
@@ -82,19 +85,74 @@ class UserProfileController extends GetxController {
     '05 PM',
   ].obs;
 
-  var previousImage = '';
-
-  Future<void> pickImageFromGallery() async {
+  Future<void> pickProfileImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
 
     try {
-      pickedFile = await picker.pickImage(
+      profilePickedFile = await picker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 50, // Adjust the image quality as needed
       );
-      if (pickedFile != null) {
-        selectedImage.value = File(pickedFile!.path);
-        postFile();
+      if (profilePickedFile != null) {
+        selectedProfileImage.value = File(profilePickedFile!.path);
+        postProfileFile();
+      } else {
+        // print('No image selected.');
+      }
+    } catch (e) {
+      //print('Error picking image: $e');
+    }
+  }
+
+  Future<void> pickBackImageFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+
+    try {
+      backPickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50, // Adjust the image quality as needed
+      );
+      if (backPickedFile != null) {
+        selectedBackImage.value = File(backPickedFile!.path);
+        postBackFile();
+      } else {
+        // print('No image selected.');
+      }
+    } catch (e) {
+      //print('Error picking image: $e');
+    }
+  }
+
+  Future<void> pickFrontImageFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+
+    try {
+      frontPickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50, // Adjust the image quality as needed
+      );
+      if (frontPickedFile != null) {
+        selectedFrontImage.value = File(frontPickedFile!.path);
+        postFrontFile();
+      } else {
+        // print('No image selected.');
+      }
+    } catch (e) {
+      //print('Error picking image: $e');
+    }
+  }
+
+  Future<void> pickWorkingImageFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+
+    try {
+      workingPickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50, // Adjust the image quality as needed
+      );
+      if (workingPickedFile != null) {
+        selectedWorkingImage.value = File(workingPickedFile!.path);
+        postWorkingFile();
       } else {
         // print('No image selected.');
       }
@@ -131,7 +189,7 @@ class UserProfileController extends GetxController {
       required String category,
       required String address,
       required String location,
-      required String fileId,
+      required List<String> fileIds,
       required List<String> weekDays,
       required String from_hour,
       required String to_hour,
@@ -152,12 +210,14 @@ class UserProfileController extends GetxController {
         description: description.toString(),
         category: category.toString().trim(),
         address: address.toString(),
-        files: [fileId.toString()],
+        files: fileIds,
         location: location.toString(),
         openingHours: openingHours,
         rate: rate.toString());
 
-    //print(jsonEncode(model));
+    print(id);
+    print(StaticData.accessToken);
+    print(jsonEncode(model));
 
     try {
       isLoading.value = true;
@@ -172,20 +232,153 @@ class UserProfileController extends GetxController {
         showsnackbar("Service Update Successfully");
         Get.off(() => const UserProfileView());
       }
-    } on SocketException catch (_) {
+    } on SocketException catch (e) {
       showsnackbar("Error: Check Internet Connection", true);
 
-      // print("SocketException: $e");
+      print("SocketException: $e");
     } catch (e) {
       showsnackbar("Failed to Update: Try again", true);
 
-      //print("Error: $e");
+      print("Error: $e");
     } finally {
       isLoading.value = false;
       update();
     }
   }
 
+  Future<void> postProfileFile() async {
+    FileModel files = FileModel();
+    // profileUploading.value = true;
+    update();
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+    dio.options.headers['Content-Type'] = 'multipart/form-data';
+
+    try {
+      await profilePickedFile!.readAsBytes().then((imageBytes) async {
+        deo.FormData data = deo.FormData.fromMap(({
+          "file": deo.MultipartFile.fromBytes(imageBytes,
+              filename: 'profile_img.${selectedProfileImage.value!.path.split('.').last}')
+        }));
+
+        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
+          files = FileModel.fromJson(value.data);
+          profileFileId = files.id!;
+          // print(profileFileId);
+          showsnackbar("Image Upload Successfully");
+          update();
+        });
+      });
+    } on SocketException catch (_) {
+      showsnackbar("failed to upload: check internet connection", true);
+    } catch (e) {
+      showsnackbar("failed to upload: file already exist", true);
+    } finally {
+      // profileUploading.value = false;
+      update();
+    }
+  }
+
+  Future<void> postFrontFile() async {
+    FileModel files = FileModel();
+
+    update();
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+    dio.options.headers['Content-Type'] = 'multipart/form-data';
+
+    try {
+      await frontPickedFile!.readAsBytes().then((imageBytes) async {
+        deo.FormData data = deo.FormData.fromMap(({
+          "file": deo.MultipartFile.fromBytes(imageBytes,
+              filename: 'front_img.${selectedFrontImage.value!.path.split('.').last}')
+        }));
+
+        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
+          //print("file response ${value.data}");
+          files = FileModel.fromJson(value.data);
+          // frontFileId = files.id!;
+          GlobalVariable.serviceModel.files![1].file = files.file;
+          // print(frontFileId);
+          showsnackbar("Image Upload Successfully");
+          update();
+        });
+      });
+    } on SocketException catch (_) {
+      showsnackbar("failed to upload: check internet connection", true);
+    } catch (e) {
+      showsnackbar("failed to upload: file already exist", true);
+    } finally {
+      update();
+    }
+  }
+
+  Future<void> postBackFile() async {
+    FileModel files = FileModel();
+    update();
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+    dio.options.headers['Content-Type'] = 'multipart/form-data';
+
+    try {
+      await backPickedFile!.readAsBytes().then((imageBytes) async {
+        deo.FormData data = deo.FormData.fromMap(({
+          "file": deo.MultipartFile.fromBytes(imageBytes,
+              filename: 'back_img.${selectedBackImage.value!.path.split('.').last}')
+        }));
+
+        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
+          //print("file response ${value.data}");
+          files = FileModel.fromJson(value.data);
+          // backFileId = files.id!;
+          GlobalVariable.serviceModel.files![2].file = files.file;
+          // print(backFileId);
+          showsnackbar("Image Upload Successfully");
+          update();
+        });
+      });
+    } on SocketException catch (_) {
+      showsnackbar("failed to upload: check internet connection", true);
+    } catch (e) {
+      showsnackbar("failed to upload: file already exist", true);
+    } finally {
+      update();
+    }
+  }
+
+  Future<void> postWorkingFile() async {
+    FileModel files = FileModel();
+
+    update();
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+    dio.options.headers['Content-Type'] = 'multipart/form-data';
+
+    try {
+      await workingPickedFile!.readAsBytes().then((imageBytes) async {
+        deo.FormData data = deo.FormData.fromMap(({
+          "file": deo.MultipartFile.fromBytes(imageBytes,
+              filename: 'working_img.${selectedWorkingImage.value!.path.split('.').last}')
+        }));
+
+        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
+          //print("file response ${value.data}");
+          files = FileModel.fromJson(value.data);
+          // workingFileId = files.id!;
+          GlobalVariable.serviceModel.files![3].file = files.file;
+          // print(workingFileId);
+          showsnackbar("Image Upload Successfully");
+          update();
+        });
+      });
+    } on SocketException catch (_) {
+      showsnackbar("failed to upload: check internet connection", true);
+    } catch (e) {
+      showsnackbar("failed to upload: file already exist", true);
+    } finally {
+      update();
+    }
+  }
+
+  ///
+  ///
+  ///
   Future<List<MyServicesRespModel>> fetchServices() async {
     dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
     try {
@@ -219,35 +412,6 @@ class UserProfileController extends GetxController {
       }
     } catch (error) {
       throw Exception('Failed to load data: $error');
-    }
-  }
-
-  Future<void> postFile() async {
-    FileModel files = FileModel();
-    imgUploading.value = true;
-    update();
-    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
-
-    try {
-      await pickedFile!.readAsBytes().then((imageBytes) async {
-        deo.FormData data = deo.FormData.fromMap(
-            ({"file": deo.MultipartFile.fromBytes(imageBytes, filename: pickedFile!.path)}));
-
-        await dio.post("https://homebrigadier.fly.dev/api/service/file/", data: data).then((value) {
-          //print("file response ${value.data}");
-          files = FileModel.fromJson(value.data);
-          fileId = files.id!;
-          print(fileId);
-          showsnackbar("Image Upload Successfully");
-        });
-      });
-    } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection", true);
-    } catch (e) {
-      showsnackbar("failed to upload: file already exist", true);
-    } finally {
-      imgUploading.value = false;
-      update();
     }
   }
 }

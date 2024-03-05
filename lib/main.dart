@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -21,6 +23,8 @@ Future<void> main() async {
     statusBarColor: Colors.white,
     statusBarIconBrightness: Brightness.dark,
   ));
+
+  log("Start user Role ${GetStorage().read(SharedPreference.roleKey)}");
 
   runApp(
     GetMaterialApp(
