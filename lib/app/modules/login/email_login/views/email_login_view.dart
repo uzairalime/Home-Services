@@ -66,18 +66,18 @@ class EmailLoginView extends GetView<EmailLoginController> {
                                     icon: Icons.language,
                                     txt: "English",
                                     borderColor:
-                                        localeValue() != "Arabic" ? AppColor.secondary : null),
+                                        localeValue() != "العربية" ? AppColor.secondary : null),
                                 SizedBox(
                                   width: mediaQueryWidth(context) * 0.10,
                                 ),
                                 LocalsBtn(
                                     onTap: () {
-                                      controller.setSelectedLanguage("Arabic");
+                                      controller.setSelectedLanguage("العربية");
                                     },
                                     icon: Icons.translate,
-                                    txt: "Arabic",
+                                    txt: "العربية",
                                     borderColor:
-                                        localeValue() == "Arabic" ? AppColor.secondary : null)
+                                        localeValue() == "العربية" ? AppColor.secondary : null)
                               ],
                             ),
                           ),

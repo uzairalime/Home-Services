@@ -1,11 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/invite_friend/views/invite_friend_view.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/language_setting/views/language_setting_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/notification_setting/views/notification_setting_view.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/privacy_policy/views/privacy_policy_view.dart';
 import 'package:home_brigadier/app/seller/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/app/user/dashboard/profile/payment_setting/views/payment_setting_view.dart';
@@ -80,19 +78,25 @@ class SellerProfileView extends GetView<SellerProfileController> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Obx(() => InkWell(
-                              borderRadius: BorderRadius.circular(50),
-                              // onTap: () {
-                              //   Get.to(() => const UserProfileView());
-                              //   // controller.pickImage();
-                              //   // Get.toNamed(Routes.USER_PROFILE);
-                              // },
-                              child: ProfilePic(
-                                image: CachedNetworkImageProvider(
-                                  "https://homebrigadier.fly.dev${controller.files[0]}",
-                                ),
-                              ),
-                            )),
+                        const ProfilePic(
+                          image: CachedNetworkImageProvider(
+                            "https://homebrigadier.fly.dev/media/uploads/2024/03/05/working_img_57TEUSn.jpg",
+                          ),
+                        ),
+                        // Obx(() => InkWell(
+                        //       borderRadius: BorderRadius.circular(50),
+                        //       // onTap: () {
+                        //       //   Get.to(() => const UserProfileView());
+                        //       //   // controller.pickImage();
+                        //       //   // Get.toNamed(Routes.USER_PROFILE);
+                        //       // },
+                        //       child: ProfilePic(
+                        //         image:
+                        //         CachedNetworkImageProvider(
+                        //           "https://homebrigadier.fly.dev${controller.files[0]}",
+                        //         ),
+                        //       ),
+                        //     )),
                         const SizedBox(height: 20),
                         CText(
                           textAlign: TextAlign.center,
@@ -248,15 +252,15 @@ class SettingListView extends StatelessWidget {
                 ),
                 leading: const Icon(CupertinoIcons.person),
                 title: LocaleKeys.switch_mode.tr)),
-        Divider(
-          color: AppColor.greylight,
-        ),
-        SettingListItem(
-            onTap: () => Get.to(() => const NotificationSettingView()),
-            SettingList(
-                leading: SvgPicture.asset("assets/icons/ic_notification.svg",
-                    color: AppColor.black.withOpacity(0.5)),
-                title: LocaleKeys.dashboard_profile_notification.tr)),
+        // Divider(
+        //   color: AppColor.greylight,
+        // ),
+        // SettingListItem(
+        //     onTap: () => Get.to(() => const NotificationSettingView()),
+        //     SettingList(
+        //         leading: SvgPicture.asset("assets/icons/ic_notification.svg",
+        //             color: AppColor.black.withOpacity(0.5)),
+        //         title: LocaleKeys.dashboard_profile_notification.tr)),
         Divider(
           color: AppColor.greylight,
         ),

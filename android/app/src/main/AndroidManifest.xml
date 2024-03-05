@@ -31,7 +31,7 @@
   </intent>
 </queries>
     <application
-        android:label="home_services"
+        android:label="Home Brigadier"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

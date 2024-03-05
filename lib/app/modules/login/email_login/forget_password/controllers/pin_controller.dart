@@ -47,9 +47,9 @@ class PinController extends GetxController {
         // SharedPreference.storeRole(role: "seller");
 
         if (StaticData.role == "seller") {
-          Get.off(() => const SellerDashboardView());
+          Get.offAll(() => const SellerDashboardView());
         } else {
-          Get.off(const UserDashboardView());
+          Get.offAll(const UserDashboardView());
         }
       }
     } on SocketException catch (_) {
