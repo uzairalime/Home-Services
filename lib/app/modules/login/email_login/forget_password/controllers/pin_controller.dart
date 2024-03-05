@@ -24,7 +24,10 @@ class PinController extends GetxController {
       isLoading.value = true;
       update();
 
-      Map<String, dynamic> postData = {"credential": "+971$phone|$otp", "source": 'mobile'};
+      Map<String, dynamic> postData = {
+        "credential": "+971$phone|$otp",
+        "source": 'mobile'
+      };
 
       var response = await dio.post(
         'https://homebrigadier.fly.dev/api/token/',
@@ -35,7 +38,8 @@ class PinController extends GetxController {
         var data = OtpResponseModel.fromJson(response.data);
 
         /// store UserPreference
-        await SharedPreference.storeToken(access: data.access, refresh: data.refresh);
+        await SharedPreference.storeToken(
+            access: data.access, refresh: data.refresh);
 
         // GetStorage _storage = GetStorage();
         // _storage.write("role", role);

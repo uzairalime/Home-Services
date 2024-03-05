@@ -33,10 +33,10 @@ class BookingsView extends GetView<BookingsController> {
               color: txtTheme,
               fontsize: mediaQueryHeight(context) * 0.025),
         ),
-        body: StaticData.refreshToken.isEmpty
+        body: StaticData.refreshToken.isNotEmpty
             ? const MyBookingsView()
             : const Center(
-                child: Text("Login first"),
+                child: Text("No Bookings"),
               ));
 
     // GetBuilder<BookingsController>(

@@ -60,15 +60,15 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
                     ),
                     label: LocaleKeys.dashboard_items_start_earning.tr,
                   ),
-                  const BottomNavigationBarItem(
-                    icon: Icon(
+                  BottomNavigationBarItem(
+                    icon: const Icon(
                       Icons.home_repair_service,
                     ),
-                    activeIcon: Icon(
+                    activeIcon: const Icon(
                       Icons.home_repair_service,
                       color: AppColor.secondary,
                     ),
-                    label: "Services",
+                    label: LocaleKeys.home_screen_items_services.tr,
                   ),
                   // BottomNavigationBarItem(
                   //   icon: const Icon(Icons.question_mark),

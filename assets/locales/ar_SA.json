@@ -1,14 +1,12 @@
 {
   "required_field": "يتطلب حقلا",
   "minimum_1_required": "الحد الأدنى 1 مطلوب",
-
   "exit_dialog": {
     "exit": "هل ترغب في الخروج؟",
     "verify": "هل أنت متأكد أنك تريد الخروج؟",
     "cancel": "إلغاء",
     "ok": "موافق"
   },
-
   "connectivity": {
     "connection_error": "خطأ في الاتصال",
     "no_internet": "لا يوجد اتصال بالإنترنت",
@@ -113,7 +111,6 @@
     "enter_from_hours": "من ساعة",
     "enter_till_hours": "حتى الساعة",
     "selct_working_days": "حدد أيام العمل",
-
     "rate_per_hour": "سعر لكل ساعة",
     "enter_rate": "درهم",
     "for_location": "للموقع",
@@ -274,25 +271,28 @@
   },
   "edit_services": {
     "service_info": "معلومات الخدمة",
-    "txt": "بمجرد ملء هذا النموذج، سيتواصل معك فريقنا لتسهيل قائمة الخدمة الخاصة بك",
+    "txt": "بمجرد ملء هذا النموذج، سيتصل فريقنا بك لتسهيل قائمة خدماتك",
     "full_name": "الاسم الكامل",
     "enter_full_name": "أدخل اسمك الكامل",
-    "selected_catg": "الفئة المختارة",
-    "enter_select_catg": "اختر الفئة",
-    "discription": "وصف",
-    "enter_decription": "أدخل الوصف الخاص بك",
-    "select_working_hour": "حدد ساعة العمل",
-    "enter_from_hours": "من ساعة",
-    "enter_till_hours": "حتى الساعة",
-    "selct_working_days": "حدد أيام العمل",
-
-    "rate_per_hour": "سعر لكل ساعة",
+    "selected_catg": "الفئة المحددة",
+    "enter_select_catg": "حدد الفئة",
+    "discription": "الوصف",
+    "enter_decription": "أدخل وصفك",
+    "select_working_hour": "حدد ساعات العمل",
+    "enter_from_hours": "من الساعة",
+    "enter_till_hours": "إلى الساعة",
+    "selct_working_days": "اختر أيام العمل",
+    "rate_per_hour": "السعر لكل ساعة",
     "enter_rate": "درهم",
     "for_location": "للموقع",
-    "address": "عنوان",
+    "address": "العنوان",
     "enter_address": "أدخل عنوانك",
-    "upload_picture": "تحميل الصورة",
-    "submit": "يُقدِّم",
+    "emirates_id": "الهوية الإماراتية",
+    "front": "الواجهة",
+    "back": "الخلف",
+    "select_image": "اختر صورة",
+    "upload_picture": "قم بتحميل صور عملك",
+    "submit": "إرسال",
     "update": "تحديث"
   },
   "my_jobs": {
@@ -322,6 +322,7 @@
     "ac_uninstall": "إزالة التكييف",
     "gas_refil": "تعبئة الغاز"
   },
-
-  "km_away": "على بعد كم"
+  "km_away": "على بعد كم",
+  "switch_mode": "تبديل الوضع",
+  "upload_profile_pic": "تحميل صورة الملف الشخصي"
 }
