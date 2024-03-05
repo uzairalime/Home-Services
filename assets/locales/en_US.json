@@ -111,7 +111,6 @@
     "enter_from_hours": "From Hour",
     "enter_till_hours": "Till Hour",
     "selct_working_days": "Select Working Days",
-
     "rate_per_hour": "Rate Per Hour",
     "enter_rate": "AED",
     "for_location": "For Location",
@@ -164,7 +163,6 @@
     "resend": "Resend code in...",
     "verify": "Verify"
   },
-
   "home_screen_items": {
     "search_for": "Search for:",
     "special_offer": "Special Offers",
@@ -271,7 +269,6 @@
   "special_offer_items": {
     "special_offer": "Special Offers"
   },
-
   "edit_services": {
     "service_info": "Service Information",
     "txt": "Once you'have filled out this form, our team will be in touch with you to facilitate your service listing",
@@ -285,17 +282,19 @@
     "enter_from_hours": "From Hour",
     "enter_till_hours": "Till Hour",
     "selct_working_days": "Select Working Days",
-
     "rate_per_hour": "Rate Per Hour",
     "enter_rate": "AED",
     "for_location": "For Location",
     "address": "Address",
     "enter_address": "Enter Your Address",
-    "upload_picture": "Upload Picture",
+    "emirates_id": "Emirates ID",
+    "front": "Front",
+    "back": "Back",
+    "select_image": "Select Image",
+    "upload_picture": "Upload Your Work",
     "submit": "Submit",
     "update": "Update"
   },
-
   "my_jobs": {
     "date": "Date",
     "time": "Time",
@@ -305,7 +304,6 @@
     "description": "Description",
     "booking_status": "Booking status"
   },
-
   "my_booking": {
     "date": "Date",
     "time": "Time",
@@ -313,7 +311,6 @@
     "aed": "AED",
     "booking_status": "Booking status"
   },
-
   "ac_reparing_items": {
     "reparing": "Reparing",
     "how_many_hours": "How many hours should they stay?",
@@ -325,5 +322,7 @@
     "ac_uninstall": "Ac Uninstall",
     "gas_refil": "Gas Refill"
   },
-  "km_away": "km away"
+  "km_away": "km away",
+  "switch_mode": "Switch Mode",
+  "upload_profile_pic": "Upload Profile Pic"
 }

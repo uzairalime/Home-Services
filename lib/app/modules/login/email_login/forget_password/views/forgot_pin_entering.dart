@@ -11,7 +11,8 @@ import 'package:home_brigadier/widget/cText.dart';
 import '../controllers/forget_password_controller.dart';
 
 class EnterPin extends GetView<PinController> {
-  const EnterPin({Key? key}) : super(key: key);
+  final String? role;
+  const EnterPin({Key? key, this.role}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,10 @@ class EnterPin extends GetView<PinController> {
                                 text: "Enter OTP",
                                 textAlign: TextAlign.start,
                                 fontWeight: FontWeight.w500,
-                                fontsize: Theme.of(context).textTheme.headlineSmall!.fontSize,
+                                fontsize: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall!
+                                    .fontSize,
                               )),
                           PinCodeFields(
                             controller: controller.otpController,
@@ -59,7 +63,8 @@ class EnterPin extends GetView<PinController> {
                             fieldWidth: 50.0,
                             borderWidth: 1.0,
                             activeBorderColor: AppColor.primary,
-                            activeBackgroundColor: AppColor.secondary.withOpacity(0.1),
+                            activeBackgroundColor:
+                                AppColor.secondary.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(10.0),
                             keyboardType: TextInputType.number,
                             autoHideKeyboard: false,
@@ -72,7 +77,8 @@ class EnterPin extends GetView<PinController> {
                             onComplete: (value) {
                               if (controller.otpController.text.isNotEmpty) {
                                 controller.generateToken(
-                                    phone: number, otp: controller.otpController.text);
+                                    phone: number,
+                                    otp: controller.otpController.text);
                               } else {
                                 showsnackbar("Enter a valid OTP", true);
                               }
@@ -83,8 +89,12 @@ class EnterPin extends GetView<PinController> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                CText(text: LocaleKeys.verifyOtp_items_code_msg.tr),
-                                CText(text: ' +971-$number', fontWeight: FontWeight.w700)
+                                CText(
+                                    text:
+                                        LocaleKeys.verifyOtp_items_code_msg.tr),
+                                CText(
+                                    text: ' +971-$number',
+                                    fontWeight: FontWeight.w700)
                               ]),
                           const Spacer(flex: 3)
                         ],

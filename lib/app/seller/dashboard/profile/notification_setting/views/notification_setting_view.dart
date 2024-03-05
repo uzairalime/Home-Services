@@ -15,10 +15,12 @@ class NotificationSettingView extends GetView<NotificationSettingController> {
   Widget build(BuildContext context) {
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
-
+    final co = Get.put(NotificationSettingController());
     return Scaffold(
         appBar: AppBar(
-            leading: CIconBtn(onPressed: () => Get.back(), child: Icon(Icons.adaptive.arrow_back)),
+            leading: CIconBtn(
+                onPressed: () => Get.back(),
+                child: Icon(Icons.adaptive.arrow_back)),
             title: CText(
                 text: LocaleKeys.dashboard_profile_notification.tr,
                 color: txtTheme,
@@ -30,52 +32,64 @@ class NotificationSettingView extends GetView<NotificationSettingController> {
             ),
             child: Obx(() => Column(children: [
                   NotificationListTile(
-                      title: LocaleKeys.dashboard_profile__notification_sound.tr,
+                      title:
+                          LocaleKeys.dashboard_profile__notification_sound.tr,
                       btn: Switch.adaptive(
                           activeTrackColor: AppColor.secondary,
                           value: controller.soundSwitch.value,
                           onChanged: (value) {
-                            controller.notifiSwitch(value: value, title: "Sound");
+                            controller.notifiSwitch(
+                                value: value, title: "Sound");
                           })),
                   NotificationListTile(
-                      title: LocaleKeys.dashboard_profile__notification_vibrate.tr,
+                      title:
+                          LocaleKeys.dashboard_profile__notification_vibrate.tr,
                       btn: Switch.adaptive(
                           activeTrackColor: AppColor.secondary,
                           value: controller.vibrationSwitch.value,
                           onChanged: (value) {
-                            controller.notifiSwitch(value: value, title: "Vibration");
+                            controller.notifiSwitch(
+                                value: value, title: "Vibration");
                           })),
                   NotificationListTile(
-                      title: LocaleKeys.dashboard_profile__notification_special_offer.tr,
+                      title: LocaleKeys
+                          .dashboard_profile__notification_special_offer.tr,
                       btn: Switch.adaptive(
                           activeTrackColor: AppColor.secondary,
                           value: controller.specialOfferSwitch.value,
                           onChanged: (value) {
-                            controller.notifiSwitch(value: value, title: "Special Offer");
+                            controller.notifiSwitch(
+                                value: value, title: "Special Offer");
                           })),
                   NotificationListTile(
-                      title: LocaleKeys.dashboard_profile__notification_promo_discount.tr,
+                      title: LocaleKeys
+                          .dashboard_profile__notification_promo_discount.tr,
                       btn: Switch.adaptive(
                           activeTrackColor: AppColor.secondary,
                           value: controller.promoDiscountSwitch.value,
                           onChanged: (value) {
-                            controller.notifiSwitch(value: value, title: "Promo % Discount");
+                            controller.notifiSwitch(
+                                value: value, title: "Promo % Discount");
                           })),
                   NotificationListTile(
-                      title: LocaleKeys.dashboard_profile__notification_payment.tr,
+                      title:
+                          LocaleKeys.dashboard_profile__notification_payment.tr,
                       btn: Switch.adaptive(
                           activeTrackColor: AppColor.secondary,
                           value: controller.paymentsSwitch.value,
                           onChanged: (value) {
-                            controller.notifiSwitch(value: value, title: "Payments");
+                            controller.notifiSwitch(
+                                value: value, title: "Payments");
                           })),
                   NotificationListTile(
-                      title: LocaleKeys.dashboard_profile__notification_cashBack.tr,
+                      title: LocaleKeys
+                          .dashboard_profile__notification_cashBack.tr,
                       btn: Switch.adaptive(
                           activeTrackColor: AppColor.secondary,
                           value: controller.cashbackSwitch.value,
                           onChanged: (value) {
-                            controller.notifiSwitch(value: value, title: "Cashback");
+                            controller.notifiSwitch(
+                                value: value, title: "Cashback");
                           })),
                   // NotificationListTile(
                   //     title: "App Updates",
@@ -161,7 +175,8 @@ class NotificationSettingView extends GetView<NotificationSettingController> {
 }
 
 class NotificationListTile extends StatelessWidget {
-  const NotificationListTile({super.key, required this.title, required this.btn});
+  const NotificationListTile(
+      {super.key, required this.title, required this.btn});
 
   final String title;
   final Widget btn;

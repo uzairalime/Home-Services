@@ -316,6 +316,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
 
                 Get.to(() => HouseCleaningBookingView());
             }
+
           } else {
             showsnackbar("please login", true);
             Get.to(() => const EmailLoginView(
@@ -323,9 +324,15 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                 ));
           }
 
-          // Get.to(() => CategoryItemView(
-          //       model: model,
-          //     ));
+
+            // Get.to(() => CategoryItemView(
+            //       model: model,
+            //     ));
+          } else {
+            Get.to(() => EmailLoginView(
+                  role: "buyer",
+                ));
+          }
         },
         child: Row(children: [
           Icon(

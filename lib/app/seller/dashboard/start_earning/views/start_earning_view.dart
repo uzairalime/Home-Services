@@ -68,7 +68,7 @@ class StartEarningView extends GetView<StartEarningController> {
                                     text: controller.nameController.text,
                                     textAlign: TextAlign.center)),
                             Container(
-                              margin: const EdgeInsets.only(top: 20),
+                              margin: const EdgeInsets.only(top: 0),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 30),
                               decoration: BoxDecoration(
@@ -79,6 +79,8 @@ class StartEarningView extends GetView<StartEarningController> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  title(context,
+                                      LocaleKeys.upload_profile_pic.tr),
                                   profilePic(context),
                                   title(
                                       context,
@@ -426,11 +428,15 @@ class StartEarningView extends GetView<StartEarningController> {
                                       filled: true,
                                       keyboardType: TextInputType.streetAddress,
                                       fillColor: Colors.grey.withOpacity(0.1)),
-                                  title(context, "Emirates ID"),
+                                  title(context,
+                                      LocaleKeys.edit_services_emirates_id.tr),
 
                                   idCardPic(context: context),
 
-                                  title(context, "Upload your Work"),
+                                  title(
+                                      context,
+                                      LocaleKeys
+                                          .edit_services_upload_picture.tr),
                                   workingPic(context: context),
 
                                   const SizedBox(height: 30),
@@ -494,7 +500,7 @@ class StartEarningView extends GetView<StartEarningController> {
       Expanded(
           child: Column(
         children: [
-          title(context, "Front", 15),
+          title(context, LocaleKeys.edit_services_front.tr, 15),
           Container(
               height: 120,
               width: double.infinity,
@@ -517,13 +523,14 @@ class StartEarningView extends GetView<StartEarningController> {
                                   child: Image.file(
                                       controller.selectedFrontImage.value!,
                                       fit: BoxFit.cover))
-                              : const Column(
+                              : Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                      Icon(Icons.image_outlined),
-                                      Text("Select Image")
+                                      const Icon(Icons.image_outlined),
+                                      Text(LocaleKeys
+                                          .edit_services_select_image.tr)
                                     ])))),
         ],
       )),
@@ -531,7 +538,7 @@ class StartEarningView extends GetView<StartEarningController> {
       Expanded(
           child: Column(
         children: [
-          title(context, "Back", 15),
+          title(context, LocaleKeys.edit_services_back.tr, 15),
           Container(
               height: 120,
               width: double.infinity,
@@ -554,13 +561,14 @@ class StartEarningView extends GetView<StartEarningController> {
                                   child: Image.file(
                                       controller.selectedBackImage.value!,
                                       fit: BoxFit.cover))
-                              : const Column(
+                              : Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                      Icon(Icons.image_outlined),
-                                      Text("Select Image")
+                                      const Icon(Icons.image_outlined),
+                                      Text(LocaleKeys
+                                          .edit_services_select_image.tr)
                                     ])))),
         ],
       ))

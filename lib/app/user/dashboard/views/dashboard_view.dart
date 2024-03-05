@@ -14,7 +14,7 @@ class UserDashboardView extends GetView<UserDashboardController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(UserDashboardController());
+    final storage = Get.put(UserDashboardController());
     return GetBuilder<UserDashboardController>(
         init: UserDashboardController(),
         builder: (builderContext) {
@@ -45,14 +45,24 @@ class UserDashboardView extends GetView<UserDashboardController> {
                         SvgPicture.asset("assets/icons/ic_home_filled.svg"),
                     label: LocaleKeys.dashboard_items_home.tr,
                   ),
-                  if (StaticData.refreshToken.isNotEmpty)
-                    BottomNavigationBarItem(
-                      icon: SvgPicture.asset(
-                          "assets/icons/ic_booking_outlined.svg"),
-                      activeIcon: SvgPicture.asset(
-                          "assets/icons/ic_booking_filled.svg"),
-                      label: LocaleKeys.dashboard_items_bookings.tr,
-                    ),
+// <<<<<<< hanan
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset(
+                        "assets/icons/ic_booking_outlined.svg"),
+                    activeIcon:
+                        SvgPicture.asset("assets/icons/ic_booking_filled.svg"),
+                    label: LocaleKeys.dashboard_items_bookings.tr,
+                  ),
+// =======
+//                   if (StaticData.refreshToken.isNotEmpty)
+//                     BottomNavigationBarItem(
+//                       icon: SvgPicture.asset(
+//                           "assets/icons/ic_booking_outlined.svg"),
+//                       activeIcon: SvgPicture.asset(
+//                           "assets/icons/ic_booking_filled.svg"),
+//                       label: LocaleKeys.dashboard_items_bookings.tr,
+//                     ),
+// >>>>>>> main
                   BottomNavigationBarItem(
                     icon: const Icon(Icons.question_mark),
                     activeIcon: const Icon(Icons.question_mark),

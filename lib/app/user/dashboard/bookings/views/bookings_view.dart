@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/bookings_view.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/media_query.dart';
+import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
@@ -16,23 +17,27 @@ class BookingsView extends GetView<BookingsController> {
   Widget build(BuildContext context) {
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-              ),
-              child: Center(child: Image.asset("assets/images/ic_splash.png"))),
+        appBar: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+                child:
+                    Center(child: Image.asset("assets/images/app_icon.jpg"))),
+          ),
+          title: CText(
+              text: LocaleKeys.dashboard_items_bookings.tr,
+              fontWeight: FontWeight.bold,
+              color: txtTheme,
+              fontsize: mediaQueryHeight(context) * 0.025),
         ),
-        title: CText(
-            text: LocaleKeys.dashboard_items_bookings.tr,
-            fontWeight: FontWeight.bold,
-            color: txtTheme,
-            fontsize: mediaQueryHeight(context) * 0.025),
-      ),
-      body: const MyBookingsView(),
-    );
+        body: StaticData.refreshToken.isNotEmpty
+            ? const MyBookingsView()
+            : const Center(
+                child: Text("No Bookings"),
+              ));
 
     // GetBuilder<BookingsController>(
     //   init: Get.put(BookingsController()),
