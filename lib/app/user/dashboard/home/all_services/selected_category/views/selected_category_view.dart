@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:home_brigadier/app/modules/login/email_login/views/email_login_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/appliance/views/applince_booking_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/views/booking_view.dart';
@@ -16,6 +17,7 @@ import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_cat
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/tailor/views/tailor_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
+import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/utils/style.dart';
@@ -245,64 +247,70 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
             elevation: 0,
             backgroundColor: AppColor.white),
         onPressed: () {
-          switch (model.category!.code) {
-            case 'tailor':
-              BookingController.to.setServicesModel(model);
+          if (StaticData.refreshToken.isNotEmpty) {
+            switch (model.category!.code) {
+              case 'tailor':
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => TailorView());
-            case 'cleaning':
-              BookingController.to.setServicesModel(model);
+                Get.to(() => TailorView());
+              case 'cleaning':
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => HouseCleaningBookingView());
+                Get.to(() => HouseCleaningBookingView());
 
-              break;
-            case 'acRepair':
-              BookingController.to.setServicesModel(model);
+                break;
+              case 'acRepair':
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => RepairingBookingView());
+                Get.to(() => RepairingBookingView());
 
-              break;
-            case 'painting':
-              BookingController.to.setServicesModel(model);
+                break;
+              case 'painting':
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => PaintingBookingView());
+                Get.to(() => PaintingBookingView());
 
-              break;
-            case 'Laundry':
-              BookingController.to.setServicesModel(model);
+                break;
+              case 'Laundry':
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => LaundryBookingView());
+                Get.to(() => LaundryBookingView());
 
-              break;
-            case 'electricity':
-              BookingController.to.setServicesModel(model);
+                break;
+              case 'electricity':
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => ApplianceBookingView(
-                    model: model,
-                  ));
+                Get.to(() => ApplianceBookingView(
+                      model: model,
+                    ));
 
-              break;
-            case 'plumbing':
-              BookingController.to.setServicesModel(model);
+                break;
+              case 'plumbing':
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => PlumbingBookingView());
+                Get.to(() => PlumbingBookingView());
 
-              break;
-            case 'Shifting':
-              BookingController.to.setServicesModel(model);
+                break;
+              case 'Shifting':
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => HouseCleaningBookingView());
+                Get.to(() => HouseCleaningBookingView());
 
-              break;
-            default:
-              BookingController.to.setServicesModel(model);
+                break;
+              default:
+                BookingController.to.setServicesModel(model);
 
-              Get.to(() => HouseCleaningBookingView());
+                Get.to(() => HouseCleaningBookingView());
+            }
+
+            // Get.to(() => CategoryItemView(
+            //       model: model,
+            //     ));
+          } else {
+            Get.to(() => EmailLoginView(
+                  role: "buyer",
+                ));
           }
-
-          // Get.to(() => CategoryItemView(
-          //       model: model,
-          //     ));
         },
         child: Row(children: [
           Icon(

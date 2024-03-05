@@ -12,7 +12,9 @@ import '../controllers/email_login_controller.dart';
 import '../forget_password/views/forgot_pin_entering.dart';
 
 class EmailLoginView extends GetView<EmailLoginController> {
-  const EmailLoginView({Key? key}) : super(key: key);
+  final String? role;
+
+  const EmailLoginView({Key? key, this.role}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

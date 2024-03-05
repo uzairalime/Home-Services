@@ -11,7 +11,9 @@ import 'package:home_brigadier/widget/cText.dart';
 import '../controllers/forget_password_controller.dart';
 
 class EnterPin extends GetView<PinController> {
-  const EnterPin({Key? key}) : super(key: key);
+  final String? role;
+
+  const EnterPin({Key? key, this.role}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

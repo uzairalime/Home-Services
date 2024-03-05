@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +5,6 @@ import 'package:home_brigadier/app/routes/app_pages.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/consts/app_color.dart';
-import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/utils/shared_preferance.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:video_player/video_player.dart';
@@ -51,7 +48,7 @@ class _UserRoleViewState extends State<UserRoleView> {
                           topLeft: Radius.circular(15), topRight: Radius.circular(15))),
                 ),
               ),
-              Container(
+              SizedBox(
                 // color: Colors.white.withOpacity(0.9),
                 height: height,
                 width: width,
@@ -84,9 +81,7 @@ class _UserRoleViewState extends State<UserRoleView> {
                         InkWell(
                           onTap: () {
                             SharedPreference.storeRole(role: "buyer");
-                            SharedPreference.getRole();
                             Get.off(() => const UserDashboardView());
-                            log("buyer Rolr ${StaticData.role}");
 
                             Get.put(HomeController());
                           },
@@ -126,6 +121,7 @@ class _UserRoleViewState extends State<UserRoleView> {
                         ),
                         InkWell(
                           onTap: () {
+                            SharedPreference.storeRole(role: "seller");
                             Get.toNamed(Routes.EMAIL_LOGIN);
                           },
                           child: Container(

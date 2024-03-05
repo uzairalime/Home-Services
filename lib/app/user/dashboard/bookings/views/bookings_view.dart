@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/bookings_view.dart';
-import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/media_query.dart';
 import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
@@ -24,8 +22,7 @@ class BookingsView extends GetView<BookingsController> {
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
-                child:
-                    Center(child: Image.asset("assets/images/app_icon.jpg"))),
+                child: Center(child: Image.asset("assets/images/app_icon.jpg"))),
           ),
           title: CText(
               text: LocaleKeys.dashboard_items_bookings.tr,
@@ -33,10 +30,10 @@ class BookingsView extends GetView<BookingsController> {
               color: txtTheme,
               fontsize: mediaQueryHeight(context) * 0.025),
         ),
-        body: StaticData.refreshToken.isEmpty
+        body: StaticData.refreshToken.isNotEmpty
             ? const MyBookingsView()
             : const Center(
-                child: Text("Login first"),
+                child: Text("No Bookings"),
               ));
 
     // GetBuilder<BookingsController>(

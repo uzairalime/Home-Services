@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
+import 'package:home_brigadier/consts/static_data.dart';
 
 import '../../../../../../services/apis/toast.dart';
 import '../../../../../../utils/otp_resp_model.dart';
@@ -12,7 +13,11 @@ import '../../../../../../utils/shared_preferance.dart';
 import '../../../../../seller/dashboard/views/dashboard_view.dart';
 
 class PinController extends GetxController {
-  String role = "seller";
+  @override
+  void onInit() {
+    SharedPreference.getRole();
+    super.onInit();
+  }
 
   TextEditingController otpController = TextEditingController();
   Dio dio = Dio();
@@ -39,9 +44,9 @@ class PinController extends GetxController {
 
         // GetStorage _storage = GetStorage();
         // _storage.write("role", role);
-        SharedPreference.storeRole(role: "seller");
+        // SharedPreference.storeRole(role: "seller");
 
-        if (role == "seller") {
+        if (StaticData.role == "seller") {
           Get.off(() => const SellerDashboardView());
         } else {
           Get.off(const UserDashboardView());
