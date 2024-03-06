@@ -27,11 +27,9 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
             bottomNavigationBar: GetBuilder<HomeController>(builder: (obj) {
               return BottomNavigationBar(
                 selectedLabelStyle: TextStyle(
-                    overflow: TextOverflow.visible,
-                    fontSize: mediaQueryHeight(context) * 0.015),
+                    overflow: TextOverflow.visible, fontSize: mediaQueryHeight(context) * 0.015),
                 unselectedLabelStyle: TextStyle(
-                    overflow: TextOverflow.visible,
-                    fontSize: mediaQueryHeight(context) * 0.015),
+                    overflow: TextOverflow.visible, fontSize: mediaQueryHeight(context) * 0.015),
                 type: BottomNavigationBarType.fixed,
                 fixedColor: AppColor.secondary,
                 currentIndex: controller.currentIndex.value,
@@ -44,17 +42,20 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
                   //   label: LocaleKeys.dashboard_items_home.tr,
                   // ),
                   BottomNavigationBarItem(
-                    icon: SvgPicture.asset(
-                        "assets/icons/ic_booking_outlined.svg"),
-                    activeIcon:
-                        SvgPicture.asset("assets/icons/ic_booking_filled.svg"),
+                    icon: SizedBox(
+                        height: 18,
+                        child: SvgPicture.asset("assets/icons/ic_booking_outlined.svg")),
+                    activeIcon: SizedBox(
+                        height: 18, child: SvgPicture.asset("assets/icons/ic_booking_filled.svg")),
                     label: LocaleKeys.user_profile_item_jobs.tr,
                   ),
                   BottomNavigationBarItem(
                     icon: const Icon(
+                      size: 20,
                       Icons.currency_exchange,
                     ),
                     activeIcon: const Icon(
+                      size: 20,
                       Icons.currency_exchange,
                       color: AppColor.secondary,
                     ),
@@ -62,9 +63,11 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
                   ),
                   BottomNavigationBarItem(
                     icon: const Icon(
+                      size: 20,
                       Icons.home_repair_service,
                     ),
                     activeIcon: const Icon(
+                      size: 20,
                       Icons.home_repair_service,
                       color: AppColor.secondary,
                     ),
@@ -76,10 +79,8 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
                   //   label: LocaleKeys.dashboard_items_faq.tr,
                   // ),
                   BottomNavigationBarItem(
-                    icon: SvgPicture.asset(
-                        "assets/icons/ic_profile_circled_outlined.svg"),
-                    activeIcon: SvgPicture.asset(
-                        "assets/icons/ic_profile_circled_filled.svg"),
+                    icon: SvgPicture.asset("assets/icons/ic_profile_circled_outlined.svg"),
+                    activeIcon: SvgPicture.asset("assets/icons/ic_profile_circled_filled.svg"),
                     label: LocaleKeys.dashboard_items_profile.tr,
                   ),
                 ],

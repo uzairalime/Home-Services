@@ -25,8 +25,7 @@ class ConnectivityService {
     });
   }
 
-  static checkInternetConnectivity(
-      {required AnimationController controller}) async {
+  static checkInternetConnectivity({required AnimationController controller}) async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult != ConnectivityResult.none) {
       controller.addStatusListener((status) {
@@ -60,7 +59,7 @@ class ConnectivityService {
         if (StaticData.refreshToken.isNotEmpty) {
           int refreshTokenResult = await IsolateManager.refreshToken();
           if (refreshTokenResult == 200) {
-            Get.to(const SellerDashboardView());
+            Get.offAll(const SellerDashboardView());
           } else {
             Get.offAll(() => const EmailLoginView(
                   role: 'seller',
