@@ -118,9 +118,8 @@
     "enter_address": "Enter Your Address",
     "upload_picture": "Upload Picture",
     "tap_to_upload": "Tap here to Select Image",
-    "submit": "Submit",
-    "villa_number": "Flat/Villa No. building Area",
-    "area": "Area"
+    "submit": "Submit"
+
   },
   "faq_items": {
     "faq": "Faq",
@@ -323,6 +322,9 @@
     "gas_refil": "Gas Refill"
   },
   "km_away": "km away",
-  "switch_mode": "Switch Mode",
+  "switch_mode": {
+    "seller_mode": "Seller Mode",
+    "buyer_mode": "Buyer Mode"
+  },
   "upload_profile_pic": "Upload Profile Pic"
 }
