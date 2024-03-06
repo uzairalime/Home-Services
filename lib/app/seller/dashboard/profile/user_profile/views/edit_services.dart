@@ -243,12 +243,17 @@ class _EditUserServiceState extends State<EditUserService> {
                                           backgroundColor: AppColor.white,
                                           selectedColor: AppColor.primary,
                                           showCheckmark: false,
-                                          label: Text(weekday,
-                                              style: TextStyle(
-                                                  color:
-                                                      controller.selectedWeekdays.contains(weekday)
-                                                          ? AppColor.white
-                                                          : Colors.black)),
+                                          label: Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                                            child: Text(weekday[0].toUpperCase() +
+                                                            weekday[1] +
+                                                            weekday[2],
+                                                style: TextStyle(
+                                                    color:
+                                                        controller.selectedWeekdays.contains(weekday)
+                                                            ? AppColor.white
+                                                            : Colors.black)),
+                                          ),
                                           selected: controller.selectedWeekdays.contains(weekday),
                                           onSelected: (isSelected) {
                                             controller.toggleSelection(weekday);
