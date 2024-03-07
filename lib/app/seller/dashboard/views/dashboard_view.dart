@@ -18,10 +18,7 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
         builder: (builderContext) {
           return Scaffold(
             ///body with pageBuilder
-            body: IndexedStack(
-              index: controller.currentIndex.value,
-              children: controller.pages,
-            ),
+            body: controller.pages[controller.currentIndex.value],
 
             /// bottomNavigationBar
             bottomNavigationBar: GetBuilder<HomeController>(builder: (obj) {

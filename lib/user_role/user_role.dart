@@ -1,13 +1,15 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/routes/app_pages.dart';
-import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
-import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
-import 'package:home_brigadier/consts/app_color.dart';
-import 'package:home_brigadier/utils/shared_preferance.dart';
-import 'package:home_brigadier/widget/cText.dart';
 import 'package:video_player/video_player.dart';
+
+import '../app/routes/app_pages.dart';
+import '../app/user/dashboard/home/controllers/home_controller.dart';
+import '../app/user/dashboard/views/dashboard_view.dart';
+import '../consts/app_color.dart';
+import '../consts/media_query.dart';
+import '../utils/shared_preferance.dart';
+import '../widget/cText.dart';
 
 class UserRoleView extends StatefulWidget {
   const UserRoleView({super.key});
@@ -22,203 +24,178 @@ class _UserRoleViewState extends State<UserRoleView> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Center(
-        child: Container(
-          height: height,
-          width: width,
-          color: Colors.white.withOpacity(0.8),
-          // color: Colors.amber,
-          child: Stack(
-            children: [
-              Container(
-                height: height * 0.8,
-                width: width,
-                color: Colors.grey.withOpacity(0.3),
-                child: const VideoPlayerWidget(
-                    videoUrl:
-                        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: height * 0.2,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-                ),
-              ),
-              SizedBox(
-                // color: Colors.white.withOpacity(0.9),
-                height: height,
-                width: width,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: height * 0.6,
-                    ),
-                    CText(
-                      text: "Home Bragedier",
-                      fontWeight: FontWeight.bold,
-                      fontsize: height * 0.035,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      height: height * 0.01,
-                    ),
-                    CText(
-                      text: "Home services.\nOn Demand",
-                      fontWeight: FontWeight.bold,
-                      fontsize: height * 0.02,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      height: height * 0.04,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            SharedPreference.storeRole(role: "buyer");
-                            Get.off(() => const UserDashboardView());
-
-                            Get.put(HomeController());
-                          },
-                          child: Container(
-                            height: height * 0.18,
-                            width: width * 0.4,
-                            decoration: BoxDecoration(boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: const Offset(0, 1),
-                              ),
-                            ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                SizedBox(
-                                    height: 40,
-                                    width: 40,
-                                    child: Image.asset("assets/images/ic_find.png")),
-                                const CText(
-                                  text: "Find a Service",
-                                  fontWeight: FontWeight.bold,
-                                  fontsize: 15,
-                                ),
-                                const Text(
-                                  " I'm looking for talanted\n   people to work with",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 13,
-                                      color: AppColor.grey),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            SharedPreference.storeRole(role: "seller");
-                            Get.toNamed(Routes.EMAIL_LOGIN);
-                          },
-                          child: Container(
-                            height: height * 0.18,
-                            width: width * 0.4,
-                            decoration: BoxDecoration(boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: const Offset(0, 1),
-                              ),
-                            ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                SizedBox(
-                                    height: 40,
-                                    width: 40,
-                                    child: Image.asset("assets/images/ic_selling.png")),
-                                const CText(
-                                  text: "Selling a Service",
-                                  fontWeight: FontWeight.bold,
-                                  fontsize: 15,
-                                ),
-                                const Text(
-                                  "I'd like to offer my\n         Service",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 13,
-                                      color: AppColor.grey),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                  ],
-                ),
-              ),
-            ],
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              height: height * 0.79,
+              width: width,
+              child: const VideoPlayerWidget(),
+            ),
           ),
-        ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: height * 0.25, // Adjusted height
+              decoration: const BoxDecoration(
+                  color: AppColor.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  height: height * 0.13,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CText(
+                        text: "Home Bragedier",
+                        color: AppColor.secondary,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w500,
+                        fontsize: Theme.of(context).textTheme.headlineSmall!.fontSize,
+                      ),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      CText(
+                        text: "Home  Services\non Demand",
+                        textAlign: TextAlign.center,
+                        color: AppColor.primary,
+                        fontsize: Theme.of(context).textTheme.titleSmall!.fontSize,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: mediaQueryHeight(context) * 0.17,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  onTap: () {
+                    SharedPreference.storeRole(role: "buyer");
+                    Get.offAll(() => const UserDashboardView());
+
+                    Get.put(HomeController());
+                  },
+                  child: SizedBox(
+                    height: height * 0.18,
+                    width: width * 0.4,
+                    child: Card(
+                      shadowColor: AppColor.greylight,
+                      elevation: 15,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: Image.asset("assets/images/ic_find.png")),
+                          const CText(
+                            text: "Find a Service",
+                            fontWeight: FontWeight.bold,
+                            fontsize: 15,
+                          ),
+                          const Text(
+                            " I'm looking for talanted\n   people to work with",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300, fontSize: 13, color: AppColor.grey),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    SharedPreference.storeRole(role: "seller");
+                    Get.toNamed(Routes.EMAIL_LOGIN);
+                  },
+                  child: SizedBox(
+                    height: height * 0.18,
+                    width: width * 0.4,
+                    child: Card(
+                      shadowColor: AppColor.greylight,
+                      elevation: 15,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: Image.asset("assets/images/ic_selling.png")),
+                          const CText(
+                            text: "Selling a Service",
+                            fontWeight: FontWeight.bold,
+                            fontsize: 15,
+                          ),
+                          const Text(
+                            "I'd like to offer my\n         Service",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300, fontSize: 13, color: AppColor.grey),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
 class VideoPlayerWidget extends StatefulWidget {
-  final String videoUrl;
-
-  const VideoPlayerWidget({super.key, required this.videoUrl});
+  const VideoPlayerWidget({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
+  State<VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
 }
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
-  late VideoPlayerController _videoPlayerController;
-  late ChewieController _chewieController;
-
+  late VideoPlayerController videoPlayerController;
+  late ChewieController chewieController;
   @override
   void initState() {
-    super.initState();
+    videoPlayerController = VideoPlayerController.asset("assets/video/intro_video.mp4");
 
-    // ignore: deprecated_member_use
-    _videoPlayerController = VideoPlayerController.network(widget.videoUrl);
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController,
+    chewieController = ChewieController(
+      videoPlayerController: videoPlayerController,
       showControls: false,
-      aspectRatio: 20 / 40,
+      allowFullScreen: true,
+      aspectRatio: 0.62,
       autoPlay: true,
       looping: true,
     );
+    setState(() {});
+
+    super.initState();
   }
 
   @override
   void dispose() {
-    _videoPlayerController.dispose();
-    _chewieController.dispose();
+    videoPlayerController.dispose();
+    chewieController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Center(
-          child: Chewie(
-            controller: _chewieController,
-          ),
-        ));
+    return Chewie(
+      controller: chewieController,
+    );
   }
 }

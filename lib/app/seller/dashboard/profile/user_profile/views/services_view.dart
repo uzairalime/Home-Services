@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/edit_services.dart';
-import 'package:home_brigadier/consts/global_variable.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/user_services_models/my_services_resp_model.dart';
 
 import '../../../../../../consts/app_color.dart';
+import '../../../../../../consts/global_variable.dart';
 import '../../../../../../consts/media_query.dart';
 import '../../../../../../widget/cText.dart';
 import '../../../../../../widget/shimmer.dart';
@@ -39,8 +39,8 @@ class MyServicesView extends GetView<UserProfileController> {
       body: GetBuilder(
           init: Get.put(UserProfileController()),
           builder: (context) {
-            return FutureBuilder<List<MyServicesRespModel>>(
-                future: controller.fetchServices(),
+            return StreamBuilder<List<MyServicesRespModel>>(
+                stream: controller.fetchServices().asStream(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
@@ -68,7 +68,7 @@ class MyServicesView extends GetView<UserProfileController> {
                     )); // or a loading indicator widget
                   } else if (snapshot.hasError) {
                     return const Center(child: Text('No data found\n check Internet connection'));
-                  } else {
+                  } else if (!snapshot.data!.length.isEqual(0)) {
                     List<MyServicesRespModel>? services = snapshot.data;
 
                     return ListView.builder(
@@ -136,20 +136,23 @@ class MyServicesView extends GetView<UserProfileController> {
                                                   mainAxisSize: MainAxisSize.max,
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
-                                                    Row(
-                                                      children: [
-                                                        const Icon(Icons.pin_drop_outlined,
-                                                            color: AppColor.primary),
-                                                        SizedBox(
+                                                    Row(children: [
+                                                      const Icon(Icons.pin_drop_outlined,
+                                                          color: AppColor.primary),
+                                                      SizedBox(
                                                           width: mediaQueryWidth(context) * 0.5,
                                                           child: Text(
                                                             softWrap: true,
                                                             overflow: TextOverflow.ellipsis,
                                                             "${services[index].address}",
-                                                          ).paddingSymmetric(vertical: 5),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                          ).paddingSymmetric(vertical: 5))
+                                                    ]),
+
+                                                    // PopupMenu(
+                                                    //     scaffkey: _scaffoldKey,
+                                                    //     service: services[index],
+                                                    //     controller: controller)
+
                                                     SizedBox(
                                                       height: 55,
                                                       width: 55,
@@ -165,7 +168,7 @@ class MyServicesView extends GetView<UserProfileController> {
                                                           color: AppColor.primary,
                                                         ).marginOnly(bottom: 10),
                                                       ),
-                                                    )
+                                                    ),
                                                   ]).marginOnly(top: 5, bottom: 20),
                                             ]).marginSymmetric(
                                             horizontal: mediaQueryWidth(context) * 0.1)
@@ -173,9 +176,91 @@ class MyServicesView extends GetView<UserProfileController> {
                                 )).marginOnly(top: 10),
                           );
                         });
+                  } else {
+                    return const Center(child: CText(text: "No services found"));
                   }
                 });
           }),
     );
   }
 }
+
+// class PopupMenu extends StatelessWidget {
+//   final GlobalKey<ScaffoldState> scaffkey;
+//   final UserProfileController controller;
+//   final MyServicesRespModel service;
+//   const PopupMenu(
+//       {super.key, required this.service, required this.controller, required this.scaffkey});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return PopupMenuButton(
+//       icon: const Icon(Icons.edit_note, color: AppColor.secondary, size: 30),
+//       itemBuilder: (BuildContext context) {
+//         return [
+//           const PopupMenuItem(
+//             value: 'edit',
+//             child: Row(
+//               children: [
+//                 Icon(
+//                   Icons.edit,
+//                   color: AppColor.primary,
+//                 ),
+//                 SizedBox(width: 8.0),
+//                 Text('Edit'),
+//               ],
+//             ),
+//           ),
+//           const PopupMenuItem(
+//             value: 'delete',
+//             child: Row(
+//               children: [
+//                 Icon(
+//                   Icons.delete,
+//                   color: AppColor.primary,
+//                 ),
+//                 SizedBox(width: 8.0),
+//                 Text('Delete'),
+//               ],
+//             ),
+//           ),
+//         ];
+//       },
+//       onSelected: (value) {
+//         if (value == 'edit') {
+//           GlobalVariable.serviceModel = service;
+//           Get.to(() => const EditUserService());
+//         } else if (value == 'delete') {
+//           Get.defaultDialog(
+//             title: 'Are you sure?',
+//             middleText: 'Do you want to delete this Service?',
+//             actions: [
+//               OutlinedButton(
+//                   style: OutlinedButton.styleFrom(
+//                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+//                   onPressed: () {
+//                     Get.back();
+//                   },
+//                   child: const CText(
+//                     text: "Cancel",
+//                     color: AppColor.secondary,
+//                   )),
+//               Obx(() => !controller.deleteLoading.value
+//                   ? OutlinedButton(
+//                       style: OutlinedButton.styleFrom(
+//                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+//                       onPressed: () async {
+//                         controller.deleteServices(id: service.id);
+//                       },
+//                       child: const CText(
+//                         text: "Delete",
+//                         color: AppColor.secondary,
+//                       ))
+//                   : const CircularProgressIndicator())
+//             ],
+//           );
+//         }
+//       },
+//     );
+//   }
+// }

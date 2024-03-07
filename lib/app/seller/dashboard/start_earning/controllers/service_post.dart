@@ -9,7 +9,6 @@ import '../../../../../consts/static_data.dart';
 import '../../../../../model/user_services_models/my_service_post_model.dart';
 import '../../../../../services/apis/toast.dart';
 import '../../../../../utils/animation_dialog.dart';
-import '../../profile/user_profile/views/user_profile_view.dart';
 
 class PostService {
   static deo.Dio dio = deo.Dio();
@@ -63,7 +62,7 @@ class PostService {
             builder: (context) => const AnimationDialog(
                   text: 'Successfully Added !',
                 )).then((value) {
-          Get.to(() => const UserProfileView());
+          Get.back();
         });
       }
     } on SocketException catch (_) {

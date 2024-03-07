@@ -237,6 +237,9 @@ class SettingListView extends StatelessWidget {
             SettingList(
                 leading: const Icon(Icons.people_alt_outlined),
                 title: LocaleKeys.dashboard_profile_invite_a_friend.tr)),
+        Divider(
+          color: AppColor.greylight,
+        ),
         SettingListItem(onTap: () async {
           await showModalBottomSheet(
               isDismissible: true,

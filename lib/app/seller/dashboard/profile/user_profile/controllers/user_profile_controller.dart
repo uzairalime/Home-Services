@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:dio/dio.dart' as deo;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/user_profile_view.dart';
 import 'package:home_brigadier/consts/global_variable.dart';
 import 'package:home_brigadier/consts/static_data.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,7 +19,7 @@ class UserProfileController extends GetxController {
   static UserProfileController get to => Get.find();
 
   ScrollController scrollController = ScrollController();
-
+  RxBool deleteLoading = false.obs;
   String profileFileId = '';
 
   var weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
@@ -69,6 +68,11 @@ class UserProfileController extends GetxController {
   TextEditingController descController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController rateController = TextEditingController();
+
+  String file1 = '';
+  String file2 = '';
+  String file3 = '';
+  String file4 = '';
 
   String txt = LocaleKeys.start_earning_item_txt.tr;
 
@@ -230,7 +234,7 @@ class UserProfileController extends GetxController {
       //print(response.statusCode);
       if (response.statusCode == 200) {
         showsnackbar("Service Update Successfully");
-        Get.off(() => const UserProfileView());
+        // Get.off(() => const SellerDashboardView());
       }
     } on SocketException catch (e) {
       showsnackbar("Error: Check Internet Connection", true);
@@ -412,6 +416,28 @@ class UserProfileController extends GetxController {
       }
     } catch (error) {
       throw Exception('Failed to load data: $error');
+    }
+  }
+
+  Future<void> deleteServices({required id}) async {
+    dio.options.headers['accept'] = 'application/json';
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+
+    print(id);
+    try {
+      deleteLoading.value = true;
+
+      final response = await dio.delete("https://homebrigadier.fly.dev/api/service/$id/");
+      if (response.statusCode == 200) {
+        showsnackbar("Delete Successfully");
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (error) {
+      throw Exception('Failed to load data: $error');
+    } finally {
+      deleteLoading.value = false;
+      Get.back();
     }
   }
 }
