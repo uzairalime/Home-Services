@@ -299,7 +299,8 @@ class LocaleKeys {
   static const ac_reparing_items_ac_uninstall = 'ac_reparing_items_ac_uninstall';
   static const ac_reparing_items_gas_refil = 'ac_reparing_items_gas_refil';
   static const km_away = 'km_away';
-  static const switch_mode = 'switch_mode';
+  static const switch_mode_seller_mode = 'switch_mode_seller_mode';
+  static const switch_mode_buyer_mode = 'switch_mode_buyer_mode';
   static const upload_profile_pic = 'upload_profile_pic';
   static const painting_items_special_insutuction = 'painting_items_special_insutuction';
   static const painting_items_example_insutruction = 'painting_items_example_insutruction';
@@ -579,8 +580,9 @@ class Locales {
     'ac_reparing_items_ac_install': 'تركيب التكييف',
     'ac_reparing_items_ac_uninstall': 'إزالة التكييف',
     'ac_reparing_items_gas_refil': 'تعبئة الغاز',
-    'km_away': 'على بعد كم',
-    'switch_mode': 'تبديل الوضع',
+    'km_away': 'على بعدكم',
+    'switch_mode_seller_mode': 'وضع البائع',
+    'switch_mode_buyer_mode': 'وضع الشراء',
     'upload_profile_pic': 'تحميل صورة الملف الشخصي',
   };
   static const en_US = {
@@ -857,7 +859,8 @@ class Locales {
     'ac_reparing_items_ac_uninstall': 'Ac Uninstall',
     'ac_reparing_items_gas_refil': 'Gas Refill',
     'km_away': 'km away',
-    'switch_mode': 'Switch Mode',
+    'switch_mode_seller_mode': 'Seller Mode',
+    'switch_mode_buyer_mode': 'Buyer Mode',
     'upload_profile_pic': 'Upload Profile Pic',
   };
 }

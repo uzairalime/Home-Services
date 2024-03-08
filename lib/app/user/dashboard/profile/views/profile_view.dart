@@ -160,8 +160,10 @@ class SettingListView extends StatelessWidget {
             // onTap: () => Get.to(() => EditUserService),
             SettingList(
                 trailing: Switch.adaptive(
-                  activeTrackColor: AppColor.secondary.withOpacity(0.3),
-                  activeColor: AppColor.secondary,
+                  // activeTrackColor: AppColor.secondary.withOpacity(0.3),
+                  // activeColor: AppColor.secondary,
+                  inactiveTrackColor: AppColor.primary.withOpacity(0.3),
+                  inactiveThumbColor: AppColor.primary,
                   value: controller.isSeller,
                   onChanged: (value) async {
                     if (value == true) {
@@ -193,7 +195,7 @@ class SettingListView extends StatelessWidget {
                   },
                 ),
                 leading: const Icon(CupertinoIcons.person),
-                title: LocaleKeys.switch_mode.tr)),
+                title: LocaleKeys.switch_mode_buyer_mode.tr)),
         // Divider(
         //   color: AppColor.greylight,
         // ),
@@ -235,6 +237,9 @@ class SettingListView extends StatelessWidget {
             SettingList(
                 leading: const Icon(Icons.people_alt_outlined),
                 title: LocaleKeys.dashboard_profile_invite_a_friend.tr)),
+        Divider(
+          color: AppColor.greylight,
+        ),
         SettingListItem(onTap: () async {
           await showModalBottomSheet(
               isDismissible: true,

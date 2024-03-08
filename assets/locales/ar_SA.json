@@ -118,9 +118,7 @@
     "enter_address": "أدخل عنوانك",
     "upload_picture": "تحميل الصورة",
     "tap_to_upload": "اضغط هنا لاختيار الصورة",
-    "submit": "يُقدِّم",
-    "villa_number": "شقة/فيلا رقم. مساحة المبنى",
-    "area": "منطقة"
+    "submit": "يُقدِّم"
   },
   "faq_items": {
     "faq": "التعليمات",
@@ -322,7 +320,11 @@
     "ac_uninstall": "إزالة التكييف",
     "gas_refil": "تعبئة الغاز"
   },
-  "km_away": "على بعد كم",
-  "switch_mode": "تبديل الوضع",
+  "km_away": "على بعدكم",
+  "switch_mode": {
+    "seller_mode": "وضع البائع",
+    "buyer_mode": "وضع الشراء"
+  },
+
   "upload_profile_pic": "تحميل صورة الملف الشخصي"
 }

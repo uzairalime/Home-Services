@@ -34,13 +34,17 @@ class _EditUserServiceState extends State<EditUserService> {
   @override
   void initState() {
     controller = Get.put(UserProfileController());
-    con = Get.find();
+    con = Get.put(BookingController());
 
     List<RespOpeningHours>? openingHours = GlobalVariable.serviceModel.openingHours;
     controller.nameController.text = GlobalVariable.serviceModel.name!;
     controller.descController.text = GlobalVariable.serviceModel.description!;
     controller.rateController.text = GlobalVariable.serviceModel.rate!;
     controller.addressController.text = GlobalVariable.serviceModel.address!;
+    controller.file1 = GlobalVariable.serviceModel.files![0].id!;
+    controller.file2 = GlobalVariable.serviceModel.files![1].id!;
+    controller.file3 = GlobalVariable.serviceModel.files![2].id!;
+    controller.file4 = GlobalVariable.serviceModel.files![3].id!;
 
     for (var element in openingHours!) {
       if (controller.selectedWeekdays.contains(element.weekday)) {
@@ -245,14 +249,13 @@ class _EditUserServiceState extends State<EditUserService> {
                                           showCheckmark: false,
                                           label: Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 8),
-                                            child: Text(weekday[0].toUpperCase() +
-                                                            weekday[1] +
-                                                            weekday[2],
+                                            child: Text(
+                                                weekday[0].toUpperCase() + weekday[1] + weekday[2],
                                                 style: TextStyle(
-                                                    color:
-                                                        controller.selectedWeekdays.contains(weekday)
-                                                            ? AppColor.white
-                                                            : Colors.black)),
+                                                    color: controller.selectedWeekdays
+                                                            .contains(weekday)
+                                                        ? AppColor.white
+                                                        : Colors.black)),
                                           ),
                                           selected: controller.selectedWeekdays.contains(weekday),
                                           onSelected: (isSelected) {
@@ -486,7 +489,12 @@ class _EditUserServiceState extends State<EditUserService> {
                                               id: id,
                                               name: controller.nameController.text,
                                               description: controller.descController.text,
-                                              fileIds: [],
+                                              fileIds: [
+                                                controller.file1,
+                                                controller.file2,
+                                                controller.file3,
+                                                controller.file4
+                                              ],
                                               category: convertToCamelCase(
                                                   controller.selectedCategory.value),
                                               address: controller.addressController.text,

@@ -5,21 +5,19 @@ import 'api_endpoints.dart';
 import 'error_handler.dart';
 
 class ApiHelper {
-  static final String _defaultToken = StaticData.accessToken;
-
   final Dio _dio;
 
   ApiHelper() : _dio = Dio() {
     // You can add any global configurations for Dio here
     _dio.options.headers['Content-Type'] = 'application/json';
-    _dio.options.headers['Authorization'] = 'Bearer $_defaultToken';
+    _dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
   }
 
   Future<Response> get(String endpoint, {bool includeToken = false}) async {
     try {
       // Adjust headers based on the includeToken parameter
       if (includeToken) {
-        _dio.options.headers['Authorization'] = 'Bearer $_defaultToken';
+        _dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
       } else {
         _dio.options.headers.remove('Authorization');
       }

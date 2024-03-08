@@ -190,7 +190,8 @@ class StartEarningView extends GetView<StartEarningController> {
                                               }))
                                     ]),
                                   ),
-                                  title(context, LocaleKeys.required_field.tr),
+                                  title(
+                                      context, LocaleKeys.start_earning_item_selct_working_days.tr),
 
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -325,8 +325,8 @@ class HomeView extends GetView<HomeController> {
                             ServiceIconModel.servicesicon[icon].icon!,
                             color: AppColor.primary,
                             fit: BoxFit.fill,
-                            width: index == 1 ? 30 : 40,
-                            height: index == 1 ? 30 : 40,
+                            width: index == 0 ? 30 : 40,
+                            height: index == 0 ? 30 : 40,
                           ),
                         ),
                       ),
@@ -819,7 +819,7 @@ class TabBarGrid extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       child: SizedBox(
                           width: widht,
-                          height: height * 0.19,
+                          height: height * 0.20,
                           child: Padding(
                               padding:
                                   const EdgeInsets.only(left: 12, right: 12, bottom: 12, top: 12),
