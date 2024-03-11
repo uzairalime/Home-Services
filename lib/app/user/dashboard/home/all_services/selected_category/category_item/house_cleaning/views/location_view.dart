@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:home_brigadier/app/modules/login/email_login/views/email_login_view.dart';
+import 'package:home_brigadier/app/payment/stripe.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/views/location_pick.dart';
 import 'package:home_brigadier/consts/app_color.dart';
@@ -32,6 +33,7 @@ class LocationView extends GetView<BookingController> {
     final widht = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     Get.put(BookingController());
+    Get.put(PaymetController());
 
     var location = BookingController.to.currentPosition ??
         Position(
@@ -164,14 +166,13 @@ class LocationView extends GetView<BookingController> {
                                 obj.placeprediction.clear();
                                 obj.update();
 
-                              //  List<Location> locations = await locationFromAddress(
-                              //   localeIdentifier: "en",
-                                
-                                
-                              //   "Gronausestraat 710, Enschede");
+                                //  List<Location> locations = await locationFromAddress(
+                                //   localeIdentifier: "en",
 
-                              //   logger.d(
-                              //       "!!!!!!!!!!!!!!!!!!!!!!!!!!${locations.length}");
+                                //   "Gronausestraat 710, Enschede");
+
+                                //   logger.d(
+                                //       "!!!!!!!!!!!!!!!!!!!!!!!!!!${locations.length}");
 
                                 //                            obj.mapController?.animateCamera(
                                 //   CameraUpdate.newLatLngZoom(obj.placeprediction[index], 15.0),
@@ -212,7 +213,9 @@ class LocationView extends GetView<BookingController> {
         });
   }
 
-  _onButtonPress(BuildContext context, TextEditingController address) {
+  _onButtonPress(BuildContext context, TextEditingController address) async {
+    // PaymetController.to.makePayment(context, "100000");
+
     PostBookingModel model = PostBookingModel(
         price: controller.total.toString(),
         startAt: controller.stardatetime,
