@@ -19,10 +19,12 @@ class BookingsView extends GetView<BookingsController> {
           leading: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                child: Center(child: Image.asset("assets/images/app_icon.jpg"))),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/icons/launcher_icon.png")),
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.all(Radius.circular(6))),
+            ),
           ),
           title: CText(
               text: LocaleKeys.dashboard_items_bookings.tr,

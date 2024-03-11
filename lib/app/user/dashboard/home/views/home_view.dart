@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -344,12 +345,8 @@ class HomeView extends GetView<HomeController> {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  ShimmerWidget.circular(
-                      width: widht * 0.15, height: widht * 0.15),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  const ShimmerWidget.rectangular(height: 10)
+                  ShimmerWidget.rectangular(
+                      width: widht * 0.19, height: widht * 0.20),
                 ],
               );
             },
@@ -384,30 +381,34 @@ class HomeView extends GetView<HomeController> {
                   child: Column(
                     children: [
                       Container(
-                        width: widht * 0.15,
-                        height: widht * 0.15,
+                        width: widht * 0.19,
+                        height: widht * 0.20,
                         decoration: BoxDecoration(
-                            color: AppColor.greylight, shape: BoxShape.circle),
-                        child: Center(
-                          child: SvgPicture.asset(
-                            ServiceIconModel.servicesicon[icon].icon!,
-                            color: AppColor.primary,
-                            fit: BoxFit.fill,
-                            width: index == 5 ? 30 : 40,
-                            height: index == 5 ? 30 : 40,
-                          ),
+                            color: AppColor.greylight,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset(
+                              ServiceIconModel.servicesicon[icon].icon!,
+                              color: AppColor.primary,
+                              fit: BoxFit.fill,
+                              width: index == 5 ? 25 : 30,
+                              height: index == 5 ? 25 : 30,
+                            ),
+                            Text(
+                              categoryList[index].displayName.toString(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: widht * 0.03,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
-                      Text(
-                        categoryList[index].displayName.toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: widht * 0.03,
-                        ),
-                      ),
+                      // SizedBox(
+                      //   height: height * 0.01,
+                      // ),
                     ],
                   ),
                 );
@@ -427,11 +428,7 @@ class HomeView extends GetView<HomeController> {
                 return Column(
                   children: [
                     ShimmerWidget.circular(
-                        width: widht * 0.15, height: widht * 0.15),
-                    SizedBox(
-                      height: height * 0.01,
-                    ),
-                    const ShimmerWidget.rectangular(height: 10)
+                        width: widht * 0.19, height: widht * 0.21),
                   ],
                 );
               },
@@ -516,111 +513,155 @@ class HomeView extends GetView<HomeController> {
                       var km = distanceInMeters / 1000;
 
                       return InkWell(
-                        onTap: () {
-                          logger.d("!!!!!!!!!!!!!!!");
-                          controller.setshoeserch("");
-                          controller.search.clear();
-                          Get.to(() => CategoryItemView(
-                                model: model,
-                              ));
-                        },
-                        child: Card(
-                            elevation: 1.5,
-                            shadowColor: AppColor.white,
-                            color: AppColor.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            child: SizedBox(
-                                width: widht,
-                                height: height * 0.20,
-                                child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 12,
-                                        right: 12,
-                                        bottom: 12,
-                                        top: 12),
-                                    child: Row(children: [
-                                      Expanded(
-                                        flex: 3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          child: SizedBox(
-                                            width: widht * 0.25,
-                                            height: height * 0.155,
-                                            child: CachedNetworkImage(
-                                              fit: BoxFit.cover,
-                                              imageUrl:
-                                                  "https://homebrigadier.fly.dev${model.files![0].file}",
+                          onTap: () {
+                            logger.d("!!!!!!!!!!!!!!!");
+                            controller.setshoeserch("");
+                            controller.search.clear();
+                            Get.to(() => CategoryItemView(
+                                  model: model,
+                                ));
+                          },
+                          child: Card(
+                              elevation: 1.5,
+                              shadowColor: AppColor.white,
+                              color: AppColor.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: SizedBox(
+                                  width: widht,
+                                  height: height * 0.16,
+                                  child: Padding(
+                                      padding: const EdgeInsets.only(),
+                                      child: Row(children: [
+                                        Expanded(
+                                          flex: 3,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            child: SizedBox(
+                                              width: widht * 0.3,
+                                              height: height,
+                                              child: CachedNetworkImage(
+                                                fit: BoxFit.cover,
+                                                imageUrl:
+                                                    "https://homebrigadier.fly.dev${model.files![0].file}",
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: widht * 0.03,
-                                      ),
-                                      Expanded(
-                                          flex: 6,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                top: height * 0.02),
-                                            child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  CText(
-                                                      text: "${model.name}",
-                                                      color: AppColor.black,
-                                                      fontsize: 20,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                  SizedBox(
-                                                    height: height * 0.0065,
-                                                  ),
-                                                  Text(
-                                                    "${model.category!.displayName}",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontSize: 16),
-                                                  ),
-                                                  Text(
-                                                    "\$${model.rate}",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 18),
-                                                  ),
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      const Icon(
-                                                          Icons
-                                                              .location_on_outlined,
-                                                          color: AppColor
-                                                              .secondary),
-                                                      SizedBox(
-                                                        width: widht * 0.01,
-                                                      ),
-                                                      Text(
-                                                        "${km.toInt()} ${LocaleKeys.km_away.tr}",
-                                                        style: TextStyle(
+                                        SizedBox(
+                                          width: widht * 0.02,
+                                        ),
+                                        Expanded(
+                                            flex: 6,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        CText(
+                                                            text:
+                                                                "${model.name}",
+                                                            color:
+                                                                AppColor.black,
+                                                            fontsize: 19,
                                                             fontWeight:
                                                                 FontWeight
-                                                                    .normal,
-                                                            fontSize: 14),
+                                                                    .bold),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: widht *
+                                                                      0.02),
+                                                          child: Icon(
+                                                              Icons.more_horiz),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: height * 0.0075,
+                                                    ),
+                                                    Container(
+                                                      height: height * 0.04,
+                                                      width: widht * 0.26,
+                                                      decoration: BoxDecoration(
+                                                          color: AppColor.white,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(7),
+                                                          border: Border.all(
+                                                              color: AppColor
+                                                                  .secondary)),
+                                                      child: Center(
+                                                        child: Text(
+                                                          "${model.category!.displayName}",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                              color: AppColor
+                                                                  .secondary,
+                                                              fontSize: 13),
+                                                        ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ]),
-                                          ))
-                                    ])))),
-                      );
+                                                    ),
+                                                    SizedBox(
+                                                      height: height * 0.04,
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          right: widht * 0.02),
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        // mainAxisSize: MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              const Icon(
+                                                                  size: 14,
+                                                                  Icons
+                                                                      .location_on_outlined,
+                                                                  color: AppColor
+                                                                      .black),
+                                                              Text(
+                                                                "${km.toInt()} ${LocaleKeys.km_away.tr}",
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontSize:
+                                                                        14),
+                                                              )
+                                                            ],
+                                                          ),
+                                                          Text(
+                                                            "\AED${model.rate}",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: AppColor
+                                                                    .secondary,
+                                                                fontSize: 14),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ]),
+                                            ))
+                                      ])))));
                     } else {
                       return SizedBox(
                         width: widht,
@@ -919,18 +960,17 @@ class TabBarGrid extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12)),
                       child: SizedBox(
                           width: widht,
-                          height: height * 0.21,
+                          height: height * 0.16,
                           child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 12, right: 12, bottom: 12, top: 12),
+                              padding: const EdgeInsets.only(),
                               child: Row(children: [
                                 Expanded(
                                   flex: 3,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
                                     child: SizedBox(
-                                      width: widht * 0.25,
-                                      height: height * 0.155,
+                                      width: widht * 0.3,
+                                      height: height,
                                       child: CachedNetworkImage(
                                         fit: BoxFit.cover,
                                         imageUrl:
@@ -940,61 +980,102 @@ class TabBarGrid extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: widht * 0.03,
+                                  width: widht * 0.02,
                                 ),
                                 Expanded(
                                     flex: 6,
                                     child: Padding(
                                       padding:
-                                          EdgeInsets.only(top: height * 0.02),
+                                          EdgeInsets.only(top: height * 0.01),
                                       child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            CText(
-                                                text: "${model.name}",
-                                                color: AppColor.black,
-                                                fontsize: 20,
-                                                fontWeight: FontWeight.bold),
-                                            SizedBox(
-                                              height: height * 0.0065,
-                                            ),
-                                            Text(
-                                              "${model.category!.displayName}",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.normal,
-                                                  fontSize: 16),
-                                            ),
-                                            SizedBox(
-                                              height: height * 0.015,
-                                            ),
-                                            Text(
-                                              "\$${model.rate}",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 18),
-                                            ),
                                             Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisSize: MainAxisSize.max,
-                                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                const Icon(
-                                                    size: 14,
-                                                    Icons.location_on_outlined,
-                                                    color: AppColor.secondary),
-                                                SizedBox(
-                                                  width: widht * 0.01,
-                                                ),
-                                                Text(
-                                                  "${km.toInt()} ${LocaleKeys.km_away.tr}",
+                                                CText(
+                                                    text: "${model.name}",
+                                                    color: AppColor.black,
+                                                    fontsize: 19,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: widht * 0.02),
+                                                  child: Icon(Icons.more_horiz),
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.0075,
+                                            ),
+                                            Container(
+                                              height: height * 0.04,
+                                              width: widht * 0.26,
+                                              decoration: BoxDecoration(
+                                                  color: AppColor.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(7),
+                                                  border: Border.all(
+                                                      color:
+                                                          AppColor.secondary)),
+                                              child: Center(
+                                                child: Text(
+                                                  "${model.category!.displayName}",
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
-                                                      fontSize: 14),
+                                                      color: AppColor.secondary,
+                                                      fontSize: 13),
                                                 ),
-                                              ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.04,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  right: widht * 0.02),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                // mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      const Icon(
+                                                          size: 14,
+                                                          Icons
+                                                              .location_on_outlined,
+                                                          color:
+                                                              AppColor.black),
+                                                      Text(
+                                                        "${km.toInt()} ${LocaleKeys.km_away.tr}",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            fontSize: 14),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  Text(
+                                                    "\AED${model.rate}",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color:
+                                                            AppColor.secondary,
+                                                        fontSize: 14),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ]),
                                     ))

@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen>
                     height: 120,
                     width: 120,
                     // color: Colors.white,
-                    child: Image.asset("assets/images/app_icon.jpg"),
+                    child: Image.asset("assets/icons/launcher_icon.png"),
                   ),
                   SizedBox(height: size.height * 0.02),
                   const CText(

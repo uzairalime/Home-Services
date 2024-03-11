@@ -27,10 +27,12 @@ class FaqView extends GetView<FaqController> {
               leading: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    child: Center(child: Image.asset("assets/images/app_icon.jpg"))),
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/icons/launcher_icon.png")),
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.all(Radius.circular(6))),
+                ),
               ),
               title: CText(
                   text: LocaleKeys.faq_items_faq.tr,
@@ -54,9 +56,10 @@ class FaqView extends GetView<FaqController> {
                           height: height * 0.04,
                           child: ButtonsTabBar(
                               radius: 35,
-                              buttonMargin: const EdgeInsets.symmetric(horizontal: 8),
-                              contentPadding:
-                                  const EdgeInsets.only(left: 18, right: 18, top: 0, bottom: 0),
+                              buttonMargin:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              contentPadding: const EdgeInsets.only(
+                                  left: 18, right: 18, top: 0, bottom: 0),
                               backgroundColor: AppColor.primary,
                               borderWidth: 1,
                               borderColor: AppColor.primary,
@@ -65,13 +68,27 @@ class FaqView extends GetView<FaqController> {
                               unselectedBorderColor: AppColor.primary,
                               labelStyle: selectedtab,
                               tabs: [
-                                Tab(text: LocaleKeys.faq_items_tabba_items_general.tr),
-                                Tab(text: LocaleKeys.faq_items_tabba_items_account.tr),
-                                Tab(text: LocaleKeys.faq_items_tabba_items_service.tr),
-                                Tab(text: LocaleKeys.faq_items_tabba_items_payment.tr),
-                                Tab(text: LocaleKeys.faq_items_tabba_items_appliance.tr),
-                                Tab(text: LocaleKeys.faq_items_tabba_items_Plumbing.tr),
-                                Tab(text: LocaleKeys.faq_items_tabba_items_shifting.tr),
+                                Tab(
+                                    text: LocaleKeys
+                                        .faq_items_tabba_items_general.tr),
+                                Tab(
+                                    text: LocaleKeys
+                                        .faq_items_tabba_items_account.tr),
+                                Tab(
+                                    text: LocaleKeys
+                                        .faq_items_tabba_items_service.tr),
+                                Tab(
+                                    text: LocaleKeys
+                                        .faq_items_tabba_items_payment.tr),
+                                Tab(
+                                    text: LocaleKeys
+                                        .faq_items_tabba_items_appliance.tr),
+                                Tab(
+                                    text: LocaleKeys
+                                        .faq_items_tabba_items_Plumbing.tr),
+                                Tab(
+                                    text: LocaleKeys
+                                        .faq_items_tabba_items_shifting.tr),
                               ]),
                         ),
                         SizedBox(height: mediaQueryHeight(context) * 0.02)
@@ -92,24 +109,40 @@ class FaqView extends GetView<FaqController> {
                       physics: const BouncingScrollPhysics(),
                       children: [
                         ExpandedTile(
-                            title: LocaleKeys.faq_items_questions_item_what_hamb.tr,
-                            detail: LocaleKeys.faq_items_questions_item_what_hamb_detail.tr),
-                        ExpandedTile(
-                            title: LocaleKeys.faq_items_questions_item_why_hamb.tr,
-                            detail: LocaleKeys.faq_items_questions_item_why_hamb_detail.tr),
-                        ExpandedTile(
-                            title: LocaleKeys.faq_items_questions_item_booking_hamo.tr,
-                            detail: LocaleKeys.faq_items_questions_item_booking_hamo_detail.tr),
-                        ExpandedTile(
-                            title: LocaleKeys.faq_items_questions_item_how_pay_service.tr,
-                            detail: LocaleKeys.faq_items_questions_item_how_pay_service_detail.tr),
-                        ExpandedTile(
-                            title: LocaleKeys.faq_items_questions_item_cancel_change_service.tr,
+                            title: LocaleKeys
+                                .faq_items_questions_item_what_hamb.tr,
                             detail: LocaleKeys
-                                .faq_items_questions_item_cancel_change_service_detail.tr),
+                                .faq_items_questions_item_what_hamb_detail.tr),
                         ExpandedTile(
-                            title: LocaleKeys.faq_items_questions_item_personal_info.tr,
-                            detail: LocaleKeys.faq_items_questions_item_personal_info_detail.tr),
+                            title:
+                                LocaleKeys.faq_items_questions_item_why_hamb.tr,
+                            detail: LocaleKeys
+                                .faq_items_questions_item_why_hamb_detail.tr),
+                        ExpandedTile(
+                            title: LocaleKeys
+                                .faq_items_questions_item_booking_hamo.tr,
+                            detail: LocaleKeys
+                                .faq_items_questions_item_booking_hamo_detail
+                                .tr),
+                        ExpandedTile(
+                            title: LocaleKeys
+                                .faq_items_questions_item_how_pay_service.tr,
+                            detail: LocaleKeys
+                                .faq_items_questions_item_how_pay_service_detail
+                                .tr),
+                        ExpandedTile(
+                            title: LocaleKeys
+                                .faq_items_questions_item_cancel_change_service
+                                .tr,
+                            detail: LocaleKeys
+                                .faq_items_questions_item_cancel_change_service_detail
+                                .tr),
+                        ExpandedTile(
+                            title: LocaleKeys
+                                .faq_items_questions_item_personal_info.tr,
+                            detail: LocaleKeys
+                                .faq_items_questions_item_personal_info_detail
+                                .tr),
                       ],
                     ),
                   )
@@ -131,7 +164,8 @@ class ExpandedTile extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 10,
         child: ExpansionTile(
-          trailing: const Icon(Icons.arrow_drop_down_rounded, color: AppColor.secondary),
+          trailing: const Icon(Icons.arrow_drop_down_rounded,
+              color: AppColor.secondary),
           childrenPadding: const EdgeInsets.all(15),
           shape: const RoundedRectangleBorder(side: BorderSide.none),
           backgroundColor: Colors.transparent,

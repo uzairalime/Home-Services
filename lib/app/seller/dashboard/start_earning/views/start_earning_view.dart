@@ -27,15 +27,15 @@ class StartEarningView extends GetView<StartEarningController> {
 
     return Scaffold(
         appBar: AppBar(
-          leading: Container(
-            margin: const EdgeInsets.all(10),
-            padding: const EdgeInsets.all(8.0),
-            decoration: const BoxDecoration(
-              image: DecorationImage(image: AssetImage("assets/images/app_icon.jpg")),
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              // color: AppColor.secondary
+          leading: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/icons/launcher_icon.png")),
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.all(Radius.circular(6))),
             ),
-            // child: SvgPicture.asset("assets/icons/ic_logo.svg")
           ),
           title: CText(
               text: LocaleKeys.dashboard_items_start_earning.tr,
@@ -51,7 +51,8 @@ class StartEarningView extends GetView<StartEarningController> {
                   : Form(
                       key: _formKey,
                       child: SingleChildScrollView(
-                        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
                         controller: controller.scrollController,
                         physics: const BouncingScrollPhysics(),
                         // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -61,20 +62,27 @@ class StartEarningView extends GetView<StartEarningController> {
                             // profilePic(context),
                             Container(
                               margin: const EdgeInsets.only(top: 0),
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 30),
                               decoration: BoxDecoration(
                                   color: AppColor.greylight.withOpacity(0.1),
                                   borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(35), topRight: Radius.circular(35))),
+                                      topLeft: Radius.circular(35),
+                                      topRight: Radius.circular(35))),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  title(context, LocaleKeys.upload_profile_pic.tr),
+                                  title(context,
+                                      LocaleKeys.upload_profile_pic.tr),
                                   profilePic(context),
-                                  title(context, LocaleKeys.start_earning_item_full_name.tr),
+                                  title(
+                                      context,
+                                      LocaleKeys
+                                          .start_earning_item_full_name.tr),
                                   CTextField(
                                     contentPadding: 15,
-                                    hint: LocaleKeys.start_earning_item_enter_full_name.tr,
+                                    hint: LocaleKeys
+                                        .start_earning_item_enter_full_name.tr,
                                     controller: controller.nameController,
                                     borderColor: Colors.transparent,
                                     borderRadius: 12,
@@ -88,7 +96,10 @@ class StartEarningView extends GetView<StartEarningController> {
                                       return null;
                                     },
                                   ),
-                                  title(context, LocaleKeys.start_earning_item_selected_catg.tr),
+                                  title(
+                                      context,
+                                      LocaleKeys
+                                          .start_earning_item_selected_catg.tr),
                                   CustomDropdown<String>(
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
@@ -98,19 +109,30 @@ class StartEarningView extends GetView<StartEarningController> {
                                       },
                                       // initialItem: controller.selectedCategory.value,
                                       decoration: CustomDropdownDecoration(
-                                          errorStyle: const TextStyle(fontSize: 13),
-                                          expandedBorder: Border.all(color: AppColor.primary),
-                                          closedBorder: controller.categoryFocus.value
-                                              ? Border.all(color: AppColor.primary)
-                                              : Border.all(color: Colors.transparent),
-                                          closedFillColor: AppColor.greylight.withOpacity(0.1)),
-                                      hintText: LocaleKeys.start_earning_item_enter_select_catg.tr,
+                                          errorStyle:
+                                              const TextStyle(fontSize: 13),
+                                          expandedBorder: Border.all(
+                                              color: AppColor.primary),
+                                          closedBorder: controller
+                                                  .categoryFocus.value
+                                              ? Border.all(
+                                                  color: AppColor.primary)
+                                              : Border.all(
+                                                  color: Colors.transparent),
+                                          closedFillColor: AppColor.greylight
+                                              .withOpacity(0.1)),
+                                      hintText: LocaleKeys
+                                          .start_earning_item_enter_select_catg
+                                          .tr,
                                       items: controller.menuItems,
                                       onChanged: (newValue) {
                                         controller.onSelectCategory(newValue);
                                         controller.update();
                                       }),
-                                  title(context, LocaleKeys.start_earning_item_discription.tr),
+                                  title(
+                                      context,
+                                      LocaleKeys
+                                          .start_earning_item_discription.tr),
                                   CTextField(
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
@@ -119,41 +141,57 @@ class StartEarningView extends GetView<StartEarningController> {
                                         return null;
                                       },
                                       contentPadding: 15,
-                                      hint: LocaleKeys.start_earning_item_enter_decription.tr,
+                                      hint: LocaleKeys
+                                          .start_earning_item_enter_decription
+                                          .tr,
                                       controller: controller.descController,
                                       borderColor: Colors.transparent,
                                       borderRadius: 12,
                                       maxLines: 5,
                                       filled: true,
                                       fillColor: Colors.grey.withOpacity(0.1)),
-                                  title(context,
-                                      LocaleKeys.start_earning_item_select_working_hour.tr),
+                                  title(
+                                      context,
+                                      LocaleKeys
+                                          .start_earning_item_select_working_hour
+                                          .tr),
                                   Directionality(
                                     textDirection: TextDirection.ltr,
                                     child: Row(children: [
                                       Expanded(
                                           child: CustomDropdown(
                                               validator: (value) {
-                                                if (value == null || value.isEmpty) {
-                                                  return LocaleKeys.required_field.tr;
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return LocaleKeys
+                                                      .required_field.tr;
                                                 }
                                                 return null;
                                               },
-                                              decoration: CustomDropdownDecoration(
-                                                  errorStyle: const TextStyle(fontSize: 12),
-                                                  expandedBorder:
-                                                      Border.all(color: AppColor.primary),
-                                                  closedBorder:
-                                                      Border.all(color: Colors.transparent),
-                                                  closedFillColor:
-                                                      AppColor.greylight.withOpacity(0.1)),
+                                              decoration:
+                                                  CustomDropdownDecoration(
+                                                      errorStyle:
+                                                          const TextStyle(
+                                                              fontSize: 12),
+                                                      expandedBorder:
+                                                          Border.all(
+                                                              color: AppColor
+                                                                  .primary),
+                                                      closedBorder: Border.all(
+                                                          color: Colors
+                                                              .transparent),
+                                                      closedFillColor: AppColor
+                                                          .greylight
+                                                          .withOpacity(0.1)),
                                               hintBuilder: (context, hint) {
                                                 return Text(hint,
                                                     style: const TextStyle(
-                                                        fontSize: 14, color: AppColor.grey));
+                                                        fontSize: 14,
+                                                        color: AppColor.grey));
                                               },
-                                              hintText:
-                                                  LocaleKeys.start_earning_item_enter_from_hours.tr,
+                                              hintText: LocaleKeys
+                                                  .start_earning_item_enter_from_hours
+                                                  .tr,
                                               items: controller.hours,
                                               onChanged: (newValue) {
                                                 controller.selectedFrom.value =
@@ -164,25 +202,34 @@ class StartEarningView extends GetView<StartEarningController> {
                                       Expanded(
                                           child: CustomDropdown(
                                               validator: (value) {
-                                                if (value == null || value.isEmpty) {
-                                                  return LocaleKeys.required_field.tr;
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return LocaleKeys
+                                                      .required_field.tr;
                                                 }
                                                 return null;
                                               },
-                                              decoration: CustomDropdownDecoration(
-                                                errorStyle: const TextStyle(fontSize: 13),
-                                                expandedBorder: Border.all(color: AppColor.primary),
-                                                closedBorder: Border.all(color: Colors.transparent),
-                                                closedFillColor:
-                                                    AppColor.greylight.withOpacity(0.1),
+                                              decoration:
+                                                  CustomDropdownDecoration(
+                                                errorStyle: const TextStyle(
+                                                    fontSize: 13),
+                                                expandedBorder: Border.all(
+                                                    color: AppColor.primary),
+                                                closedBorder: Border.all(
+                                                    color: Colors.transparent),
+                                                closedFillColor: AppColor
+                                                    .greylight
+                                                    .withOpacity(0.1),
                                               ),
                                               hintBuilder: (context, hint) {
                                                 return Text(hint,
                                                     style: const TextStyle(
-                                                        fontSize: 14, color: AppColor.grey));
+                                                        fontSize: 14,
+                                                        color: AppColor.grey));
                                               },
-                                              hintText:
-                                                  LocaleKeys.start_earning_item_enter_till_hours.tr,
+                                              hintText: LocaleKeys
+                                                  .start_earning_item_enter_till_hours
+                                                  .tr,
                                               items: controller.hours,
                                               onChanged: (newValue) {
                                                 controller.selectedTill.value =
@@ -191,10 +238,14 @@ class StartEarningView extends GetView<StartEarningController> {
                                     ]),
                                   ),
                                   title(
-                                      context, LocaleKeys.start_earning_item_selct_working_days.tr),
+                                      context,
+                                      LocaleKeys
+                                          .start_earning_item_selct_working_days
+                                          .tr),
 
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         height: 80,
@@ -204,43 +255,59 @@ class StartEarningView extends GetView<StartEarningController> {
                                             //         .selectedWeekdays.isEmpty
                                             //         ? AppColor.red
                                             //         : Colors.transparent),
-                                            borderRadius: BorderRadius.circular(12),
-                                            color: AppColor.greylight.withOpacity(0.1)),
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            color: AppColor.greylight
+                                                .withOpacity(0.1)),
                                         child: ListView(
-                                          physics: const BouncingScrollPhysics(),
+                                          physics:
+                                              const BouncingScrollPhysics(),
                                           scrollDirection: Axis.horizontal,
-                                          children: controller.weekdays.map((weekday) {
+                                          children: controller.weekdays
+                                              .map((weekday) {
                                             return Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 4),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 4),
                                               child: ChoiceChip(
                                                 shape: StadiumBorder(
                                                     side: BorderSide(
-                                                        color: controller.selectedWeekdays
-                                                                .contains(weekday)
+                                                        color: controller
+                                                                .selectedWeekdays
+                                                                .contains(
+                                                                    weekday)
                                                             ? Colors.transparent
-                                                            : AppColor.primary)),
-                                                labelPadding: const EdgeInsets.symmetric(
-                                                    horizontal: 7, vertical: 3),
+                                                            : AppColor
+                                                                .primary)),
+                                                labelPadding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 7,
+                                                        vertical: 3),
                                                 backgroundColor: AppColor.white,
                                                 selectedColor: AppColor.primary,
                                                 showCheckmark: false,
                                                 label: Padding(
-                                                  padding:
-                                                      const EdgeInsets.symmetric(horizontal: 8.0),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 8.0),
                                                   child: Text(
                                                       weekday[0].toUpperCase() +
                                                           weekday[1] +
                                                           weekday[2],
                                                       style: TextStyle(
-                                                          color: controller.selectedWeekdays
-                                                                  .contains(weekday)
+                                                          color: controller
+                                                                  .selectedWeekdays
+                                                                  .contains(
+                                                                      weekday)
                                                               ? AppColor.white
                                                               : Colors.black)),
                                                 ),
-                                                selected:
-                                                    controller.selectedWeekdays.contains(weekday),
+                                                selected: controller
+                                                    .selectedWeekdays
+                                                    .contains(weekday),
                                                 onSelected: (isSelected) {
-                                                  controller.toggleSelection(weekday);
+                                                  controller
+                                                      .toggleSelection(weekday);
                                                   controller.update();
                                                 },
                                               ),
@@ -250,14 +317,18 @@ class StartEarningView extends GetView<StartEarningController> {
                                       ),
                                       controller.selectedWeekdays.isEmpty
                                           ? CText(
-                                              text: LocaleKeys.minimum_1_required.tr,
+                                              text: LocaleKeys
+                                                  .minimum_1_required.tr,
                                               fontsize: 13,
                                               color: AppColor.red,
                                             )
                                           : const SizedBox()
                                     ],
                                   ),
-                                  title(context, LocaleKeys.start_earning_item_rate_per_hour.tr),
+                                  title(
+                                      context,
+                                      LocaleKeys
+                                          .start_earning_item_rate_per_hour.tr),
                                   Directionality(
                                     textDirection: TextDirection.ltr,
                                     child: CTextField(
@@ -271,14 +342,20 @@ class StartEarningView extends GetView<StartEarningController> {
                                         suffix: Container(
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                              color: AppColor.greylight.withOpacity(0.2),
-                                              borderRadius: const BorderRadius.only(
-                                                  topRight: Radius.circular(12),
-                                                  bottomRight: Radius.circular(12))),
+                                              color: AppColor.greylight
+                                                  .withOpacity(0.2),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topRight:
+                                                          Radius.circular(12),
+                                                      bottomRight:
+                                                          Radius.circular(12))),
                                           width: 28.0,
                                           height: 55.0,
                                           child: CText(
-                                              text: LocaleKeys.start_earning_item_enter_rate.tr,
+                                              text: LocaleKeys
+                                                  .start_earning_item_enter_rate
+                                                  .tr,
                                               fontsize: 16,
                                               textAlign: TextAlign.center,
                                               fontWeight: FontWeight.w500),
@@ -287,14 +364,18 @@ class StartEarningView extends GetView<StartEarningController> {
                                         focusBorderColor: Colors.transparent,
                                         hint: "0.00",
                                         filled: true,
-                                        fillColor: AppColor.greylight.withOpacity(0.1),
+                                        fillColor:
+                                            AppColor.greylight.withOpacity(0.1),
                                         controller: controller.rateController,
                                         borderColor: Colors.transparent,
                                         contentPadding: 5,
                                         borderRadius: 12),
                                   ),
                                   // const SizedBox(height: 30),
-                                  title(context, LocaleKeys.start_earning_item_for_location.tr),
+                                  title(
+                                      context,
+                                      LocaleKeys
+                                          .start_earning_item_for_location.tr),
                                   SizedBox(
                                     width: mediaQueryWidth(context),
                                     height: mediaQueryHeight(context) * 0.4,
@@ -306,7 +387,8 @@ class StartEarningView extends GetView<StartEarningController> {
                                         onMapCreated: (controller) {
                                           con.mapController = controller;
                                         },
-                                        initialCameraPosition: const CameraPosition(
+                                        initialCameraPosition:
+                                            const CameraPosition(
                                           target: LatLng(55.27, 25.20),
                                           // Initial map center
                                           zoom: 10.0,
@@ -318,7 +400,8 @@ class StartEarningView extends GetView<StartEarningController> {
                                       ),
                                     ),
                                   ),
-                                  title(context, LocaleKeys.start_earning_item_area.tr),
+                                  title(context,
+                                      LocaleKeys.start_earning_item_area.tr),
                                   CTextField(
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
@@ -327,14 +410,16 @@ class StartEarningView extends GetView<StartEarningController> {
                                         return null;
                                       },
                                       contentPadding: 15,
-                                      hint: LocaleKeys.start_earning_item_villa_number.tr,
+                                      hint: LocaleKeys
+                                          .start_earning_item_villa_number.tr,
                                       controller: controller.villaController,
                                       borderColor: Colors.transparent,
                                       borderRadius: 12,
                                       filled: true,
                                       keyboardType: TextInputType.streetAddress,
                                       fillColor: Colors.grey.withOpacity(0.1)),
-                                  title(context, LocaleKeys.start_earning_item_address.tr),
+                                  title(context,
+                                      LocaleKeys.start_earning_item_address.tr),
                                   CTextField(
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
@@ -343,18 +428,23 @@ class StartEarningView extends GetView<StartEarningController> {
                                         return null;
                                       },
                                       contentPadding: 15,
-                                      hint: LocaleKeys.start_earning_item_enter_address.tr,
+                                      hint: LocaleKeys
+                                          .start_earning_item_enter_address.tr,
                                       controller: controller.addressController,
                                       borderColor: Colors.transparent,
                                       borderRadius: 12,
                                       filled: true,
                                       keyboardType: TextInputType.streetAddress,
                                       fillColor: Colors.grey.withOpacity(0.1)),
-                                  title(context, LocaleKeys.edit_services_emirates_id.tr),
+                                  title(context,
+                                      LocaleKeys.edit_services_emirates_id.tr),
 
                                   idCardPic(context: context),
 
-                                  title(context, LocaleKeys.edit_services_upload_picture.tr),
+                                  title(
+                                      context,
+                                      LocaleKeys
+                                          .edit_services_upload_picture.tr),
                                   workingPic(context: context),
 
                                   const SizedBox(height: 30),
@@ -369,17 +459,20 @@ class StartEarningView extends GetView<StartEarningController> {
                                               controller.workingFileId != '') {
                                             controller.addNewService(context);
                                           } else {
-                                            showsnackbar("image not Selected", true);
+                                            showsnackbar(
+                                                "image not Selected", true);
                                           }
                                         } else {
                                           controller.scrollController.animateTo(
                                             0.0,
-                                            duration: const Duration(milliseconds: 500),
+                                            duration: const Duration(
+                                                milliseconds: 500),
                                             curve: Curves.easeInOut,
                                           );
                                         }
                                       },
-                                      text: LocaleKeys.start_earning_item_submit.tr,
+                                      text: LocaleKeys
+                                          .start_earning_item_submit.tr,
                                       btnwidth: mediaQueryWidth(context) * 0.9,
                                     ),
                                   )
@@ -398,7 +491,8 @@ class StartEarningView extends GetView<StartEarningController> {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12), color: AppColor.greylight.withOpacity(0.1)),
+            borderRadius: BorderRadius.circular(12),
+            color: AppColor.greylight.withOpacity(0.1)),
         child: child);
   }
 
@@ -406,7 +500,10 @@ class StartEarningView extends GetView<StartEarningController> {
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
     return Padding(
         padding: const EdgeInsets.only(top: 18, bottom: 8),
-        child: CText(textAlign: TextAlign.start, text: text, fontsize: size ?? titleLarge));
+        child: CText(
+            textAlign: TextAlign.start,
+            text: text,
+            fontsize: size ?? titleLarge));
   }
 
   Widget idCardPic({required context}) {
@@ -419,7 +516,8 @@ class StartEarningView extends GetView<StartEarningController> {
               height: 120,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
+                  color: Colors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12)),
               child: InkWell(
                   onTap: () => controller.pickIdFrontImage(),
                   child: Container(
@@ -433,7 +531,8 @@ class StartEarningView extends GetView<StartEarningController> {
                           : controller.selectedFrontImage.value != null
                               ? ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
-                                  child: Image.file(controller.selectedFrontImage.value!,
+                                  child: Image.file(
+                                      controller.selectedFrontImage.value!,
                                       fit: BoxFit.cover))
                               : Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -441,7 +540,8 @@ class StartEarningView extends GetView<StartEarningController> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                       const Icon(Icons.image_outlined),
-                                      Text(LocaleKeys.edit_services_select_image.tr)
+                                      Text(LocaleKeys
+                                          .edit_services_select_image.tr)
                                     ])))),
         ],
       )),
@@ -454,7 +554,8 @@ class StartEarningView extends GetView<StartEarningController> {
               height: 120,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
+                  color: Colors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12)),
               child: InkWell(
                   onTap: () => controller.pickIdBackImage(),
                   child: Container(
@@ -468,7 +569,8 @@ class StartEarningView extends GetView<StartEarningController> {
                           : controller.selectedBackImage.value != null
                               ? ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
-                                  child: Image.file(controller.selectedBackImage.value!,
+                                  child: Image.file(
+                                      controller.selectedBackImage.value!,
                                       fit: BoxFit.cover))
                               : Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -476,7 +578,8 @@ class StartEarningView extends GetView<StartEarningController> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                       const Icon(Icons.image_outlined),
-                                      Text(LocaleKeys.edit_services_select_image.tr)
+                                      Text(LocaleKeys
+                                          .edit_services_select_image.tr)
                                     ])))),
         ],
       ))
@@ -490,8 +593,9 @@ class StartEarningView extends GetView<StartEarningController> {
           margin: const EdgeInsets.only(top: 20, bottom: 10),
           height: 100,
           width: 100,
-          decoration:
-              BoxDecoration(shape: BoxShape.circle, color: AppColor.secondary.withOpacity(0.5)),
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColor.secondary.withOpacity(0.5)),
           child: InkWell(
               onTap: () => controller.pickProfileImage(),
               child: controller.profileUploading.value
@@ -524,20 +628,23 @@ class StartEarningView extends GetView<StartEarningController> {
         height: 200,
         width: double.infinity,
         decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
+            color: Colors.grey.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12)),
         child: InkWell(
             onTap: () => controller.pickWorkingImage(),
             child: Container(
                 height: 200,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12)),
                 child: controller.workingUploading.value
                     ? const Center(child: CircularProgressIndicator())
                     : controller.selectedworkingImage.value != null
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(12),
-                            child: Image.file(controller.selectedworkingImage.value!,
+                            child: Image.file(
+                                controller.selectedworkingImage.value!,
                                 fit: BoxFit.cover))
                         : Column(
                             mainAxisSize: MainAxisSize.max,

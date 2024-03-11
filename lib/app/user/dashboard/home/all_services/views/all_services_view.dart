@@ -54,12 +54,8 @@ class AllServicesView extends GetView<AllServicesController> {
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
-                              ShimmerWidget.circular(
-                                  width: widht * 0.15, height: widht * 0.15),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              const ShimmerWidget.rectangular(height: 10)
+                              ShimmerWidget.rectangular(
+                                  width: widht * 0.19, height: widht * 0.21),
                             ],
                           );
                         },
@@ -101,28 +97,29 @@ class AllServicesView extends GetView<AllServicesController> {
       child: Column(
         children: [
           Container(
-            width: widht * 0.15,
-            height: widht * 0.15,
+            width: widht * 0.19,
+            height: widht * 0.20,
             decoration: BoxDecoration(
-                color: AppColor.greylight, shape: BoxShape.circle),
-            child: Center(
-              child: SvgPicture.asset(
-                ServiceIconModel.servicesicon[icon].icon!,
-                color: AppColor.primary,
-                fit: BoxFit.fill,
-                width: 40,
-                height: 40,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.01,
-          ),
-          Text(
-            model.displayName.toString(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: widht * 0.03,
+                color: AppColor.greylight,
+                borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SvgPicture.asset(
+                  ServiceIconModel.servicesicon[icon].icon!,
+                  color: AppColor.primary,
+                  fit: BoxFit.fill,
+                  width: 30,
+                  height: 30,
+                ),
+                Text(
+                  model.displayName.toString(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: widht * 0.03,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
