@@ -6,8 +6,13 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:home_brigadier/app/user/dashboard/controllers/dashboard_controller.dart';
+import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
+import 'package:home_brigadier/app/user/dashboard/home/views/location_pick.dart';
 import 'package:home_brigadier/consts/const.dart';
 import 'package:home_brigadier/model/booking_response_model.dart';
+import 'package:home_brigadier/model/main.dart';
+import 'package:home_brigadier/model/place_auto_complate_response.dart';
 import 'package:home_brigadier/model/post_booking_model.dart';
 import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/services/apis/api_helper.dart';
@@ -19,6 +24,27 @@ import '../../../../../../../../routes/app_pages.dart';
 
 class BookingController extends GetxController {
   static BookingController get to => Get.find();
+
+
+ List<AutocompletePrediction> placeprediction = [];
+    void placeAutoComplete(String query) async {
+    Uri uri = Uri.https(
+        "maps.googleapis.com", "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
+    String? response = await NetwordUtils.fetchUl(uri);
+    if (response != null) {
+      logger.d(response);
+      PlaceAutocompleteResponse result =
+          PlaceAutocompleteResponse.parseAutocompleteResult(response);
+      if (result.predictions != null) {
+       
+          placeprediction = result.predictions!;
+          
+      
+      }
+    }
+    update();
+  }
+
 
   // cleaning services values=======================================
   var hours = 1.obs;
@@ -236,6 +262,9 @@ class BookingController extends GetxController {
                 text: 'Successfully Booking !',
               )).then((value) {
         Get.offNamed(Routes.DASHBOARD);
+        UserDashboardController.to.currentIndex.value = 1;
+        HomeController.to.onsearchtab = false;
+        
         instruction.clear();
       });
     });

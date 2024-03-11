@@ -24,6 +24,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   final ReceivePort _receivePort = ReceivePort();
   Isolate? _isolate;
 
+  bool onsearchtab = false;
+
   //// === for hide
 
   bool showAppbar = true; //this is to show app bar

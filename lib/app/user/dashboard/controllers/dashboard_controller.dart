@@ -8,6 +8,8 @@ import 'package:home_brigadier/app/user/dashboard/profile/views/profile_view.dar
 import 'package:home_brigadier/utils/isolate_manager.dart';
 
 class UserDashboardController extends GetxController {
+  static UserDashboardController get to => Get.find();
+
   var a = Get.put(HomeController());
 
   /// bottomNavigationBar Index

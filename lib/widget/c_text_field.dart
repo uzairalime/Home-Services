@@ -32,6 +32,7 @@ class CTextField extends StatelessWidget {
   final int? maxlength;
   final String? counterText;
   final bool? dense;
+  final void Function()? onTap ;
 
   const CTextField(
       {super.key,
@@ -62,11 +63,12 @@ class CTextField extends StatelessWidget {
       this.counterText,
       this.textDirection,
       this.dense,
-      this.textAlign});
+      this.textAlign, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap,
       style: TextStyle(color: AppColor.primary),
 
       maxLength: maxlength,

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -24,9 +26,11 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
             bottomNavigationBar: GetBuilder<HomeController>(builder: (obj) {
               return BottomNavigationBar(
                 selectedLabelStyle: TextStyle(
-                    overflow: TextOverflow.visible, fontSize: mediaQueryHeight(context) * 0.015),
+                    overflow: TextOverflow.visible,
+                    fontSize: mediaQueryHeight(context) * 0.015),
                 unselectedLabelStyle: TextStyle(
-                    overflow: TextOverflow.visible, fontSize: mediaQueryHeight(context) * 0.015),
+                    overflow: TextOverflow.visible,
+                    fontSize: mediaQueryHeight(context) * 0.015),
                 type: BottomNavigationBarType.fixed,
                 fixedColor: AppColor.secondary,
                 currentIndex: controller.currentIndex.value,
@@ -39,34 +43,55 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
                   //   label: LocaleKeys.dashboard_items_home.tr,
                   // ),
                   BottomNavigationBarItem(
-                    icon: SizedBox(
-                        height: 18,
-                        child: SvgPicture.asset("assets/icons/ic_booking_outlined.svg")),
-                    activeIcon: SizedBox(
-                        height: 18, child: SvgPicture.asset("assets/icons/ic_booking_filled.svg")),
+                    icon: Padding(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: SizedBox(
+                          height: 18,
+                          child: SvgPicture.asset(
+                              "assets/icons/ic_booking_outlined.svg")),
+                    ),
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: SizedBox(
+                          height: 18,
+                          child: SvgPicture.asset(
+                              "assets/icons/ic_booking_filled.svg")),
+                    ),
                     label: LocaleKeys.user_profile_item_jobs.tr,
                   ),
                   BottomNavigationBarItem(
-                    icon: const Icon(
-                      size: 20,
-                      Icons.currency_exchange,
+                    icon: Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                      child: const Icon(
+                        size: 20,
+                        Icons.currency_exchange,
+                      ),
                     ),
-                    activeIcon: const Icon(
-                      size: 20,
-                      Icons.currency_exchange,
-                      color: AppColor.secondary,
+                    activeIcon: Padding(
+                         padding: const EdgeInsets.only(bottom: 6),
+                      child: const Icon(
+                        size: 20,
+                        Icons.currency_exchange,
+                        color: AppColor.secondary,
+                      ),
                     ),
                     label: LocaleKeys.dashboard_items_start_earning.tr,
                   ),
                   BottomNavigationBarItem(
-                    icon: const Icon(
-                      size: 20,
-                      Icons.home_repair_service,
+                    icon: Padding(
+                         padding: const EdgeInsets.only(bottom: 6),
+                      child: const Icon(
+                        size: 20,
+                        Icons.home_repair_service,
+                      ),
                     ),
-                    activeIcon: const Icon(
-                      size: 20,
-                      Icons.home_repair_service,
-                      color: AppColor.secondary,
+                    activeIcon: Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                      child: const Icon(
+                        size: 20,
+                        Icons.home_repair_service,
+                        color: AppColor.secondary,
+                      ),
                     ),
                     label: LocaleKeys.home_screen_items_services.tr,
                   ),
@@ -76,8 +101,16 @@ class SellerDashboardView extends GetView<SellerDashboardController> {
                   //   label: LocaleKeys.dashboard_items_faq.tr,
                   // ),
                   BottomNavigationBarItem(
-                    icon: SvgPicture.asset("assets/icons/ic_profile_circled_outlined.svg"),
-                    activeIcon: SvgPicture.asset("assets/icons/ic_profile_circled_filled.svg"),
+                    icon: Padding(
+                         padding: const EdgeInsets.only(bottom: 6),
+                      child: SvgPicture.asset(
+                          "assets/icons/ic_profile_circled_outlined.svg"),
+                    ),
+                    activeIcon: Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                      child: SvgPicture.asset(
+                          "assets/icons/ic_profile_circled_filled.svg"),
+                    ),
                     label: LocaleKeys.dashboard_items_profile.tr,
                   ),
                 ],

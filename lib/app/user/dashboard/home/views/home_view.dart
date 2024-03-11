@@ -6,9 +6,11 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/views/category_item_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/views/selected_category_view.dart';
@@ -20,6 +22,7 @@ import 'package:home_brigadier/utils/logger.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/shimmer.dart';
+import 'package:marquee/marquee.dart';
 
 import '../../../../../generated/locales.g.dart';
 import '../../../../../widget/c_text_field.dart';
@@ -42,9 +45,16 @@ class HomeView extends GetView<HomeController> {
           ? PopScope(
               canPop: false,
               onPopInvoked: (didPop) {
+                if (!controller.search.text.isNotEmpty) {
+                  controller.setshoeserch('');
+                  controller.onsearchtab = false;
+                  FocusScope.of(context).unfocus();
+                }
                 if (controller.search.text.isNotEmpty) {
                   controller.search.clear();
                   controller.setshoeserch('');
+                  controller.onsearchtab = false;
+                  FocusScope.of(context).unfocus();
                   return;
                 } else if (controller.search.text.isEmpty) {
                   if (!didPop) {
@@ -72,6 +82,11 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget body(context) {
+    GetStorage storage = GetStorage();
+
+    final address =
+        storage.read("address") ?? BookingController.to.currentAddress;
+
     final widht = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
@@ -79,16 +94,25 @@ class HomeView extends GetView<HomeController> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 8, right: 8, left: 16),
+              padding:
+                  const EdgeInsets.only(top: 8, bottom: 8, right: 8, left: 16),
               child: SizedBox(
                 width: widht,
                 height: height * 0.08,
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 2,
                       child: Obx(() => SizedBox(
                             height: height * 0.055,
                             child: CTextField(
+                                onTap: () {
+                                  if (!controller.onsearchtab) {
+                                    controller.onsearchtab = true;
+                                    controller.update();
+                                  }
+                                },
                                 dense: true,
                                 onChanged: (val) {
                                   controller.setshoeserch(val);
@@ -96,24 +120,51 @@ class HomeView extends GetView<HomeController> {
                                 prefexIcon: Icons.search_rounded,
                                 filled: false,
                                 contentPadding: 8,
-                                hint: "Search for: ${controller.currentCharacter.value}",
+                                hint:
+                                    "Search for: ${controller.currentCharacter.value}",
                                 controller: controller.search,
                                 borderColor: AppColor.greylight,
                                 borderRadius: 10),
                           )),
                     ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => const SearchLocationScreen());
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Icon(
-                          size: 30,
-                          Icons.location_on,
-                          color: AppColor.primary,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        !controller.onsearchtab
+                            ? Padding(
+                                padding: EdgeInsets.only(left: 8, top: 10),
+                                child: SizedBox(
+                                  width: 60,
+                                  child: Marquee(
+                                    text: address,
+                                    style: TextStyle(
+                                        fontSize:
+                                            16.0), // Customize the font size as needed
+                                    scrollAxis: Axis.horizontal,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    blankSpace:
+                                        20.0, // Adjust the blank space between repetitions
+                                    velocity:
+                                        25.0, // Adjust the scrolling speed
+                                  ),
+                                ),
+                              )
+                            : SizedBox(),
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const SearchLocationScreen());
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Icon(
+                              size: 30,
+                              Icons.location_on,
+                              color: AppColor.primary,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
@@ -142,7 +193,8 @@ class HomeView extends GetView<HomeController> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           CustomRow(
-                            title: LocaleKeys.home_screen_items_special_offer.tr,
+                            title:
+                                LocaleKeys.home_screen_items_special_offer.tr,
                             end: LocaleKeys.home_screen_items_see_all.tr,
                             ontap: () {
                               Get.toNamed(Routes.SPECIAL_OFFERS);
@@ -157,8 +209,10 @@ class HomeView extends GetView<HomeController> {
                             child: FutureBuilder(
                               future: controller.getOffers(),
                               builder: (context, snapshot) {
-                                if (snapshot.connectionState == ConnectionState.waiting) {
-                                  return ShimmerWidget.rectangular(height: height * 0.175);
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return ShimmerWidget.rectangular(
+                                      height: height * 0.175);
                                 } else if (snapshot.hasError) {
                                   return Text('Error: ${snapshot.error}');
                                 } else {
@@ -168,22 +222,29 @@ class HomeView extends GetView<HomeController> {
                                       borderRadius: BorderRadius.circular(18),
                                     ),
                                     child: controller.offerlist.isEmpty
-                                        ? ShimmerWidget.rectangular(height: height * 0.175)
+                                        ? ShimmerWidget.rectangular(
+                                            height: height * 0.175)
                                         : CarouselSlider(
                                             options: CarouselOptions(
                                               enlargeCenterPage: true,
                                               autoPlay: true,
-                                              autoPlayInterval: const Duration(seconds: 3),
+                                              autoPlayInterval:
+                                                  const Duration(seconds: 3),
                                               autoPlayAnimationDuration:
-                                                  const Duration(milliseconds: 800),
-                                              autoPlayCurve: Curves.fastOutSlowIn,
+                                                  const Duration(
+                                                      milliseconds: 800),
+                                              autoPlayCurve:
+                                                  Curves.fastOutSlowIn,
                                             ),
-                                            items: controller.offerlist.map((offer) {
+                                            items: controller.offerlist
+                                                .map((offer) {
                                               return Stack(
                                                 alignment: Alignment.center,
                                                 children: [
                                                   ClipRRect(
-                                                    borderRadius: BorderRadius.circular(8.0),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
                                                     child: CachedNetworkImage(
                                                       height: height * 0.175,
                                                       width: widht,
@@ -194,15 +255,19 @@ class HomeView extends GetView<HomeController> {
                                                   ),
                                                   Container(
                                                     decoration: BoxDecoration(
-                                                      color: AppColor.black.withOpacity(0.3),
-                                                      borderRadius: BorderRadius.circular(8),
+                                                      color: AppColor.black
+                                                          .withOpacity(0.3),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
                                                   ),
                                                   CText(
                                                     color: AppColor.white,
                                                     textAlign: TextAlign.center,
                                                     fontWeight: FontWeight.bold,
-                                                    text: "${offer.heading}\n${offer.description}",
+                                                    text:
+                                                        "${offer.heading}\n${offer.description}",
                                                   )
                                                 ],
                                               );
@@ -228,7 +293,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                           SizedBox(
                             width: widht,
-                            height: height * 0.23,
+                            height: height * 0.24,
                             child: ServiceGridTile(widht, height),
                           ),
                           SizedBox(
@@ -245,7 +310,8 @@ class HomeView extends GetView<HomeController> {
                               ontap: () {
                                 Get.toNamed(Routes.POPULAR_SERVICES);
                               },
-                              title: LocaleKeys.home_screen_items_most_popular_services.tr,
+                              title: LocaleKeys
+                                  .home_screen_items_most_popular_services.tr,
                               end: LocaleKeys.home_screen_items_see_all.tr),
                           SizedBox(
                             height: height * 0.02,
@@ -278,7 +344,8 @@ class HomeView extends GetView<HomeController> {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  ShimmerWidget.circular(width: widht * 0.15, height: widht * 0.15),
+                  ShimmerWidget.circular(
+                      width: widht * 0.15, height: widht * 0.15),
                   SizedBox(
                     height: height * 0.01,
                   ),
@@ -291,6 +358,7 @@ class HomeView extends GetView<HomeController> {
           return Text('Error: ${snapshot.error}');
         } else {
           final List<CetegoryModel> categoryList = controller.categorylist;
+          categoryList.sort((a, b) => a.code!.compareTo(b.code!));
 
           if (categoryList.isNotEmpty) {
             return GridView.builder(
@@ -318,15 +386,15 @@ class HomeView extends GetView<HomeController> {
                       Container(
                         width: widht * 0.15,
                         height: widht * 0.15,
-                        decoration:
-                            BoxDecoration(color: AppColor.greylight, shape: BoxShape.circle),
+                        decoration: BoxDecoration(
+                            color: AppColor.greylight, shape: BoxShape.circle),
                         child: Center(
                           child: SvgPicture.asset(
                             ServiceIconModel.servicesicon[icon].icon!,
                             color: AppColor.primary,
                             fit: BoxFit.fill,
-                            width: index == 0 ? 30 : 40,
-                            height: index == 0 ? 30 : 40,
+                            width: index == 5 ? 30 : 40,
+                            height: index == 5 ? 30 : 40,
                           ),
                         ),
                       ),
@@ -358,7 +426,8 @@ class HomeView extends GetView<HomeController> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    ShimmerWidget.circular(width: widht * 0.15, height: widht * 0.15),
+                    ShimmerWidget.circular(
+                        width: widht * 0.15, height: widht * 0.15),
                     SizedBox(
                       height: height * 0.01,
                     ),
@@ -407,13 +476,15 @@ class HomeView extends GetView<HomeController> {
                     10,
                     (index) => Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ShimmerWidget.rectangular(height: height * 0.175),
+                          child:
+                              ShimmerWidget.rectangular(height: height * 0.175),
                         )),
               );
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
-              final List<ServicesModel> servicelist = HomeController.to.servicelist;
+              final List<ServicesModel> servicelist =
+                  HomeController.to.servicelist;
 
               List<ServicesModel> filteredList = servicelist
                   .where((service) => service.category!.displayName!
@@ -437,7 +508,10 @@ class HomeView extends GetView<HomeController> {
                       double endLongitude = emp[1];
 
                       double distanceInMeters = Geolocator.distanceBetween(
-                          startLatitude, startLongitude, endLatitude, endLongitude);
+                          startLatitude,
+                          startLongitude,
+                          endLatitude,
+                          endLongitude);
 
                       var km = distanceInMeters / 1000;
 
@@ -454,18 +528,23 @@ class HomeView extends GetView<HomeController> {
                             elevation: 1.5,
                             shadowColor: AppColor.white,
                             color: AppColor.white,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
                             child: SizedBox(
                                 width: widht,
-                                height: height * 0.19,
+                                height: height * 0.20,
                                 child: Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 12, right: 12, bottom: 12, top: 12),
+                                        left: 12,
+                                        right: 12,
+                                        bottom: 12,
+                                        top: 12),
                                     child: Row(children: [
                                       Expanded(
                                         flex: 3,
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                           child: SizedBox(
                                             width: widht * 0.25,
                                             height: height * 0.155,
@@ -483,43 +562,57 @@ class HomeView extends GetView<HomeController> {
                                       Expanded(
                                           flex: 6,
                                           child: Padding(
-                                            padding: EdgeInsets.only(top: height * 0.02),
+                                            padding: EdgeInsets.only(
+                                                top: height * 0.02),
                                             child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   CText(
                                                       text: "${model.name}",
                                                       color: AppColor.black,
                                                       fontsize: 20,
-                                                      fontWeight: FontWeight.bold),
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                   SizedBox(
                                                     height: height * 0.0065,
                                                   ),
                                                   Text(
                                                     "${model.category!.displayName}",
                                                     style: TextStyle(
-                                                        fontWeight: FontWeight.normal,
+                                                        fontWeight:
+                                                            FontWeight.normal,
                                                         fontSize: 16),
                                                   ),
                                                   Text(
                                                     "\$${model.rate}",
                                                     style: TextStyle(
-                                                        fontWeight: FontWeight.w600, fontSize: 18),
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 18),
                                                   ),
                                                   Row(
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    mainAxisSize: MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
                                                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      const Icon(Icons.location_on_outlined,
-                                                          color: AppColor.secondary),
+                                                      const Icon(
+                                                          Icons
+                                                              .location_on_outlined,
+                                                          color: AppColor
+                                                              .secondary),
                                                       SizedBox(
                                                         width: widht * 0.01,
                                                       ),
                                                       Text(
                                                         "${km.toInt()} ${LocaleKeys.km_away.tr}",
                                                         style: TextStyle(
-                                                            fontWeight: FontWeight.normal,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
                                                             fontSize: 14),
                                                       ),
                                                     ],
@@ -681,16 +774,19 @@ class CategoriesTabbar extends StatelessWidget {
             child: CText(text: "Some thing wrong"),
           );
         } else {
-          final List<CetegoryModel> categoryList = HomeController.to.categorylist;
+          final List<CetegoryModel> categoryList =
+              HomeController.to.categorylist;
 
           List<Tab> tabs1 = [const Tab(text: "All")];
 
-          tabs1.addAll(categoryList.map((category) => Tab(text: category.code)));
+          tabs1
+              .addAll(categoryList.map((category) => Tab(text: category.code)));
           logger.d("list length ${tabs1.length}");
 
           List<Tab> tabs = [const Tab(text: "All")];
 
-          tabs.addAll(categoryList.map((category) => Tab(text: category.displayName)));
+          tabs.addAll(
+              categoryList.map((category) => Tab(text: category.displayName)));
           // tabs.sort((a, b) {
           //   if (a.text == "All") {
           //     return -1; // "All" should come before any other tab
@@ -719,7 +815,8 @@ class CategoriesTabbar extends StatelessWidget {
                       },
                       radius: 35,
                       buttonMargin: const EdgeInsets.symmetric(horizontal: 8),
-                      contentPadding: const EdgeInsets.only(left: 18, right: 18, top: 0, bottom: 0),
+                      contentPadding: const EdgeInsets.only(
+                          left: 18, right: 18, top: 0, bottom: 0),
                       backgroundColor: AppColor.primary,
                       borderWidth: 1,
                       borderColor: AppColor.primary,
@@ -732,7 +829,9 @@ class CategoriesTabbar extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.02),
                   Obx(
-                    () => TabBarGrid(name: "${tabs1[HomeController.to.initialindex.value].text}"),
+                    () => TabBarGrid(
+                        name:
+                            "${tabs1[HomeController.to.initialindex.value].text}"),
                   )
                 ],
               ));
@@ -816,13 +915,14 @@ class TabBarGrid extends StatelessWidget {
                       elevation: 1.5,
                       shadowColor: AppColor.white,
                       color: AppColor.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
                       child: SizedBox(
                           width: widht,
-                          height: height * 0.20,
+                          height: height * 0.21,
                           child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 12, right: 12, bottom: 12, top: 12),
+                              padding: const EdgeInsets.only(
+                                  left: 12, right: 12, bottom: 12, top: 12),
                               child: Row(children: [
                                 Expanded(
                                   flex: 3,
@@ -845,9 +945,11 @@ class TabBarGrid extends StatelessWidget {
                                 Expanded(
                                     flex: 6,
                                     child: Padding(
-                                      padding: EdgeInsets.only(top: height * 0.02),
+                                      padding:
+                                          EdgeInsets.only(top: height * 0.02),
                                       child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             CText(
                                                 text: "${model.name}",
@@ -860,7 +962,8 @@ class TabBarGrid extends StatelessWidget {
                                             Text(
                                               "${model.category!.displayName}",
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.normal, fontSize: 16),
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 16),
                                             ),
                                             SizedBox(
                                               height: height * 0.015,
@@ -868,17 +971,18 @@ class TabBarGrid extends StatelessWidget {
                                             Text(
                                               "\$${model.rate}",
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.w600, fontSize: 18),
-                                            ),
-                                            SizedBox(
-                                              height: height * 0.015,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 18),
                                             ),
                                             Row(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                               mainAxisSize: MainAxisSize.max,
                                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                const Icon(Icons.location_on_outlined,
+                                                const Icon(
+                                                    size: 14,
+                                                    Icons.location_on_outlined,
                                                     color: AppColor.secondary),
                                                 SizedBox(
                                                   width: widht * 0.01,
@@ -886,7 +990,9 @@ class TabBarGrid extends StatelessWidget {
                                                 Text(
                                                   "${km.toInt()} ${LocaleKeys.km_away.tr}",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.normal, fontSize: 14),
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 14),
                                                 ),
                                               ],
                                             ),
@@ -946,7 +1052,8 @@ class CustomRow extends StatelessWidget {
             onTap: ontap, // Use the provided onTap property
             child: Text(
               end,
-              style: TextStyle(fontWeight: bold6, fontSize: size16, color: AppColor.primary),
+              style: TextStyle(
+                  fontWeight: bold6, fontSize: size16, color: AppColor.primary),
             )),
       ],
     );

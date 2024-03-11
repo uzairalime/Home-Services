@@ -160,13 +160,14 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                             children: [
                               Text("${service_model.name} ",
                                   style: TextStyle(
-                                      color: AppColor.grey,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: titleSmall)),
+                                      // color: AppColor.grey,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: titleLarge)),
                               CText(
+                                  color: AppColor.grey,
                                   text: categ_model.displayName.toString(),
-                                  fontsize: titleLarge,
-                                  fontWeight: FontWeight.bold),
+                                  fontsize: titleSmall,
+                                  fontWeight: FontWeight.w500),
                               Text("AED ${service_model.rate}/hr",
                                   style: TextStyle(
                                       color: AppColor.primary,
@@ -261,7 +262,8 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
             elevation: 0,
             backgroundColor: AppColor.white),
         onPressed: () {
-          if (StaticData.refreshToken.isNotEmpty) {
+          // if (StaticData.refreshToken.isNotEmpty) {
+            
             switch (model.category!.code) {
               case 'tailor':
                 BookingController.to.setServicesModel(model);
@@ -316,27 +318,19 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
 
                 Get.to(() => HouseCleaningBookingView());
             }
-// <<<<<<< usman
-
-// =======
-
-//           } else {
-//             showsnackbar("please login", true);
-//             Get.to(() => const EmailLoginView(
-//                   role: "buyer",
-//                 ));
-//           }
 
 
 // >>>>>>> main
             // Get.to(() => CategoryItemView(
             //       model: model,
             //     ));
-          } else {
-            Get.to(() => EmailLoginView(
-                  role: "buyer",
-                ));
-          }
+          // }
+          
+          //  else {
+          //   Get.to(() => EmailLoginView(
+          //         role: "buyer",
+          //       ));
+          // }
         },
         child: Row(children: [
           Icon(

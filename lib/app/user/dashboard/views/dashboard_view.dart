@@ -40,17 +40,29 @@ class UserDashboardView extends GetView<UserDashboardController> {
                 onTap: (index) => controller.changePage(index),
                 items: [
                   BottomNavigationBarItem(
-                    icon: SvgPicture.asset("assets/icons/ic_home_outlined.svg"),
+                    icon: Padding(
+                         padding: const EdgeInsets.only(bottom: 6),
+                      child: SvgPicture.asset("assets/icons/ic_home_outlined.svg"),
+                    ),
                     activeIcon:
-                        SvgPicture.asset("assets/icons/ic_home_filled.svg"),
+                        Padding(
+                             padding: const EdgeInsets.only(bottom: 6),
+                          child: SvgPicture.asset("assets/icons/ic_home_filled.svg"),
+                        ),
                     label: LocaleKeys.dashboard_items_home.tr,
                   ),
 // <<<<<<< hanan
                   BottomNavigationBarItem(
-                    icon: SvgPicture.asset(
-                        "assets/icons/ic_booking_outlined.svg"),
+                    icon: Padding(
+                       padding: const EdgeInsets.only(bottom: 6),
+                      child: SvgPicture.asset(
+                          "assets/icons/ic_booking_outlined.svg"),
+                    ),
                     activeIcon:
-                        SvgPicture.asset("assets/icons/ic_booking_filled.svg"),
+                        Padding(
+                            padding: const EdgeInsets.only(bottom: 6),
+                          child: SvgPicture.asset("assets/icons/ic_booking_filled.svg"),
+                        ),
                     label: LocaleKeys.dashboard_items_bookings.tr,
                   ),
 // =======
@@ -69,10 +81,16 @@ class UserDashboardView extends GetView<UserDashboardController> {
                     label: LocaleKeys.dashboard_items_faq.tr,
                   ),
                   BottomNavigationBarItem(
-                    icon: SvgPicture.asset(
-                        "assets/icons/ic_profile_circled_outlined.svg"),
-                    activeIcon: SvgPicture.asset(
-                        "assets/icons/ic_profile_circled_filled.svg"),
+                    icon: Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                      child: SvgPicture.asset(
+                          "assets/icons/ic_profile_circled_outlined.svg"),
+                    ),
+                    activeIcon: Padding(
+                       padding: const EdgeInsets.only(bottom: 6),
+                      child: SvgPicture.asset(
+                          "assets/icons/ic_profile_circled_filled.svg"),
+                    ),
                     label: LocaleKeys.dashboard_items_profile.tr,
                   ),
                 ],

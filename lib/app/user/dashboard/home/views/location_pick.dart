@@ -78,7 +78,8 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
           const SizedBox(width: defaultPadding)
         ],
       ),
-      body: Column(
+      body: 
+      Column(
         children: [
           Form(
             child: Padding(
@@ -159,7 +160,8 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                     ),
                   ],
                 )
-              : Expanded(
+              : 
+              Expanded(
                   child: ListView.builder(
                     itemCount: placeprediction.length,
                     itemBuilder: (context, index) {
@@ -187,6 +189,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                     },
                   ),
                 )
+      
         ],
       ),
     );
@@ -202,6 +205,7 @@ class LocationListTile extends StatelessWidget {
 
   final String location;
   final VoidCallback press;
+  
 
   @override
   Widget build(BuildContext context) {
