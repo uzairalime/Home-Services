@@ -310,6 +310,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.7+1"
+  flutter_dotenv:
+    dependency: "direct dev"
+    description:
+      name: flutter_dotenv
+      sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
   flutter_google_places:
     dependency: "direct main"
     description:
@@ -406,6 +414,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.2.0"
+  flutter_stripe:
+    dependency: "direct dev"
+    description:
+      name: flutter_stripe
+      sha256: bee4046750d813dc77ef1cdc954c8a0d70a21a7e089b86edf3929aebe33921fe
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.1.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -443,6 +459,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.7.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
   geocoding:
     dependency: "direct main"
     description:
@@ -575,10 +599,10 @@ packages:
     dependency: transitive
     description:
       name: google_maps_flutter_ios
-      sha256: "0997f99d8bd8712f648a49bfc96a3cf2713cfdaf73a005c719aab74eaef94030"
+      sha256: c89556ed0338fcb4b843c9fcdafac7ad2df601c8b41286d82f0727f7f66434e4
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.0"
+    version: "2.3.6"
   google_maps_flutter_platform_interface:
     dependency: transitive
     description:
@@ -799,18 +823,18 @@ packages:
     dependency: transitive
     description:
       name: material_color_utilities
-      sha256: "0e0a020085b65b6083975e499759762399b4475f766c21668c4ecca34ea74e5a"
+      sha256: "9528f2f296073ff54cb9fee677df673ace1218163c3bc7628093e7eed5203d41"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.0"
+    version: "0.5.0"
   meta:
     dependency: transitive
     description:
       name: meta
-      sha256: d584fa6707a52763a52446f02cc621b077888fb63b93bbcb1143a7be5a0c0c04
+      sha256: a6e590c838b18133bb482a2745ad77c5bb7715fb0451209e1a7567d416678b8e
       url: "https://pub.dev"
     source: hosted
-    version: "1.11.0"
+    version: "1.10.0"
   mime:
     dependency: transitive
     description:
@@ -1096,6 +1120,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  stripe_android:
+    dependency: transitive
+    description:
+      name: stripe_android
+      sha256: "717a541c025f8a8adbb2cbd8e136b424b4910c4812cc08f5c273bef9ca1ee538"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.1.1"
+  stripe_ios:
+    dependency: transitive
+    description:
+      name: stripe_ios
+      sha256: "67994171a29301d12d6a557177d02b12f0d400edd3041ecbdad5fd5c25b43569"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.1.0"
+  stripe_platform_interface:
+    dependency: transitive
+    description:
+      name: stripe_platform_interface
+      sha256: "78d7f0b8d39df3b296283dd5eebbe936b1bd82a4b7252be4dbcbddb02a2175e1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.1.0"
   syncfusion_flutter_core:
     dependency: transitive
     description:
@@ -1172,10 +1220,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_ios
-      sha256: "9149d493b075ed740901f3ee844a38a00b33116c7c5c10d7fb27df8987fb51d5"
+      sha256: "75bb6fe3f60070407704282a2d295630cab232991eb52542b18347a8a941df03"
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.5"
+    version: "6.2.4"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -1354,4 +1402,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.2.3 <4.0.0"
-  flutter: ">=3.16.6"
+  flutter: ">=3.16.0"
