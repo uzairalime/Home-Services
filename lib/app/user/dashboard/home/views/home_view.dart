@@ -136,7 +136,7 @@ class HomeView extends GetView<HomeController> {
                                 child: SizedBox(
                                   width: 60,
                                   child: Marquee(
-                                    text: address,
+                                    text: address.toString(),
                                     style: TextStyle(
                                         fontSize:
                                             16.0), // Customize the font size as needed
