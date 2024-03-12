@@ -65,7 +65,6 @@ class PaymetController extends GetxController {
   displayPaymentSheet(BuildContext context) async {
     try {
       await Stripe.instance.presentPaymentSheet().then((value) {
-        logger.d("show");
         showDialog(
             context: context,
             builder: (_) => AlertDialog(

@@ -12,6 +12,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:home_brigadier/app/payment/stripe.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/views/category_item_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/views/selected_category_view.dart';
@@ -154,7 +155,10 @@ class HomeView extends GetView<HomeController> {
                             : SizedBox(),
                         InkWell(
                           onTap: () {
-                            Get.to(() => const SearchLocationScreen());
+                            Get.put(PaymetController());
+                            PaymetController.to.makePayment(context, "10000");
+
+                            // Get.to(() => const SearchLocationScreen());
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
@@ -406,6 +410,7 @@ class HomeView extends GetView<HomeController> {
                           ],
                         ),
                       ),
+
                       // SizedBox(
                       //   height: height * 0.01,
                       // ),
