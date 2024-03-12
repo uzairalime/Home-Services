@@ -415,7 +415,7 @@ packages:
     source: hosted
     version: "5.2.0"
   flutter_stripe:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_stripe
       sha256: bee4046750d813dc77ef1cdc954c8a0d70a21a7e089b86edf3929aebe33921fe

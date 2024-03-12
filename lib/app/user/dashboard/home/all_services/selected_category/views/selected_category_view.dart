@@ -6,7 +6,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/modules/login/email_login/views/email_login_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/appliance/views/applince_booking_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/views/booking_view.dart';
@@ -17,10 +16,8 @@ import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_cat
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/tailor/views/tailor_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
-import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/service_model.dart';
-import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
@@ -83,8 +80,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     );
   }
 
-  CategoryItemCard(ServicesModel service_model, BuildContext context,
-      CetegoryModel categ_model) {
+  CategoryItemCard(ServicesModel service_model, BuildContext context, CetegoryModel categ_model) {
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
 
@@ -109,8 +105,8 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     double endLatitude = emp[0];
     double endLongitude = emp[1];
 
-    double distanceInMeters = Geolocator.distanceBetween(
-        startLatitude, startLongitude, endLatitude, endLongitude);
+    double distanceInMeters =
+        Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
     var km = distanceInMeters / 1000;
 
     return InkWell(
@@ -119,8 +115,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
       },
       child: Card(
           shadowColor: AppColor.greylight.withOpacity(.4),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           child: Column(children: [
             SizedBox(
               width: double.maxFinite,
@@ -137,12 +132,10 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                         borderRadius: BorderRadius.circular(15),
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
-                          imageUrl:
-                              "https://homebrigadier.fly.dev${service_model.files![0].file}",
+                          imageUrl: "https://homebrigadier.fly.dev${service_model.files![0].file}",
                           placeholder: (context, url) =>
                               const Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
                         ),
                       ),
                     ),
@@ -181,27 +174,22 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                                         "${formatTime(service_model.openingHours![0].fromHour.toString())} - ",
                                     fontsize: titleSmall),
                                 CText(
-                                    text: formatTime(service_model
-                                        .openingHours![0].toHour
-                                        .toString()),
+                                    text: formatTime(
+                                        service_model.openingHours![0].toHour.toString()),
                                     fontsize: titleSmall)
                               ]),
                               SizedBox(
                                 height: 30,
                                 child: Center(
-                                  child: ListView(
-                                      scrollDirection: Axis.horizontal,
-                                      children: [
-                                        // const Icon(Icons.calendar_month,
-                                        //     size: 20),
-                                        // const SizedBox(width: 5),
-                                        for (var i
-                                            in service_model.openingHours!)
-                                          days(
-                                              name: getAbbreviatedWeekday(
-                                                  i.weekday!),
-                                              size: titleSmall!),
-                                      ]),
+                                  child: ListView(scrollDirection: Axis.horizontal, children: [
+                                    // const Icon(Icons.calendar_month,
+                                    //     size: 20),
+                                    // const SizedBox(width: 5),
+                                    for (var i in service_model.openingHours!)
+                                      days(
+                                          name: getAbbreviatedWeekday(i.weekday!),
+                                          size: titleSmall!),
+                                  ]),
                                 ),
                               ),
                             ])),
@@ -217,12 +205,9 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Row(children: [
-                        const Icon(Icons.pin_drop_outlined,
-                            color: AppColor.secondary),
+                        const Icon(Icons.pin_drop_outlined, color: AppColor.secondary),
                         const SizedBox(width: 5),
-                        CText(
-                            text: "${km.toInt()} ${LocaleKeys.km_away.tr}",
-                            fontsize: titleSmall),
+                        CText(text: "${km.toInt()} ${LocaleKeys.km_away.tr}", fontsize: titleSmall),
                       ]),
                       bottomButton(
                           model: service_model,
@@ -252,8 +237,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     return [];
   }
 
-  bottomButton(
-      {txt, required IconData icon, size, required ServicesModel model}) {
+  bottomButton({txt, required IconData icon, size, required ServicesModel model}) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -263,69 +247,68 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
             backgroundColor: AppColor.white),
         onPressed: () {
           // if (StaticData.refreshToken.isNotEmpty) {
-            
-            switch (model.category!.code) {
-              case 'tailor':
-                BookingController.to.setServicesModel(model);
 
-                Get.to(() => TailorView());
-              case 'cleaning':
-                BookingController.to.setServicesModel(model);
+          switch (model.category!.code) {
+            case 'tailor':
+              BookingController.to.setServicesModel(model);
 
-                Get.to(() => HouseCleaningBookingView());
+              Get.to(() => TailorView());
+            case 'cleaning':
+              BookingController.to.setServicesModel(model);
 
-                break;
-              case 'acRepair':
-                BookingController.to.setServicesModel(model);
+              Get.to(() => const HouseCleaningBookingView());
 
-                Get.to(() => RepairingBookingView());
+              break;
+            case 'acRepair':
+              BookingController.to.setServicesModel(model);
 
-                break;
-              case 'painting':
-                BookingController.to.setServicesModel(model);
+              Get.to(() => RepairingBookingView());
 
-                Get.to(() => PaintingBookingView());
+              break;
+            case 'painting':
+              BookingController.to.setServicesModel(model);
 
-                break;
-              case 'Laundry':
-                BookingController.to.setServicesModel(model);
+              Get.to(() => PaintingBookingView());
 
-                Get.to(() => LaundryBookingView());
+              break;
+            case 'Laundry':
+              BookingController.to.setServicesModel(model);
 
-                break;
-              case 'electricity':
-                BookingController.to.setServicesModel(model);
+              Get.to(() => const LaundryBookingView());
 
-                Get.to(() => ApplianceBookingView(
-                      model: model,
-                    ));
+              break;
+            case 'electricity':
+              BookingController.to.setServicesModel(model);
 
-                break;
-              case 'plumbing':
-                BookingController.to.setServicesModel(model);
+              Get.to(() => ApplianceBookingView(
+                    model: model,
+                  ));
 
-                Get.to(() => PlumbingBookingView());
+              break;
+            case 'plumbing':
+              BookingController.to.setServicesModel(model);
 
-                break;
-              case 'Shifting':
-                BookingController.to.setServicesModel(model);
+              Get.to(() => PlumbingBookingView());
 
-                Get.to(() => HouseCleaningBookingView());
+              break;
+            case 'Shifting':
+              BookingController.to.setServicesModel(model);
 
-                break;
-              default:
-                BookingController.to.setServicesModel(model);
+              Get.to(() => const HouseCleaningBookingView());
 
-                Get.to(() => HouseCleaningBookingView());
-            }
+              break;
+            default:
+              BookingController.to.setServicesModel(model);
 
+              Get.to(() => const HouseCleaningBookingView());
+          }
 
 // >>>>>>> main
-            // Get.to(() => CategoryItemView(
-            //       model: model,
-            //     ));
+          // Get.to(() => CategoryItemView(
+          //       model: model,
+          //     ));
           // }
-          
+
           //  else {
           //   Get.to(() => EmailLoginView(
           //         role: "buyer",

@@ -107,8 +107,10 @@ class MyBookingsView extends GetView<MyBookingController> {
                   child: Text(snapshot.error.toString()),
                 );
               } else {
-                List<MyServicesBookingModel> item = snapshot.data!;
+                List<MyServicesBookingModel> data = snapshot.data!;
+                List<MyServicesBookingModel> item = sortBookingsByStartAt(data);
                 return ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: item.length,
                   itemBuilder: (context, index) {
                     MyServicesBookingModel model = item[index];
