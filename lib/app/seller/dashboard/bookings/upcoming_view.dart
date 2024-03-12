@@ -1,264 +1,301 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/views/payment_view.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/controllers/jobs_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/media_query.dart';
 import 'package:home_brigadier/widget/cText.dart';
-import 'package:home_brigadier/widget/c_filled_btn.dart';
 
-import 'controllers/bookings_controller.dart';
+import '../../../../generated/locales.g.dart';
+import '../../../../model/user_services_models/my_booking_booking_model.dart';
+import '../../../../widget/shimmer.dart';
 
-class UpcomingView extends GetView<BookingsController> {
+class UpcomingView extends GetView<MyJobsController> {
   const UpcomingView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
-    final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
-    final labelLarge = Theme.of(context).textTheme.labelLarge!.fontSize;
+    final titleMedium = Theme.of(context).textTheme.titleMedium!.fontSize;
 
-    return GetBuilder<BookingsController>(
-      builder: (obj) {
-        return ListView.builder(
-            itemCount: 3,
-            itemBuilder: (context, index) {
-              return Card(
-                  margin: EdgeInsets.symmetric(
-                      vertical: mediaQueryHeight(context) * 0.012,
-                      horizontal: mediaQueryWidth(context) * 0.05),
-                  child: CustomExpansionTile(
-                      fistChild: Row(children: [
-                        Expanded(
-                            child: Container(
+    return GetBuilder(
+        init: Get.put(MyJobsController()),
+        builder: (context) {
+          return FutureBuilder(
+            future: controller.fetchUpcomingJobs(), // Call your fetch data function
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: SizedBox(
+                    width: mediaQueryWidth(context) * 0.95,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.1,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const ShimmerWidget.circular(width: 70, height: 70),
+                              ShimmerWidget.rectangular(
+                                height: mediaQueryHeight(context) * 0.07,
+                                width: mediaQueryWidth(context) * 0.7,
+                              ),
+                            ],
+                          ),
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.01,
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.01,
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.01,
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.01,
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return const Center(child: Text("Error while loading jobs"));
+              } else if (snapshot.data!.isEmpty) {
+                return const Center(
+                  child: CText(text: "No jobs found", color: AppColor.black),
+                );
+              } else {
+                // If data is successfully fetched
+                List<MyServicesBookingModel> item = snapshot.data!;
+                return ListView.builder(
+                  itemCount: item.length,
+                  itemBuilder: (context, index) {
+                    MyServicesBookingModel model = item[index];
+
+                    return Card(
+                        elevation: 8,
+                        shadowColor: AppColor.greylight,
+                        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        child: Center(
+                          child: ExpansionTile(
+                              childrenPadding: const EdgeInsets.symmetric(horizontal: 15),
+                              shape:
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              initiallyExpanded: index == 0 ? true : false,
+                              leading: SizedBox(
                                 height: 100,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/images/img_people.png"),
-                                        fit: BoxFit.cover),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(25))))),
-                        Expanded(
-                            flex: 2,
-                            child: Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Column(
+                                width: 100,
+                                child: CachedNetworkImage(
+                                    imageUrl:
+                                        "https://homebrigadier.fly.dev${model.service.files[0].file}",
+                                    imageBuilder: (context, imageProvider) => Container(
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ))),
+                                    placeholder: (context, url) =>
+                                        const Center(child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, error) => const Icon(Icons.error)),
+                              ),
+                              title: CText(
+                                      fontsize: titleMedium,
+                                      textAlign: TextAlign.start,
+                                      color: AppColor.black,
+                                      text: model.service.category.displayName,
+                                      fontWeight: FontWeight.bold)
+                                  .paddingOnly(bottom: 10),
+                              subtitle: CText(
+                                  textAlign: TextAlign.start,
+                                  color: AppColor.black,
+                                  text: "${model.user['username']}"),
+                              children: [
+                                const Divider(),
+                                Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      CText(
-                                          text: "Plumber",
-                                          fontsize: titleLarge),
-                                      CText(
-                                          text: "text",
-                                          fontsize: labelLarge,
-                                          color: AppColor.grey),
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_date.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                            CText(
+                                              text: formatDate(model.startAt),
+                                            ).paddingSymmetric(vertical: 5)
+                                          ]),
+                                      //
+                                      Column(children: [
+                                        CText(
+                                          text: LocaleKeys.my_jobs_time.tr,
+                                          fontWeight: FontWeight.bold,
+                                        ).marginOnly(bottom: 5),
+                                        CText(
+                                                text:
+                                                    "${formatTime(model.service.openingHours[0].fromHour)}-"
+                                                    "${formatTime(model.service.openingHours[0].toHour)}")
+                                            .paddingSymmetric(vertical: 5)
+                                      ])
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_price.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                            CText(
+                                              text: "${LocaleKeys.my_jobs_aed.tr} ${model.price}",
+                                            ).paddingSymmetric(vertical: 5)
+                                          ]),
+                                      //
+                                      Column(children: [
+                                        const CText(
+                                          text: '',
+                                          fontWeight: FontWeight.bold,
+                                        ).marginOnly(bottom: 5),
+                                        CText(
+                                          text: model.paymentStatus,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColor.primary,
+                                        ).paddingSymmetric(vertical: 5)
+                                      ])
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_no_of_hours.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                          ]),
+                                      Column(children: [
+                                        CText(text: '${model.extraInfo['no_of_hours']}')
+                                            .marginOnly(bottom: 5),
+                                      ])
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_description.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                            CText(
+                                              text: model.description,
+                                            ).paddingSymmetric(vertical: 5)
+                                          ]),
+
+                                      Column(children: [
+                                        const CText(
+                                          text: '',
+                                          fontWeight: FontWeight.bold,
+                                        ).marginOnly(bottom: 5),
+                                        CText(
+                                          text: model.paymentStatus,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColor.primary,
+                                        ).paddingSymmetric(vertical: 5)
+                                      ])
+
+                                      ///
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_booking_status.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                          ]),
+                                      //
+                                      Column(children: [
+                                        Card(
+                                          color: AppColor.greylight.withOpacity(0.3),
+                                          elevation: 0,
+                                          child: CText(text: model.status).paddingAll(5),
+                                        )
+                                      ]),
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Icon(Icons.pin_drop_outlined, color: AppColor.primary),
                                       SizedBox(
-                                          width:
-                                              mediaQueryWidth(context) * 0.22,
-                                          height:
-                                              mediaQueryHeight(context) * 0.035,
-                                          child: CButton(
-                                            ontab: () {},
-                                            fontsize: labelLarge,
-                                            text: "Upcoming",
-                                            borderradius: 7,
-                                          ))
-                                    ]))),
-                        Expanded(
-                            child: CircleAvatar(
-                                backgroundColor: AppColor.grey.withOpacity(0.3),
-                                child: SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child: SvgPicture.asset(
-                                        "assets/icons/ic_message.svg"))))
-                      ]),
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CText(
-                                      text: "Date & Time",
-                                      fontsize: labelLarge,
-                                      color: AppColor.grey),
-                                  CText(
-                                      text: "${DateTime.now()}",
-                                      fontsize: titleSmall)
-                                ])),
-                        Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(children: [
-                              Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CText(
-                                        text: "Location",
-                                        fontsize: labelLarge,
-                                        color: AppColor.grey),
-                                    CText(
-                                        text: "1691 Carpenter Pass",
-                                        fontsize: titleSmall)
-                                  ]),
-                              Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage(
-                                              "assets/images/map.png")),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(15))),
-                                  height: mediaQueryHeight(context) * 0.25),
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Expanded(
-                                      child: IconButton.outlined(
-                                        style: IconButton.styleFrom(
-                                            side: const BorderSide(
-                                                color: AppColor.secondary,
-                                                width: 2)),
-                                        onPressed: () async {
-                                          await showModalBottomSheet(
-                                              isDismissible: true,
-                                              showDragHandle: true,
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return buildBottomSheetContent(
-                                                    context);
-                                              });
-                                        },
-                                        icon: const CText(
-                                          text: "Cancel Booking",
-                                          color: AppColor.secondary,
-                                        ),
+                                        width: mediaQueryWidth(context) * 0.7,
+                                        child: Text(
+                                          softWrap: true,
+                                          model.address,
+                                        ).paddingSymmetric(vertical: 5),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Expanded(
-                                        child: CFilledBtn(
-                                            text: "View E-Receipt",
-                                            onPressed: () {},
-                                            height: 40,
-                                            btnBg: AppColor.secondary))
-                                  ])
-                            ]))
-                      ]));
-            });
-      },
-    );
-  }
 
-  Widget buildBottomSheetContent(BuildContext context) {
-    return Container(
-        width: mediaQueryWidth(context),
-        padding:
-            EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CText(
-                  text: "Cancel Booking",
-                  color: AppColor.red,
-                  fontsize: Theme.of(context).textTheme.titleLarge!.fontSize),
-              Divider(
-                  indent: mediaQueryWidth(context) * 0.05,
-                  endIndent: mediaQueryWidth(context) * 0.05),
-              CText(
-                  text: "Are you sure to cancel your service booking?",
-                  fontsize: Theme.of(context).textTheme.titleLarge!.fontSize),
-              CText(
-                  text:
-                      "Only 80% money you can refund from your payment according to our policy",
-                  fontsize: Theme.of(context).textTheme.titleSmall!.fontSize,
-                  color: AppColor.grey),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                            flex: 1,
-                            child: CFilledBtn(
-                                text: "Cancel",
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                height: 56,
-                                textColor: AppColor.secondary,
-                                btnBg: AppColor.grey.withOpacity(0.3))),
-                        const SizedBox(width: 10),
-                        Expanded(
-                            flex: 2,
-                            child: CFilledBtn(
-                                text: "Yes, Cancel Booking",
-                                onPressed: () {
-                                  Get.to(() => const PaymentView());
-                                },
-                                height: 56,
-                                btnBg: AppColor.secondary))
-                      ]))
-            ]));
-  }
-}
-
-class CustomExpansionTile extends StatefulWidget {
-  const CustomExpansionTile(
-      {super.key, required this.children, required this.fistChild});
-
-  final Widget fistChild;
-  final List<Widget> children;
-
-  @override
-  State<CustomExpansionTile> createState() => _CustomExpansionTileState();
-}
-
-class _CustomExpansionTileState extends State<CustomExpansionTile> {
-  bool isExpand = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        widget.fistChild,
-        const SizedBox(height: 20),
-        Divider(
-            indent: mediaQueryWidth(context) * 0.05,
-            endIndent: mediaQueryWidth(context) * 0.05),
-        AnimatedCrossFade(
-            duration: const Duration(milliseconds: 200),
-            crossFadeState:
-                isExpand ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-            firstChild: const SizedBox(),
-            secondChild: Column(children: [if (isExpand) ...widget.children])),
-        IconButton(
-          onPressed: () {
-            setState(() {
-              isExpand = !isExpand;
-            });
-          },
-          icon: !isExpand
-              ? const Icon(Icons.keyboard_arrow_down_outlined)
-              : const Icon(Icons.keyboard_arrow_up_outlined),
-        ),
-      ],
-    );
+                                      ///
+                                    ]).marginSymmetric(vertical: 5)
+                              ]),
+                        ));
+                  },
+                );
+              }
+            },
+          );
+        });
   }
 }

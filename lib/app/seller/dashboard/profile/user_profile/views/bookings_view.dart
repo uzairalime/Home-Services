@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/controllers/booking_controller.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/controllers/jobs_controller.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 
 import '../../../../../../consts/app_color.dart';
@@ -10,8 +11,6 @@ import '../../../../../../consts/media_query.dart';
 import '../../../../../../model/user_services_models/my_booking_booking_model.dart';
 import '../../../../../../widget/cText.dart';
 import '../../../../../../widget/shimmer.dart';
-import '../controllers/user_profile_controller.dart';
-import 'jobs_view.dart';
 
 class MyBookingsView extends GetView<MyBookingController> {
   const MyBookingsView({Key? key}) : super(key: key);

@@ -20,14 +20,10 @@ class MyServicesView extends GetView<UserProfileController> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/icons/launcher_icon.png")),
-                color: Colors.amber,
-                borderRadius: BorderRadius.all(Radius.circular(6))),
-          ),
+        leading: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(image: AssetImage("assets/icons/ic_launcher_icon.png")),
+              borderRadius: BorderRadius.all(Radius.circular(6))),
         ),
         title: CText(
             text: "My Services",
