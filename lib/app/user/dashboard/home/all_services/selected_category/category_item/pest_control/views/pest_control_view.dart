@@ -252,181 +252,43 @@ class PestControlBookingView extends GetView<BookingController> {
                           ),
 
                           SizedBox(
-                            // color: Colors.amber,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    ChoiceChip(
-                                      labelPadding:
-                                          const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                                      backgroundColor: AppColor.white,
-                                      selectedColor: AppColor.secondary,
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                          color: AppColor.secondary,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius: BorderRadius.circular(22.0),
-                                      ),
-                                      label: CText(
-                                          color: controller.selectedweekplan.value == 'General'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                          text: LocaleKeys.house_cleaning_items_once.tr),
-                                      selected: controller.selectedweekplan.value == 'General',
-                                      onSelected: (bool selected) {
-                                        controller.selectWeekplan('General');
-                                      },
+                            width: double.maxFinite,
+                            child: Wrap(
+                              children: obj.insects.map((insect) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                                  child: ChoiceChip(
+                                    shape: StadiumBorder(
+                                        side: BorderSide(
+                                            color: obj.selectedInsects.contains(insect)
+                                                ? Colors.transparent
+                                                : AppColor.primary)),
+                                    labelPadding:
+                                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                                    backgroundColor: AppColor.white,
+                                    selectedColor: AppColor.primary,
+                                    showCheckmark: false,
+                                    label: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Text(insect,
+                                          style: TextStyle(
+                                              color: obj.selectedInsects.contains(insect)
+                                                  ? AppColor.white
+                                                  : Colors.black)),
                                     ),
-                                    SizedBox(
-                                      width: widht * 0.05,
-                                    ),
-                                    ChoiceChip(
-                                      labelPadding:
-                                          const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                                      backgroundColor: AppColor.white,
-                                      selectedColor: AppColor.secondary,
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                          color: AppColor.secondary,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius: BorderRadius.circular(22.0),
-                                      ),
-                                      label: CText(
-                                          color: controller.selectedweekplan.value == 'Cockroaches'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                          text: LocaleKeys.house_cleaning_items_weekly.tr),
-                                      selected: controller.selectedweekplan.value == 'Cockroaches',
-                                      onSelected: (bool selected) {
-                                        controller.selectWeekplan('Cockroaches');
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: widht * 0.05,
-                                    ),
-                                    ChoiceChip(
-                                      labelPadding:
-                                          const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                                      backgroundColor: AppColor.white,
-                                      selectedColor: AppColor.secondary,
-                                      shape: StadiumBorder(
-                                          side: BorderSide(
-                                              color: controller.selectedmaterial.value == 'Big Bugs'
-                                                  ? AppColor.secondary
-                                                  : AppColor.secondary)),
-                                      label: CText(
-                                          color: controller.selectedweekplan.value == 'Big Bugs'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                          text: LocaleKeys.house_cleaning_items_Bi_weekly.tr),
-                                      selected: controller.selectedweekplan.value == 'Big Bugs',
-                                      onSelected: (bool selected) {
-                                        controller.selectWeekplan('Big Bugs');
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
+                                    selected: obj.selectedInsects.contains(insect),
+                                    onSelected: (isSelected) {
+                                      obj.toggleSelection(insect);
+                                      obj.update();
+                                    },
                                   ),
-                                  label: CText(
-                                      color: controller.selectedweekplan.value == 'Rodents'
-                                          ? AppColor.white
-                                          : AppColor.black,
-                                      text: LocaleKeys.house_cleaning_items_Mutilple_time.tr),
-                                  selected: controller.selectedweekplan.value == 'Rodents',
-                                  onSelected: (bool selected) {
-                                    controller.selectWeekplan('Rodents');
-                                  },
-                                ),
-                              ],
+                                );
+                              }).toList(),
                             ),
                           ),
 
-                          // SizedBox(
-                          //   height: height * 0.01
-                          // ),
-                          // CText(
-                          //   text: LocaleKeys.house_cleaning_items_did_need_material.tr,
-                          //   fontsize: titlelarge,
-                          //   fontWeight: bold4,
-                          // ),
-                          // SizedBox(
-                          //   height: height * 0.01,
-                          // ),
-                          //
-                          // SizedBox(
-                          //   child: Row(
-                          //     mainAxisAlignment: MainAxisAlignment.start,
-                          //     children: [
-                          //       ChoiceChip(
-                          //         label: CText(
-                          //             color: controller.selectedmaterial == 'Yes'
-                          //                 ? AppColor.white
-                          //                 : AppColor.black,
-                          //             text: LocaleKeys.house_cleaning_items_yes.tr),
-                          //         selected: controller.selectedmaterial.value == 'Yes',
-                          //         onSelected: (bool selected) {
-                          //           controller.selectMaterials('Yes');
-                          //           controller.claculateBill();
-                          //         },
-                          //         labelPadding:
-                          //             const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-                          //         backgroundColor: AppColor.white,
-                          //         selectedColor: AppColor.secondary,
-                          //         shape: StadiumBorder(
-                          //             side: BorderSide(
-                          //                 color: controller.selectedmaterial.value == 'Yes'
-                          //                     ? AppColor.secondary
-                          //                     : AppColor.secondary)),
-                          //       ),
-                          //       SizedBox(
-                          //         width: widht * 0.05,
-                          //       ),
-                          //       ChoiceChip(
-                          //         labelPadding:
-                          //             const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-                          //         backgroundColor: AppColor.white,
-                          //         selectedColor: AppColor.secondary,
-                          //         shape: StadiumBorder(
-                          //             side: BorderSide(
-                          //                 color: controller.selectedmaterial.value == 'No'
-                          //                     ? AppColor.secondary
-                          //                     : AppColor.secondary)),
-                          //         label: CText(
-                          //             color: controller.selectedmaterial == 'No'
-                          //                 ? AppColor.white
-                          //                 : AppColor.black,
-                          //             text: LocaleKeys.house_cleaning_items_no.tr),
-                          //         selected: controller.selectedmaterial.value == 'No',
-                          //         onSelected: (bool selected) {
-                          //           controller.selectMaterials('No');
-                          //           controller.claculateBill();
-                          //         },
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                           SizedBox(
-                            height: height * 0.01,
-                          ),
-                          SizedBox(
-                            child: CText(
+                            child: CText2(
                                 textAlign: TextAlign.start,
                                 fontsize: titleSmall,
                                 text: LocaleKeys.house_cleaning_items_addditional_charges_aed.tr),

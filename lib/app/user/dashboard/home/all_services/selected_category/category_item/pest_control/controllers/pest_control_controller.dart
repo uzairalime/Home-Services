@@ -1,24 +1,15 @@
 import 'package:get/get.dart';
 
 class PestControlController extends GetxController {
-  //TODO: Implement PestControlController
+  var insects = ["General", "Cockroaches", "Bed Bugs", "Ants", "Rodents"];
+  var selectedInsects = <String>['General'].obs;
 
-  final count = 0.obs;
-
-  @override
-  void onInit() {
-    super.onInit();
+  void toggleSelection(String weekday) {
+    if (selectedInsects.contains(weekday)) {
+      selectedInsects.remove(weekday);
+    } else {
+      selectedInsects.add(weekday);
+    }
+    print(selectedInsects);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

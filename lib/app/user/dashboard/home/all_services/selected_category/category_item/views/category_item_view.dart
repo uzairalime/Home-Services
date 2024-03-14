@@ -84,6 +84,7 @@ class CategoryItemView extends GetView<CategoryItemController> {
                             switch (model!.category!.code) {
                               case 'tailor':
                                 Get.to(() => TailorView());
+                                break;
                               case 'cleaning':
                                 Get.to(() => const HouseCleaningBookingView());
                                 break;
@@ -99,10 +100,7 @@ class CategoryItemView extends GetView<CategoryItemController> {
                               case 'electricity':
                                 Get.to(() {
                                   BookingController.to.hours.value = 1;
-
-                                  return ApplianceBookingView(
-                                    model: model,
-                                  );
+                                  return ApplianceBookingView(model: model);
                                 });
                                 break;
                               case 'plumbing':
@@ -113,6 +111,7 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                 break;
                               default:
                                 Get.to(() => const HouseCleaningBookingView());
+                                break;
                             }
                           },
                           txtcolor: AppColor.white,

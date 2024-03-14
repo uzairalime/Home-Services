@@ -61,8 +61,7 @@ class LocationView extends GetView<BookingController> {
                 ),
               ),
               body: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: widht * 0.05, vertical: height * 0.05),
+                padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.05),
                 child: SizedBox(
                   width: widht,
                   height: height,
@@ -102,8 +101,7 @@ class LocationView extends GetView<BookingController> {
                         height: height * 0.01,
                       ),
                       CText(
-                        text:
-                            LocaleKeys.location_view_items_location_details.tr,
+                        text: LocaleKeys.location_view_items_location_details.tr,
                         fontWeight: FontWeight.w600,
                         fontsize: widht * 0.05,
                       ),
@@ -145,8 +143,7 @@ class LocationView extends GetView<BookingController> {
                             isDense: true,
                             contentPadding: const EdgeInsets.all(12),
                             hintText: "Enter address",
-                            hintStyle: TextStyle(
-                                color: AppColor.grey, fontSize: widht * 0.04),
+                            hintStyle: TextStyle(color: AppColor.grey, fontSize: widht * 0.04),
                             filled: true,
                             fillColor: const Color(0xffF5F5F5),
                             border: OutlineInputBorder(
@@ -156,6 +153,7 @@ class LocationView extends GetView<BookingController> {
                       ),
                       Expanded(
                         child: ListView.builder(
+                          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                           itemCount: obj.placeprediction.length,
                           itemBuilder: (context, index) {
                             return LocationListTile(
@@ -178,8 +176,7 @@ class LocationView extends GetView<BookingController> {
                                 //   CameraUpdate.newLatLngZoom(obj.placeprediction[index], 15.0),
                                 // );
                               },
-                              location:
-                                  "${obj.placeprediction[index].description}",
+                              location: "${obj.placeprediction[index].description}",
                             );
                           },
                         ),
@@ -197,7 +194,7 @@ class LocationView extends GetView<BookingController> {
                               _onButtonPress(context, obj.addressController);
                             } else {
                               showsnackbar("please login then booking", true);
-                              Get.to(() => EmailLoginView(
+                              Get.to(() => const EmailLoginView(
                                     role: "buyer",
                                   ));
                             }

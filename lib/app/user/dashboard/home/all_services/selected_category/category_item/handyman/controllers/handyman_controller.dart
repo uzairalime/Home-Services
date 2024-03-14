@@ -1,24 +1,25 @@
 import 'package:get/get.dart';
 
 class HandymanController extends GetxController {
-  //TODO: Implement HandymanController
+  var services = [
+    "General Repairs",
+    "Carpentry",
+    "Tile Work",
+    "Drywall Repair",
+    "Flooring",
+    "Gutter Cleaning",
+    "Door Repair",
+    "Window Repair",
+    "Assembly",
+    "Weatherproofing",
+    "Minor Renovations",
+    "General Maintenance",
+    "Landscaping"
+  ];
+  var selectedServices = 'General Repairs'.obs;
 
-  final count = 0.obs;
-
-  @override
-  void onInit() {
-    super.onInit();
+  void toggleSelection(String insect) {
+    selectedServices.value = insect;
+    update();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
