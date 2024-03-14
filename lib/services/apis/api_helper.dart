@@ -17,7 +17,8 @@ class ApiHelper {
     try {
       // Adjust headers based on the includeToken parameter
       if (includeToken) {
-        _dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+        _dio.options.headers['Authorization'] =
+            'Bearer ${StaticData.accessToken}';
       } else {
         _dio.options.headers.remove('Authorization');
       }
@@ -38,7 +39,7 @@ class ApiHelper {
   Future<Response> post(String endpoint, dynamic data) async {
     try {
       Response response = await _dio.post('$BASEURL$endpoint', data: data);
-      if (response.statusCode == 201) {
+      if (response.statusCode == 201 || response.statusCode == 200) {
         return response;
       } else {
         handleError(response);

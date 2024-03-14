@@ -5,6 +5,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:home_brigadier/app/routes/app_pages.dart';
+import 'package:home_brigadier/app/user/dashboard/controllers/dashboard_controller.dart';
+import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
+import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
+import 'package:home_brigadier/services/apis/toast.dart';
+import 'package:home_brigadier/utils/animation_dialog.dart';
 import 'package:home_brigadier/utils/logger.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -15,25 +21,28 @@ class PaymetController extends GetxController {
 
   Map<String, dynamic>? paymentIntent;
 
-  Future<void> makePayment(BuildContext context, String payment) async {
+  Future<void> makePayment(
+      BuildContext context, String payment, String intent) async {
     try {
       //STEP 1: Create Payment Intent
-      paymentIntent = await createPaymentIntent(payment, 'AED');
+      paymentIntent = await createPaymentIntent(payment, 'INR');
+
+      var paymentIntentId = paymentIntent!['id'];
+      logger.d("payment id is ${paymentIntentId}");
 
       //STEP 2: Initialize Payment Sheet
-      await Stripe.instance
-          .initPaymentSheet(
-              paymentSheetParameters: SetupPaymentSheetParameters(
-                  paymentIntentClientSecret: paymentIntent!['client_secret'],
-                  style: ThemeMode.light,
-                  merchantDisplayName: 'Ikay'))
-          .then((value) {});
+      await Stripe.instance.initPaymentSheet(
+          paymentSheetParameters: SetupPaymentSheetParameters(
+        paymentIntentClientSecret: paymentIntent!['client_secret'], //Got,
+        style: ThemeMode.light,
+        merchantDisplayName: 'Muhammad ',
+      ));
 
       //STEP 3: Display Payment sheet
       displayPaymentSheet(context);
     } catch (err) {
       logger.d("error========= $err");
-      throw Exception(err);
+      showsnackbar("some thing went wrong", true);
     }
   }
 
@@ -43,6 +52,7 @@ class PaymetController extends GetxController {
       Map<String, dynamic> body = {
         'amount': calculateAmount(amount),
         'currency': currency,
+        "payment_method_types[]": "card",
       };
 
       //Make post request to Stripe
@@ -57,37 +67,36 @@ class PaymetController extends GetxController {
       logger.d("res is here ${json.decode(response.body)}");
       return json.decode(response.body);
     } catch (err) {
-      logger.d("error is here $err");
       throw Exception(err.toString());
     }
   }
 
   displayPaymentSheet(BuildContext context) async {
     try {
-      await Stripe.instance.presentPaymentSheet().then((value) {
-        showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
-                        size: 100.0,
-                      ),
-                      SizedBox(height: 10.0),
-                      Text("Payment Successful!"),
-                    ],
-                  ),
-                ));
+      await Stripe.instance.presentPaymentSheet();
 
-        paymentIntent = null;
-      }).onError((error, stackTrace) {
-        throw Exception(error);
-      });
+      showsnackbar(" successfully payment completed");
+
+      // showDialog(
+      //     context: context,
+      //     builder: (_) => AlertDialog(
+      //           content: Column(
+      //             mainAxisSize: MainAxisSize.min,
+      //             children: const [
+      //               Icon(
+      //                 Icons.check_circle,
+      //                 color: Colors.green,
+      //                 size: 100.0,
+      //               ),
+      //               SizedBox(height: 10.0),
+      //               Text("Payment Successful!"),
+      //             ],
+      //           ),
+      //         ));
+
+      paymentIntent = null;
     } on StripeException catch (e) {
-      print('Error is:---> $e');
+      logger.d("result is error $e");
       AlertDialog(
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -105,12 +114,12 @@ class PaymetController extends GetxController {
         ),
       );
     } catch (e) {
-      print('$e');
+      logger.d("result is error $e");
     }
   }
 
   calculateAmount(String amount) {
-    final calculatedAmout = (int.parse(amount)) * 100;
+    final calculatedAmout = (double.parse(amount).toInt()) * 100;
     return calculatedAmout.toString();
   }
 }

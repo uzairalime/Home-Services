@@ -155,10 +155,7 @@ class HomeView extends GetView<HomeController> {
                             : SizedBox(),
                         InkWell(
                           onTap: () {
-                            Get.put(PaymetController());
-                            PaymetController.to.makePayment(context, "10000");
-
-                            // Get.to(() => const SearchLocationScreen());
+                            Get.to(() => const SearchLocationScreen());
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
