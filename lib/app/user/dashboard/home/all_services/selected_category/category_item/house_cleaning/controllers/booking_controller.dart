@@ -6,18 +6,22 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:home_brigadier/app/payment/stripe.dart';
 import 'package:home_brigadier/app/user/dashboard/controllers/dashboard_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/views/location_pick.dart';
 import 'package:home_brigadier/consts/const.dart';
+import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/model/booking_response_model.dart';
 import 'package:home_brigadier/model/main.dart';
 import 'package:home_brigadier/model/place_auto_complate_response.dart';
 import 'package:home_brigadier/model/post_booking_model.dart';
 import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/services/apis/api_helper.dart';
+import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:home_brigadier/utils/animation_dialog.dart';
 import 'package:home_brigadier/utils/dialog_helper.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../../../../../../utils/logger.dart';
 import '../../../../../../../../routes/app_pages.dart';
@@ -25,26 +29,21 @@ import '../../../../../../../../routes/app_pages.dart';
 class BookingController extends GetxController {
   static BookingController get to => Get.find();
 
-
- List<AutocompletePrediction> placeprediction = [];
-    void placeAutoComplete(String query) async {
-    Uri uri = Uri.https(
-        "maps.googleapis.com", "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
+  List<AutocompletePrediction> placeprediction = [];
+  void placeAutoComplete(String query) async {
+    Uri uri = Uri.https("maps.googleapis.com",
+        "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
     String? response = await NetwordUtils.fetchUl(uri);
     if (response != null) {
       logger.d(response);
       PlaceAutocompleteResponse result =
           PlaceAutocompleteResponse.parseAutocompleteResult(response);
       if (result.predictions != null) {
-       
-          placeprediction = result.predictions!;
-          
-      
+        placeprediction = result.predictions!;
       }
     }
     update();
   }
-
 
   // cleaning services values=======================================
   var hours = 1.obs;
@@ -176,22 +175,23 @@ class BookingController extends GetxController {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Location services are disabled. Please enable the services')));
+          content: Text(
+              'Location services are disabled. Please enable the services')));
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Location permissions are denied')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content:
-              Text('Location permissions are permanently denied, we cannot request permissions.')));
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
       return false;
     }
     return true;
@@ -217,7 +217,8 @@ class BookingController extends GetxController {
 
   Future<void> _getAddressFromLatLng(Position position) async {
     print("location call");
-    await placemarkFromCoordinates(currentPosition!.latitude, currentPosition!.longitude)
+    await placemarkFromCoordinates(
+            currentPosition!.latitude, currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
 
@@ -244,7 +245,8 @@ class BookingController extends GetxController {
     final hour = hours.value;
     final cleaers = cleaner.value;
     final material = selectedmaterial.value;
-    final bill = ((rate * hour) * cleaers) + (material == "Yes" ? (hour * 4) : 0);
+    final bill =
+        ((rate * hour) * cleaers) + (material == "Yes" ? (hour * 4) : 0);
 
     total.value = bill;
   }
@@ -252,21 +254,56 @@ class BookingController extends GetxController {
   postbooking(PostBookingModel model, BuildContext context) async {
     DialogHelper.showLoading();
 
-    await _apiHelper.post("user/booking/", model.toJson()).then((response) {
-      DialogHelper.hideLoading();
+    await _apiHelper
+        .post("user/booking/", model.toJson())
+        .then((response) async {
+      final id = response.data["id"];
+      logger.d("id  is ====== $id");
 
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => const AnimationDialog(
-                text: 'Successfully Booking !',
-              )).then((value) {
-        Get.offNamed(Routes.DASHBOARD);
-        UserDashboardController.to.currentIndex.value = 1;
-        HomeController.to.onsearchtab = false;
-        
+      String amount = response.data["price"];
+      logger.d("payment is =========== $amount");
+      if (id != null) {
+        await _apiHelper
+            .post("user/booking/$id/payment-sheet/", {}).then((response) async {
+          String paymentIntent = response.data["payment_intent"];
+          logger.d(
+              "pyament intet is============= ${response.data["payment_intent"]}");
+
+          DialogHelper.hideLoading();
+          Get.offNamed(Routes.DASHBOARD);
+          HomeController.to.startLoop();
+          HomeController.to.getCategories();
+          HomeController.to.getOffers();
+          HomeController.to.getServices("");
+
+          UserDashboardController.to.currentIndex.value = 1;
+          HomeController.to.onsearchtab = false;
+
+          instruction.clear();
+
+          Get.put(PaymetController());
+
+          await PaymetController.to.makePayment(context, amount, paymentIntent);
+        });
+
+        // DialogHelper.hideLoading();
+
+        // showDialog(
+        //     context: context,
+        //     barrierDismissible: false,
+        //     builder: (context) => const AnimationDialog(
+        //           text: 'Successfully Booking !',
+        //         )).then((value) {
+        //   Get.offNamed(Routes.DASHBOARD);
+        //   UserDashboardController.to.currentIndex.value = 1;
+        //   HomeController.to.onsearchtab = false;
+
+        //   instruction.clear();
+      } else {
+        DialogHelper.hideLoading();
+        showsnackbar("some thing went wrong", true);
         instruction.clear();
-      });
+      }
     });
   }
 
