@@ -34,9 +34,6 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final widht = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-
     Get.put(BookingController());
 
     return GetBuilder<HomeController>(builder: (obj) {
@@ -176,6 +173,7 @@ class HomeView extends GetView<HomeController> {
                   await obj.getOffers();
                 },
                 child: SingleChildScrollView(
+                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: EdgeInsets.only(
