@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/views/bookings_view.dart';
-
 import 'package:home_brigadier/consts/media_query.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/widget/cText.dart';
@@ -17,13 +16,10 @@ class BookingsView extends GetView<BookingsController> {
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-              ),
-              child: Center(child: Image.asset("assets/images/ic_splash.png"))),
+        leading: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(image: AssetImage("assets/icons/ic_launcher_icon.png")),
+              borderRadius: BorderRadius.all(Radius.circular(6))),
         ),
         title: CText(
             text: LocaleKeys.dashboard_items_bookings.tr,

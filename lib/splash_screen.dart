@@ -11,8 +11,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
 
@@ -20,8 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
     animation = Tween<double>(begin: 0, end: 1).animate(controller);
     controller.forward();
     ConnectivityService.checkInternetConnectivity(controller: controller);
@@ -54,7 +52,12 @@ class _SplashScreenState extends State<SplashScreen>
                     height: 120,
                     width: 120,
                     // color: Colors.white,
-                    child: Image.asset("assets/icons/launcher_icon.png"),
+                    child: Image.asset(
+                      "assets/icons/ic_splash.png",
+                      fit: BoxFit.fill,
+                      height: 120,
+                      width: 120,
+                    ),
                   ),
                   SizedBox(height: size.height * 0.02),
                   const CText(

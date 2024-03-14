@@ -51,10 +51,12 @@ class CategoryItemView extends GetView<CategoryItemController> {
                   onTap: () {
                     Get.back();
                   },
-                  child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: AppColor.black.withOpacity(0.7), shape: BoxShape.circle),
                     child: Icon(
                       Icons.arrow_back,
-                      color: AppColor.black,
+                      color: AppColor.white,
                     ),
                   )),
             ),
@@ -71,13 +73,12 @@ class CategoryItemView extends GetView<CategoryItemController> {
                   color: AppColor.greylight,
                 ))),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 30, bottom: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
               child: Row(
                 children: [
                   Expanded(
                       child: CButton(
-                         borderradius: widht * 0.075,
+                          borderradius: widht * 0.075,
                           ontab: () {
                             logger.d(model!.category!.code);
                             switch (model!.category!.code) {
@@ -145,17 +146,14 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                 )),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: widht * 0.05,
-                                  vertical: widht * 0.05),
+                                  horizontal: widht * 0.05, vertical: widht * 0.05),
                               child: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       CText(
-                                        text: model!.category!.displayName
-                                            .toString(),
+                                        text: model!.category!.displayName.toString(),
                                         fontsize: 29,
                                         fontWeight: bold6,
                                       ),
@@ -211,8 +209,7 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                         width: widht * 0.01,
                                       ),
                                       CText(
-                                        text: _getaddress(
-                                            model!.address.toString()),
+                                        text: _getaddress(model!.address.toString()),
                                         fontsize: 12,
                                         fontWeight: bold4,
                                       )
@@ -234,8 +231,7 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                         width: widht * 0.01,
                                       ),
                                       CText(
-                                        text:
-                                            "(${LocaleKeys.category_items_floor_price.tr})",
+                                        text: "(${LocaleKeys.category_items_floor_price.tr})",
                                         fontsize: 12,
                                         fontWeight: bold4,
                                       )
@@ -247,12 +243,10 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         CText(
-                                          text: LocaleKeys
-                                              .category_items_about_me.tr,
+                                          text: LocaleKeys.category_items_about_me.tr,
                                           fontsize: 18,
                                           fontWeight: bold6,
                                           textAlign: TextAlign.left,
@@ -279,8 +273,7 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: CText(
-                                      text: LocaleKeys
-                                          .category_items_photos_videos.tr,
+                                      text: LocaleKeys.category_items_photos_videos.tr,
                                       fontsize: 18,
                                       fontWeight: bold6,
                                       textAlign: TextAlign.left,
@@ -293,20 +286,16 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                     width: widht,
                                     height: height * 0.53,
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
-                                            imageBox(context,
-                                                model!.files![0].file!),
+                                            imageBox(context, model!.files![0].file!),
                                             const SizedBox(
                                               width: 15,
                                             ),
-                                            imageBox(context,
-                                                model!.files![0].file!),
+                                            imageBox(context, model!.files![0].file!),
                                           ],
                                         ),
                                         const SizedBox(
@@ -314,13 +303,11 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                         ),
                                         Row(
                                           children: [
-                                            imageBox(context,
-                                                model!.files![0].file!),
+                                            imageBox(context, model!.files![0].file!),
                                             const SizedBox(
                                               width: 15,
                                             ),
-                                            imageBox(context,
-                                                model!.files![0].file!),
+                                            imageBox(context, model!.files![0].file!),
                                           ],
                                         )
                                       ],

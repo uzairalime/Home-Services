@@ -1,131 +1,301 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/seller/dashboard/bookings/upcoming_view.dart';
+import 'package:home_brigadier/app/seller/dashboard/profile/user_profile/controllers/jobs_controller.dart';
 
 import '../../../../consts/app_color.dart';
 import '../../../../consts/media_query.dart';
+import '../../../../generated/locales.g.dart';
+import '../../../../model/user_services_models/my_booking_booking_model.dart';
 import '../../../../widget/cText.dart';
-import '../../../../widget/c_filled_btn.dart';
-import 'controllers/bookings_controller.dart';
+import '../../../../widget/shimmer.dart';
 
-class CompletedView extends GetView<BookingsController> {
+class CompletedView extends GetView<MyJobsController> {
   const CompletedView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
-    final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
-    final labelLarge = Theme.of(context).textTheme.labelLarge!.fontSize;
+    final titleMedium = Theme.of(context).textTheme.titleMedium!.fontSize;
 
-    return GetBuilder<BookingsController>(builder: (obj) {
-      return ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return Card(
-                margin: EdgeInsets.symmetric(
-                    vertical: mediaQueryHeight(context) * 0.012,
-                    horizontal: mediaQueryWidth(context) * 0.05),
-                child: CustomExpansionTile(
-                  
-                    fistChild: Row(children: [
-                      Expanded(
-                          child: Container(
-                              height: 100,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/img_people.png"),
-                                      fit: BoxFit.cover),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25))))),
-                      Expanded(
-                          flex: 2,
-                          child: Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CText(
-                                        text: "Plumber", fontsize: titleLarge),
-                                    CText(
-                                        text: "text",
-                                        fontsize: labelLarge,
-                                        color: AppColor.grey),
-                                    SizedBox(
-                                        width: mediaQueryWidth(context) * 0.22,
-                                        height:
-                                            mediaQueryHeight(context) * 0.035,
-                                        child: CButton(
-                                            ontab: () {},
-                                            fontsize: labelLarge,
-                                            text: "Completed",
-                                            borderradius: 7,
-                                            bgcolor: Colors.green))
-                                  ]))),
-                      Expanded(
-                          child: CircleAvatar(
-                              backgroundColor: AppColor.grey.withOpacity(0.3),
-                              child: SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: SvgPicture.asset(
-                                      "assets/icons/ic_message.svg"))))
-                    ]),
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
+    return GetBuilder(
+        init: Get.put(MyJobsController()),
+        builder: (context) {
+          return FutureBuilder(
+            future: controller.fetchCompletedJobs(), // Call your fetch data function
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: SizedBox(
+                    width: mediaQueryWidth(context) * 0.95,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.1,
                           child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const ShimmerWidget.circular(width: 70, height: 70),
+                              ShimmerWidget.rectangular(
+                                height: mediaQueryHeight(context) * 0.07,
+                                width: mediaQueryWidth(context) * 0.7,
+                              ),
+                            ],
+                          ),
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.01,
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.01,
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.01,
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight(context) * 0.01,
+                        ),
+                        ShimmerWidget.rectangular(
+                          height: mediaQueryHeight(context) * 0.08,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return const Center(child: Text("Error while loading jobs"));
+              } else if (snapshot.data!.isEmpty) {
+                return const Center(
+                  child: CText(text: "No jobs found", color: AppColor.black),
+                );
+              } else {
+                // If data is successfully fetched
+                List<MyServicesBookingModel> item = snapshot.data!;
+                return ListView.builder(
+                  itemCount: item.length,
+                  itemBuilder: (context, index) {
+                    MyServicesBookingModel model = item[index];
+
+                    return Card(
+                        elevation: 8,
+                        shadowColor: AppColor.greylight,
+                        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        child: Center(
+                          child: ExpansionTile(
+                              childrenPadding: const EdgeInsets.symmetric(horizontal: 15),
+                              shape:
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              initiallyExpanded: index == 0 ? true : false,
+                              leading: SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: CachedNetworkImage(
+                                    imageUrl:
+                                        "https://homebrigadier.fly.dev${model.service.files[0].file}",
+                                    imageBuilder: (context, imageProvider) => Container(
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ))),
+                                    placeholder: (context, url) =>
+                                        const Center(child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, error) => const Icon(Icons.error)),
+                              ),
+                              title: CText(
+                                      fontsize: titleMedium,
+                                      textAlign: TextAlign.start,
+                                      color: AppColor.black,
+                                      text: model.service.category.displayName,
+                                      fontWeight: FontWeight.bold)
+                                  .paddingOnly(bottom: 10),
+                              subtitle: CText(
+                                  textAlign: TextAlign.start,
+                                  color: AppColor.black,
+                                  text: "${model.user['username']}"),
                               children: [
-                                CText(
-                                    text: "Date & Time",
-                                    fontsize: labelLarge,
-                                    color: AppColor.grey),
-                                CText(
-                                    text: "${DateTime.now()}",
-                                    fontsize: titleSmall)
-                              ])),
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(children: [
-                            Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CText(
-                                      text: "Location",
-                                      fontsize: labelLarge,
-                                      color: AppColor.grey),
-                                  CText(
-                                      text: "1691 Carpenter Pass",
-                                      fontsize: titleSmall)
-                                ]),
-                            Container(
-                                margin:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                            "assets/images/map.png")),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15))),
-                                height: mediaQueryHeight(context) * 0.25),
-                            CFilledBtn(
-                                text: "View E-Receipt",
-                                onPressed: () {},
-                                height: 40,
-                                width: mediaQueryWidth(context) * 0.8,
-                                btnBg: AppColor.secondary)
-                          ]))
-                    ]));
-          });
-    });
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_date.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                            CText(
+                                              text: formatDate(model.startAt),
+                                            ).paddingSymmetric(vertical: 5)
+                                          ]),
+                                      //
+                                      Column(children: [
+                                        CText(
+                                          text: LocaleKeys.my_jobs_time.tr,
+                                          fontWeight: FontWeight.bold,
+                                        ).marginOnly(bottom: 5),
+                                        CText(
+                                                text:
+                                                    "${formatTime(model.service.openingHours[0].fromHour)}-"
+                                                    "${formatTime(model.service.openingHours[0].toHour)}")
+                                            .paddingSymmetric(vertical: 5)
+                                      ])
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_price.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                            CText(
+                                              text: "${LocaleKeys.my_jobs_aed.tr} ${model.price}",
+                                            ).paddingSymmetric(vertical: 5)
+                                          ]),
+                                      //
+                                      Column(children: [
+                                        const CText(
+                                          text: '',
+                                          fontWeight: FontWeight.bold,
+                                        ).marginOnly(bottom: 5),
+                                        CText(
+                                          text: model.paymentStatus,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColor.primary,
+                                        ).paddingSymmetric(vertical: 5)
+                                      ])
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_no_of_hours.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                          ]),
+                                      Column(children: [
+                                        CText(text: '${model.extraInfo['no_of_hours']}')
+                                            .marginOnly(bottom: 5),
+                                      ])
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_description.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                            CText(
+                                              text: model.description,
+                                            ).paddingSymmetric(vertical: 5)
+                                          ]),
+
+                                      Column(children: [
+                                        const CText(
+                                          text: '',
+                                          fontWeight: FontWeight.bold,
+                                        ).marginOnly(bottom: 5),
+                                        CText(
+                                          text: model.paymentStatus,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColor.primary,
+                                        ).paddingSymmetric(vertical: 5)
+                                      ])
+
+                                      ///
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            CText(
+                                              text: LocaleKeys.my_jobs_booking_status.tr,
+                                              fontsize: titleMedium,
+                                              fontWeight: FontWeight.bold,
+                                            ).marginOnly(bottom: 5),
+                                          ]),
+                                      //
+                                      Column(children: [
+                                        Card(
+                                          color: AppColor.greylight.withOpacity(0.3),
+                                          elevation: 0,
+                                          child: CText(text: model.status).paddingAll(5),
+                                        )
+                                      ]),
+                                    ]).marginSymmetric(vertical: 5),
+
+                                //
+                                const Divider(),
+                                Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Icon(Icons.pin_drop_outlined, color: AppColor.primary),
+                                      SizedBox(
+                                        width: mediaQueryWidth(context) * 0.7,
+                                        child: Text(
+                                          softWrap: true,
+                                          model.address,
+                                        ).paddingSymmetric(vertical: 5),
+                                      ),
+
+                                      ///
+                                    ]).marginSymmetric(vertical: 5)
+                              ]),
+                        ));
+                  },
+                );
+              }
+            },
+          );
+        });
   }
 }
