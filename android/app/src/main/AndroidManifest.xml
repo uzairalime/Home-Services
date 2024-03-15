@@ -63,5 +63,13 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCuC0N234IJDgCJLD6pV3YHBh0NcL29Tuw" />
+
+
+
+ <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+            
     </application>
 </manifest>

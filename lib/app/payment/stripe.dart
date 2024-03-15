@@ -27,16 +27,24 @@ class PaymetController extends GetxController {
       //STEP 1: Create Payment Intent
       paymentIntent = await createPaymentIntent(payment, 'INR');
 
+      var applePay = PaymentSheetApplePay(
+        merchantCountryCode: 'IND',
+      );
+
+      var gpay = PaymentSheetGooglePay(
+          merchantCountryCode: "IND", currencyCode: "INR", testEnv: true);
+
       var paymentIntentId = paymentIntent!['id'];
       logger.d("payment id is ${paymentIntentId}");
 
       //STEP 2: Initialize Payment Sheet
       await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
-        paymentIntentClientSecret: paymentIntent!['client_secret'], //Got,
-        style: ThemeMode.light,
-        merchantDisplayName: 'Muhammad ',
-      ));
+              paymentIntentClientSecret: paymentIntent!['client_secret'], //Got,
+              style: ThemeMode.light,
+              merchantDisplayName: 'Muhammad ',
+              googlePay: gpay,
+              applePay: applePay));
 
       //STEP 3: Display Payment sheet
       displayPaymentSheet(context);

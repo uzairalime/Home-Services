@@ -23,6 +23,8 @@ Future<void> main() async {
 
   //Assign publishable key to flutter_stripe
   Stripe.publishableKey = publishableKey;
+  Stripe.merchantIdentifier = 'YOUR-APPLE-MERCHANT-IDENTIFIER';
+  Stripe.instance.applySettings();
 
   //Load our .env file that contains our Stripe Secret key
   await dotenv.load(fileName: ".env");
