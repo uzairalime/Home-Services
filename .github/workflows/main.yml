@@ -6,8 +6,8 @@ on:
   push:
     branches:
       - main
-      - master
-      - develop
+      # - master
+      # - develop
 name: "Build & Release"
 jobs:
   build:
