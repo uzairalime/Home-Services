@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
@@ -19,7 +20,6 @@ class ApplianceBookingView extends GetView<ApplianceController> {
 
   @override
   Widget build(BuildContext context) {
-    
     Get.put(ApplianceController());
     BookingController.to.claculateBill();
     final width = MediaQuery.of(context).size.width;
@@ -61,15 +61,15 @@ class ApplianceBookingView extends GetView<ApplianceController> {
             Get.back();
           },
         ),
-        actions: [
-          SizedBox(
-            width: 55.0,
-            child: SvgPicture.asset(
-              'assets/icons/ic_more_outlined.svg',
-              fit: BoxFit.scaleDown,
-            ),
-          ),
-        ],
+        // actions: [
+        //   SizedBox(
+        //     width: 55.0,
+        //     child: SvgPicture.asset(
+        //       'assets/icons/ic_more_outlined.svg',
+        //       fit: BoxFit.scaleDown,
+        //     ),
+        //   ),
+        // ],
         title: Text(
           LocaleKeys.applience_items_applience_service.tr,
           style: TextStyle(
@@ -86,8 +86,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
             SizedBox(
               width: width * 0.9,
               child: CText(
-                  textAlign: TextAlign.start,
-                  text: LocaleKeys.applience_items_choose_applience.tr),
+                  textAlign: TextAlign.start, text: LocaleKeys.applience_items_choose_applience.tr),
             ),
             //paypal
             Expanded(
@@ -100,30 +99,31 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                         margin: EdgeInsets.symmetric(
                             vertical: mediaQueryHeight(context) * 0.012,
                             horizontal: mediaQueryWidth(context) * 0.05),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          height: height * 0.09,
-                          child: Center(
-                            child: ListTile(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0, vertical: 0.0),
-                              title: CText(
-                                fontsize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize,
-                                textAlign: TextAlign.start,
-                                fontWeight: FontWeight.bold,
-                                text:
-                                    LocaleKeys.applience_items_washing_mach.tr,
-                              ),
-                              trailing: Checkbox.adaptive(
-                                value: controller.iswashingmachine.value,
-                                activeColor: AppColor.primary,
-                                onChanged: (value) {
-                                  controller.changemac(value);
-                                },
+                        child: InkWell(
+                          onTap: () {
+                            controller.iswashingmachine.value = !controller.iswashingmachine.value;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                            height: height * 0.09,
+                            child: Center(
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 0.0),
+                                title: CText(
+                                  fontsize: Theme.of(context).textTheme.titleMedium!.fontSize,
+                                  textAlign: TextAlign.start,
+                                  fontWeight: FontWeight.bold,
+                                  text: LocaleKeys.applience_items_washing_mach.tr,
+                                ),
+                                trailing: Checkbox.adaptive(
+                                  value: controller.iswashingmachine.value,
+                                  activeColor: AppColor.primary,
+                                  onChanged: (value) {
+                                    log(value.toString());
+                                    // controller.changemac(value);
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -139,20 +139,18 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                             vertical: mediaQueryHeight(context) * 0.012,
                             horizontal: mediaQueryWidth(context) * 0.05),
                         child: InkWell(
-                          onTap: () async {},
+                          onTap: () async {
+                            controller.isrefrigetaor.value = !controller.isrefrigetaor.value;
+                          },
                           child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15)),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
                             height: height * 0.09,
                             child: Center(
                               child: ListTile(
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 14.0, vertical: 0.0),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 0.0),
                                 title: CText(
-                                  fontsize: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .fontSize,
+                                  fontsize: Theme.of(context).textTheme.titleMedium!.fontSize,
                                   textAlign: TextAlign.start,
                                   fontWeight: FontWeight.bold,
                                   text: LocaleKeys.applience_items_refrig.tr,
@@ -161,7 +159,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                                   value: controller.isrefrigetaor.value,
                                   activeColor: AppColor.primary,
                                   onChanged: (value) {
-                                    controller.changeref(value);
+                                    // controller.changeref(value);
                                   },
                                 ),
                               ),
@@ -178,171 +176,30 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                         margin: EdgeInsets.symmetric(
                             vertical: mediaQueryHeight(context) * 0.012,
                             horizontal: mediaQueryWidth(context) * 0.05),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          height: height * 0.09,
-                          child: Center(
-                            child: ListTile(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0, vertical: 0.0),
-                              title: CText(
-                                fontsize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize,
-                                textAlign: TextAlign.start,
-                                fontWeight: FontWeight.bold,
-                                text: LocaleKeys.applience_items_dispancer.tr,
-                              ),
-                              trailing: Checkbox.adaptive(
-                                value: controller.isdis_.value,
-                                activeColor: AppColor.primary,
-                                onChanged: (value) {
-                                  controller.changedis(value);
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    Obx(
-                      () => Card(
-                        color: Theme.of(context).cardColor,
-                        margin: EdgeInsets.symmetric(
-                            vertical: mediaQueryHeight(context) * 0.012,
-                            horizontal: mediaQueryWidth(context) * 0.05),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          height: height * 0.09,
-                          child: Center(
-                            child: ListTile(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0, vertical: 0.0),
-                              title: CText(
-                                fontsize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize,
-                                textAlign: TextAlign.start,
-                                fontWeight: FontWeight.bold,
-                                text: LocaleKeys.applience_items_air_condi.tr,
-                              ),
-                              trailing: Checkbox.adaptive(
-                                value: controller.iscond_.value,
-                                activeColor: AppColor.primary,
-                                onChanged: (value) {
-                                  controller.changecond(value);
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Obx(
-                      () => Card(
-                        color: Theme.of(context).cardColor,
-                        margin: EdgeInsets.symmetric(
-                            vertical: mediaQueryHeight(context) * 0.012,
-                            horizontal: mediaQueryWidth(context) * 0.05),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          height: height * 0.09,
-                          child: Center(
-                            child: ListTile(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0, vertical: 0.0),
-                              title: CText(
-                                fontsize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize,
-                                textAlign: TextAlign.start,
-                                fontWeight: FontWeight.bold,
-                                text: LocaleKeys
-                                    .applience_items_grilling_machine.tr,
-                              ),
-                              trailing: Checkbox.adaptive(
-                                value: controller.isgrilli_.value,
-                                activeColor: AppColor.primary,
-                                onChanged: (value) {
-                                  controller.changegrilli(value);
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Obx(
-                      () => Card(
-                        color: Theme.of(context).cardColor,
-                        margin: EdgeInsets.symmetric(
-                            vertical: mediaQueryHeight(context) * 0.012,
-                            horizontal: mediaQueryWidth(context) * 0.05),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          height: height * 0.09,
-                          child: Center(
-                            child: ListTile(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0, vertical: 0.0),
-                              title: CText(
-                                fontsize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize,
-                                textAlign: TextAlign.start,
-                                fontWeight: FontWeight.bold,
-                                text: LocaleKeys.applience_items_washers.tr,
-                              ),
-                              trailing: Checkbox.adaptive(
-                                value: controller.iswasher.value,
-                                activeColor: AppColor.primary,
-                                onChanged: (value) {
-                                  controller.changewasher(value);
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Obx(
-                      () => Card(
-                        color: Theme.of(context).cardColor,
-                        margin: EdgeInsets.symmetric(
-                            vertical: mediaQueryHeight(context) * 0.012,
-                            horizontal: mediaQueryWidth(context) * 0.05),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          height: height * 0.09,
-                          child: Center(
-                            child: ListTile(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0, vertical: 0.0),
-                              title: CText(
-                                fontsize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize,
-                                textAlign: TextAlign.start,
-                                fontWeight: FontWeight.bold,
-                                text: LocaleKeys.applience_items_drayer.tr,
-                              ),
-                              trailing: Checkbox.adaptive(
-                                value: controller.isdrayer_.value,
-                                activeColor: AppColor.primary,
-                                onChanged: (value) {
-                                  controller.changedrayer(value);
-                                },
+                        child: InkWell(
+                          onTap: () {
+                            controller.isdis_.value = !controller.isdis_.value;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                            height: height * 0.09,
+                            child: Center(
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 0.0),
+                                title: CText(
+                                  fontsize: Theme.of(context).textTheme.titleMedium!.fontSize,
+                                  textAlign: TextAlign.start,
+                                  fontWeight: FontWeight.bold,
+                                  text: LocaleKeys.applience_items_dispancer.tr,
+                                ),
+                                trailing: Checkbox.adaptive(
+                                  value: controller.isdis_.value,
+                                  activeColor: AppColor.primary,
+                                  onChanged: (value) {
+                                    // controller.changedis(value);
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -356,30 +213,176 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                         margin: EdgeInsets.symmetric(
                             vertical: mediaQueryHeight(context) * 0.012,
                             horizontal: mediaQueryWidth(context) * 0.05),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          height: height * 0.09,
-                          child: Center(
-                            child: ListTile(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0, vertical: 0.0),
-                              title: CText(
-                                fontsize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize,
-                                textAlign: TextAlign.start,
-                                fontWeight: FontWeight.bold,
-                                text: LocaleKeys.applience_items_machnic.tr,
+                        child: InkWell(
+                          onTap: () {
+                            controller.iscond_.value = !controller.iscond_.value;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                            height: height * 0.09,
+                            child: Center(
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 0.0),
+                                title: CText(
+                                  fontsize: Theme.of(context).textTheme.titleMedium!.fontSize,
+                                  textAlign: TextAlign.start,
+                                  fontWeight: FontWeight.bold,
+                                  text: LocaleKeys.applience_items_air_condi.tr,
+                                ),
+                                trailing: Checkbox.adaptive(
+                                  value: controller.iscond_.value,
+                                  activeColor: AppColor.primary,
+                                  onChanged: (value) {
+                                    // controller.changecond(value);
+                                  },
+                                ),
                               ),
-                              trailing: Checkbox.adaptive(
-                                value: controller.isngmachine_.value,
-                                activeColor: AppColor.primary,
-                                onChanged: (value) {
-                                  BookingController.to.claculateBill();
-                                  controller.changemachine(value);
-                                },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Obx(
+                      () => Card(
+                        color: Theme.of(context).cardColor,
+                        margin: EdgeInsets.symmetric(
+                            vertical: mediaQueryHeight(context) * 0.012,
+                            horizontal: mediaQueryWidth(context) * 0.05),
+                        child: InkWell(
+                          onTap: () {
+                            controller.isgrilli_.value = !controller.isgrilli_.value;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                            height: height * 0.09,
+                            child: Center(
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 0.0),
+                                title: CText(
+                                  fontsize: Theme.of(context).textTheme.titleMedium!.fontSize,
+                                  textAlign: TextAlign.start,
+                                  fontWeight: FontWeight.bold,
+                                  text: LocaleKeys.applience_items_grilling_machine.tr,
+                                ),
+                                trailing: Checkbox.adaptive(
+                                  value: controller.isgrilli_.value,
+                                  activeColor: AppColor.primary,
+                                  onChanged: (value) {
+                                    // controller.changegrilli(value);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Obx(
+                      () => Card(
+                        color: Theme.of(context).cardColor,
+                        margin: EdgeInsets.symmetric(
+                            vertical: mediaQueryHeight(context) * 0.012,
+                            horizontal: mediaQueryWidth(context) * 0.05),
+                        child: InkWell(
+                          onTap: () {
+                            controller.iswasher.value = !controller.iswasher.value;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                            height: height * 0.09,
+                            child: Center(
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 0.0),
+                                title: CText(
+                                  fontsize: Theme.of(context).textTheme.titleMedium!.fontSize,
+                                  textAlign: TextAlign.start,
+                                  fontWeight: FontWeight.bold,
+                                  text: LocaleKeys.applience_items_washers.tr,
+                                ),
+                                trailing: Checkbox.adaptive(
+                                  value: controller.iswasher.value,
+                                  activeColor: AppColor.primary,
+                                  onChanged: (value) {
+                                    // controller.changewasher(value);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Obx(
+                      () => Card(
+                        color: Theme.of(context).cardColor,
+                        margin: EdgeInsets.symmetric(
+                            vertical: mediaQueryHeight(context) * 0.012,
+                            horizontal: mediaQueryWidth(context) * 0.05),
+                        child: InkWell(
+                          onTap: () {
+                            controller.isdrayer_.value = !controller.isdrayer_.value;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                            height: height * 0.09,
+                            child: Center(
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 0.0),
+                                title: CText(
+                                  fontsize: Theme.of(context).textTheme.titleMedium!.fontSize,
+                                  textAlign: TextAlign.start,
+                                  fontWeight: FontWeight.bold,
+                                  text: LocaleKeys.applience_items_drayer.tr,
+                                ),
+                                trailing: Checkbox.adaptive(
+                                  value: controller.isdrayer_.value,
+                                  activeColor: AppColor.primary,
+                                  onChanged: (value) {
+                                    // controller.changedrayer(value);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    Obx(
+                      () => Card(
+                        color: Theme.of(context).cardColor,
+                        margin: EdgeInsets.symmetric(
+                            vertical: mediaQueryHeight(context) * 0.012,
+                            horizontal: mediaQueryWidth(context) * 0.05),
+                        child: InkWell(
+                          onTap: () {
+                            controller.isngmachine_.value = !controller.isngmachine_.value;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                            height: height * 0.09,
+                            child: Center(
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 0.0),
+                                title: CText(
+                                  fontsize: Theme.of(context).textTheme.titleMedium!.fontSize,
+                                  textAlign: TextAlign.start,
+                                  fontWeight: FontWeight.bold,
+                                  text: LocaleKeys.applience_items_machnic.tr,
+                                ),
+                                trailing: Checkbox.adaptive(
+                                  value: controller.isngmachine_.value,
+                                  activeColor: AppColor.primary,
+                                  onChanged: (value) {
+                                    BookingController.to.claculateBill();
+                                    // controller.changemachine(value);
+                                  },
+                                ),
                               ),
                             ),
                           ),

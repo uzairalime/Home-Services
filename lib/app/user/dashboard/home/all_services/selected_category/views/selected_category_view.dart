@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:math' show asin, cos, sqrt;
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -7,13 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/appliance/views/applince_booking_view.dart';
+import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/handyman/views/handyman_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/views/booking_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/laundry/views/laundry_booking_view.dart';
+import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/men_salon/views/men_salon_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/painting/views/painting_booking_view.dart';
+import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/pest_control/views/pest_control_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/plumbing/views/plumbing_booking_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/reparing/views/reparing_booking_view.dart';
+import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/spa/views/spa_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/tailor/views/tailor_view.dart';
+import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/women_salon/views/women_salon_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
@@ -248,72 +255,73 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
         onPressed: () {
           // if (StaticData.refreshToken.isNotEmpty) {
 
+          log("categories code ${jsonEncode(model.category!.code)}");
           switch (model.category!.code) {
             case 'tailor':
               BookingController.to.setServicesModel(model);
-
               Get.to(() => TailorView());
+              break;
+
             case 'cleaning':
               BookingController.to.setServicesModel(model);
-
               Get.to(() => const HouseCleaningBookingView());
-
               break;
+
             case 'acRepair':
               BookingController.to.setServicesModel(model);
-
               Get.to(() => RepairingBookingView());
-
               break;
+
             case 'painting':
               BookingController.to.setServicesModel(model);
-
               Get.to(() => PaintingBookingView());
-
               break;
+
             case 'Laundry':
               BookingController.to.setServicesModel(model);
-
               Get.to(() => const LaundryBookingView());
-
               break;
+
             case 'electricity':
               BookingController.to.setServicesModel(model);
-
-              Get.to(() => ApplianceBookingView(
-                    model: model,
-                  ));
-
+              Get.to(() => ApplianceBookingView(model: model));
               break;
+
             case 'plumbing':
               BookingController.to.setServicesModel(model);
-
               Get.to(() => PlumbingBookingView());
-
               break;
-            case 'Shifting':
+
+            case 'pestControl':
               BookingController.to.setServicesModel(model);
-
-              Get.to(() => const HouseCleaningBookingView());
-
+              Get.to(() => const PestControlBookingView());
               break;
+
+            case 'womenSalon':
+              BookingController.to.setServicesModel(model);
+              Get.to(() => const WomenSalonView());
+              break;
+
+            case 'spa':
+              BookingController.to.setServicesModel(model);
+              Get.to(() => const SpaView());
+              break;
+
+            case 'menSalon':
+              BookingController.to.setServicesModel(model);
+              Get.to(() => const MenSalonView());
+              break;
+
+            case 'handyman':
+              BookingController.to.setServicesModel(model);
+              Get.to(() => const HandymanView());
+              break;
+
             default:
               BookingController.to.setServicesModel(model);
-
               Get.to(() => const HouseCleaningBookingView());
+              break;
           }
-
-// >>>>>>> main
-          // Get.to(() => CategoryItemView(
-          //       model: model,
-          //     ));
-          // }
-
-          //  else {
-          //   Get.to(() => EmailLoginView(
-          //         role: "buyer",
-          //       ));
-          // }
         },
         child: Row(children: [
           Icon(

@@ -67,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     fontsize: 32,
                   ),
                   SizedBox(height: size.height * 0.02),
-                  const CText(
+                  const CText2(
                     textAlign: TextAlign.center,
                     text: "Bringing Home Services to Your Doorstep!",
                     fontWeight: FontWeight.bold,

@@ -1,54 +1,4 @@
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/seller/dashboard/bindings/dashboard_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/bookings/bindings/bookings_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/bookings/views/bookings_view.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/about_matadata/bindings/about_matadata_binding.dart';
-import 'package:home_brigadier/app/seller/dashboard/profile/about_matadata/views/about_matadata_view.dart';
-import 'package:home_brigadier/app/user/dashboard/calender/bindings/calender_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/calender/views/calender_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/bindings/all_services_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/bindings/selected_category_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/appliance/bindings/appliance_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/appliance/views/appliance_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/bindings/category_item_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/bindings/booking_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/views/booking_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/laundry/bindings/laundry_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/laundry/views/laundry_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/painting/bindings/painting_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/painting/views/painting_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/plumbing/bindings/plumbing_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/plumbing/views/plumbing_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/reparing/bindings/reparing_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/reparing/views/reparing_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/shifting/bindings/shifting_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/shifting/views/shifting_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/tailor/bindings/tailor_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/tailor/views/tailor_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/views/category_item_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/views/selected_category_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/views/all_services_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/bindings/home_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/bookmark/bindings/bookmark_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/bookmark/views/bookmark_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/notification/bindings/notification_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/notification/views/notification_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/popular_services/bindings/popular_services_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/popular_services/views/popular_services_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/special_offers/bindings/special_offers_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/home/special_offers/views/special_offers_view.dart';
-import 'package:home_brigadier/app/user/dashboard/home/views/home_view.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/bindings/inbox_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/calls/bindings/calls_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/calls/user_call/bindings/user_call_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/calls/user_call/views/user_call_view.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/calls/views/calls_view.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/chats/bindings/chats_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/chats/user_chat/bindings/user_chat_binding.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/chats/user_chat/views/user_chat_view.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/chats/views/chats_view.dart';
-import 'package:home_brigadier/app/user/dashboard/inbox/views/inbox_view.dart';
-import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 
 import '../modules/account_setup/bindings/account_setup_binding.dart';
 import '../modules/account_setup/views/account_setup_view.dart';
@@ -62,8 +12,68 @@ import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
 import '../modules/welcome/bindings/welcome_binding.dart';
 import '../modules/welcome/views/welcome_view.dart';
+import '../seller/dashboard/bindings/dashboard_binding.dart';
+import '../seller/dashboard/bookings/bindings/bookings_binding.dart';
+import '../seller/dashboard/bookings/views/bookings_view.dart';
+import '../seller/dashboard/profile/about_matadata/bindings/about_matadata_binding.dart';
+import '../seller/dashboard/profile/about_matadata/views/about_matadata_view.dart';
 import '../seller/dashboard/start_earning/bindings/start_earning_binding.dart';
 import '../seller/dashboard/start_earning/views/start_earning_view.dart';
+import '../user/dashboard/calender/bindings/calender_binding.dart';
+import '../user/dashboard/calender/views/calender_view.dart';
+import '../user/dashboard/home/all_services/bindings/all_services_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/bindings/selected_category_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/appliance/bindings/appliance_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/appliance/views/appliance_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/bindings/category_item_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/handyman/bindings/handyman_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/handyman/views/handyman_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/house_cleaning/bindings/booking_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/house_cleaning/views/booking_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/laundry/bindings/laundry_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/laundry/views/laundry_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/men_salon/bindings/men_salon_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/men_salon/views/men_salon_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/painting/bindings/painting_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/painting/views/painting_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/pest_control/bindings/pest_control_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/pest_control/views/pest_control_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/plumbing/bindings/plumbing_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/plumbing/views/plumbing_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/reparing/bindings/reparing_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/reparing/views/reparing_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/shifting/bindings/shifting_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/shifting/views/shifting_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/spa/bindings/spa_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/spa/views/spa_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/tailor/bindings/tailor_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/tailor/views/tailor_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/views/category_item_view.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/women_salon/bindings/women_salon_binding.dart';
+import '../user/dashboard/home/all_services/selected_category/category_item/women_salon/views/women_salon_view.dart';
+import '../user/dashboard/home/all_services/selected_category/views/selected_category_view.dart';
+import '../user/dashboard/home/all_services/views/all_services_view.dart';
+import '../user/dashboard/home/bindings/home_binding.dart';
+import '../user/dashboard/home/bookmark/bindings/bookmark_binding.dart';
+import '../user/dashboard/home/bookmark/views/bookmark_view.dart';
+import '../user/dashboard/home/notification/bindings/notification_binding.dart';
+import '../user/dashboard/home/notification/views/notification_view.dart';
+import '../user/dashboard/home/popular_services/bindings/popular_services_binding.dart';
+import '../user/dashboard/home/popular_services/views/popular_services_view.dart';
+import '../user/dashboard/home/special_offers/bindings/special_offers_binding.dart';
+import '../user/dashboard/home/special_offers/views/special_offers_view.dart';
+import '../user/dashboard/home/views/home_view.dart';
+import '../user/dashboard/inbox/bindings/inbox_binding.dart';
+import '../user/dashboard/inbox/calls/bindings/calls_binding.dart';
+import '../user/dashboard/inbox/calls/user_call/bindings/user_call_binding.dart';
+import '../user/dashboard/inbox/calls/user_call/views/user_call_view.dart';
+import '../user/dashboard/inbox/calls/views/calls_view.dart';
+import '../user/dashboard/inbox/chats/bindings/chats_binding.dart';
+import '../user/dashboard/inbox/chats/user_chat/bindings/user_chat_binding.dart';
+import '../user/dashboard/inbox/chats/user_chat/views/user_chat_view.dart';
+import '../user/dashboard/inbox/chats/views/chats_view.dart';
+import '../user/dashboard/inbox/views/inbox_view.dart';
+import '../user/dashboard/views/dashboard_view.dart';
 
 part 'app_routes.dart';
 
@@ -164,6 +174,31 @@ class AppPages {
                           name: _Paths.TAILOR,
                           page: () => TailorView(),
                           binding: TailorBinding(),
+                        ),
+                        GetPage(
+                          name: _Paths.MEN_SALON,
+                          page: () => const MenSalonView(),
+                          binding: MenSalonBinding(),
+                        ),
+                        GetPage(
+                          name: _Paths.PEST_CONTROL,
+                          page: () => const PestControlBookingView(),
+                          binding: PestControlBinding(),
+                        ),
+                        GetPage(
+                          name: _Paths.HANDYMAN,
+                          page: () => const HandymanView(),
+                          binding: HandymanBinding(),
+                        ),
+                        GetPage(
+                          name: _Paths.SPA,
+                          page: () => const SpaView(),
+                          binding: SpaBinding(),
+                        ),
+                        GetPage(
+                          name: _Paths.WOMEN_SALON,
+                          page: () => const WomenSalonView(),
+                          binding: WomenSalonBinding(),
                         ),
                       ],
                     ),

@@ -140,11 +140,47 @@ abstract class Routes {
       _Paths.SELECTED_CATEGORY +
       _Paths.CATEGORY_ITEM +
       _Paths.TAILOR;
+  static const MEN_SALON = _Paths.USER +
+      _Paths.DASHBOARD +
+      _Paths.HOME +
+      _Paths.ALL_SERVICES +
+      _Paths.SELECTED_CATEGORY +
+      _Paths.CATEGORY_ITEM +
+      _Paths.MEN_SALON;
+  static const PEST_CONTROL = _Paths.USER +
+      _Paths.DASHBOARD +
+      _Paths.HOME +
+      _Paths.ALL_SERVICES +
+      _Paths.SELECTED_CATEGORY +
+      _Paths.CATEGORY_ITEM +
+      _Paths.PEST_CONTROL;
+  static const HANDYMAN = _Paths.USER +
+      _Paths.DASHBOARD +
+      _Paths.HOME +
+      _Paths.ALL_SERVICES +
+      _Paths.SELECTED_CATEGORY +
+      _Paths.CATEGORY_ITEM +
+      _Paths.HANDYMAN;
+  static const SPA = _Paths.USER +
+      _Paths.DASHBOARD +
+      _Paths.HOME +
+      _Paths.ALL_SERVICES +
+      _Paths.SELECTED_CATEGORY +
+      _Paths.CATEGORY_ITEM +
+      _Paths.SPA;
+  static const WOMEN_SALON = _Paths.USER +
+      _Paths.DASHBOARD +
+      _Paths.HOME +
+      _Paths.ALL_SERVICES +
+      _Paths.SELECTED_CATEGORY +
+      _Paths.CATEGORY_ITEM +
+      _Paths.WOMEN_SALON;
 }
 
 abstract class _Paths {
   _Paths._();
 
+  static const USER = '/user';
   static const DASHBOARD = '/dashboard';
   static const WELCOME = '/welcome';
   static const HOME = '/home';
@@ -209,4 +245,9 @@ abstract class _Paths {
   static const ABOUT_MATADATA = '/about-matadata';
   static const USER_PROFILE = '/user-profile';
   static const TAILOR = '/tailor';
+  static const MEN_SALON = '/men-salon';
+  static const PEST_CONTROL = '/pest-control';
+  static const HANDYMAN = '/handyman';
+  static const SPA = '/spa';
+  static const WOMEN_SALON = '/women-salon';
 }
