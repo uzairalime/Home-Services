@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:io';
 
 import 'package:buttons_tabbar/buttons_tabbar.dart';
@@ -182,7 +181,8 @@ class HomeView extends GetView<HomeController> {
                   await obj.getOffers();
                 },
                 child: SingleChildScrollView(
-                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: EdgeInsets.only(
@@ -383,7 +383,7 @@ class HomeView extends GetView<HomeController> {
                         width: widht * 0.19,
                         height: widht * 0.20,
                         decoration: BoxDecoration(
-                            color: AppColor.greylight,
+                            color: AppColor.greylight.withOpacity(0.3),
                             borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -999,7 +999,7 @@ class TabBarGrid extends StatelessWidget {
                                                 CText(
                                                     text: "${model.name}",
                                                     color: AppColor.black,
-                                                    fontsize: 19,
+                                                    fontsize: 16,
                                                     fontWeight:
                                                         FontWeight.bold),
                                                 Padding(
@@ -1029,7 +1029,7 @@ class TabBarGrid extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.normal,
                                                       color: AppColor.secondary,
-                                                      fontSize: 13),
+                                                      fontSize: 18),
                                                 ),
                                               ),
                                             ),

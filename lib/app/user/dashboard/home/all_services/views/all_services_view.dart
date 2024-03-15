@@ -54,7 +54,8 @@ class AllServicesView extends GetView<AllServicesController> {
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
-                              ShimmerWidget.rectangular(width: widht * 0.19, height: widht * 0.21),
+                              ShimmerWidget.rectangular(
+                                  width: widht * 0.19, height: widht * 0.21),
                             ],
                           );
                         },
@@ -66,7 +67,8 @@ class AllServicesView extends GetView<AllServicesController> {
 
                       return GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: categoryList.isEmpty ? 10 : categoryList.length,
+                        itemCount:
+                            categoryList.isEmpty ? 10 : categoryList.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: widht * 0.01,
                           mainAxisSpacing: height * 0.01,
@@ -86,7 +88,8 @@ class AllServicesView extends GetView<AllServicesController> {
   }
 
   InkWell CategoryItem(double widht, double height, CetegoryModel model) {
-    int icon = ServiceIconModel.servicesicon.indexWhere((icon) => icon.title == model.displayName);
+    int icon = ServiceIconModel.servicesicon
+        .indexWhere((icon) => icon.title == model.displayName);
     return InkWell(
       onTap: () {
         Get.to(() => SelectedCategoryView(model: model));
@@ -99,8 +102,9 @@ class AllServicesView extends GetView<AllServicesController> {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             width: widht * 0.19,
             height: widht * 0.20,
-            decoration:
-                BoxDecoration(color: AppColor.greylight, borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+                color: AppColor.greylight.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(10)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

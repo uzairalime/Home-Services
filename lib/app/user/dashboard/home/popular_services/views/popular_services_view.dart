@@ -216,7 +216,7 @@ class TabBarGrid extends StatelessWidget {
                                                       CText(
                                                           text: "${model.name}",
                                                           color: AppColor.black,
-                                                          fontsize: 19,
+                                                          fontsize: 16,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                       Padding(
@@ -252,7 +252,7 @@ class TabBarGrid extends StatelessWidget {
                                                                     .normal,
                                                             color: AppColor
                                                                 .secondary,
-                                                            fontSize: 13),
+                                                            fontSize: 18),
                                                       ),
                                                     ),
                                                   ),
