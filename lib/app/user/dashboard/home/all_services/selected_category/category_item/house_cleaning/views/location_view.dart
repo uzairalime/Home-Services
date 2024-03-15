@@ -24,6 +24,7 @@ import 'package:home_brigadier/utils/logger.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/c_filled_btn.dart';
+import 'package:home_brigadier/widget/c_text_field.dart';
 
 class LocationView extends GetView<BookingController> {
   const LocationView({super.key});
@@ -54,6 +55,7 @@ class LocationView extends GetView<BookingController> {
         init: BookingController(),
         builder: (obj) {
           return Scaffold(
+              resizeToAvoidBottomInset: false,
               appBar: AppBar(
                 title: Text(
                   LocaleKeys.location_view_items_Location_address_view.tr,
@@ -62,7 +64,7 @@ class LocationView extends GetView<BookingController> {
               ),
               body: Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: widht * 0.05, vertical: height * 0.05),
+                    horizontal: widht * 0.05, vertical: height * 0.025),
                 child: SizedBox(
                   width: widht,
                   height: height,
@@ -70,7 +72,7 @@ class LocationView extends GetView<BookingController> {
                     children: [
                       SizedBox(
                         width: widht,
-                        height: height * 0.25,
+                        height: height * 0.20,
                         child: GoogleMap(
                           myLocationEnabled: true,
                           markers: Set<Marker>.of(obj.mapmarker),
@@ -122,13 +124,18 @@ class LocationView extends GetView<BookingController> {
                         height: height * 0.015,
                       ),
                       TextFormField(
+                        onTapOutside: (PointerDownEvent p) {
+                          FocusScope.of(context).unfocus();
+                        },
                         onChanged: (val) {
                           obj.placeAutoComplete(val);
                         },
                         controller: obj.addressController,
                         decoration: InputDecoration(
                             suffixIcon: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: SizedBox(
@@ -154,6 +161,35 @@ class LocationView extends GetView<BookingController> {
                               borderSide: BorderSide.none,
                             )),
                       ),
+                      SizedBox(
+                        height: height * 0.015,
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: CText(
+                          text: "Flat #",
+                          fontWeight: FontWeight.w600,
+                          fontsize: widht * 0.04,
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.015,
+                      ),
+                      CTextField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return LocaleKeys.required_field.tr;
+                            }
+                            return null;
+                          },
+                          contentPadding: 15,
+                          hint: LocaleKeys.start_earning_item_villa_number.tr,
+                          controller: controller.flat,
+                          borderColor: Colors.transparent,
+                          borderRadius: 12,
+                          filled: true,
+                          keyboardType: TextInputType.streetAddress,
+                          fillColor: Colors.grey.withOpacity(0.1)),
                       Expanded(
                         child: ListView.builder(
                           itemCount: obj.placeprediction.length,
@@ -192,7 +228,8 @@ class LocationView extends GetView<BookingController> {
                         borderradius: widht * 0.075,
                         fontWeight: bold6,
                         ontab: () {
-                          if (obj.addressController.text.isNotEmpty) {
+                          if (obj.addressController.text.isNotEmpty &&
+                              obj.flat.text.isNotEmpty) {
                             if (StaticData.refreshToken.isNotEmpty) {
                               _onButtonPress(context, obj.addressController);
                             } else {
@@ -220,7 +257,7 @@ class LocationView extends GetView<BookingController> {
         price: controller.total.toString(),
         startAt: controller.stardatetime,
         endAt: controller.enddatetime,
-        address: address.text.toString(),
+        address: "${address.text.toString()} ${controller.flat.text} ",
         location: controller.currentPosition.toString(),
         description: controller.instruction.text.toString().isEmpty
             ? ""

@@ -29,6 +29,8 @@ import '../../../../../../../../routes/app_pages.dart';
 class BookingController extends GetxController {
   static BookingController get to => Get.find();
 
+  TextEditingController flat = TextEditingController();
+
   List<AutocompletePrediction> placeprediction = [];
   void placeAutoComplete(String query) async {
     Uri uri = Uri.https("maps.googleapis.com",
@@ -303,6 +305,7 @@ class BookingController extends GetxController {
         DialogHelper.hideLoading();
         showsnackbar("some thing went wrong", true);
         instruction.clear();
+        flat.clear();
       }
     });
   }
