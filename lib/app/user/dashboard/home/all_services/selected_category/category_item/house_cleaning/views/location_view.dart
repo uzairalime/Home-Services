@@ -63,9 +63,7 @@ class LocationView extends GetView<BookingController> {
                 ),
               ),
               body: Padding(
-
-                padding: EdgeInsets.symmetric(
-                    horizontal: widht * 0.05, vertical: height * 0.025),
+                padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                 child: SizedBox(
                   width: widht,
                   height: height,
@@ -187,7 +185,7 @@ class LocationView extends GetView<BookingController> {
                           borderColor: Colors.transparent,
                           borderRadius: 12,
                           filled: true,
-                          keyboardType: TextInputType.streetAddress,
+                          keyboardType: TextInputType.number,
                           fillColor: Colors.grey.withOpacity(0.1)),
                       Expanded(
                         child: ListView.builder(
@@ -227,8 +225,7 @@ class LocationView extends GetView<BookingController> {
                         borderradius: widht * 0.075,
                         fontWeight: bold6,
                         ontab: () {
-                          if (obj.addressController.text.isNotEmpty &&
-                              obj.flat.text.isNotEmpty) {
+                          if (obj.addressController.text.isNotEmpty && obj.flat.text.isNotEmpty) {
                             if (StaticData.refreshToken.isNotEmpty) {
                               _onButtonPress(context, obj.addressController);
                             } else {
