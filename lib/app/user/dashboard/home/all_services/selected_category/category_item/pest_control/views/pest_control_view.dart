@@ -75,175 +75,59 @@ class PestControlBookingView extends GetView<BookingController> {
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
                           CText(
-                            text: LocaleKeys.house_cleaning_items_how_many_hours.tr,
+                            text: "Flat size (Bedroom Hall Kitchen)",
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
                           SizedBox(
                             height: height * 0.01,
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: height * 0.02),
-                            child: Container(
-                              width: widht,
-                              height: height * 0.075,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xffF5F5F5),
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 12, right: 12),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    CText(
-                                      text: LocaleKeys.house_cleaning_items_hours.tr,
-                                      fontWeight: bold6,
-                                      fontsize: 16,
-                                    ),
-                                    const Spacer(),
-                                    InkWell(
-                                      onTap: () {
-                                        controller.hours_decrese();
-                                        controller.claculateBill();
-                                      },
-                                      child: Container(
-                                        width: widht * 0.1,
-                                        height: height * 0.055,
-                                        decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.remove,
-                                            size: 16,
-                                            color: AppColor.primary,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: widht * 0.04,
-                                    ),
-                                    CText(
-                                      text: controller.hours.value.toString(),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    SizedBox(
-                                      width: widht * 0.04,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        controller.hours.value++;
-                                        controller.claculateBill();
-                                      },
-                                      child: Container(
-                                        width: widht * 0.1,
-                                        height: height * 0.055,
-                                        decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.add,
-                                            size: 16,
-                                            color: AppColor.primary,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
                           SizedBox(
-                            height: height * 0.01,
-                          ),
-                          CText(
-                            text: "How many number of rooms",
-                            fontsize: titlelarge,
-                            fontWeight: bold4,
-                          ),
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: height * 0.02),
-                            child: Container(
-                              width: widht,
-                              height: height * 0.075,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xffF5F5F5),
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 12, right: 12),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    CText(
-                                      text: "Rooms",
-                                      fontWeight: bold6,
-                                      fontsize: 16,
+                            width: double.maxFinite,
+                            child: Wrap(
+                              children: obj.flatSize.map((size) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                                  child: ChoiceChip(
+                                    shape: StadiumBorder(
+                                        side: BorderSide(
+                                            color: obj.selectedSize.contains(size)
+                                                ? Colors.transparent
+                                                : AppColor.primary)),
+                                    labelPadding:
+                                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                                    backgroundColor: AppColor.white,
+                                    selectedColor: AppColor.primary,
+                                    showCheckmark: false,
+                                    label: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Text(size,
+                                          style: TextStyle(
+                                              color: obj.selectedSize.contains(size)
+                                                  ? AppColor.white
+                                                  : Colors.black)),
                                     ),
-                                    const Spacer(),
-                                    InkWell(
-                                      onTap: () {
-                                        controller.cleaner_decrese();
-                                        controller.claculateBill();
-                                      },
-                                      child: Container(
-                                        width: widht * 0.1,
-                                        height: height * 0.055,
-                                        decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.remove,
-                                            size: 16,
-                                            color: AppColor.primary,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: widht * 0.04,
-                                    ),
-                                    CText(
-                                      text: controller.cleaner.value.toString(),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    SizedBox(
-                                      width: widht * 0.04,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        controller.cleaner.value++;
-                                        controller.claculateBill();
-                                      },
-                                      child: Container(
-                                        width: widht * 0.1,
-                                        height: height * 0.055,
-                                        decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.add,
-                                            size: 16,
-                                            color: AppColor.primary,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                    selected: obj.selectedSize.contains(size),
+                                    onSelected: (isSelected) {
+                                      obj.selectedSize.value = size;
+
+                                      obj.update();
+                                    },
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ),
                           //
                           SizedBox(
-                            height: height * 0.01,
+                            height: height * 0.02,
                           ),
                           CText(
-                            text: LocaleKeys.house_cleaning_items_how_often_need_claning.tr,
+                            text: "Service type",
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
