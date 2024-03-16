@@ -172,8 +172,7 @@ class HomeView extends GetView<HomeController> {
                   await obj.getOffers();
                 },
                 child: SingleChildScrollView(
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
+                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: EdgeInsets.only(
@@ -358,7 +357,6 @@ class HomeView extends GetView<HomeController> {
                         width: widht * 0.19,
                         height: widht * 0.20,
                         decoration: BoxDecoration(
-
                             color: AppColor.greylight.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(10)),
                         child: Column(
@@ -931,9 +929,7 @@ class TabBarGrid extends StatelessWidget {
                                                     text: "${model.name}",
                                                     color: AppColor.black,
                                                     fontsize: 16,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-
+                                                    fontWeight: FontWeight.bold),
                                                 Padding(
                                                   padding: EdgeInsets.only(right: widht * 0.02),
                                                   child: Icon(Icons.more_horiz),
@@ -956,7 +952,7 @@ class TabBarGrid extends StatelessWidget {
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.normal,
                                                       color: AppColor.secondary,
-                                                      fontSize: 18),
+                                                      fontSize: 15),
                                                 ),
                                               ),
                                             ),
@@ -985,7 +981,7 @@ class TabBarGrid extends StatelessWidget {
                                                     ],
                                                   ),
                                                   Text(
-                                                    "\AED${model.rate}",
+                                                    "AED${model.rate}",
                                                     style: TextStyle(
                                                         fontWeight: FontWeight.bold,
                                                         color: AppColor.secondary,
