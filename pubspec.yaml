@@ -49,12 +49,13 @@ dependencies:
   flutter:
     sdk: flutter
   marquee: ^2.2.3
+
   flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_launcher_icons: 0.13.1
-  
+
 
   flutter_test:
     sdk: flutter
