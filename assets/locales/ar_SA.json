@@ -325,6 +325,62 @@
     "seller_mode": "وضع البائع",
     "buyer_mode": "وضع الشراء"
   },
-
-  "upload_profile_pic": "تحميل صورة الملف الشخصي"
+  "upload_profile_pic": "تحميل صورة الملف الشخصي",
+  "men_saloon": {
+    "men_saloon": "صالون الرجال",
+    "which_type_service": "أي خدمة تحتاج؟",
+    "hair_cut_formen": "قص الشعر للرجال والأطفال",
+    "shave_beard": "حلاقة اللحية / تنظيف اللحية",
+    "face_waxing": "تشميع الوجه",
+    "pedicure": "العناية بالأقدام واليدين",
+    "face_care": "عناية الوجه",
+    "express_massage": "تدليك سريع",
+    "chest_back_trimming": "تشذيب الصدر / الظهر",
+    "hair_beard_color": "صبغ الشعر واللحية"
+  },
+  "women_saloon": {
+    "women_saloon": "صالون نسائي",
+    "bridal_package": "باقات الزفاف",
+    "skin_treatment": "علاج البشرة",
+    "face_waxing": "تشميع الوجه",
+    "pedicure": "العناية بالأقدام واليدين",
+    "face_care": "عناية الوجه",
+    "express_massage": "تدليك سريع",
+    "hair_removing": "إزالة الشعر",
+    "threading": "تنظيف بالخيط"
+  },
+  "pest_control": {
+    "pest_control": "مكافحة الآفات",
+    "flat_size": "حجم الشقة (غرفة نوم - صالة - مطبخ)",
+    "1_bhk": "1 غرفة نوم",
+    "2_bkh": "2 غرفة نوم",
+    "3_bkh": "3 غرف نوم",
+    "villa": "فيلا",
+    "studio": "استديو",
+    "service_type": "نوع الخدمة",
+    "general": "عامة",
+    "cockroaches": "صراصير",
+    "bed_bugs": "بق الفراش",
+    "ants": "نمل",
+    "rodent": "قوارض"
+  },
+  "spa": {
+    "spa": "سبا",
+    "services": "الخدمات",
+    "massage": "تدليك",
+    "facial": "عناية بالوجه",
+    "body_treatment": "علاج الجسم",
+    "manicure_pedicure": "تدليك اليدين والأقدام",
+    "waxing_hairremoval": "تشميع الجسم وإزالة الشعر",
+    "hydrotherapy": "علاج الماء",
+    "suana_steam_room": "غرفة السونا والبخار",
+    "yoga": "يوغا",
+    "meditation_classes": "فصول التأمل",
+    "acupunture": "الإبر الصينية",
+    "cosmetics_treatments": "علاجات التجميل",
+    "aromatherapy": "علاج بالزيوت العطرية",
+    "reflexology": "التدليك بالضغط",
+    "hair_services": "خدمات الشعر",
+    "makeup_sevices": "خدمات المكياج"
+  }
 }

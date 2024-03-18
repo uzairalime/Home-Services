@@ -60,10 +60,8 @@
       "language": "Language",
       "_language": {
         "english": "English",
-        "العربية": "العربية"
+        "العربية": "Arabic"
       },
-
-
       "privacy_policy": "Privacy Policy",
       "_privacy_policy": {
         "detail_0": "Since we value your privacy, we will treat your personal information in accordance with the guidelines outlined in this policy. On our website, cookies are used. You provide your consent for us to use cookies in line with this policy by using our website and accepting its conditions. Which types of data do we gather? These are the types of personal information that we might gather, keep, and use Information about your computer and about your visits to and use of this website (including your IP address, geographical location, browser type and version, operating system, referral source, length of visit, page views and website navigation)Information relating to any transactions carried out between you and us on or in relation to this website, including information relating to any purchases you make of our goods or services (including booking a cleaner through Home Brigadier)Information that you provide to us for the purpose of registering with us (including your name, address and email address)Information that you provide to us for the purpose of subscribing to our website services, email notifications and/or newsletters (including your name and email address)You must first get the agreement of the individual whose personal information you are disclosing to us, granting us permission to share and process that information in compliance with our privacy policy.No third parties will keep, rent, share, sell, or lease any credit/debit card details or personally identifying information.",
@@ -121,7 +119,6 @@
     "upload_picture": "Upload Picture",
     "tap_to_upload": "Tap here to Select Image",
     "submit": "Submit"
-
   },
   "faq_items": {
     "faq": "Faq",
@@ -328,5 +325,62 @@
     "seller_mode": "Seller Mode",
     "buyer_mode": "Buyer Mode"
   },
-  "upload_profile_pic": "Upload Profile Pic"
+  "upload_profile_pic": "Upload Profile Pic",
+  "men_saloon": {
+    "men_saloon": "Men Saloon",
+    "which_type_service": "Which Service do you need?",
+    "hair_cut_formen": "Haircut for Men & Kids",
+    "shave_beard": "Shave/Beard Gromming",
+    "face_waxing": "Face Waxing",
+    "pedicure": "Pedicure & Menicure",
+    "face_care": "Face Care",
+    "express_massage": "Express Massage",
+    "chest_back_trimming": "Chesh/Back Trimming",
+    "hair_beard_color": "Hair & Beard Color"
+  },
+  "women_saloon": {
+    "women_saloon": "Women Saloon",
+    "bridal_package": "Bridal Packages",
+    "skin_treatment": "Skin Treatment",
+    "face_waxing": "Face Waxing",
+    "pedicure": "Pedicure & Menicure",
+    "face_care": "Face Care",
+    "express_massage": "Express Massage",
+    "hair_removing": "Hair Removing",
+    "threading": "Threading"
+  },
+  "pest_control": {
+    "pest_control": "Pest Control",
+    "flat_size": "Flat Size (Bedroom Hall Kitchen)",
+    "1_bhk": "1 BHK",
+    "2_bkh": "2 BKH",
+    "3_bkh": "3 BKH",
+    "villa": "Villa",
+    "studio": "Studio",
+    "service_type": "Service Type",
+    "general": "General",
+    "cockroaches": "Cockroaches",
+    "bed_bugs": "Bed Bugs",
+    "ants": "Ants",
+    "rodent": "Rodents"
+  },
+  "spa": {
+    "spa": "Spa",
+    "services": "Services",
+    "massage": "Massage",
+    "facial": "Facials",
+    "body_treatment": "Body Treatment",
+    "manicure_pedicure": "Manicures and Pedicure ",
+    "waxing_hairremoval": "Waxing and Hair Removal",
+    "hydrotherapy": "Hydrotherapy",
+    "suana_steam_room": "Sauna and Steam Room",
+    "yoga": "Yoga",
+    "meditation_classes": "Meditation Classes",
+    "acupunture": "Acupunture",
+    "cosmetics_treatments": "Cosmetics Treatments",
+    "aromatherapy": "Aromatherapy",
+    "reflexology": "Reflexology",
+    "hair_services": "Hair Services",
+    "makeup_sevices": "Makeup Services"
+  }
 }
