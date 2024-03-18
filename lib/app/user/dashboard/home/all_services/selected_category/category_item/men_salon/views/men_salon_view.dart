@@ -20,7 +20,7 @@ class MenSalonView extends GetView<BookingController> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     BookingController.to.claculateBill();
-    Get.put(MenSalonController());
+    final obj = Get.put(MenSalonController());
 
     controller.claculateBill();
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
@@ -101,17 +101,14 @@ class MenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color: controller.selectedweekplan.value ==
-                                              'Haircut for Men & Kids'
+                                      color: obj.selectedweekplan.value == 'Haircut for Men & Kids'
                                           ? AppColor.white
                                           : AppColor.black,
                                       text: "Haircut for Men & Kids"),
-                                  selected:
-                                      controller.selectedweekplan.value == 'Haircut for Men & Kids',
+                                  selected: obj.selectedweekplan.value == 'Haircut for Men & Kids',
                                   onSelected: (bool selected) {
-                                    MenSalonController.to.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    controller.selectWeekplan('Haircut for Men & Kids');
+                                    obj.selectedweekplan.value = 'Shave/beard Gromming';
+                                    obj.selectWeekplan('Haircut for Men & Kids');
                                   },
                                 ),
                                 ChoiceChip(
@@ -127,16 +124,14 @@ class MenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color: controller.selectedweekplan == 'Shave/beard Gromming'
+                                      color: obj.selectedweekplan == 'Shave/beard Gromming'
                                           ? AppColor.white
                                           : AppColor.black,
                                       text: "Shave/beard Gromming"),
-                                  selected:
-                                      controller.selectedweekplan.value == 'Shave/beard Gromming',
+                                  selected: obj.selectedweekplan.value == 'Shave/beard Gromming',
                                   onSelected: (bool selected) {
-                                    MenSalonController.to.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    controller.selectWeekplan('Shave/beard Gromming');
+                                    obj.selectedweekplan.value = 'Shave/beard Gromming';
+                                    obj.selectWeekplan('Shave/beard Gromming');
                                   },
                                 ),
                                 SizedBox(
@@ -149,19 +144,18 @@ class MenSalonView extends GetView<BookingController> {
                                   selectedColor: AppColor.secondary,
                                   shape: StadiumBorder(
                                       side: BorderSide(
-                                          color: controller.selectedmaterial.value == 'Face Waxing'
+                                          color: obj.selectedweekplan.value == 'Face Waxing'
                                               ? AppColor.secondary
                                               : AppColor.secondary)),
                                   label: CText(
-                                      color: controller.selectedweekplan == 'Face Waxing'
+                                      color: obj.selectedweekplan == 'Face Waxing'
                                           ? AppColor.white
                                           : AppColor.black,
                                       text: "Face Waxing"),
-                                  selected: controller.selectedweekplan.value == 'Face Waxing',
+                                  selected: obj.selectedweekplan.value == 'Face Waxing',
                                   onSelected: (bool selected) {
-                                    MenSalonController.to.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    controller.selectWeekplan('Face Waxing');
+                                    obj.selectedweekplan.value = 'Shave/beard Gromming';
+                                    obj.selectWeekplan('Face Waxing');
                                   },
                                 ),
                                 ChoiceChip(
@@ -177,17 +171,14 @@ class MenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color:
-                                          controller.selectedweekplan.value == 'Pedicure & Menicure'
-                                              ? AppColor.white
-                                              : AppColor.black,
+                                      color: obj.selectedweekplan.value == 'Pedicure & Menicure'
+                                          ? AppColor.white
+                                          : AppColor.black,
                                       text: "Pedicure & Menicure".tr),
-                                  selected:
-                                      controller.selectedweekplan.value == 'Pedicure & Menicure',
+                                  selected: obj.selectedweekplan.value == 'Pedicure & Menicure',
                                   onSelected: (bool selected) {
-                                    MenSalonController.to.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    controller.selectWeekplan('Pedicure & Menicure');
+                                    obj.selectedweekplan.value = 'Shave/beard Gromming';
+                                    obj.selectWeekplan('Pedicure & Menicure');
                                   },
                                 ),
                                 SizedBox(
@@ -206,15 +197,14 @@ class MenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color: controller.selectedweekplan.value == 'Face Care'
+                                      color: obj.selectedweekplan.value == 'Face Care'
                                           ? AppColor.white
                                           : AppColor.black,
                                       text: "Face Care".tr),
-                                  selected: controller.selectedweekplan.value == 'Face Care',
+                                  selected: obj.selectedweekplan.value == 'Face Care',
                                   onSelected: (bool selected) {
-                                    MenSalonController.to.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    controller.selectWeekplan('Face Care');
+                                    obj.selectedweekplan.value = 'Shave/beard Gromming';
+                                    obj.selectWeekplan('Face Care');
                                   },
                                 ),
                                 ChoiceChip(
@@ -230,15 +220,14 @@ class MenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color: controller.selectedweekplan.value == 'Express Massage'
+                                      color: obj.selectedweekplan.value == 'Express Massage'
                                           ? AppColor.white
                                           : AppColor.black,
                                       text: "Express Massage".tr),
-                                  selected: controller.selectedweekplan.value == 'Express Massage',
+                                  selected: obj.selectedweekplan.value == 'Express Massage',
                                   onSelected: (bool selected) {
-                                    MenSalonController.to.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    controller.selectWeekplan('Express Massage');
+                                    obj.selectedweekplan.value = 'Shave/beard Gromming';
+                                    obj.selectWeekplan('Express Massage');
                                   },
                                 ),
                                 ChoiceChip(
@@ -254,17 +243,14 @@ class MenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color:
-                                          controller.selectedweekplan.value == 'Chest/back Trimming'
-                                              ? AppColor.white
-                                              : AppColor.black,
+                                      color: obj.selectedweekplan.value == 'Chest/back Trimming'
+                                          ? AppColor.white
+                                          : AppColor.black,
                                       text: "Chest/back Trimming".tr),
-                                  selected:
-                                      controller.selectedweekplan.value == 'Chest/back Trimming',
+                                  selected: obj.selectedweekplan.value == 'Chest/back Trimming',
                                   onSelected: (bool selected) {
-                                    MenSalonController.to.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    controller.selectWeekplan('Chest/back Trimming');
+                                    obj.selectedweekplan.value = 'Shave/beard Gromming';
+                                    obj.selectWeekplan('Chest/back Trimming');
                                   },
                                 ),
                                 ChoiceChip(
@@ -280,17 +266,14 @@ class MenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color:
-                                          controller.selectedweekplan.value == 'Hair & Beard Color'
-                                              ? AppColor.white
-                                              : AppColor.black,
+                                      color: obj.selectedweekplan.value == 'Hair & Beard Color'
+                                          ? AppColor.white
+                                          : AppColor.black,
                                       text: "Hair & Beard Color".tr),
-                                  selected:
-                                      controller.selectedweekplan.value == 'Hair & Beard Color',
+                                  selected: obj.selectedweekplan.value == 'Hair & Beard Color',
                                   onSelected: (bool selected) {
-                                    MenSalonController.to.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    controller.selectWeekplan('Hair & Beard Color');
+                                    obj.selectedweekplan.value = 'Shave/beard Gromming';
+                                    obj.selectWeekplan('Hair & Beard Color');
                                   },
                                 ),
                               ],

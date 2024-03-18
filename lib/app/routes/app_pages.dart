@@ -197,7 +197,7 @@ class AppPages {
                         ),
                         GetPage(
                           name: _Paths.WOMEN_SALON,
-                          page: () => const WomenSalonView(),
+                          page: () => WomenSalonView(),
                           binding: WomenSalonBinding(),
                         ),
                       ],
