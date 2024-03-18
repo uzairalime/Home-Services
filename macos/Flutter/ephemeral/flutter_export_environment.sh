@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\usman\fvm\versions\3.16.7"
+export "FLUTTER_ROOT=C:\Users\usman\fvm\default"
 export "FLUTTER_APPLICATION_PATH=D:\Quthum Projects\home_services"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
