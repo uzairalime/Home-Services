@@ -45,7 +45,8 @@ class WomenSalonView extends GetView<BookingController> {
                       color: AppColor.greylight,
                     ))),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+                  padding: const EdgeInsets.only(
+                      top: 30, bottom: 20, left: 20, right: 20),
                   child: CButton(
                       borderradius: width * 0.075,
                       text:
@@ -60,7 +61,7 @@ class WomenSalonView extends GetView<BookingController> {
           ),
           appBar: AppBar(
             title: Text(
-              "Women Saloon",
+              LocaleKeys.women_saloon_women_saloon.tr,
               style: appbar,
             ),
           ),
@@ -69,7 +70,8 @@ class WomenSalonView extends GetView<BookingController> {
             child: SizedBox(
               width: width,
               child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -77,7 +79,7 @@ class WomenSalonView extends GetView<BookingController> {
                             height: height * 0.01,
                           ),
                           CText(
-                            text: "Which Service do you need?",
+                            text: LocaleKeys.men_saloon_which_type_service.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -90,8 +92,8 @@ class WomenSalonView extends GetView<BookingController> {
                               spacing: width * 0.02,
                               children: [
                                 ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: RoundedRectangleBorder(
@@ -102,22 +104,27 @@ class WomenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color:
-                                          womencontoller.selectedweekplan.value == 'Bridal packages'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                      text: "Bridal packages"),
+                                      color: womencontoller
+                                                  .selectedweekplan.value ==
+                                              'Bridal packages'
+                                          ? AppColor.white
+                                          : AppColor.black,
+                                      text: LocaleKeys
+                                          .women_saloon_bridal_package.tr),
                                   selected:
-                                      womencontoller.selectedweekplan.value == 'Bridal packages',
+                                      womencontoller.selectedweekplan.value ==
+                                          'Bridal packages',
                                   onSelected: (bool selected) {
-                                    womencontoller.selectedweekplan.value = 'Shave/beard Gromming';
-                                    womencontoller.selectWeekplan('Bridal packages');
+                                    womencontoller.selectedweekplan.value =
+                                        'Shave/beard Gromming';
+                                    womencontoller
+                                        .selectWeekplan('Bridal packages');
                                     womencontoller.update();
                                   },
                                 ),
                                 ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: RoundedRectangleBorder(
@@ -128,16 +135,21 @@ class WomenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color:
-                                          womencontoller.selectedweekplan.value == 'Skin treatments'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                      text: "Skin treatments"),
+                                      color: womencontoller
+                                                  .selectedweekplan.value ==
+                                              'Skin treatments'
+                                          ? AppColor.white
+                                          : AppColor.black,
+                                      text: LocaleKeys
+                                          .women_saloon_skin_treatment.tr),
                                   selected:
-                                      womencontoller.selectedweekplan.value == 'Skin treatments',
+                                      womencontoller.selectedweekplan.value ==
+                                          'Skin treatments',
                                   onSelected: (bool selected) {
-                                    womencontoller.selectedweekplan.value = 'Skin treatments';
-                                    womencontoller.selectWeekplan('Skin treatments');
+                                    womencontoller.selectedweekplan.value =
+                                        'Skin treatments';
+                                    womencontoller
+                                        .selectWeekplan('Skin treatments');
                                     womencontoller.update();
                                   },
                                 ),
@@ -145,31 +157,39 @@ class WomenSalonView extends GetView<BookingController> {
                                   width: width * 0.01,
                                 ),
                                 ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: StadiumBorder(
                                       side: BorderSide(
-                                          color:
-                                              womencontoller.selectedweekplan.value == 'Face Waxing'
-                                                  ? AppColor.secondary
-                                                  : AppColor.secondary)),
+                                          color: womencontoller
+                                                      .selectedweekplan.value ==
+                                                  'Face Waxing'
+                                              ? AppColor.secondary
+                                              : AppColor.secondary)),
                                   label: CText(
-                                      color: womencontoller.selectedweekplan.value == 'Face Waxing'
+                                      color: womencontoller
+                                                  .selectedweekplan.value ==
+                                              'Face Waxing'
                                           ? AppColor.white
                                           : AppColor.black,
-                                      text: "Face Waxing"),
-                                  selected: womencontoller.selectedweekplan.value == 'Face Waxing',
+                                      text: LocaleKeys
+                                          .women_saloon_face_waxing.tr),
+                                  selected:
+                                      womencontoller.selectedweekplan.value ==
+                                          'Face Waxing',
                                   onSelected: (bool selected) {
-                                    womencontoller.selectedweekplan.value = 'Shave/beard Gromming';
-                                    womencontoller.selectWeekplan('Face Waxing');
+                                    womencontoller.selectedweekplan.value =
+                                        'Shave/beard Gromming';
+                                    womencontoller
+                                        .selectWeekplan('Face Waxing');
                                     womencontoller.update();
                                   },
                                 ),
                                 ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: RoundedRectangleBorder(
@@ -180,16 +200,21 @@ class WomenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color: womencontoller.selectedweekplan.value ==
+                                      color: womencontoller
+                                                  .selectedweekplan.value ==
                                               'Pedicure & Menicure'
                                           ? AppColor.white
                                           : AppColor.black,
-                                      text: "Pedicure & Menicure".tr),
-                                  selected: womencontoller.selectedweekplan.value ==
-                                      'Pedicure & Menicure',
+                                      text:
+                                          LocaleKeys.women_saloon_pedicure.tr),
+                                  selected:
+                                      womencontoller.selectedweekplan.value ==
+                                          'Pedicure & Menicure',
                                   onSelected: (bool selected) {
-                                    womencontoller.selectedweekplan.value = 'Shave/beard Gromming';
-                                    womencontoller.selectWeekplan('Pedicure & Menicure');
+                                    womencontoller.selectedweekplan.value =
+                                        'Shave/beard Gromming';
+                                    womencontoller
+                                        .selectWeekplan('Pedicure & Menicure');
                                     womencontoller.update();
                                   },
                                 ),
@@ -197,8 +222,8 @@ class WomenSalonView extends GetView<BookingController> {
                                   width: width * 0.01,
                                 ),
                                 ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: RoundedRectangleBorder(
@@ -209,20 +234,26 @@ class WomenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color: womencontoller.selectedweekplan.value == 'Face Care'
+                                      color: womencontoller
+                                                  .selectedweekplan.value ==
+                                              'Face Care'
                                           ? AppColor.white
                                           : AppColor.black,
-                                      text: "Face Care".tr),
-                                  selected: womencontoller.selectedweekplan.value == 'Face Care',
+                                      text:
+                                          LocaleKeys.women_saloon_face_care.tr),
+                                  selected:
+                                      womencontoller.selectedweekplan.value ==
+                                          'Face Care',
                                   onSelected: (bool selected) {
-                                    womencontoller.selectedweekplan.value = 'Shave/beard Gromming';
+                                    womencontoller.selectedweekplan.value =
+                                        'Shave/beard Gromming';
                                     womencontoller.selectWeekplan('Face Care');
                                     womencontoller.update();
                                   },
                                 ),
                                 ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: RoundedRectangleBorder(
@@ -233,65 +264,81 @@ class WomenSalonView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color:
-                                          womencontoller.selectedweekplan.value == 'Express Massage'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                      text: "Express Massage".tr),
-                                  selected:
-                                      womencontoller.selectedweekplan.value == 'Express Massage',
-                                  onSelected: (bool selected) {
-                                    womencontoller.selectedweekplan.value = 'Shave/beard Gromming';
-                                    womencontoller.selectWeekplan('Express Massage');
-                                    womencontoller.update();
-                                  },
-                                ),
-                                ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color:
-                                          womencontoller.selectedweekplan.value == 'Hair Removing'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                      text: "Hair Removing".tr),
-                                  selected:
-                                      womencontoller.selectedweekplan.value == 'Hair Removing',
-                                  onSelected: (bool selected) {
-                                    womencontoller.selectedweekplan.value = 'Hair Removing';
-                                    womencontoller.selectWeekplan('Hair Removing');
-                                    womencontoller.update();
-                                  },
-                                ),
-                                ChoiceChip(
-                                  labelPadding:
-                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color: womencontoller.selectedweekplan.value == 'Threading'
+                                      color: womencontoller
+                                                  .selectedweekplan.value ==
+                                              'Express Massage'
                                           ? AppColor.white
                                           : AppColor.black,
-                                      text: "Threading".tr),
-                                  selected: womencontoller.selectedweekplan.value == 'Threading',
+                                      text: LocaleKeys
+                                          .women_saloon_express_massage.tr),
+                                  selected:
+                                      womencontoller.selectedweekplan.value ==
+                                          'Express Massage',
                                   onSelected: (bool selected) {
-                                    womencontoller.selectedweekplan.value = 'Threading';
+                                    womencontoller.selectedweekplan.value =
+                                        'Shave/beard Gromming';
+                                    womencontoller
+                                        .selectWeekplan('Express Massage');
+                                    womencontoller.update();
+                                  },
+                                ),
+                                ChoiceChip(
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 3),
+                                  backgroundColor: AppColor.white,
+                                  selectedColor: AppColor.secondary,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                      color: AppColor.secondary,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(22.0),
+                                  ),
+                                  label: CText(
+                                      color: womencontoller
+                                                  .selectedweekplan.value ==
+                                              'Hair Removing'
+                                          ? AppColor.white
+                                          : AppColor.black,
+                                      text: LocaleKeys
+                                          .women_saloon_hair_removing.tr),
+                                  selected:
+                                      womencontoller.selectedweekplan.value ==
+                                          'Hair Removing',
+                                  onSelected: (bool selected) {
+                                    womencontoller.selectedweekplan.value =
+                                        'Hair Removing';
+                                    womencontoller
+                                        .selectWeekplan('Hair Removing');
+                                    womencontoller.update();
+                                  },
+                                ),
+                                ChoiceChip(
+                                  labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 3),
+                                  backgroundColor: AppColor.white,
+                                  selectedColor: AppColor.secondary,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                      color: AppColor.secondary,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(22.0),
+                                  ),
+                                  label: CText(
+                                      color: womencontoller
+                                                  .selectedweekplan.value ==
+                                              'Threading'
+                                          ? AppColor.white
+                                          : AppColor.black,
+                                      text:
+                                          LocaleKeys.women_saloon_threading.tr),
+                                  selected:
+                                      womencontoller.selectedweekplan.value ==
+                                          'Threading',
+                                  onSelected: (bool selected) {
+                                    womencontoller.selectedweekplan.value =
+                                        'Threading';
                                     womencontoller.selectWeekplan('Threading');
                                     womencontoller.update();
                                   },
@@ -306,13 +353,16 @@ class WomenSalonView extends GetView<BookingController> {
                             child: CText(
                                 textAlign: TextAlign.start,
                                 fontsize: titleSmall,
-                                text: LocaleKeys.house_cleaning_items_addditional_charges_aed.tr),
+                                text: LocaleKeys
+                                    .house_cleaning_items_addditional_charges_aed
+                                    .tr),
                           ),
                           SizedBox(
                             height: height * 0.01,
                           ),
                           CText(
-                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys
+                                .house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -328,14 +378,18 @@ class WomenSalonView extends GetView<BookingController> {
                                 controller: bookingcontroller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText:
-                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
+                                    hintText: LocaleKeys
+                                        .house_cleaning_items_example_insutruction
+                                        .tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(color: AppColor.secondary)),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(
+                                            color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12.0)))),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
