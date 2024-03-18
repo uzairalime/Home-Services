@@ -3,22 +3,9 @@ import 'package:get/get.dart';
 class WomenSalonController extends GetxController {
   //TODO: Implement WomenSalonController
 
-  final count = 0.obs;
+  RxString selectedweekplan = 'Bridal packages'.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
+  void selectWeekplan(String plan) {
+    selectedweekplan.value = plan;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

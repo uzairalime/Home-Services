@@ -299,7 +299,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
 
             case 'womenSalon':
               BookingController.to.setServicesModel(model);
-              Get.to(() => const WomenSalonView());
+              Get.to(() => WomenSalonView());
               break;
 
             case 'spa':

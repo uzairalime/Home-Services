@@ -349,6 +349,11 @@ class StartEarningController extends GetxController {
   }
 
   clearController() {
+    selectedProfileImage = Rx<File?>(null);
+    selectedFrontImage = Rx<File?>(null);
+    selectedworkingImage = Rx<File?>(null);
+    selectedProfileImage = Rx<File?>(null);
+    selectedBackImage = Rx<File?>(null);
     nameController.clear();
     descController.clear();
     selectedCategory = '';
