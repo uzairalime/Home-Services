@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart' as deo;
@@ -44,9 +45,8 @@ class PostService {
         openingHours: openingHours,
         rate: rate.toString());
 
-    // log(StaticData.accessToken);
-    //
-    // log(jsonEncode(model));
+    log(StaticData.accessToken);
+    log(jsonEncode(model));
 
     try {
       final response = await dio.post(
@@ -70,6 +70,7 @@ class PostService {
 
       // print("SocketException: $e");
     } catch (e) {
+      log(e.toString());
       showsnackbar("Failed to Upload: Try again", true);
 
       //print("Error: $e");

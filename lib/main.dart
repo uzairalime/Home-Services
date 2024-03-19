@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:home_brigadier/app/routes/app_pages.dart';
@@ -12,11 +14,8 @@ import 'package:home_brigadier/theme/theme.dart';
 import 'package:home_brigadier/utils/shared_preferance.dart';
 
 import 'generated/locales.g.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 
-String localeValue() =>
-    GetStorage().read(SharedPreference.langKey) ?? "English";
+String localeValue() => GetStorage().read(SharedPreference.langKey) ?? "English";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,9 +40,7 @@ Future<void> main() async {
   runApp(
     GetMaterialApp(
       translationsKeys: AppTranslation.translations,
-      locale: localeValue() == "العربية"
-          ? const Locale('ar', 'SA')
-          : const Locale('en', 'US'),
+      locale: localeValue() == "العربية" ? const Locale('ar', 'SA') : const Locale('en', 'US'),
       fallbackLocale: const Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
       title: "home_brigadier",
