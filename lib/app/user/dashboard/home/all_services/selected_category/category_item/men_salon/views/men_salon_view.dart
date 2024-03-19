@@ -87,234 +87,47 @@ class MenSalonView extends GetView<BookingController> {
                             height: height * 0.01,
                           ),
                           SizedBox(
-                            // color: Colors.amber,
-                            child: Wrap(
-                              children: [
-                                ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color: obj.selectedweekplan.value ==
-                                              'Haircut for Men & Kids'
-                                          ? AppColor.white
-                                          : AppColor.black,
-                                      text: LocaleKeys
-                                          .men_saloon_hair_cut_formen.tr),
-                                  selected: obj.selectedweekplan.value ==
-                                      'Haircut for Men & Kids',
-                                  onSelected: (bool selected) {
-                                    obj.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    obj.selectWeekplan(
-                                        'Haircut for Men & Kids');
-                                  },
-                                ),
-                                ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color: obj.selectedweekplan ==
-                                              'Shave/beard Gromming'
-                                          ? AppColor.white
-                                          : AppColor.black,
-                                      text:
-                                          LocaleKeys.men_saloon_shave_beard.tr),
-                                  selected: obj.selectedweekplan.value ==
-                                      'Shave/beard Gromming',
-                                  onSelected: (bool selected) {
-                                    obj.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    obj.selectWeekplan('Shave/beard Gromming');
-                                  },
-                                ),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: StadiumBorder(
-                                      side: BorderSide(
-                                          color: obj.selectedweekplan.value ==
-                                                  'Face Waxing'
-                                              ? AppColor.secondary
-                                              : AppColor.secondary)),
-                                  label: CText(
-                                      color:
-                                          obj.selectedweekplan == 'Face Waxing'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                      text:
-                                          LocaleKeys.men_saloon_face_waxing.tr),
-                                  selected: obj.selectedweekplan.value ==
-                                      'Face Waxing',
-                                  onSelected: (bool selected) {
-                                    obj.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    obj.selectWeekplan('Face Waxing');
-                                  },
-                                ),
-                                ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color: obj.selectedweekplan.value ==
-                                              'Pedicure & Menicure'
-                                          ? AppColor.white
-                                          : AppColor.black,
-                                      text: LocaleKeys.men_saloon_pedicure.tr),
-                                  selected: obj.selectedweekplan.value ==
-                                      'Pedicure & Menicure',
-                                  onSelected: (bool selected) {
-                                    obj.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    obj.selectWeekplan('Pedicure & Menicure');
-                                  },
-                                ),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color: obj.selectedweekplan.value ==
-                                              'Face Care'
-                                          ? AppColor.white
-                                          : AppColor.black,
-                                      text: LocaleKeys.men_saloon_face_care.tr),
-                                  selected:
-                                      obj.selectedweekplan.value == 'Face Care',
-                                  onSelected: (bool selected) {
-                                    obj.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    obj.selectWeekplan('Face Care');
-                                  },
-                                ),
-                                ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color: obj.selectedweekplan.value ==
-                                              'Express Massage'
-                                          ? AppColor.white
-                                          : AppColor.black,
-                                      text: LocaleKeys
-                                          .men_saloon_express_massage.tr),
-                                  selected: obj.selectedweekplan.value ==
-                                      'Express Massage',
-                                  onSelected: (bool selected) {
-                                    obj.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    obj.selectWeekplan('Express Massage');
-                                  },
-                                ),
-                                ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color: obj.selectedweekplan.value ==
-                                              'Chest/back Trimming'
-                                          ? AppColor.white
-                                          : AppColor.black,
-                                      text: LocaleKeys
-                                          .men_saloon_chest_back_trimming.tr),
-                                  selected: obj.selectedweekplan.value ==
-                                      'Chest/back Trimming',
-                                  onSelected: (bool selected) {
-                                    obj.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    obj.selectWeekplan('Chest/back Trimming');
-                                  },
-                                ),
-                                ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 3),
-                                  backgroundColor: AppColor.white,
-                                  selectedColor: AppColor.secondary,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: AppColor.secondary,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(22.0),
-                                  ),
-                                  label: CText(
-                                      color: obj.selectedweekplan.value ==
-                                              'Hair & Beard Color'
-                                          ? AppColor.white
-                                          : AppColor.black,
-                                      text: LocaleKeys
-                                          .men_saloon_hair_beard_color.tr),
-                                  selected: obj.selectedweekplan.value ==
-                                      'Hair & Beard Color',
-                                  onSelected: (bool selected) {
-                                    obj.selectedweekplan.value =
-                                        'Shave/beard Gromming';
-                                    obj.selectWeekplan('Hair & Beard Color');
-                                  },
-                                ),
-                              ],
-                            ),
+                            height: height * 0.01,
                           ),
                           SizedBox(
-                            height: height * 0.01,
+                            width: double.maxFinite,
+                            child: Wrap(
+                              children: obj.insectlabel.map((insect) {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  child: ChoiceChip(
+                                    shape: StadiumBorder(
+                                        side: BorderSide(
+                                            color: obj.selectedInsects
+                                                    .contains(insect)
+                                                ? Colors.transparent
+                                                : AppColor.primary)),
+                                    labelPadding: const EdgeInsets.symmetric(
+                                        horizontal: 7, vertical: 3),
+                                    backgroundColor: AppColor.white,
+                                    selectedColor: AppColor.primary,
+                                    showCheckmark: false,
+                                    label: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Text(insect,
+                                          style: TextStyle(
+                                              color: obj.selectedInsects
+                                                      .contains(insect)
+                                                  ? AppColor.white
+                                                  : Colors.black)),
+                                    ),
+                                    selected:
+                                        obj.selectedInsects.contains(insect),
+                                    onSelected: (isSelected) {
+                                      obj.toggleSelection(insect);
+                                      obj.update();
+                                    },
+                                  ),
+                                );
+                              }).toList(),
+                            ),
                           ),
                           SizedBox(
                             child: CText(
@@ -371,7 +184,7 @@ class MenSalonView extends GetView<BookingController> {
       showsnackbar("please select hours", true);
     } else if (controller.cleaner.value == 0) {
       showsnackbar("please select cleaners", true);
-    } else if (MenSalonController.to.selectedweekplan.value.isEmpty) {
+    } else if (MenSalonController.to.selectedInsects.value.isEmpty) {
       showsnackbar("please select Service", true);
     } else if (controller.selectedmaterial.isEmpty) {
       showsnackbar("please select materials", true);

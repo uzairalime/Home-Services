@@ -447,6 +447,22 @@ class LocaleKeys {
   static const spa_reflexology = 'spa_reflexology';
   static const spa_hair_services = 'spa_hair_services';
   static const spa_makeup_sevices = 'spa_makeup_sevices';
+  static const handy_man_handy_man = 'handy_man_handy_man';
+  static const handy_man_type_of_work = 'handy_man_type_of_work';
+  static const handy_man_general_repairs = 'handy_man_general_repairs';
+  static const handy_man_carpentry = 'handy_man_carpentry';
+  static const handy_man_tile_work = 'handy_man_tile_work';
+  static const handy_man_drywall_repair = 'handy_man_drywall_repair';
+  static const handy_man_flooring = 'handy_man_flooring';
+  static const handy_man_gutter_cleaning = 'handy_man_gutter_cleaning';
+  static const handy_man_door_reparing = 'handy_man_door_reparing';
+  static const handy_man_window_repair = 'handy_man_window_repair';
+  static const handy_man_assembly = 'handy_man_assembly';
+  static const handy_man_weatherproofing = 'handy_man_weatherproofing';
+  static const handy_man_minor_renovations = 'handy_man_minor_renovations';
+  static const handy_man_general_maintenence = 'handy_man_general_maintenence';
+  static const handy_man_landscaping = 'handy_man_landscaping';
+  static const enteraddress = 'enteraddress';
   static const painting_items_special_insutuction =
       'painting_items_special_insutuction';
   static const painting_items_example_insutruction =
@@ -786,6 +802,22 @@ class Locales {
     'spa_reflexology': 'التدليك بالضغط',
     'spa_hair_services': 'خدمات الشعر',
     'spa_makeup_sevices': 'خدمات المكياج',
+    'handy_man_handy_man': 'الصانع الماهر',
+    'handy_man_type_of_work': 'نوع العمل',
+    'handy_man_general_repairs': 'إصلاحات عامة',
+    'handy_man_carpentry': 'النجارة',
+    'handy_man_tile_work': 'عمل البلاط',
+    'handy_man_drywall_repair': 'إصلاح الجدران الجافة',
+    'handy_man_flooring': 'تبليط الأرضيات',
+    'handy_man_gutter_cleaning': 'تنظيف الأنابيب',
+    'handy_man_door_reparing': 'إصلاح الأبواب',
+    'handy_man_window_repair': 'إصلاح النوافذ',
+    'handy_man_assembly': 'التجميع',
+    'handy_man_weatherproofing': 'مقاومة الطقس',
+    'handy_man_minor_renovations': 'تجديدات طفيفة',
+    'handy_man_general_maintenence': 'صيانة عامة',
+    'handy_man_landscaping': 'تنسيق الحدائق',
+    'enteraddress': 'أدخل عنوانك',
   };
   static const en_US = {
     'required_field': 'Required Field',
@@ -1127,5 +1159,21 @@ class Locales {
     'spa_reflexology': 'Reflexology',
     'spa_hair_services': 'Hair Services',
     'spa_makeup_sevices': 'Makeup Services',
+    'handy_man_handy_man': 'Handy Man',
+    'handy_man_type_of_work': 'Type of work',
+    'handy_man_general_repairs': 'General Repairs',
+    'handy_man_carpentry': 'Carpentry',
+    'handy_man_tile_work': 'Tile Work',
+    'handy_man_drywall_repair': 'Drywall Repair',
+    'handy_man_flooring': 'Flooring',
+    'handy_man_gutter_cleaning': 'Gutter Cleaning',
+    'handy_man_door_reparing': 'Door Repairing',
+    'handy_man_window_repair': 'Window Repair',
+    'handy_man_assembly': 'Assembly',
+    'handy_man_weatherproofing': 'Weatherproofing',
+    'handy_man_minor_renovations': 'Minor Renovation',
+    'handy_man_general_maintenence': 'General Maintenence',
+    'handy_man_landscaping': 'Landscaping',
+    'enteraddress': 'Enter your address',
   };
 }

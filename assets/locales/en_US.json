@@ -382,5 +382,25 @@
     "reflexology": "Reflexology",
     "hair_services": "Hair Services",
     "makeup_sevices": "Makeup Services"
-  }
+
+  },
+  "handy_man": {
+    "handy_man": "Handy Man",
+    "type_of_work": "Type of work",
+    "general_repairs": "General Repairs",
+    "carpentry": "Carpentry",
+    "tile_work": "Tile Work",
+    "drywall_repair": "Drywall Repair",
+    "flooring": "Flooring",
+    "gutter_cleaning": "Gutter Cleaning",
+    "door_reparing": "Door Repairing",
+    "window_repair": "Window Repair",
+    "assembly": "Assembly",
+    "weatherproofing": "Weatherproofing",
+    "minor_renovations": "Minor Renovation",
+    "general_maintenence": "General Maintenence",
+    "landscaping": "Landscaping"
+  },
+  "enteraddress": "Enter your address"
 }
+

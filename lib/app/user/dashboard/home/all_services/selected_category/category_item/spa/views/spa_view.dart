@@ -250,7 +250,7 @@ class SpaView extends GetView<BookingController> {
                             height: height * 0.01,
                           ),
                           CText(
-                            text: "Services",
+                            text: LocaleKeys.spa_services.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),

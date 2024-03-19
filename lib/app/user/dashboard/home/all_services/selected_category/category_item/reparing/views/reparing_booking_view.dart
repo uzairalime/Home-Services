@@ -19,7 +19,7 @@ class RepairingBookingView extends GetView<ReparingController> {
 
   @override
   Widget build(BuildContext context) {
-        BookingController.to.claculateBill();
+    BookingController.to.claculateBill();
 
     Get.put(ReparingController());
     final titlelarge = Theme.of(context).textTheme.titleLarge!.fontSize;
@@ -41,10 +41,11 @@ class RepairingBookingView extends GetView<ReparingController> {
                   color: AppColor.greylight,
                 ))),
             child: Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(
+                  top: 30, bottom: 20, left: 20, right: 20),
               child: Obx(
                 () => CButton(
-                   borderradius: widht * 0.075,
+                  borderradius: widht * 0.075,
                   text:
                       "${LocaleKeys.painting_items_continue_button.tr} AED ${bookingcontroller.total.value}",
                   fontWeight: FontWeight.bold,
@@ -64,7 +65,6 @@ class RepairingBookingView extends GetView<ReparingController> {
               Get.back();
             },
           ),
-          
           title: Text(
             LocaleKeys.ac_reparing_items_reparing.tr,
             style: TextStyle(
@@ -83,184 +83,130 @@ class RepairingBookingView extends GetView<ReparingController> {
             child: SizedBox(
               width: widht,
               child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: widht * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // CText(
+                          //   text: LocaleKeys.painting_items_how_many_hours.tr,
+                          //   fontsize: titlelarge,
+                          //   fontWeight: bold4,
+                          // ),
+
                           CText(
-                            text: LocaleKeys.painting_items_how_many_hours.tr,
+                            text: LocaleKeys
+                                .ac_reparing_items_what_kind_of_service.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
                           SizedBox(
                             height: height * 0.01,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: height * 0.02),
-                            child: Container(
-                              width: widht,
-                              height: height * 0.075,
-                              decoration: BoxDecoration(
-                                  color:  const Color(0xffF5F5F5),
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 12, right: 12),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    CText(
-                                      text: LocaleKeys.ac_reparing_items_hours.tr,
-                                      fontWeight: bold6,
-                                      fontsize: 16,
-                                    ),
-                                    const Spacer(),
-                                    InkWell(
-                                      onTap: () {
-                                        bookingcontroller.hours_decrese();
-                                        bookingcontroller.claculateBill();
-                                      },
-                                      child: Container(
-                                        width: widht * 0.1,
-                                        height: height * 0.055,
-                                        decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.remove,
-                                            size: 16,
-                                            color: AppColor.primary,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: widht * 0.04,
-                                    ),
-                                    CText(
-                                      text: bookingcontroller.hours.value.toString(),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    SizedBox(
-                                      width: widht * 0.04,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        bookingcontroller.hours.value++;
-                                        bookingcontroller.claculateBill();
-                                      },
-                                      child: Container(
-                                        width: widht * 0.1,
-                                        height: height * 0.055,
-                                        decoration: const BoxDecoration(
-                                            color:Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
-                                        child: const Center(
-                                          child: Icon(
-                                            Icons.add,
-                                            size: 16,
-                                            color:  AppColor.primary,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          CText(
-                            text: LocaleKeys.ac_reparing_items_what_kind_of_service.tr,
-                            fontsize: titlelarge,
-                            fontWeight: bold4,
                           ),
                           Wrap(
                             spacing: 10,
                             children: [
                               ChoiceChip(
-                                labelPadding:
-                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                labelPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side: BorderSide(color: AppColor.secondary)),
+                                    side:
+                                        BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Ac Service'
+                                    color: controller.selectedweekplan ==
+                                            'Ac Service'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys.ac_reparing_items_ac_service.tr),
-                                selected: controller.selectedweekplan.value == 'Ac Service',
+                                    text: LocaleKeys
+                                        .ac_reparing_items_ac_service.tr),
+                                selected: controller.selectedweekplan.value ==
+                                    'Ac Service',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Ac Service');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding:
-                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                labelPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side: BorderSide(color: AppColor.secondary)),
+                                    side:
+                                        BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Ac Repair'
+                                    color: controller.selectedweekplan ==
+                                            'Ac Repair'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys.ac_reparing_items_ac_repaire.tr),
-                                selected: controller.selectedweekplan.value == 'Ac Repair',
+                                    text: LocaleKeys
+                                        .ac_reparing_items_ac_repaire.tr),
+                                selected: controller.selectedweekplan.value ==
+                                    'Ac Repair',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Ac Repair');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding:
-                                    const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                                labelPadding: const EdgeInsets.symmetric(
+                                    vertical: 3, horizontal: 10),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side: BorderSide(color: AppColor.secondary)),
+                                    side:
+                                        BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Ac Install'
+                                    color: controller.selectedweekplan ==
+                                            'Ac Install'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys.ac_reparing_items_ac_install.tr),
-                                selected: controller.selectedweekplan.value == 'Ac Install',
+                                    text: LocaleKeys
+                                        .ac_reparing_items_ac_install.tr),
+                                selected: controller.selectedweekplan.value ==
+                                    'Ac Install',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Ac Install');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding:
-                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                labelPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side: BorderSide(color: AppColor.secondary)),
+                                    side:
+                                        BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Ac Uninstall'
+                                    color: controller.selectedweekplan ==
+                                            'Ac Uninstall'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys.ac_reparing_items_ac_uninstall.tr),
-                                selected: controller.selectedweekplan.value == 'Ac Uninstall',
+                                    text: LocaleKeys
+                                        .ac_reparing_items_ac_uninstall.tr),
+                                selected: controller.selectedweekplan.value ==
+                                    'Ac Uninstall',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Ac Uninstall');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding:
-                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                                labelPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side: BorderSide(color: AppColor.secondary)),
+                                    side:
+                                        BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Gas Refil'
+                                    color: controller.selectedweekplan ==
+                                            'Gas Refil'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys.ac_reparing_items_gas_refil.tr),
-                                selected: controller.selectedweekplan.value == 'Gas Refil',
+                                    text: LocaleKeys
+                                        .ac_reparing_items_gas_refil.tr),
+                                selected: controller.selectedweekplan.value ==
+                                    'Gas Refil',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Gas Refil');
                                 },
@@ -268,10 +214,11 @@ class RepairingBookingView extends GetView<ReparingController> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.03,
+                            height: height * 0.02,
                           ),
                           CText(
-                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys
+                                .house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -283,18 +230,22 @@ class RepairingBookingView extends GetView<ReparingController> {
                             height: height * 0.2,
                             width: widht,
                             child: TextField(
-                              textInputAction: TextInputAction.done,
+                                textInputAction: TextInputAction.done,
                                 controller: bookingcontroller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText:
-                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
+                                    hintText: LocaleKeys
+                                        .house_cleaning_items_example_insutruction
+                                        .tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(color: AppColor.secondary)),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(
+                                            color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12.0)))),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
