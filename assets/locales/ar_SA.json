@@ -60,7 +60,7 @@
       "language": "اللغة",
       "_language": {
         "english": "English",
-        "arabic": "العربية"
+        "العربية": "العربية"
       },
       "privacy_policy": "سياسة الخصوصية",
       "_privacy_policy": {
@@ -382,6 +382,7 @@
     "reflexology": "التدليك بالضغط",
     "hair_services": "خدمات الشعر",
     "makeup_sevices": "خدمات المكياج"
+
   },
   "handy_man": {
     "handy_man": "الصانع الماهر",
@@ -402,3 +403,4 @@
   },
   "enteraddress": "أدخل عنوانك"
 }
+

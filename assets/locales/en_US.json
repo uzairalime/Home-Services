@@ -60,7 +60,7 @@
       "language": "Language",
       "_language": {
         "english": "English",
-        "arabic": "Arabic"
+        "العربية": "Arabic"
       },
       "privacy_policy": "Privacy Policy",
       "_privacy_policy": {
@@ -382,6 +382,7 @@
     "reflexology": "Reflexology",
     "hair_services": "Hair Services",
     "makeup_sevices": "Makeup Services"
+
   },
   "handy_man": {
     "handy_man": "Handy Man",
@@ -402,3 +403,4 @@
   },
   "enteraddress": "Enter your address"
 }
+
