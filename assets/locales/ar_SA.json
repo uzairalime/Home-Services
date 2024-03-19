@@ -382,5 +382,23 @@
     "reflexology": "التدليك بالضغط",
     "hair_services": "خدمات الشعر",
     "makeup_sevices": "خدمات المكياج"
-  }
+  },
+  "handy_man": {
+    "handy_man": "الصانع الماهر",
+    "type_of_work": "نوع العمل",
+    "general_repairs": "إصلاحات عامة",
+    "carpentry": "النجارة",
+    "tile_work": "عمل البلاط",
+    "drywall_repair": "إصلاح الجدران الجافة",
+    "flooring": "تبليط الأرضيات",
+    "gutter_cleaning": "تنظيف الأنابيب",
+    "door_reparing": "إصلاح الأبواب",
+    "window_repair": "إصلاح النوافذ",
+    "assembly": "التجميع",
+    "weatherproofing": "مقاومة الطقس",
+    "minor_renovations": "تجديدات طفيفة",
+    "general_maintenence": "صيانة عامة",
+    "landscaping": "تنسيق الحدائق"
+  },
+  "enteraddress": "أدخل عنوانك"
 }
