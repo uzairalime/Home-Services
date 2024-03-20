@@ -400,5 +400,36 @@
     "general_maintenence": "صيانة عامة",
     "landscaping": "تنسيق الحدائق"
   },
-  "enteraddress": "أدخل عنوانك"
+  "enteraddress": "أدخل عنوانك",
+  "location_screen": {
+    "set_loation": "تحديد الموقع",
+    "search_your_loaction": "ابحث عن موقعك",
+    "successfully_address_changed": "تم تغيير العنوان بنجاح",
+    "something_went_wrong": "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+    "use_my_current_loaction": "استخدم موقعي الحالي",
+    "selected_loaction": "الموقع المحدد"
+  },
+  "snack_bars": {
+    "select_hours": "يرجى اختيار الساعات",
+    "select_cleanrs": "يرجى اختيار المنظفين",
+    "select_subscription": "يرجى اختيار الاشتراك",
+    "select_materials": "يرجى اختيار المواد",
+    "login_then_booking": "يرجى تسجيل الدخول ثم الحجز",
+    "add_address": "يرجى إضافة عنوان",
+    "select_service": "يرجى اختيار الخدمة",
+    "add_discription": "يرجى إضافة وصف",
+    "select_house_size": "يرجى اختيار حجم المنزل",
+    "select_piecec": "يرجى اختيار القطع"
+  },
+  "snack_bar": {
+    "enter_otp": "أدخل رمز التحقق",
+    "opt_failed": "فشل في رمز التحقق",
+    "enter_valid_number": "يرجى إدخال رقم صحيح",
+    "successfully_payment": "تم الدفع بنجاح",
+    "enter_valid_otp": "أدخل رمز التحقق الصحيح"
+  },
+  "completed": "مكتمل",
+  "upcomming": "قادم",
+  "no_jobs_found": "لم يتم العثور على وظائف",
+  "flat_number": "رقم الشقة #"
 }

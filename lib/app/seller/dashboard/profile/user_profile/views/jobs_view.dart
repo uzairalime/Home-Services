@@ -24,7 +24,8 @@ class MyJobsView extends GetView<MyJobsController> {
         appBar: AppBar(
             leading: Container(
               decoration: const BoxDecoration(
-                  image: DecorationImage(image: AssetImage("assets/icons/ic_launcher_icon.png")),
+                  image: DecorationImage(
+                      image: AssetImage("assets/icons/ic_launcher_icon.png")),
                   borderRadius: BorderRadius.all(Radius.circular(6))),
             ),
             title: CText(
@@ -33,14 +34,17 @@ class MyJobsView extends GetView<MyJobsController> {
                 color: Colors.black,
                 fontsize: mediaQueryHeight(context) * 0.025),
             bottom: TabBar(
-                labelStyle: TextStyle(fontSize: titleSmall, fontWeight: FontWeight.bold),
-                unselectedLabelStyle: TextStyle(fontSize: titleSmall, color: AppColor.grey),
-                padding: EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
+                labelStyle: TextStyle(
+                    fontSize: titleSmall, fontWeight: FontWeight.bold),
+                unselectedLabelStyle:
+                    TextStyle(fontSize: titleSmall, color: AppColor.grey),
+                padding: EdgeInsets.symmetric(
+                    horizontal: mediaQueryWidth(context) * 0.05),
                 automaticIndicatorColorAdjustment: true,
                 indicatorWeight: 3,
-                tabs: const [
-                  Tab(text: "Completed"),
-                  Tab(text: "Upcoming"),
+                tabs: [
+                  Tab(text: LocaleKeys.completed.tr),
+                  Tab(text: LocaleKeys.upcomming.tr),
                   // Tab(text: LocaleKeys.user_profile_item_booking.tr)
                 ])),
         body: const TabBarView(children: [CompletedView(), UpcomingView()]),

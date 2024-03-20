@@ -234,13 +234,13 @@ class PestControlBookingView extends GetView<BookingController> {
   _onContinue() {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
-      showsnackbar("please select hours", true);
+      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.cleaner.value == 0) {
-      showsnackbar("please select cleaners", true);
+      showsnackbar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
     } else if (controller.selectedweekplan.value.isEmpty) {
-      showsnackbar("please select subscription", true);
+      showsnackbar(LocaleKeys.snack_bars_select_subscription.tr, true);
     } else if (controller.selectedmaterial.isEmpty) {
-      showsnackbar("please select materials", true);
+      showsnackbar(LocaleKeys.snack_bars_select_materials.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

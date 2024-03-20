@@ -9,6 +9,7 @@ import 'package:home_brigadier/utils/animation_dialog.dart';
 import 'package:home_brigadier/utils/logger.dart';
 import "package:http/http.dart" as http;
 
+import '../../../../../generated/locales.g.dart';
 import '../../../../../model/main.dart';
 
 class SearchLocationScreen extends StatefulWidget {
@@ -27,8 +28,8 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
 
   List<AutocompletePrediction> placeprediction = [];
   void placeAutoComplete(String query) async {
-    Uri uri = Uri.https(
-        "maps.googleapis.com", "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
+    Uri uri = Uri.https("maps.googleapis.com",
+        "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
     String? response = await NetwordUtils.fetchUl(uri);
     if (response != null) {
       logger.d(response);
@@ -45,7 +46,8 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
   @override
   Widget build(BuildContext context) {
     GetStorage storage = GetStorage();
-    final address = storage.read("address") ?? BookingController.to.currentAddress;
+    final address =
+        storage.read("address") ?? BookingController.to.currentAddress;
 
     return Scaffold(
       appBar: AppBar(
@@ -61,9 +63,9 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
             ),
           ),
         ),
-        title: const Text(
-          "Set  Location",
-          style: TextStyle(color: textColorLightTheme),
+        title: Text(
+          LocaleKeys.location_screen_set_loation.tr,
+          style: const TextStyle(color: textColorLightTheme),
         ),
         actions: [
           CircleAvatar(
@@ -78,8 +80,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
           const SizedBox(width: defaultPadding)
         ],
       ),
-      body: 
-      Column(
+      body: Column(
         children: [
           Form(
             child: Padding(
@@ -90,7 +91,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                 },
                 textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
-                  hintText: "Search your location",
+                  hintText: LocaleKeys.location_screen_search_your_loaction.tr,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: SvgPicture.asset(
@@ -117,18 +118,22 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                   showDialog(
                       context: context,
                       barrierDismissible: false,
-                      builder: (context) => const AnimationDialog(
-                            text: 'successfully address changed',
+                      builder: (context) => AnimationDialog(
+                            text: LocaleKeys
+                                .location_screen_successfully_address_changed
+                                .tr,
                           ));
                 }).onError((error, stackTrace) {
-                  showsnackbar("somting went wrong, please try again !", true);
+                  showsnackbar(
+                      LocaleKeys.location_screen_something_went_wrong.tr, true);
                 });
               },
               icon: SvgPicture.asset(
                 "assets/icons/location.svg",
                 height: 16,
               ),
-              label: const Text("Use my Current Location"),
+              label:
+                  Text(LocaleKeys.location_screen_use_my_current_loaction.tr),
               style: ElevatedButton.styleFrom(
                 backgroundColor: secondaryColor10LightTheme,
                 foregroundColor: textColorLightTheme,
@@ -148,11 +153,13 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
           placeprediction.isEmpty
               ? Column(
                   children: [
-                    const Align(
+                    Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                          child: Text("Selected Location : "),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 12),
+                          child: Text(
+                              LocaleKeys.location_screen_selected_loaction.tr),
                         )),
                     LocationListTile(
                       location: '${address}',
@@ -160,8 +167,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                     ),
                   ],
                 )
-              : 
-              Expanded(
+              : Expanded(
                   child: ListView.builder(
                     itemCount: placeprediction.length,
                     itemBuilder: (context, index) {
@@ -172,14 +178,17 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                               placeprediction[index].description!;
 
                           GetStorage storage = GetStorage();
-                          storage.write("address", placeprediction[index].description!);
+                          storage.write(
+                              "address", placeprediction[index].description!);
 
                           Get.back();
                           showDialog(
                               context: context,
                               barrierDismissible: false,
-                              builder: (context) => const AnimationDialog(
-                                    text: 'successfully address changed',
+                              builder: (context) => AnimationDialog(
+                                    text: LocaleKeys
+                                        .location_screen_successfully_address_changed
+                                        .tr,
                                   ));
 
                           logger.d(placeprediction[index].description);
@@ -189,7 +198,6 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                     },
                   ),
                 )
-      
         ],
       ),
     );
@@ -205,7 +213,6 @@ class LocationListTile extends StatelessWidget {
 
   final String location;
   final VoidCallback press;
-  
 
   @override
   Widget build(BuildContext context) {

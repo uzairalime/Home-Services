@@ -23,7 +23,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
   @override
   Widget build(BuildContext context) {
     Get.put(PlumbingController());
-            BookingController.to.claculateBill();
+    BookingController.to.claculateBill();
 
     final titlelarge = Theme.of(context).textTheme.titleLarge!.fontSize;
 
@@ -50,7 +50,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                   top: 30, bottom: 20, left: 20, right: 20),
               child: Obx(
                 () => CButton(
-                   borderradius: widht * 0.075,
+                  borderradius: widht * 0.075,
                   text:
                       "${LocaleKeys.painting_items_continue_button.tr} AED ${bookingcontroller.total.value}",
                   fontWeight: FontWeight.bold,
@@ -70,7 +70,6 @@ class PlumbingBookingView extends GetView<PlumbingController> {
               Get.back();
             },
           ),
-          
           title: Text(
             LocaleKeys.plumbing_repairing_item_plumbing_reparing.tr,
             style: TextStyle(
@@ -140,13 +139,13 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                         height: height * 0.055,
                                         // ignore: prefer_const_constructors
                                         decoration: BoxDecoration(
-                                            color:  const Color(0xffF1E7FF),
+                                            color: const Color(0xffF1E7FF),
                                             shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
                                             Icons.remove,
                                             size: 16,
-                                            color:  AppColor.primary,
+                                            color: AppColor.primary,
                                           ),
                                         ),
                                       ),
@@ -177,7 +176,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                           child: Icon(
                                             Icons.add,
                                             size: 16,
-                                            color:  AppColor.primary,
+                                            color: AppColor.primary,
                                           ),
                                         ),
                                       ),
@@ -273,10 +272,10 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                     side:
                                         BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color:
-                                        controller.selectedweekplan.value == 'Motors'
-                                            ? AppColor.white
-                                            : AppColor.black,
+                                    color: controller.selectedweekplan.value ==
+                                            'Motors'
+                                        ? AppColor.white
+                                        : AppColor.black,
                                     text: LocaleKeys
                                         .plumbing_repairing_item_motors.tr),
                                 selected: controller.selectedweekplan.value ==
@@ -294,10 +293,10 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                     side:
                                         BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color:
-                                        controller.selectedweekplan.value == 'Toilets'
-                                            ? AppColor.white
-                                            : AppColor.black,
+                                    color: controller.selectedweekplan.value ==
+                                            'Toilets'
+                                        ? AppColor.white
+                                        : AppColor.black,
                                     text: LocaleKeys
                                         .plumbing_repairing_item_toilets.tr),
                                 selected: controller.selectedweekplan.value ==
@@ -389,7 +388,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                             height: height * 0.2,
                             width: widht,
                             child: TextField(
-                              textInputAction: TextInputAction.done,
+                                textInputAction: TextInputAction.done,
                                 controller: bookingcontroller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
@@ -416,11 +415,11 @@ class PlumbingBookingView extends GetView<PlumbingController> {
   _ongo() {
     if (bookingcontroller.hours.value == 0) {
       logger.d(bookingcontroller.hours.value);
-      showsnackbar("please select hours", true);
+      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.selectedweekplan.value == "") {
-      showsnackbar("please Select Service types", true);
+      showsnackbar(LocaleKeys.snack_bars_select_service.tr, true);
     } else if (bookingcontroller.instruction.value.text == "") {
-      showsnackbar("please add discription", true);
+      showsnackbar(LocaleKeys.snack_bars_add_discription.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

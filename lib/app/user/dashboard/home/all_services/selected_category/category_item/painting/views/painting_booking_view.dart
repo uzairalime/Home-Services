@@ -19,7 +19,7 @@ class PaintingBookingView extends GetView<PaintingController> {
 
   @override
   Widget build(BuildContext context) {
-            BookingController.to.claculateBill();
+    BookingController.to.claculateBill();
 
     Get.put(PaintingController());
     // final bookingcontroller = Get.put(BookingController());
@@ -50,7 +50,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                   top: 30, bottom: 20, left: 20, right: 20),
               child: Obx(
                 () => CButton(
-                   borderradius: widht * 0.075,
+                  borderradius: widht * 0.075,
                   text:
                       "${LocaleKeys.painting_items_continue_button.tr} AED ${bookingcontrolle.total.value}",
                   fontWeight: FontWeight.bold,
@@ -73,7 +73,6 @@ class PaintingBookingView extends GetView<PaintingController> {
               Get.back();
             },
           ),
-         
           title: Text(
             LocaleKeys.painting_items_painting.tr,
             style: TextStyle(
@@ -111,7 +110,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                               width: widht,
                               height: height * 0.075,
                               decoration: BoxDecoration(
-                                  color:  const Color(0xffF5F5F5),
+                                  color: const Color(0xffF5F5F5),
                                   borderRadius: BorderRadius.circular(8)),
                               child: Padding(
                                 padding:
@@ -134,7 +133,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color:const Color(0xffF1E7FF),
+                                            color: const Color(0xffF1E7FF),
                                             shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
@@ -165,13 +164,13 @@ class PaintingBookingView extends GetView<PaintingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color:const Color(0xffF1E7FF),
+                                            color: const Color(0xffF1E7FF),
                                             shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
                                             Icons.add,
                                             size: 16,
-                                            color:  AppColor.primary,
+                                            color: AppColor.primary,
                                           ),
                                         ),
                                       ),
@@ -328,7 +327,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                             height: height * 0.2,
                             width: widht,
                             child: TextField(
-                               textInputAction: TextInputAction.done,
+                                textInputAction: TextInputAction.done,
                                 controller: bookingcontrolle.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
@@ -355,11 +354,11 @@ class PaintingBookingView extends GetView<PaintingController> {
   _ongo() {
     if (bookingcontrolle.hours.value == 0) {
       logger.d(bookingcontrolle.hours.value);
-      showsnackbar("please select hours", true);
+      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (bookingcontrolle.instruction.value.text == "") {
-      showsnackbar("please add discription", true);
+      showsnackbar(LocaleKeys.snack_bars_add_discription.tr, true);
     } else if (controller.selectedweekplan.value == "") {
-      showsnackbar("please Select House Size", true);
+      showsnackbar(LocaleKeys.snack_bars_select_house_size.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,
