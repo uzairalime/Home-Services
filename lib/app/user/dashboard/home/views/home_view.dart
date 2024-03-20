@@ -77,10 +77,6 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget body(context) {
-    GetStorage storage = GetStorage();
-
-    final address = storage.read("address") ?? BookingController.to.currentAddress;
-
     final widht = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
@@ -125,19 +121,26 @@ class HomeView extends GetView<HomeController> {
                         !controller.onsearchtab
                             ? Padding(
                                 padding: EdgeInsets.only(left: 8, top: 10),
-                                child: SizedBox(
-                                  width: 60,
-                                  child: Marquee(
-                                    text: address.toString(),
-                                    style: TextStyle(fontSize: 16.0),
-                                    // Customize the font size as needed
-                                    scrollAxis: Axis.horizontal,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    blankSpace: 20.0,
-                                    // Adjust the blank space between repetitions
-                                    velocity: 25.0, // Adjust the scrolling speed
-                                  ),
-                                ),
+                                child: GetBuilder<BookingController>(
+                                    id: "address",
+                                    builder: (booking) {
+                                      GetStorage storage = GetStorage();
+                                      final address = storage.read("address") ?? booking.currentAddress.value;
+                                      logger.d("updated address is $address");
+                                      return SizedBox(
+                                        width: 60,
+                                        child: Marquee(
+                                          text: address,
+                                          style: TextStyle(fontSize: 16.0),
+                                          // Customize the font size as needed
+                                          scrollAxis: Axis.horizontal,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          blankSpace: 20.0,
+                                          // Adjust the blank space between repetitions
+                                          velocity: 25.0, // Adjust the scrolling speed
+                                        ),
+                                      );
+                                    }),
                               )
                             : SizedBox(),
                         InkWell(
@@ -215,8 +218,7 @@ class HomeView extends GetView<HomeController> {
                                               enlargeCenterPage: true,
                                               autoPlay: true,
                                               autoPlayInterval: const Duration(seconds: 3),
-                                              autoPlayAnimationDuration:
-                                                  const Duration(milliseconds: 800),
+                                              autoPlayAnimationDuration: const Duration(milliseconds: 800),
                                               autoPlayCurve: Curves.fastOutSlowIn,
                                             ),
                                             items: controller.offerlist.map((offer) {
@@ -229,8 +231,7 @@ class HomeView extends GetView<HomeController> {
                                                       height: height * 0.175,
                                                       width: widht,
                                                       fit: BoxFit.fitWidth,
-                                                      imageUrl:
-                                                          "https://homebrigadier.fly.dev${offer.image}",
+                                                      imageUrl: "https://homebrigadier.fly.dev${offer.image}",
                                                     ),
                                                   ),
                                                   Container(
@@ -335,15 +336,14 @@ class HomeView extends GetView<HomeController> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 8,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: widht * 0.01,
-                mainAxisSpacing: height * 0.01,
+                crossAxisSpacing: widht * 0.005,
+                mainAxisSpacing: height * 0.005,
                 mainAxisExtent: height * 0.115,
                 crossAxisCount: 4,
               ),
               itemBuilder: (context, index) {
                 final model = categoryList[index];
-                int icon = ServiceIconModel.servicesicon
-                    .indexWhere((icon) => icon.title == model.displayName);
+                int icon = ServiceIconModel.servicesicon.indexWhere((icon) => icon.title == model.displayName);
 
                 return InkWell(
                   onTap: () {
@@ -357,8 +357,7 @@ class HomeView extends GetView<HomeController> {
                         width: widht * 0.19,
                         height: widht * 0.20,
                         decoration: BoxDecoration(
-                            color: AppColor.greylight.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(10)),
+                            color: AppColor.greylight.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -369,11 +368,15 @@ class HomeView extends GetView<HomeController> {
                               width: index == 5 ? 25 : 30,
                               height: index == 5 ? 25 : 30,
                             ),
-                            Text(
-                              categoryList[index].displayName.toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: widht * 0.03,
+                            Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                categoryList[index].displayName.toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: widht * 0.03,
+                                ),
                               ),
                             ),
                           ],
@@ -455,12 +458,11 @@ class HomeView extends GetView<HomeController> {
               final List<ServicesModel> servicelist = HomeController.to.servicelist;
 
               List<ServicesModel> filteredList = servicelist
-                  .where((service) => service.category!.displayName!
-                      .toLowerCase()
-                      .contains(controller.search.text.toLowerCase()))
+                  .where((service) =>
+                      service.category!.displayName!.toLowerCase().contains(controller.search.text.toLowerCase()))
                   .toList();
 
-              return ListView.builder(
+              return ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemCount: filteredList.isEmpty ? 1 : filteredList.length,
                   itemBuilder: (context, index) {
@@ -475,8 +477,8 @@ class HomeView extends GetView<HomeController> {
                       double endLatitude = emp[0];
                       double endLongitude = emp[1];
 
-                      double distanceInMeters = Geolocator.distanceBetween(
-                          startLatitude, startLongitude, endLatitude, endLongitude);
+                      double distanceInMeters =
+                          Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
 
                       var km = distanceInMeters / 1000;
 
@@ -493,8 +495,7 @@ class HomeView extends GetView<HomeController> {
                               elevation: 1.5,
                               shadowColor: AppColor.white,
                               color: AppColor.white,
-                              shape:
-                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               child: SizedBox(
                                   width: widht,
                                   height: height * 0.16,
@@ -504,14 +505,14 @@ class HomeView extends GetView<HomeController> {
                                         Expanded(
                                           flex: 3,
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(12),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(12), bottomLeft: Radius.circular(12)),
                                             child: SizedBox(
                                               width: widht * 0.3,
                                               height: height,
                                               child: CachedNetworkImage(
                                                 fit: BoxFit.cover,
-                                                imageUrl:
-                                                    "https://homebrigadier.fly.dev${model.files![0].file}",
+                                                imageUrl: "https://homebrigadier.fly.dev${model.files![0].file}",
                                               ),
                                             ),
                                           ),
@@ -523,36 +524,36 @@ class HomeView extends GetView<HomeController> {
                                             flex: 6,
                                             child: Padding(
                                               padding: EdgeInsets.only(top: height * 0.01),
-                                              child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        CText(
-                                                            text: "${model.name}",
-                                                            color: AppColor.black,
-                                                            fontsize: 19,
-                                                            fontWeight: FontWeight.bold),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(right: widht * 0.02),
-                                                          child: Icon(Icons.more_horiz),
-                                                        )
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: height * 0.0075,
-                                                    ),
-                                                    Container(
-                                                      height: height * 0.04,
-                                                      width: widht * 0.26,
-                                                      decoration: BoxDecoration(
-                                                          color: AppColor.white,
-                                                          borderRadius: BorderRadius.circular(7),
-                                                          border: Border.all(
-                                                              color: AppColor.secondary)),
+                                                    CText(
+                                                        text: "${model.name}",
+                                                        color: AppColor.black,
+                                                        fontsize: 19,
+                                                        fontWeight: FontWeight.bold),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(right: widht * 0.02),
+                                                      child: Icon(Icons.more_horiz),
+                                                    )
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: height * 0.0075,
+                                                ),
+                                                Container(
+                                                  // height: height * 0.04,
+                                                  // width: widht * 0.26,
+                                                  decoration: BoxDecoration(
+                                                      color: AppColor.white,
+                                                      borderRadius: BorderRadius.circular(7),
+                                                      border: Border.all(color: AppColor.secondary)),
+                                                  child: FittedBox(
+                                                      fit: BoxFit
+                                                .contain,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(4.0),
                                                       child: Center(
                                                         child: Text(
                                                           "${model.category!.displayName}",
@@ -563,43 +564,42 @@ class HomeView extends GetView<HomeController> {
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(
-                                                      height: height * 0.04,
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(right: widht * 0.02),
-                                                      child: Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment.center,
-                                                        // mainAxisSize: MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment.spaceBetween,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: height * 0.04,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(right: widht * 0.02),
+                                                  child: Row(
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    // mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Row(
                                                         children: [
-                                                          Row(
-                                                            children: [
-                                                              const Icon(
-                                                                  size: 14,
-                                                                  Icons.location_on_outlined,
-                                                                  color: AppColor.black),
-                                                              Text(
-                                                                "${km.toInt()} ${LocaleKeys.km_away.tr}",
-                                                                style: TextStyle(
-                                                                    fontWeight: FontWeight.normal,
-                                                                    fontSize: 14),
-                                                              )
-                                                            ],
-                                                          ),
+                                                          const Icon(
+                                                              size: 14,
+                                                              Icons.location_on_outlined,
+                                                              color: AppColor.black),
                                                           Text(
-                                                            "\AED${model.rate}",
-                                                            style: TextStyle(
-                                                                fontWeight: FontWeight.bold,
-                                                                color: AppColor.secondary,
-                                                                fontSize: 14),
-                                                          ),
+                                                            "${km.toInt()} ${LocaleKeys.km_away.tr}",
+                                                            style:
+                                                                TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+                                                          )
                                                         ],
                                                       ),
-                                                    ),
-                                                  ]),
+                                                      Text(
+                                                        "\AED${model.rate}",
+                                                        style: TextStyle(
+                                                            fontWeight: FontWeight.bold,
+                                                            color: AppColor.secondary,
+                                                            fontSize: 14),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ]),
                                             ))
                                       ])))));
                     } else {
@@ -628,7 +628,12 @@ class HomeView extends GetView<HomeController> {
                         ),
                       );
                     }
-                  });
+                  },
+
+                     separatorBuilder: (context, index) => SizedBox(
+    height: height*0.01,
+  )
+                  );
             }
           },
         ),
@@ -740,8 +745,7 @@ class CategoriesTabbar extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              color: AppColor.grey.withOpacity(0.2)),
+                              borderRadius: BorderRadius.circular(6), color: AppColor.grey.withOpacity(0.2)),
                           width: widht,
                           height: height * 0.165,
                         ),
@@ -860,7 +864,7 @@ class TabBarGrid extends StatelessWidget {
         } else {
           final List<ServicesModel> servicelist = HomeController.to.servicelist;
 
-          return ListView.builder(
+          return ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: servicelist.isEmpty ? 10 : servicelist.length,
@@ -875,8 +879,8 @@ class TabBarGrid extends StatelessWidget {
                 double endLatitude = emp[0];
                 double endLongitude = emp[1];
 
-                double distanceInMeters = Geolocator.distanceBetween(
-                    startLatitude, startLongitude, endLatitude, endLongitude);
+                double distanceInMeters =
+                    Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
 
                 var km = distanceInMeters / 1000;
 
@@ -900,14 +904,14 @@ class TabBarGrid extends StatelessWidget {
                                 Expanded(
                                   flex: 3,
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(12), bottomLeft: Radius.circular(12)),
                                     child: SizedBox(
                                       width: widht * 0.3,
                                       height: height,
                                       child: CachedNetworkImage(
                                         fit: BoxFit.cover,
-                                        imageUrl:
-                                            "https://homebrigadier.fly.dev${model.files![0].file}",
+                                        imageUrl: "https://homebrigadier.fly.dev${model.files![0].file}",
                                       ),
                                     ),
                                   ),
@@ -919,33 +923,37 @@ class TabBarGrid extends StatelessWidget {
                                     flex: 6,
                                     child: Padding(
                                       padding: EdgeInsets.only(top: height * 0.01),
-                                      child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                CText(
-                                                    text: "${model.name}",
-                                                    color: AppColor.black,
-                                                    fontsize: 16,
-                                                    fontWeight: FontWeight.bold),
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: widht * 0.02),
-                                                  child: Icon(Icons.more_horiz),
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: height * 0.0075,
-                                            ),
-                                            Container(
-                                              height: height * 0.04,
-                                              width: widht * 0.26,
-                                              decoration: BoxDecoration(
-                                                  color: AppColor.white,
-                                                  borderRadius: BorderRadius.circular(7),
-                                                  border: Border.all(color: AppColor.secondary)),
+                                            CText(
+                                                text: "${model.name}",
+                                                color: AppColor.black,
+                                                fontsize: 16,
+                                                fontWeight: FontWeight.bold),
+                                            Padding(
+                                              padding: EdgeInsets.only(right: widht * 0.02),
+                                              child: Icon(Icons.more_horiz),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.0075,
+                                        ),
+                                        Container(
+                                          // height: height * 0.04,
+                                          // width: widht * 0.26,
+                                          decoration: BoxDecoration(
+                                              color: AppColor.white,
+                                              borderRadius: BorderRadius.circular(7),
+                                              border: Border.all(color: AppColor.secondary)),
+                                          child: FittedBox(
+                                            fit: BoxFit
+                                                .contain, // Adjusts the child's size to fit the parent's constraints
+
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(4.0),
                                               child: Center(
                                                 child: Text(
                                                   "${model.category!.displayName}",
@@ -956,45 +964,49 @@ class TabBarGrid extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
-                                              height: height * 0.04,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(right: widht * 0.02),
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                // mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.04,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(right: widht * 0.02),
+                                          child: Row(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            // mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
                                                 children: [
-                                                  Row(
-                                                    children: [
-                                                      const Icon(
-                                                          size: 14,
-                                                          Icons.location_on_outlined,
-                                                          color: AppColor.black),
-                                                      Text(
-                                                        "${km.toInt()} ${LocaleKeys.km_away.tr}",
-                                                        style: TextStyle(
-                                                            fontWeight: FontWeight.normal,
-                                                            fontSize: 14),
-                                                      )
-                                                    ],
-                                                  ),
+                                                  const Icon(
+                                                      size: 14, Icons.location_on_outlined, color: AppColor.black),
                                                   Text(
-                                                    "AED${model.rate}",
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.bold,
-                                                        color: AppColor.secondary,
-                                                        fontSize: 14),
-                                                  ),
+                                                    "${km.toInt()} ${LocaleKeys.km_away.tr}",
+                                                    style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+                                                  )
                                                 ],
                                               ),
-                                            ),
-                                          ]),
+                                              Text(
+                                                "AED${model.rate}",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: AppColor.secondary,
+                                                    fontSize: 14),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ]),
                                     ))
                               ])))),
                 );
-              });
+              },
+              
+              
+                 separatorBuilder: (context, index) => SizedBox(
+    height: height*0.01,
+  )
+              );
         }
       },
     );

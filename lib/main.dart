@@ -35,6 +35,11 @@ Future<void> main() async {
     statusBarIconBrightness: Brightness.dark,
   ));
 
+  SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+
   log("Start user Role ${GetStorage().read(SharedPreference.roleKey)}");
 
   runApp(
