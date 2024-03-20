@@ -60,7 +60,7 @@
       "language": "اللغة",
       "_language": {
         "english": "English",
-        "arabic": "العربية"
+        "العربية": "العربية"
       },
       "privacy_policy": "سياسة الخصوصية",
       "_privacy_policy": {
@@ -382,6 +382,7 @@
     "reflexology": "التدليك بالضغط",
     "hair_services": "خدمات الشعر",
     "makeup_sevices": "خدمات المكياج"
+
   },
   "handy_man": {
     "handy_man": "الصانع الماهر",
@@ -400,6 +401,7 @@
     "general_maintenence": "صيانة عامة",
     "landscaping": "تنسيق الحدائق"
   },
+<<<<<<< HEAD
   "enteraddress": "أدخل عنوانك",
   "location_screen": {
     "set_loation": "تحديد الموقع",
@@ -433,3 +435,8 @@
   "no_jobs_found": "لم يتم العثور على وظائف",
   "flat_number": "رقم الشقة #"
 }
+=======
+  "enteraddress": "أدخل عنوانك"
+}
+
+>>>>>>> 4b6e057ad79fbf3cd59126b394547bdd9e8d11c1
