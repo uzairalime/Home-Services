@@ -26,7 +26,7 @@ class MyServicesView extends GetView<UserProfileController> {
               borderRadius: BorderRadius.all(Radius.circular(6))),
         ),
         title: CText(
-            text: "My Services",
+            text: LocaleKeys.user_profile_item_services.tr,
             fontWeight: FontWeight.bold,
             color: Colors.black,
             fontsize: mediaQueryHeight(context) * 0.025),
