@@ -865,6 +865,9 @@ class TabBarGrid extends StatelessWidget {
               itemCount: servicelist.isEmpty ? 10 : servicelist.length,
               itemBuilder: (context, index) {
                 final model = servicelist[index];
+                          logger.d("service lost is  ${servicelist[index].location}");
+
+
 
                 String emplocation = model.location!;
                 List emp = extractCoordinates(emplocation);
@@ -1011,7 +1014,7 @@ class TabBarGrid extends StatelessWidget {
   }
 
   List<double> extractCoordinates(String coordinates) {
-    List<String> coordinateList = coordinates.split(', ');
+    List<String> coordinateList = coordinates.split(',');
 
     if (coordinateList.length == 2) {
       String latitudeString = coordinateList[0];
