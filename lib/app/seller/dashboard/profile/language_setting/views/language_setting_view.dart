@@ -14,23 +14,19 @@ class LanguageSettingView extends GetView<LanguageSettingController> {
   Widget build(BuildContext context) {
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
-    final con = Get.put(LanguageSettingController());
+    Get.put(LanguageSettingController());
     return Scaffold(
       appBar: AppBar(
-          leading: CIconBtn(
-              onPressed: () => Get.back(),
-              child: Icon(Icons.adaptive.arrow_back)),
+          leading: CIconBtn(onPressed: () => Get.back(), child: Icon(Icons.adaptive.arrow_back)),
           title: CText(
               text: LocaleKeys.dashboard_profile_language.tr,
               color: txtTheme,
               fontsize: titleLarge,
               fontWeight: FontWeight.w500)),
       body: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: mediaQueryWidth(context) * 0.05, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05, vertical: 20),
           child: NestedScrollView(
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return [];
             },
             body: SingleChildScrollView(

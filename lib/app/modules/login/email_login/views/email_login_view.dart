@@ -19,7 +19,7 @@ class EmailLoginView extends GetView<EmailLoginController> {
 
   @override
   Widget build(BuildContext context) {
-    final con = Get.put(PinController());
+    Get.put(PinController());
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     Get.put(EmailLoginController());

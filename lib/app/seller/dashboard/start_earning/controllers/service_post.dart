@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dio/dio.dart' as deo;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:home_brigadier/app/seller/dashboard/controllers/dashboard_controller.dart';
 
 import '../../../../../consts/static_data.dart';
 import '../../../../../model/user_services_models/my_service_post_model.dart';
@@ -13,6 +14,7 @@ import '../../../../../utils/animation_dialog.dart';
 
 class PostService {
   static deo.Dio dio = deo.Dio();
+  static final con = Get.put(SellerDashboardController());
 
   static Future<int?> postMyService(
       {required context,
@@ -62,7 +64,8 @@ class PostService {
             builder: (context) => const AnimationDialog(
                   text: 'Successfully Added !',
                 )).then((value) {
-          Get.back();
+          con.changePage(2);
+          con.update();
         });
       }
     } on SocketException catch (_) {
