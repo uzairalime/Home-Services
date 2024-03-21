@@ -368,15 +368,12 @@ class HomeView extends GetView<HomeController> {
                               width: index == 5 ? 25 : 30,
                               height: index == 5 ? 25 : 30,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Text(
-                                textAlign: TextAlign.center,
-                                categoryList[index].displayName.toString(),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: widht * 0.03,
-                                ),
+                            Text(
+                              textAlign: TextAlign.center,
+                              categoryList[index].displayName.toString(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: widht * 0.03,
                               ),
                             ),
                           ],
@@ -925,11 +922,14 @@ class TabBarGrid extends StatelessWidget {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            CText(
-                                                text: "${model.name}",
-                                                color: AppColor.black,
-                                                fontsize: 16,
-                                                fontWeight: FontWeight.bold),
+                                            Padding(
+                                              padding: const EdgeInsets.all(4.0),
+                                              child: CText(
+                                                  text: "${model.name}",
+                                                  color: AppColor.black,
+                                                  fontsize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                             Padding(
                                               padding: EdgeInsets.only(right: widht * 0.02),
                                               child: Icon(Icons.more_horiz),
