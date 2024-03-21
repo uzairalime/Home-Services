@@ -173,7 +173,9 @@
     "jobs": "Jobs",
     "services": "Services",
     "booking": "Booking",
-    "all_services": "All Services"
+    "all_services": "All Services",
+    "upcoming": "Upcoming",
+    "completed": "Completed"
   },
   "category_items": {
     "catagory_button": "Booking",

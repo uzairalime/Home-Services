@@ -161,12 +161,19 @@ class StartEarningController extends GetxController {
     }
   }
 
+  String extractHour(String hourString) {
+    List<String> parts = hourString.split(' ');
+    String hour = parts[0];
+    return hour;
+  }
+
   void selectFrom(String hour) {
     selectedFrom.value = hour;
   }
 
   void selectTill(String hour) {
     selectedTill.value = hour;
+    update();
   }
 
   void onFromFocus(value) {
@@ -359,8 +366,11 @@ class StartEarningController extends GetxController {
     selectedCategory = '';
     villaController.clear();
     addressController.clear();
+    selectedFrom.value = '';
+    selectedTill.value = '';
     rateController.clear();
     selectedFrom.value = '';
     selectedTill.value = '';
+    update();
   }
 }

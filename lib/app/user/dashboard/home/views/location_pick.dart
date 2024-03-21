@@ -6,6 +6,7 @@ import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_cat
 import 'package:home_brigadier/model/place_auto_complate_response.dart';
 import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:home_brigadier/utils/animation_dialog.dart';
+import 'package:home_brigadier/utils/dialog_helper.dart';
 import 'package:home_brigadier/utils/logger.dart';
 import "package:http/http.dart" as http;
 
@@ -112,21 +113,30 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
             padding: const EdgeInsets.all(defaultPadding),
             child: ElevatedButton.icon(
               onPressed: () {
-                // add current location function
-                BookingController.to.getCurrentPosition(context).then((value) {
-                  Get.back();
-                  showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (context) => AnimationDialog(
-                            text: LocaleKeys
-                                .location_screen_successfully_address_changed
-                                .tr,
-                          ));
-                }).onError((error, stackTrace) {
-                  showsnackbar(
-                      LocaleKeys.location_screen_something_went_wrong.tr, true);
-                });
+// <<<<<<< mhanan
+//                 // add current location function
+//                 BookingController.to.getCurrentPosition(context).then((value) {
+//                   Get.back();
+//                   showDialog(
+//                       context: context,
+//                       barrierDismissible: false,
+//                       builder: (context) => AnimationDialog(
+//                             text: LocaleKeys
+//                                 .location_screen_successfully_address_changed
+//                                 .tr,
+//                           ));
+//                 }).onError((error, stackTrace) {
+//                   showsnackbar(
+//                       LocaleKeys.location_screen_something_went_wrong.tr, true);
+//                 });
+// =======
+               
+               
+                BookingController.to.getCurrentPosition(context);
+                 
+               
+               
+
               },
               icon: SvgPicture.asset(
                 "assets/icons/location.svg",
@@ -173,7 +183,8 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                     itemBuilder: (context, index) {
                       return LocationListTile(
                         press: () {
-                          Get.back();
+                          
+                          
                           BookingController.to.currentAddress.value =
                               placeprediction[index].description!;
 
@@ -192,6 +203,8 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                                   ));
 
                           logger.d(placeprediction[index].description);
+
+                          BookingController.to.update(["address"]);
                         },
                         location: "${placeprediction[index].description}",
                       );

@@ -32,7 +32,7 @@ class CTextField extends StatelessWidget {
   final int? maxlength;
   final String? counterText;
   final bool? dense;
-  final void Function()? onTap ;
+  final void Function()? onTap;
 
   const CTextField(
       {super.key,
@@ -63,14 +63,14 @@ class CTextField extends StatelessWidget {
       this.counterText,
       this.textDirection,
       this.dense,
-      this.textAlign, this.onTap});
+      this.textAlign,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onTap: onTap,
       style: TextStyle(color: AppColor.primary),
-
       maxLength: maxlength,
       textAlign: textAlign ?? TextAlign.start,
       textDirection: textDirection,
@@ -96,9 +96,7 @@ class CTextField extends StatelessWidget {
                 )
               : null,
           hintText: hint,
-          hintStyle: TextStyle(
-              color: Colors.grey.withOpacity(0.75),
-              fontWeight: FontWeight.normal),
+          hintStyle: TextStyle(color: Colors.grey.withOpacity(0.75), fontWeight: FontWeight.normal),
           contentPadding: EdgeInsets.all(contentPadding),
           border: InputBorder.none,
           suffixIcon: suffix,
@@ -106,14 +104,11 @@ class CTextField extends StatelessWidget {
           filled: filled,
           fillColor: fillColor,
           enabledBorder: _outlineInputBorder(borderRadius, borderColor),
-          focusedBorder: _outlineInputBorder(
-              borderRadius, focusBorderColor ?? AppColor.secondary),
+          focusedBorder: _outlineInputBorder(borderRadius, focusBorderColor ?? AppColor.secondary),
           errorBorder: _outlineInputBorder(borderRadius, errorBorderColor),
-          focusedErrorBorder:
-              _outlineInputBorder(borderRadius, errorBorderColor),
+          focusedErrorBorder: _outlineInputBorder(borderRadius, errorBorderColor),
           disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(borderRadius))),
+              borderSide: BorderSide.none, borderRadius: BorderRadius.circular(borderRadius))),
       validator: validator,
       textInputAction: textInputAction,
       // onTapOutside: onTapOutside ?? (_) => FocusScope.of(context).unfocus()

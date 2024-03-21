@@ -169,11 +169,13 @@
     "most_popular_services": "الخدمات الأكثر شعبية"
   },
   "user_profile_item": {
-    "user_ptofile": "ملف تعريفي للمستخدم",
+    "user_ptofile": "الملف الشخصي",
     "jobs": "وظائف",
-    "services": "خدمات",
+    "services": "الخدمات",
     "booking": "الحجز",
-    "all_services": "جميع الخدمات"
+    "all_services": "جميع الخدمات",
+    "upcoming": "القادمة",
+    "completed": "المكتملة"
   },
   "category_items": {
     "catagory_button": "الحجز",
