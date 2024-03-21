@@ -3,11 +3,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart' as deo;
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/seller/dashboard/start_earning/controllers/service_post.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../../consts/const.dart';
 import '../../../../../consts/static_data.dart';
 import '../../../../../generated/locales.g.dart';
 import '../../../../../model/user_services_models/my_services_resp_model.dart';
@@ -19,6 +19,9 @@ class StartEarningController extends GetxController {
   TextEditingController villaController = TextEditingController();
   ScrollController scrollController = ScrollController();
   final ImagePicker picker = ImagePicker();
+  var latitude = '0'.obs;
+  var longitude = '0'.obs;
+  var isPermissionGranted = false.obs;
 
   var weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
   final List<String> menuItems = [
@@ -88,6 +91,12 @@ class StartEarningController extends GetxController {
     '04 PM',
     '05 PM',
   ].obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _getLocationPermission();
+  }
 
   Future<void> pickProfileImage() async {
     try {
@@ -220,7 +229,7 @@ class StartEarningController extends GetxController {
               rate: rateController.text,
               from_hour: selectedFrom.value,
               to_hour: selectedTill.value,
-              location: cPosition)
+              location: "$latitude , $longitude")
           .then((value) {
         clearController();
       });
@@ -352,6 +361,33 @@ class StartEarningController extends GetxController {
     } finally {
       backUploading.value = false;
       update();
+    }
+  }
+
+  Future<void> _getLocationPermission() async {
+    LocationPermission permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      // Handle denied permission
+      isPermissionGranted.value = false;
+    } else if (permission == LocationPermission.deniedForever) {
+      // Handle denied forever permission
+      isPermissionGranted.value = false;
+    } else {
+      isPermissionGranted.value = true;
+      _getLocation();
+    }
+  }
+
+  Future<void> _getLocation() async {
+    try {
+      Position position =
+          await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      latitude.value = position.latitude.toString();
+      longitude.value = position.longitude.toString();
+
+      print("$latitude, $longitude");
+    } catch (e) {
+      print('Error: $e');
     }
   }
 
