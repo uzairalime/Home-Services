@@ -81,7 +81,9 @@ class EnterPin extends GetView<PinController> {
                                     phone: number,
                                     otp: controller.otpController.text);
                               } else {
-                                showsnackbar("Enter a valid OTP", true);
+                                showsnackbar(
+                                    LocaleKeys.snack_bar_enter_valid_otp.tr,
+                                    true);
                               }
                             },
                           ),

@@ -257,11 +257,11 @@ class RepairingBookingView extends GetView<ReparingController> {
   _ongo() {
     if (bookingcontroller.hours.value == 0) {
       logger.d(bookingcontroller.hours.value);
-      showsnackbar("please select hours", true);
+      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.selectedweekplan.value == "") {
-      showsnackbar("please Select Service types", true);
+      showsnackbar(LocaleKeys.snack_bars_select_service.tr, true);
     } else if (bookingcontroller.instruction.value.text == "") {
-      showsnackbar("please add discription", true);
+      showsnackbar(LocaleKeys.snack_bars_add_discription.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

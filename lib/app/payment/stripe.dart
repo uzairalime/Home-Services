@@ -16,6 +16,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:logger/logger.dart';
 
+import '../../generated/locales.g.dart';
+
 class PaymetController extends GetxController {
   static PaymetController get to => Get.find();
 
@@ -50,7 +52,7 @@ class PaymetController extends GetxController {
       displayPaymentSheet(context);
     } catch (err) {
       logger.d("error========= $err");
-      showsnackbar("some thing went wrong", true);
+      showsnackbar(LocaleKeys.location_screen_something_went_wrong.tr, true);
     }
   }
 
@@ -83,7 +85,7 @@ class PaymetController extends GetxController {
     try {
       await Stripe.instance.presentPaymentSheet();
 
-      showsnackbar(" successfully payment completed");
+      showsnackbar(LocaleKeys.snack_bar_successfully_payment.tr);
 
       // showDialog(
       //     context: context,

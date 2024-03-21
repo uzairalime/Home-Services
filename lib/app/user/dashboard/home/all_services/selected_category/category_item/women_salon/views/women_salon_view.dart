@@ -184,11 +184,11 @@ class WomenSalonView extends GetView<BookingController> {
   _onContinue(WomenSalonController controller) {
     if (bookingcontroller.hours.value == 0) {
       logger.d(bookingcontroller.hours.value);
-      showsnackbar("please select hours", true);
+      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (bookingcontroller.cleaner.value == 0) {
-      showsnackbar("please select cleaners", true);
+      showsnackbar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
     } else if (controller.selectedInsects.value.isEmpty) {
-      showsnackbar("please select Service", true);
+      showsnackbar(LocaleKeys.snack_bars_select_service.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

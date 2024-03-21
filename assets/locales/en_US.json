@@ -403,6 +403,42 @@
     "general_maintenence": "General Maintenence",
     "landscaping": "Landscaping"
   },
+<<<<<<< HEAD
+  "enteraddress": "Enter your address",
+  "location_screen": {
+    "set_loation": "Set Location",
+    "search_your_loaction": "Search your location",
+    "successfully_address_changed": "Successfully Address Changed",
+    "something_went_wrong": "Something Went Wrong please try again !",
+    "use_my_current_loaction": "Use my current location",
+    "selected_loaction": "Selected Loacton"
+  },
+  "snack_bars": {
+    "select_hours": "Please Select Hours",
+    "select_cleanrs": "Please Select Cleaners",
+    "select_subscription": "Please Select Subscription",
+    "select_materials": "Please Select Materials",
+    "login_then_booking": "Please Login then Booking",
+    "add_address": "Please add a address",
+    "select_service": "Please Select Service",
+    "add_discription": "Please add discription",
+    "select_house_size": "Please select house size",
+    "select_piecec": "Please select peices"
+  },
+  "snack_bar": {
+    "enter_otp": "Enter OTP",
+    "opt_failed": "OTP failed",
+    "enter_valid_number": "Enter a valid number",
+    "successfully_payment": "Succecfuly payment completed",
+    "enter_valid_otp": "Enter valid OTP"
+  },
+  "completed": "Completed",
+  "upcomming": "Upcoming",
+  "no_jobs_found": "No jobs found",
+  "flat_number": "Flat #"
+}
+=======
   "enteraddress": "Enter your address"
 }
 
+>>>>>>> 4b6e057ad79fbf3cd59126b394547bdd9e8d11c1

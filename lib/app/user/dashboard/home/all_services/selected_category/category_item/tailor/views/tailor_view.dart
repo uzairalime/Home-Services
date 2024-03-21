@@ -16,13 +16,13 @@ import 'package:home_brigadier/widget/c_filled_btn.dart';
 
 // ignore: must_be_immutable
 class TailorView extends GetView<TailorController> {
-   final con =  Get.put(TailorController);
+  final con = Get.put(TailorController);
   final bookingcontroller = Get.put(BookingController());
   TailorView({super.key});
 
   @override
   Widget build(BuildContext context) {
-        BookingController.to.claculateBill();
+    BookingController.to.claculateBill();
 
     final widht = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
@@ -50,7 +50,7 @@ class TailorView extends GetView<TailorController> {
                 padding: const EdgeInsets.only(
                     top: 30, bottom: 20, left: 20, right: 20),
                 child: CButton(
-                   borderradius: widht * 0.075,
+                    borderradius: widht * 0.075,
                     text:
                         "${LocaleKeys.house_cleaning_items_cont_button.tr} AED 20",
                     fontWeight: FontWeight.bold,
@@ -131,7 +131,7 @@ class TailorView extends GetView<TailorController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color:const Color(0xffF1E7FF),
+                                            color: const Color(0xffF1E7FF),
                                             shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
@@ -160,7 +160,7 @@ class TailorView extends GetView<TailorController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color:  const Color(0xffF1E7FF),
+                                            color: const Color(0xffF1E7FF),
                                             shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
@@ -280,7 +280,7 @@ class TailorView extends GetView<TailorController> {
                             height: height * 0.2,
                             width: widht,
                             child: TextField(
-                              textInputAction: TextInputAction.done,
+                                textInputAction: TextInputAction.done,
                                 controller: controller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
@@ -309,11 +309,11 @@ class TailorView extends GetView<TailorController> {
   onContinue() {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
-      showsnackbar("please select hours", true);
+      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.pieces.value == 0) {
-      showsnackbar("please select Piece", true);
+      showsnackbar(LocaleKeys.snack_bars_select_piecec.tr, true);
     } else if (controller.selectedweekplan.value.isEmpty) {
-      showsnackbar("please select subscription", true);
+      showsnackbar(LocaleKeys.snack_bars_select_subscription.tr, true);
     } else {
       // print()
       // print(

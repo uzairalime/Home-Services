@@ -369,6 +369,42 @@ class LocaleKeys {
   static const handy_man_general_maintenence = 'handy_man_general_maintenence';
   static const handy_man_landscaping = 'handy_man_landscaping';
   static const enteraddress = 'enteraddress';
+  static const location_screen_set_loation = 'location_screen_set_loation';
+  static const location_screen_search_your_loaction =
+      'location_screen_search_your_loaction';
+  static const location_screen_successfully_address_changed =
+      'location_screen_successfully_address_changed';
+  static const location_screen_something_went_wrong =
+      'location_screen_something_went_wrong';
+  static const location_screen_use_my_current_loaction =
+      'location_screen_use_my_current_loaction';
+  static const location_screen_selected_loaction =
+      'location_screen_selected_loaction';
+  static const snack_bars_select_hours = 'snack_bars_select_hours';
+  static const snack_bars_select_cleanrs = 'snack_bars_select_cleanrs';
+  static const snack_bars_select_subscription =
+      'snack_bars_select_subscription';
+  static const snack_bars_select_materials = 'snack_bars_select_materials';
+  static const snack_bars_login_then_booking = 'snack_bars_login_then_booking';
+  static const snack_bars_add_address = 'snack_bars_add_address';
+  static const snack_bars_select_service = 'snack_bars_select_service';
+  static const snack_bars_add_discription = 'snack_bars_add_discription';
+  static const snack_bars_select_house_size = 'snack_bars_select_house_size';
+  static const snack_bars_select_piecec = 'snack_bars_select_piecec';
+  static const snack_bar_enter_otp = 'snack_bar_enter_otp';
+  static const snack_bar_opt_failed = 'snack_bar_opt_failed';
+  static const snack_bar_enter_valid_number = 'snack_bar_enter_valid_number';
+  static const snack_bar_successfully_payment =
+      'snack_bar_successfully_payment';
+  static const snack_bar_enter_valid_otp = 'snack_bar_enter_valid_otp';
+  static const completed = 'completed';
+  static const upcomming = 'upcomming';
+  static const no_jobs_found = 'no_jobs_found';
+  static const flat_number = 'flat_number';
+  static const painting_items_special_insutuction =
+      'painting_items_special_insutuction';
+  static const painting_items_example_insutruction =
+      'painting_items_example_insutruction';
   static const painting_items_special_insutuction = 'painting_items_special_insutuction';
   static const painting_items_example_insutruction = 'painting_items_example_insutruction';
   static const tailor_items_how_many_peices = 'tailor_items_how_many_peices';
@@ -718,6 +754,32 @@ class Locales {
     'handy_man_general_maintenence': 'صيانة عامة',
     'handy_man_landscaping': 'تنسيق الحدائق',
     'enteraddress': 'أدخل عنوانك',
+    'location_screen_set_loation': 'تحديد الموقع',
+    'location_screen_search_your_loaction': 'ابحث عن موقعك',
+    'location_screen_successfully_address_changed': 'تم تغيير العنوان بنجاح',
+    'location_screen_something_went_wrong':
+        'حدث خطأ ما، يرجى المحاولة مرة أخرى!',
+    'location_screen_use_my_current_loaction': 'استخدم موقعي الحالي',
+    'location_screen_selected_loaction': 'الموقع المحدد',
+    'snack_bars_select_hours': 'يرجى اختيار الساعات',
+    'snack_bars_select_cleanrs': 'يرجى اختيار المنظفين',
+    'snack_bars_select_subscription': 'يرجى اختيار الاشتراك',
+    'snack_bars_select_materials': 'يرجى اختيار المواد',
+    'snack_bars_login_then_booking': 'يرجى تسجيل الدخول ثم الحجز',
+    'snack_bars_add_address': 'يرجى إضافة عنوان',
+    'snack_bars_select_service': 'يرجى اختيار الخدمة',
+    'snack_bars_add_discription': 'يرجى إضافة وصف',
+    'snack_bars_select_house_size': 'يرجى اختيار حجم المنزل',
+    'snack_bars_select_piecec': 'يرجى اختيار القطع',
+    'snack_bar_enter_otp': 'أدخل رمز التحقق',
+    'snack_bar_opt_failed': 'فشل في رمز التحقق',
+    'snack_bar_enter_valid_number': 'يرجى إدخال رقم صحيح',
+    'snack_bar_successfully_payment': 'تم الدفع بنجاح',
+    'snack_bar_enter_valid_otp': 'أدخل رمز التحقق الصحيح',
+    'completed': 'مكتمل',
+    'upcomming': 'قادم',
+    'no_jobs_found': 'لم يتم العثور على وظائف',
+    'flat_number': 'رقم الشقة #',
   };
   static const en_US = {
     'required_field': 'Required Field',
@@ -1063,5 +1125,32 @@ class Locales {
     'handy_man_general_maintenence': 'General Maintenence',
     'handy_man_landscaping': 'Landscaping',
     'enteraddress': 'Enter your address',
+    'location_screen_set_loation': 'Set Location',
+    'location_screen_search_your_loaction': 'Search your location',
+    'location_screen_successfully_address_changed':
+        'Successfully Address Changed',
+    'location_screen_something_went_wrong':
+        'Something Went Wrong please try again !',
+    'location_screen_use_my_current_loaction': 'Use my current location',
+    'location_screen_selected_loaction': 'Selected Loacton',
+    'snack_bars_select_hours': 'Please Select Hours',
+    'snack_bars_select_cleanrs': 'Please Select Cleaners',
+    'snack_bars_select_subscription': 'Please Select Subscription',
+    'snack_bars_select_materials': 'Please Select Materials',
+    'snack_bars_login_then_booking': 'Please Login then Booking',
+    'snack_bars_add_address': 'Please add a address',
+    'snack_bars_select_service': 'Please Select Service',
+    'snack_bars_add_discription': 'Please add discription',
+    'snack_bars_select_house_size': 'Please select house size',
+    'snack_bars_select_piecec': 'Please select peices',
+    'snack_bar_enter_otp': 'Enter OTP',
+    'snack_bar_opt_failed': 'OTP failed',
+    'snack_bar_enter_valid_number': 'Enter a valid number',
+    'snack_bar_successfully_payment': 'Succecfuly payment completed',
+    'snack_bar_enter_valid_otp': 'Enter valid OTP',
+    'completed': 'Completed',
+    'upcomming': 'Upcoming',
+    'no_jobs_found': 'No jobs found',
+    'flat_number': 'Flat #',
   };
 }

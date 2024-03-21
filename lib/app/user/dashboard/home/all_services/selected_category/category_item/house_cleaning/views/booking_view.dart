@@ -49,7 +49,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                   padding: const EdgeInsets.only(
                       top: 30, bottom: 20, left: 20, right: 20),
                   child: CButton(
-                     borderradius: widht * 0.075,
+                      borderradius: widht * 0.075,
                       text:
                           "${LocaleKeys.house_cleaning_items_cont_button.tr} ${controller.total.value} AED ",
                       fontWeight: FontWeight.bold,
@@ -286,7 +286,8 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                             BorderRadius.circular(22.0),
                                       ),
                                       label: CText(
-                                          color: controller.selectedweekplan.value ==
+                                          color: controller
+                                                      .selectedweekplan.value ==
                                                   'Once'
                                               ? AppColor.white
                                               : AppColor.black,
@@ -359,8 +360,6 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                         controller.selectWeekplan('Bi-Weekly');
                                       },
                                     ),
-                                  
-                                  
                                   ],
                                 ),
                                 ChoiceChip(
@@ -376,10 +375,11 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color: controller.selectedweekplan.value ==
-                                              'Multiple Times a Week'
-                                          ? AppColor.white
-                                          : AppColor.black,
+                                      color:
+                                          controller.selectedweekplan.value ==
+                                                  'Multiple Times a Week'
+                                              ? AppColor.white
+                                              : AppColor.black,
                                       text: LocaleKeys
                                           .house_cleaning_items_Mutilple_time
                                           .tr),
@@ -522,13 +522,13 @@ class HouseCleaningBookingView extends GetView<BookingController> {
   _onContinue() {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
-      showsnackbar("please select hours", true);
+      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.cleaner.value == 0) {
-      showsnackbar("please select cleaners", true);
+      showsnackbar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
     } else if (controller.selectedweekplan.value.isEmpty) {
-      showsnackbar("please select subscription", true);
+      showsnackbar(LocaleKeys.snack_bars_select_subscription.tr, true);
     } else if (controller.selectedmaterial.isEmpty) {
-      showsnackbar("please select materials", true);
+      showsnackbar(LocaleKeys.snack_bars_select_materials.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

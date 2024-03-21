@@ -169,7 +169,7 @@ class LocationView extends GetView<BookingController> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: CText(
-                          text: "Flat #",
+                          text: LocaleKeys.flat_number.tr,
                           fontWeight: FontWeight.w600,
                           fontsize: widht * 0.04,
                         ),
@@ -237,13 +237,16 @@ class LocationView extends GetView<BookingController> {
                             if (StaticData.refreshToken.isNotEmpty) {
                               _onButtonPress(context, obj.addressController);
                             } else {
-                              showsnackbar("please login then booking", true);
+                              showsnackbar(
+                                  LocaleKeys.snack_bars_login_then_booking.tr,
+                                  true);
                               Get.to(() => const EmailLoginView(
                                     role: "buyer",
                                   ));
                             }
                           } else {
-                            showsnackbar("please add a address", true);
+                            showsnackbar(
+                                LocaleKeys.snack_bars_add_address.tr, true);
                           }
                         },
                       )
