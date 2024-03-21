@@ -14,6 +14,7 @@ import '../../../../../../model/user_services_models/my_booking_booking_model.da
 import '../../../../../../model/user_services_models/my_service_post_model.dart';
 import '../../../../../../model/user_services_models/my_services_resp_model.dart';
 import '../../../../../../services/apis/toast.dart';
+import '../../../../../../utils/animation_dialog.dart';
 
 class UserProfileController extends GetxController {
   static UserProfileController get to => Get.find();
@@ -188,6 +189,7 @@ class UserProfileController extends GetxController {
 
   Future<void> updateUserService(
       {required int id,
+      required BuildContext context,
       required String name,
       required String description,
       required String category,
@@ -233,8 +235,13 @@ class UserProfileController extends GetxController {
       );
       //print(response.statusCode);
       if (response.statusCode == 200) {
-        showsnackbar("Service Update Successfully");
-        // Get.off(() => const SellerDashboardView());
+        // showsnackbar("Service Update Successfully");
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => const AnimationDialog(
+                  text: 'Successfully Added !',
+                )).then((value) => Get.back());
       }
     } on SocketException catch (e) {
       showsnackbar("Error: Check Internet Connection", true);
@@ -246,7 +253,6 @@ class UserProfileController extends GetxController {
       print("Error: $e");
     } finally {
       isLoading.value = false;
-      update();
     }
   }
 
