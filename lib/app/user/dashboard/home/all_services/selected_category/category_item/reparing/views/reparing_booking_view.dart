@@ -19,7 +19,7 @@ class RepairingBookingView extends GetView<ReparingController> {
 
   @override
   Widget build(BuildContext context) {
-    BookingController.to.claculateBill();
+    // BookingController.to.claculateBill();
 
     Get.put(ReparingController());
     final titlelarge = Theme.of(context).textTheme.titleLarge!.fontSize;
@@ -60,7 +60,8 @@ class RepairingBookingView extends GetView<ReparingController> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
+                     icon:  Icon(Icons.adaptive.arrow_back),
+
             onPressed: () {
               Get.back();
             },

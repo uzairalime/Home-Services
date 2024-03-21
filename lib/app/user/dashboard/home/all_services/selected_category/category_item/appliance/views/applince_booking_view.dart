@@ -21,7 +21,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
   @override
   Widget build(BuildContext context) {
     Get.put(ApplianceController());
-    BookingController.to.claculateBill();
+    // BookingController.to.claculateBill();
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
@@ -41,6 +41,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
               padding: const EdgeInsets.all(20),
               child: Obx(
                 () => CButton(
+                     borderradius: width * 0.075,
                   btnwidth: mediaQueryWidth(context) * 0.9,
                   text:
                       "${LocaleKeys.painting_items_continue_button.tr} AED ${BookingController.to.total.value}",
@@ -48,7 +49,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                   ontab: () {
                     atleastone();
                   },
-                  // ontab: () =>
+                 
                 ),
               )),
         ),
@@ -56,20 +57,12 @@ class ApplianceBookingView extends GetView<ApplianceController> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon:  Icon(Icons.adaptive.arrow_back),
           onPressed: () {
             Get.back();
           },
         ),
-        // actions: [
-        //   SizedBox(
-        //     width: 55.0,
-        //     child: SvgPicture.asset(
-        //       'assets/icons/ic_more_outlined.svg',
-        //       fit: BoxFit.scaleDown,
-        //     ),
-        //   ),
-        // ],
+        
         title: Text(
           LocaleKeys.applience_items_applience_service.tr,
           style: TextStyle(
@@ -121,7 +114,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                                   activeColor: AppColor.primary,
                                   onChanged: (value) {
                                     log(value.toString());
-                                    // controller.changemac(value);
+                                   
                                   },
                                 ),
                               ),
@@ -408,7 +401,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
         controller.iscond_.value == false &&
         controller.isgrilli_.value == false &&
         controller.iswasher.value == false) {
-      showsnackbar("Please Select at least one ");
+      showsnackbar("Please Select at least one ",true);
     } else {
       Get.to(() => BookingDetailsView(
             model: model,

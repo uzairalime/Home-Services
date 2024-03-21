@@ -44,9 +44,6 @@ class MyJobsView extends GetView<MyJobsController> {
                 indicatorWeight: 3,
                 tabs: [
 
-                  Tab(text: LocaleKeys.completed.tr),
-                  Tab(text: LocaleKeys.upcomming.tr),
-
                   Tab(text: LocaleKeys.user_profile_item_completed.tr),
                   Tab(text: LocaleKeys.user_profile_item_upcoming.tr),
 

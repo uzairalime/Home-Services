@@ -405,8 +405,6 @@ class LocaleKeys {
       'painting_items_special_insutuction';
   static const painting_items_example_insutruction =
       'painting_items_example_insutruction';
-  static const painting_items_special_insutuction = 'painting_items_special_insutuction';
-  static const painting_items_example_insutruction = 'painting_items_example_insutruction';
   static const tailor_items_how_many_peices = 'tailor_items_how_many_peices';
 }
 

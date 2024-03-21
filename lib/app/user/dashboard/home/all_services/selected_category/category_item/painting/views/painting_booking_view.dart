@@ -19,7 +19,7 @@ class PaintingBookingView extends GetView<PaintingController> {
 
   @override
   Widget build(BuildContext context) {
-    BookingController.to.claculateBill();
+    // BookingController.to.claculateBill();
 
     Get.put(PaintingController());
     // final bookingcontroller = Get.put(BookingController());

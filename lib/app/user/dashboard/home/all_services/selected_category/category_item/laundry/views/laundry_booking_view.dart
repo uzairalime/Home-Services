@@ -16,7 +16,7 @@ class LaundryBookingView extends GetView<LaundryController> {
 
   @override
   Widget build(BuildContext context) {
-            BookingController.to.claculateBill();
+            // BookingController.to.claculateBill();
 
     Get.put(LaundryController());
     final titleMedium = Theme.of(context).textTheme.titleMedium!.fontSize;

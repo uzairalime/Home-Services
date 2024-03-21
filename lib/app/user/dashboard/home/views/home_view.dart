@@ -204,7 +204,7 @@ class HomeView extends GetView<HomeController> {
                                 if (snapshot.connectionState == ConnectionState.waiting) {
                                   return ShimmerWidget.rectangular(height: height * 0.175);
                                 } else if (snapshot.hasError) {
-                                  return Text('Error: ${snapshot.error}');
+                                  return Center(child: Text('Error: Something went wrong, please try again'));
                                 } else {
                                   return Container(
                                     width: widht,
@@ -326,7 +326,7 @@ class HomeView extends GetView<HomeController> {
             },
           );
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Text('Error: Something went wrong, please try again');
         } else {
           final List<CetegoryModel> categoryList = controller.categorylist;
           categoryList.sort((a, b) => a.code!.compareTo(b.code!));
@@ -383,9 +383,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                       ),
 
-                      // SizedBox(
-                      //   height: height * 0.01,
-                      // ),
+                      
                     ],
                   ),
                 );

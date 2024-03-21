@@ -51,7 +51,6 @@ class LocationView extends GetView<BookingController> {
             speed: 0,
             speedAccuracy: 0);
 
-    // controller.addlatlong(LatLng(location.latitude, location.longitude));
 
     return GetBuilder<BookingController>(
         init: BookingController(),
@@ -65,8 +64,7 @@ class LocationView extends GetView<BookingController> {
                 ),
               ),
               body: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: widht * 0.05, vertical: height * 0.025),
+                padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                 child: SizedBox(
                   width: widht,
                   height: height,
@@ -98,16 +96,14 @@ class LocationView extends GetView<BookingController> {
                       Container(
                         width: widht / 6,
                         height: height * 0.0075,
-                        decoration: BoxDecoration(
-                            color: const Color(0xfffe0e0e0),
-                            borderRadius: BorderRadius.circular(20)),
+                        decoration:
+                            BoxDecoration(color: const Color(0xfffe0e0e0), borderRadius: BorderRadius.circular(20)),
                       ),
                       SizedBox(
                         height: height * 0.01,
                       ),
                       CText(
-                        text:
-                            LocaleKeys.location_view_items_location_details.tr,
+                        text: LocaleKeys.location_view_items_location_details.tr,
                         fontWeight: FontWeight.w600,
                         fontsize: widht * 0.05,
                       ),
@@ -126,6 +122,7 @@ class LocationView extends GetView<BookingController> {
                         height: height * 0.015,
                       ),
                       TextFormField(
+                        style: const TextStyle(color: AppColor.primary),
                         onTapOutside: (PointerDownEvent p) {
                           FocusScope.of(context).unfocus();
                         },
@@ -154,8 +151,7 @@ class LocationView extends GetView<BookingController> {
                             isDense: true,
                             contentPadding: const EdgeInsets.all(12),
                             hintText: LocaleKeys.enteraddress.tr,
-                            hintStyle: TextStyle(
-                                color: AppColor.grey, fontSize: widht * 0.04),
+                            hintStyle: TextStyle(color: AppColor.grey, fontSize: widht * 0.04),
                             filled: true,
                             fillColor: const Color(0xffF5F5F5),
                             border: OutlineInputBorder(
@@ -194,59 +190,39 @@ class LocationView extends GetView<BookingController> {
                           fillColor: Colors.grey.withOpacity(0.1)),
                       Expanded(
                         child: ListView.builder(
-                          keyboardDismissBehavior:
-                              ScrollViewKeyboardDismissBehavior.onDrag,
+                          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                           itemCount: obj.placeprediction.length,
                           itemBuilder: (context, index) {
                             return LocationListTile(
                               press: () async {
-                                obj.addressController.text =
-                                    obj.placeprediction[index].description!;
+                                obj.addressController.text = obj.placeprediction[index].description!;
 
                                 obj.placeprediction.clear();
                                 obj.update();
-
-                                //  List<Location> locations = await locationFromAddress(
-                                //   localeIdentifier: "en",
-
-                                //   "Gronausestraat 710, Enschede");
-
-                                //   logger.d(
-                                //       "!!!!!!!!!!!!!!!!!!!!!!!!!!${locations.length}");
-
-                                //                            obj.mapController?.animateCamera(
-                                //   CameraUpdate.newLatLngZoom(obj.placeprediction[index], 15.0),
-                                // );
                               },
-                              location:
-                                  "${obj.placeprediction[index].description}",
+                              location: "${obj.placeprediction[index].description}",
                             );
                           },
                         ),
                       ),
                       CButton(
                         fontsize: 16,
-                        text:
-                            "${LocaleKeys.location_view_items_continue_button.tr} ${controller.total.value} AED",
+                        text: "${LocaleKeys.location_view_items_continue_button.tr} ${controller.total.value} AED",
                         shadow: true,
                         borderradius: widht * 0.075,
                         fontWeight: bold6,
                         ontab: () {
-                          if (obj.addressController.text.isNotEmpty &&
-                              obj.flat.text.isNotEmpty) {
+                          if (obj.addressController.text.isNotEmpty && obj.flat.text.isNotEmpty) {
                             if (StaticData.refreshToken.isNotEmpty) {
                               _onButtonPress(context, obj.addressController);
                             } else {
-                              showsnackbar(
-                                  LocaleKeys.snack_bars_login_then_booking.tr,
-                                  true);
+                              showsnackbar(LocaleKeys.snack_bars_login_then_booking.tr, true);
                               Get.to(() => const EmailLoginView(
                                     role: "buyer",
                                   ));
                             }
                           } else {
-                            showsnackbar(
-                                LocaleKeys.snack_bars_add_address.tr, true);
+                            showsnackbar(LocaleKeys.snack_bars_add_address.tr, true);
                           }
                         },
                       )
@@ -266,9 +242,7 @@ class LocationView extends GetView<BookingController> {
         endAt: controller.enddatetime,
         address: "${address.text.toString()} ${controller.flat.text} ",
         location: controller.currentPosition.toString(),
-        description: controller.instruction.text.toString().isEmpty
-            ? ""
-            : controller.instruction.text.toString(),
+        description: controller.instruction.text.toString().isEmpty ? "" : controller.instruction.text.toString(),
         serviceId: controller.servicemodel!.id!,
         extraInfo: ExtraInfo(
             cleaningFrequency: controller.selectedweekplan.toString(),

@@ -22,7 +22,7 @@ class TailorView extends GetView<TailorController> {
 
   @override
   Widget build(BuildContext context) {
-    BookingController.to.claculateBill();
+    // BookingController.to.claculateBill();
 
     final widht = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
@@ -52,7 +52,7 @@ class TailorView extends GetView<TailorController> {
                 child: CButton(
                     borderradius: widht * 0.075,
                     text:
-                        "${LocaleKeys.house_cleaning_items_cont_button.tr} AED 20",
+                        "${LocaleKeys.house_cleaning_items_cont_button.tr} AED ${bookingcontroller.total.value}",
                     fontWeight: FontWeight.bold,
                     ontab: () {
                       onContinue();

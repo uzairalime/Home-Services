@@ -25,6 +25,7 @@ import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controll
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/service_model.dart';
+import 'package:home_brigadier/utils/logger.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
@@ -112,8 +113,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     double endLatitude = emp[0];
     double endLongitude = emp[1];
 
-    double distanceInMeters =
-        Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
+    double distanceInMeters = Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
     var km = distanceInMeters / 1000;
 
     return InkWell(
@@ -140,8 +140,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
                           imageUrl: "https://homebrigadier.fly.dev${service_model.files![0].file}",
-                          placeholder: (context, url) =>
-                              const Center(child: CircularProgressIndicator()),
+                          placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                           errorWidget: (context, url, error) => const Icon(Icons.error),
                         ),
                       ),
@@ -170,19 +169,15 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                                   fontWeight: FontWeight.w500),
                               Text("AED ${service_model.rate}/hr",
                                   style: TextStyle(
-                                      color: AppColor.primary,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: titleSmall)),
+                                      color: AppColor.primary, fontWeight: FontWeight.w500, fontSize: titleSmall)),
                               Row(children: [
                                 const Icon(Icons.access_time_outlined),
                                 const SizedBox(width: 5),
                                 CText(
-                                    text:
-                                        "${formatTime(service_model.openingHours![0].fromHour.toString())} - ",
+                                    text: "${formatTime(service_model.openingHours![0].fromHour.toString())} - ",
                                     fontsize: titleSmall),
                                 CText(
-                                    text: formatTime(
-                                        service_model.openingHours![0].toHour.toString()),
+                                    text: formatTime(service_model.openingHours![0].toHour.toString()),
                                     fontsize: titleSmall)
                               ]),
                               SizedBox(
@@ -193,9 +188,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
                                     //     size: 20),
                                     // const SizedBox(width: 5),
                                     for (var i in service_model.openingHours!)
-                                      days(
-                                          name: getAbbreviatedWeekday(i.weekday!),
-                                          size: titleSmall!),
+                                      days(name: getAbbreviatedWeekday(i.weekday!), size: titleSmall!),
                                   ]),
                                 ),
                               ),
@@ -207,21 +200,19 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
             SizedBox(
                 height: 60,
                 width: double.maxFinite,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(children: [
-                        const Icon(Icons.pin_drop_outlined, color: AppColor.secondary),
-                        const SizedBox(width: 5),
-                        CText(text: "${km.toInt()} ${LocaleKeys.km_away.tr}", fontsize: titleSmall),
-                      ]),
-                      bottomButton(
-                          model: service_model,
-                          icon: Icons.shopping_cart_outlined,
-                          size: titleSmall,
-                          txt: LocaleKeys.tailor_items_book_now.tr)
-                    ])).paddingSymmetric(horizontal: 10)
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, mainAxisSize: MainAxisSize.max, children: [
+                  Row(children: [
+                    const Icon(Icons.pin_drop_outlined, color: AppColor.secondary),
+                    const SizedBox(width: 5),
+                    CText(text: "${km.toInt()} ${LocaleKeys.km_away.tr}", fontsize: titleSmall),
+                  ]),
+                  bottomButton(
+                      model: service_model,
+                      icon: Icons.shopping_cart_outlined,
+                      size: titleSmall,
+                      txt: LocaleKeys.tailor_items_book_now.tr)
+                ])).paddingSymmetric(horizontal: 10)
           ])),
     );
   }
@@ -248,77 +239,126 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-                side: BorderSide(color: AppColor.greylight),
-                borderRadius: BorderRadius.circular(12)),
+                side: BorderSide(color: AppColor.greylight), borderRadius: BorderRadius.circular(12)),
             elevation: 0,
             backgroundColor: AppColor.white),
         onPressed: () {
-          // if (StaticData.refreshToken.isNotEmpty) {
-
-          log("categories code ${jsonEncode(model.category!.code)}");
+          log("categories code============= ${jsonEncode(model.category!.code)}");
           switch (model.category!.code) {
             case 'tailor':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
+
               Get.to(() => TailorView());
               break;
 
             case 'cleaning':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
+
               Get.to(() => const HouseCleaningBookingView());
               break;
 
             case 'acRepair':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
+
               Get.to(() => RepairingBookingView());
               break;
 
             case 'painting':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => PaintingBookingView());
               break;
 
             case 'Laundry':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => const LaundryBookingView());
               break;
 
             case 'electricity':
               BookingController.to.setServicesModel(model);
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
+
               Get.to(() => ApplianceBookingView(model: model));
               break;
 
             case 'plumbing':
               BookingController.to.setServicesModel(model);
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => PlumbingBookingView());
               break;
 
             case 'pestControl':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => const PestControlBookingView());
               break;
 
             case 'womenSalon':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => WomenSalonView());
               break;
 
             case 'spa':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => const SpaView());
               break;
 
             case 'menSalon':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => const MenSalonView());
               break;
 
             case 'handyman':
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.selectMaterials("No");
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => const HandymanView());
               break;
 
             default:
               BookingController.to.setServicesModel(model);
+
+              BookingController.to.hours.value = 1;
+              BookingController.to.claculateBill();
               Get.to(() => const HouseCleaningBookingView());
               break;
           }
@@ -381,8 +421,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
         margin: const EdgeInsets.symmetric(horizontal: 3),
         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(width: 1, color: AppColor.greylight)),
+            borderRadius: BorderRadius.circular(5), border: Border.all(width: 1, color: AppColor.greylight)),
         child: Center(child: CText(text: name, fontsize: size)));
   }
 
