@@ -22,7 +22,7 @@ class MyJobsController extends GetxController {
         log("Jobs ${jsonEncode(jsonData)}");
         List<MyServicesBookingModel> bookings =
             jsonData.map((data) => MyServicesBookingModel.fromJson(data)).toList();
-        return bookings.where((booking) => booking.status == 'Completed').toList();
+        return bookings.where((booking) => booking.status == 'completed').toList();
       } else {
         throw Exception('Failed to load data');
       }
@@ -42,7 +42,7 @@ class MyJobsController extends GetxController {
         log("Jobs ${jsonEncode(jsonData)}");
         List<MyServicesBookingModel> bookings =
             jsonData.map((data) => MyServicesBookingModel.fromJson(data)).toList();
-        return bookings.where((booking) => booking.status == 'Accepted').toList();
+        return bookings.where((booking) => booking.status == 'pending').toList();
       } else {
         throw Exception('Failed to load data');
       }
