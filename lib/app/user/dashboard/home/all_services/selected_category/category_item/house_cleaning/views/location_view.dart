@@ -51,11 +51,48 @@ class LocationView extends GetView<BookingController> {
             speed: 0,
             speedAccuracy: 0);
 
-
     return GetBuilder<BookingController>(
         init: BookingController(),
         builder: (obj) {
           return Scaffold(
+            bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(24),
+                  topRight: Radius.circular(24),
+                ),
+                border: Border(
+                    top: BorderSide(
+                  color: AppColor.greylight,
+                ))),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 30, bottom: 20, left: 20, right: 20),
+              child: CButton(
+                        fontsize: 16,
+                        text: "${LocaleKeys.location_view_items_continue_button.tr} ${controller.total.value} AED",
+                        shadow: true,
+                        borderradius: widht * 0.075,
+                        fontWeight: bold6,
+                        ontab: () {
+                          if (obj.addressController.text.isEmpty) {
+                            showsnackbar(LocaleKeys.snack_bars_add_address.tr, true);
+                          } else if (obj.flat.text.isEmpty) {
+                            showsnackbar("please enter flat number", true);
+                          } else {
+                            if (StaticData.refreshToken.isEmpty) {
+                              _onButtonPress(context, obj.addressController);
+                            } else {
+                              showsnackbar(LocaleKeys.snack_bars_login_then_booking.tr, true);
+                              Get.to(() => const EmailLoginView(
+                                    role: "buyer",
+                                  ));
+                            }
+                          }
+                        },
+                      )
+                 
+              ))  ,
               resizeToAvoidBottomInset: false,
               appBar: AppBar(
                 title: Text(
@@ -159,6 +196,9 @@ class LocationView extends GetView<BookingController> {
                               borderSide: BorderSide.none,
                             )),
                       ),
+                    obj.placeprediction.length == 0?SizedBox()   :Expanded(
+                        child: locationTile(obj),
+                      ),
                       SizedBox(
                         height: height * 0.015,
                       ),
@@ -188,49 +228,31 @@ class LocationView extends GetView<BookingController> {
                           filled: true,
                           keyboardType: TextInputType.number,
                           fillColor: Colors.grey.withOpacity(0.1)),
-                      Expanded(
-                        child: ListView.builder(
-                          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                          itemCount: obj.placeprediction.length,
-                          itemBuilder: (context, index) {
-                            return LocationListTile(
-                              press: () async {
-                                obj.addressController.text = obj.placeprediction[index].description!;
-
-                                obj.placeprediction.clear();
-                                obj.update();
-                              },
-                              location: "${obj.placeprediction[index].description}",
-                            );
-                          },
-                        ),
-                      ),
-                      CButton(
-                        fontsize: 16,
-                        text: "${LocaleKeys.location_view_items_continue_button.tr} ${controller.total.value} AED",
-                        shadow: true,
-                        borderradius: widht * 0.075,
-                        fontWeight: bold6,
-                        ontab: () {
-                          if (obj.addressController.text.isNotEmpty && obj.flat.text.isNotEmpty) {
-                            if (StaticData.refreshToken.isNotEmpty) {
-                              _onButtonPress(context, obj.addressController);
-                            } else {
-                              showsnackbar(LocaleKeys.snack_bars_login_then_booking.tr, true);
-                              Get.to(() => const EmailLoginView(
-                                    role: "buyer",
-                                  ));
-                            }
-                          } else {
-                            showsnackbar(LocaleKeys.snack_bars_add_address.tr, true);
-                          }
-                        },
-                      )
+                     
+                 
                     ],
                   ),
                 ),
               ));
         });
+  }
+
+  ListView locationTile(BookingController obj) {
+    return ListView.builder(
+                        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                        itemCount: obj.placeprediction.length,
+                        itemBuilder: (context, index) {
+                          return LocationListTile(
+                            press: () async {
+                              obj.addressController.text = obj.placeprediction[index].description!;
+
+                              obj.placeprediction.clear();
+                              obj.update();
+                            },
+                            location: "${obj.placeprediction[index].description}",
+                          );
+                        },
+                      );
   }
 
   _onButtonPress(BuildContext context, TextEditingController address) async {
