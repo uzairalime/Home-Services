@@ -17,9 +17,8 @@ class PestControlBookingView extends GetView<BookingController> {
 
   @override
   Widget build(BuildContext context) {
-    BookingController.to.claculateBill();
+    // BookingController.to.claculateBill();
 
-    controller.claculateBill();
     final widht = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 

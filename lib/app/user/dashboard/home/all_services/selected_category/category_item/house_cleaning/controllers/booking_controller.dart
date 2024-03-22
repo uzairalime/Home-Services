@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -11,7 +10,6 @@ import 'package:home_brigadier/app/user/dashboard/controllers/dashboard_controll
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/views/location_pick.dart';
 import 'package:home_brigadier/consts/const.dart';
-import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/model/booking_response_model.dart';
 import 'package:home_brigadier/model/main.dart';
 import 'package:home_brigadier/model/place_auto_complate_response.dart';
@@ -21,8 +19,6 @@ import 'package:home_brigadier/services/apis/api_helper.dart';
 import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:home_brigadier/utils/animation_dialog.dart';
 import 'package:home_brigadier/utils/dialog_helper.dart';
-import 'package:logger/logger.dart';
-
 import '../../../../../../../../../utils/logger.dart';
 import '../../../../../../../../routes/app_pages.dart';
 
@@ -203,13 +199,13 @@ class BookingController extends GetxController {
       cPosition = "${currentPosition?.latitude}, ${currentPosition?.longitude}";
       currentPosition = position;
       logger.d("${position.latitude} ${position.longitude}");
-      _getAddressFromLatLng(currentPosition!,context);
+      _getAddressFromLatLng(currentPosition!, context);
     }).catchError((e) {
       debugPrint(e);
     });
   }
 
-  Future<void> _getAddressFromLatLng(Position position,context) async {
+  Future<void> _getAddressFromLatLng(Position position, context) async {
     await placemarkFromCoordinates(currentPosition!.latitude, currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
@@ -221,23 +217,18 @@ class BookingController extends GetxController {
       storage.write("address", currentAddress.value);
 
       logger.d("===== SELECTED LOCATION IS $currentAddress");
-        Get.back();
-                  showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (context) => const AnimationDialog(
-                            text: 'successfully address changed',
-                          ));
-
+      Get.back();
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => const AnimationDialog(
+                text: 'successfully address changed',
+              ));
     }).catchError((e) {
       debugPrint(e);
     });
     update(["address"]);
   }
-
-
-
-
 
   claculateBill() {
     // update();
@@ -279,30 +270,21 @@ class BookingController extends GetxController {
           HomeController.to.onsearchtab = false;
 
           instruction.clear();
+          addressController.clear();
+          flat.clear();
 
           Get.put(PaymetController());
+          placeprediction.clear();
 
           await PaymetController.to.makePayment(context, amount, paymentIntent);
         });
-
-        // DialogHelper.hideLoading();
-
-        // showDialog(
-        //     context: context,
-        //     barrierDismissible: false,
-        //     builder: (context) => const AnimationDialog(
-        //           text: 'Successfully Booking !',
-        //         )).then((value) {
-        //   Get.offNamed(Routes.DASHBOARD);
-        //   UserDashboardController.to.currentIndex.value = 1;
-        //   HomeController.to.onsearchtab = false;
-
-        //   instruction.clear();
       } else {
         DialogHelper.hideLoading();
         showsnackbar("some thing went wrong", true);
         instruction.clear();
         flat.clear();
+        addressController.clear();
+        placeprediction.clear();
       }
     });
   }
@@ -348,7 +330,7 @@ class BookingController extends GetxController {
           currentAddress.value =
               '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
 
-          addressController.text = currentAddress.value;
+          //  addressController.text = currentAddress.value;
           logger.d("location is ${place.country}");
           update();
         } else {

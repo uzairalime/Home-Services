@@ -4,17 +4,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/routes/app_pages.dart';
-import 'package:home_brigadier/app/user/dashboard/controllers/dashboard_controller.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
-import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/services/apis/toast.dart';
-import 'package:home_brigadier/utils/animation_dialog.dart';
 import 'package:home_brigadier/utils/logger.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:logger/logger.dart';
 
 import '../../generated/locales.g.dart';
 
@@ -23,8 +17,7 @@ class PaymetController extends GetxController {
 
   Map<String, dynamic>? paymentIntent;
 
-  Future<void> makePayment(
-      BuildContext context, String payment, String intent) async {
+  Future<void> makePayment(BuildContext context, String payment, String intent) async {
     try {
       //STEP 1: Create Payment Intent
       paymentIntent = await createPaymentIntent(payment, 'INR');
@@ -33,8 +26,8 @@ class PaymetController extends GetxController {
         merchantCountryCode: 'IND',
       );
 
-      var gpay = PaymentSheetGooglePay(
-          merchantCountryCode: "IND", currencyCode: "INR", testEnv: true);
+      var gpay =
+          PaymentSheetGooglePay(merchantCountryCode: "IND", currencyCode: "INR", testEnv: true);
 
       var paymentIntentId = paymentIntent!['id'];
       logger.d("payment id is ${paymentIntentId}");

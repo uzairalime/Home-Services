@@ -101,7 +101,16 @@ class MyBookingsView extends GetView<MyBookingController> {
                     ],
                   ),
                 ));
-              } else if (snapshot.hasError) {
+              }else if(snapshot.data!.isEmpty){
+                 return Center(
+                  child: Text("You have not any booking yet."),
+                );
+                
+
+              }
+              
+              
+               else if (snapshot.hasError) {
                 return Center(
                   child: Text(snapshot.error.toString()),
                 );

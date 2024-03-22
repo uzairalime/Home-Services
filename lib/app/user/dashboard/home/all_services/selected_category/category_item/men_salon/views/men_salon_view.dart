@@ -19,10 +19,10 @@ class MenSalonView extends GetView<BookingController> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    BookingController.to.claculateBill();
+    // BookingController.to.claculateBill();
     final obj = Get.put(MenSalonController());
 
-    controller.claculateBill();
+    // controller.claculateBill();
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
     final titlelarge = Theme.of(context).textTheme.titleLarge!.fontSize;
 

@@ -204,7 +204,7 @@ class HomeView extends GetView<HomeController> {
                                 if (snapshot.connectionState == ConnectionState.waiting) {
                                   return ShimmerWidget.rectangular(height: height * 0.175);
                                 } else if (snapshot.hasError) {
-                                  return Text('Error: ${snapshot.error}');
+                                  return Center(child: Text('Error: Something went wrong, please try again'));
                                 } else {
                                   return Container(
                                     width: widht,
@@ -326,7 +326,7 @@ class HomeView extends GetView<HomeController> {
             },
           );
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Text('Error: Something went wrong, please try again');
         } else {
           final List<CetegoryModel> categoryList = controller.categorylist;
           categoryList.sort((a, b) => a.code!.compareTo(b.code!));
@@ -368,24 +368,19 @@ class HomeView extends GetView<HomeController> {
                               width: index == 5 ? 25 : 30,
                               height: index == 5 ? 25 : 30,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Text(
-                                textAlign: TextAlign.center,
-                                categoryList[index].displayName.toString(),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: widht * 0.03,
-                                ),
+                            Text(
+                              textAlign: TextAlign.center,
+                              categoryList[index].displayName.toString(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: widht * 0.03,
                               ),
                             ),
                           ],
                         ),
                       ),
 
-                      // SizedBox(
-                      //   height: height * 0.01,
-                      // ),
+                      
                     ],
                   ),
                 );
@@ -870,6 +865,9 @@ class TabBarGrid extends StatelessWidget {
               itemCount: servicelist.isEmpty ? 10 : servicelist.length,
               itemBuilder: (context, index) {
                 final model = servicelist[index];
+                          logger.d("service lost is  ${servicelist[index].location}");
+
+
 
                 String emplocation = model.location!;
                 List emp = extractCoordinates(emplocation);
@@ -927,11 +925,14 @@ class TabBarGrid extends StatelessWidget {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            CText(
-                                                text: "${model.name}",
-                                                color: AppColor.black,
-                                                fontsize: 16,
-                                                fontWeight: FontWeight.bold),
+                                            Padding(
+                                              padding: const EdgeInsets.all(4.0),
+                                              child: CText(
+                                                  text: "${model.name}",
+                                                  color: AppColor.black,
+                                                  fontsize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                             Padding(
                                               padding: EdgeInsets.only(right: widht * 0.02),
                                               child: Icon(Icons.more_horiz),
@@ -1013,7 +1014,7 @@ class TabBarGrid extends StatelessWidget {
   }
 
   List<double> extractCoordinates(String coordinates) {
-    List<String> coordinateList = coordinates.split(', ');
+    List<String> coordinateList = coordinates.split(',');
 
     if (coordinateList.length == 2) {
       String latitudeString = coordinateList[0];
