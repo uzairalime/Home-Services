@@ -6,6 +6,7 @@ import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controll
 import 'package:home_brigadier/app/user/dashboard/home/views/home_view.dart';
 import 'package:home_brigadier/app/user/dashboard/profile/views/profile_view.dart';
 import 'package:home_brigadier/utils/isolate_manager.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class UserDashboardController extends GetxController {
   static UserDashboardController get to => Get.find();
@@ -31,7 +32,10 @@ class UserDashboardController extends GetxController {
   }
 
   final List<Widget> pages = [
-    const HomeView(),
+    ShowCaseWidget(
+                  builder: Builder(
+                builder: (_) =>const HomeView())),
+    
     const BookingsView(),
     const FaqView(),
     const UserProfileView()
