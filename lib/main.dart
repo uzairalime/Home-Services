@@ -31,38 +31,31 @@ Future<void> main() async {
   await GetStorage.init();
   ConnectivityService.connectivity();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.white,
-    statusBarIconBrightness: Brightness.dark,
-  ));
+      // statusBarColor: Colors.white,
+      // statusBarIconBrightness: Brightness.dark,
+      ));
 
   SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   log("Start user Role ${GetStorage().read(SharedPreference.roleKey)}");
 
-
-WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays:[]).then(
-        (_) => 
-  runApp(
-    GetMaterialApp(
-      translationsKeys: AppTranslation.translations,
-      locale: localeValue() == "العربية" ? const Locale('ar', 'SA') : const Locale('en', 'US'),
-      fallbackLocale: const Locale('en', 'US'),
-      debugShowCheckedModeBanner: false,
-      title: "home_brigadier",
-      theme: Themes.lightTheme,
-      themeMode: ThemeMode.light,
-      getPages: AppPages.routes,
-      home: const SplashScreen(),
-    ),
-  )
-
-  );
-
-
-
-
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: [])
+      .then((_) => runApp(
+            GetMaterialApp(
+              translationsKeys: AppTranslation.translations,
+              locale:
+                  localeValue() == "العربية" ? const Locale('ar', 'SA') : const Locale('en', 'US'),
+              fallbackLocale: const Locale('en', 'US'),
+              debugShowCheckedModeBanner: false,
+              title: "home_brigadier",
+              theme: Themes.lightTheme,
+              themeMode: ThemeMode.light,
+              getPages: AppPages.routes,
+              home: const SplashScreen(),
+            ),
+          ));
 }

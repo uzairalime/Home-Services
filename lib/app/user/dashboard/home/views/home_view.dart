@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:io';
-import 'dart:math';
 
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -18,12 +17,10 @@ import 'package:home_brigadier/model/category_name_model.dart';
 import 'package:home_brigadier/model/icon_model.dart';
 import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/utils/logger.dart';
-import 'package:home_brigadier/utils/shared_preferance.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/shimmer.dart';
 import 'package:marquee/marquee.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 import '../../../../../generated/locales.g.dart';
@@ -39,7 +36,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     Get.put(BookingController());
 
-   getService(context);
+    getService(context);
 
     return GetBuilder<HomeController>(builder: (obj) {
       return Platform.isAndroid
@@ -131,7 +128,8 @@ class HomeView extends GetView<HomeController> {
                                     id: "address",
                                     builder: (booking) {
                                       GetStorage storage = GetStorage();
-                                      final address = storage.read("address") ?? booking.currentAddress.value;
+                                      final address =
+                                          storage.read("address") ?? booking.currentAddress.value;
                                       logger.d("updated address is $address");
                                       return SizedBox(
                                         width: 60,
@@ -201,7 +199,10 @@ class HomeView extends GetView<HomeController> {
                             end: LocaleKeys.home_screen_items_see_all.tr,
                             ontap: () {
                               Get.toNamed(Routes.SPECIAL_OFFERS);
-                            }, keyg: controller.keyTwo, ntitle: 'Special offers', ndesc: 'Click here and see all special offers',
+                            },
+                            keyg: controller.keyTwo,
+                            ntitle: 'Special offers',
+                            ndesc: 'Click here and see all special offers',
                           ),
                           SizedBox(
                             height: height * 0.015,
@@ -215,7 +216,8 @@ class HomeView extends GetView<HomeController> {
                                 if (snapshot.connectionState == ConnectionState.waiting) {
                                   return ShimmerWidget.rectangular(height: height * 0.175);
                                 } else if (snapshot.hasError) {
-                                  return Center(child: Text('Error: Something went wrong, please try again'));
+                                  return Center(
+                                      child: Text('Error: Something went wrong, please try again'));
                                 } else {
                                   return Container(
                                     width: widht,
@@ -229,7 +231,8 @@ class HomeView extends GetView<HomeController> {
                                               enlargeCenterPage: true,
                                               autoPlay: true,
                                               autoPlayInterval: const Duration(seconds: 3),
-                                              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                                              autoPlayAnimationDuration:
+                                                  const Duration(milliseconds: 800),
                                               autoPlayCurve: Curves.fastOutSlowIn,
                                             ),
                                             items: controller.offerlist.map((offer) {
@@ -242,7 +245,8 @@ class HomeView extends GetView<HomeController> {
                                                       height: height * 0.175,
                                                       width: widht,
                                                       fit: BoxFit.fitWidth,
-                                                      imageUrl: "https://homebrigadier.fly.dev${offer.image}",
+                                                      imageUrl:
+                                                          "https://homebrigadier.fly.dev${offer.image}",
                                                     ),
                                                   ),
                                                   Container(
@@ -270,7 +274,8 @@ class HomeView extends GetView<HomeController> {
                             height: height * 0.015,
                           ),
                           CustomRow(
-                            ntitle: 'All Services', ndesc: 'Click here and see  all servies',
+                            ntitle: 'All Services',
+                            ndesc: 'Click here and see  all servies',
                             keyg: controller.keyThree,
                             title: LocaleKeys.home_screen_items_services.tr,
                             end: LocaleKeys.home_screen_items_see_all.tr,
@@ -297,8 +302,9 @@ class HomeView extends GetView<HomeController> {
                             height: height * 0.015,
                           ),
                           CustomRow(
-                            ntitle: 'Papular Servies', ndesc: 'Click here and see all papular services',
-                            keyg: controller.keyFour,
+                              ntitle: 'Papular Servies',
+                              ndesc: 'Click here and see all papular services',
+                              keyg: controller.keyFour,
                               ontap: () {
                                 Get.toNamed(Routes.POPULAR_SERVICES);
                               },
@@ -358,7 +364,8 @@ class HomeView extends GetView<HomeController> {
               ),
               itemBuilder: (context, index) {
                 final model = categoryList[index];
-                int icon = ServiceIconModel.servicesicon.indexWhere((icon) => icon.title == model.displayName);
+                int icon = ServiceIconModel.servicesicon
+                    .indexWhere((icon) => icon.title == model.displayName);
 
                 return InkWell(
                   onTap: () {
@@ -372,7 +379,8 @@ class HomeView extends GetView<HomeController> {
                         width: widht * 0.19,
                         height: widht * 0.20,
                         decoration: BoxDecoration(
-                            color: AppColor.greylight.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
+                            color: AppColor.greylight.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -466,8 +474,9 @@ class HomeView extends GetView<HomeController> {
               final List<ServicesModel> servicelist = HomeController.to.servicelist;
 
               List<ServicesModel> filteredList = servicelist
-                  .where((service) =>
-                      service.category!.displayName!.toLowerCase().contains(controller.search.text.toLowerCase()))
+                  .where((service) => service.category!.displayName!
+                      .toLowerCase()
+                      .contains(controller.search.text.toLowerCase()))
                   .toList();
 
               return ListView.separated(
@@ -485,8 +494,8 @@ class HomeView extends GetView<HomeController> {
                       double endLatitude = emp[0];
                       double endLongitude = emp[1];
 
-                      double distanceInMeters =
-                          Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
+                      double distanceInMeters = Geolocator.distanceBetween(
+                          startLatitude, startLongitude, endLatitude, endLongitude);
 
                       var km = distanceInMeters / 1000;
 
@@ -503,7 +512,8 @@ class HomeView extends GetView<HomeController> {
                               elevation: 1.5,
                               shadowColor: AppColor.white,
                               color: AppColor.white,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              shape:
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               child: SizedBox(
                                   width: widht,
                                   height: height * 0.16,
@@ -514,13 +524,15 @@ class HomeView extends GetView<HomeController> {
                                           flex: 3,
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(12), bottomLeft: Radius.circular(12)),
+                                                topLeft: Radius.circular(12),
+                                                bottomLeft: Radius.circular(12)),
                                             child: SizedBox(
                                               width: widht * 0.3,
                                               height: height,
                                               child: CachedNetworkImage(
                                                 fit: BoxFit.cover,
-                                                imageUrl: "https://homebrigadier.fly.dev${model.files![0].file}",
+                                                imageUrl:
+                                                    "https://homebrigadier.fly.dev${model.files![0].file}",
                                               ),
                                             ),
                                           ),
@@ -532,81 +544,124 @@ class HomeView extends GetView<HomeController> {
                                             flex: 6,
                                             child: Padding(
                                               padding: EdgeInsets.only(top: height * 0.01),
-                                              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    CText(
-                                                        text: "${model.name}",
-                                                        color: AppColor.black,
-                                                        fontsize: 19,
-                                                        fontWeight: FontWeight.bold),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(right: widht * 0.02),
-                                                      child: Icon(Icons.more_horiz),
-                                                    )
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: height * 0.0075,
-                                                ),
-                                                Container(
-                                                  // height: height * 0.04,
-                                                  // width: widht * 0.26,
-                                                  decoration: BoxDecoration(
-                                                      color: AppColor.white,
-                                                      borderRadius: BorderRadius.circular(7),
-                                                      border: Border.all(color: AppColor.secondary)),
-                                                  child: FittedBox(
-                                                    fit: BoxFit.contain,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.all(4.0),
-                                                      child: Center(
-                                                        child: Text(
-                                                          "${model.category!.displayName}",
-                                                          style: TextStyle(
-                                                              fontWeight: FontWeight.normal,
-                                                              color: AppColor.secondary,
-                                                              fontSize: 13),
+// <<<<<<< usman
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                        CText(
+                                                            text: "${model.name}",
+                                                            color: AppColor.black,
+                                                            fontsize: 19,
+                                                            fontWeight: FontWeight.bold),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(right: widht * 0.02),
+                                                          child: Icon(Icons.more_horiz),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: height * 0.0075,
+                                                    ),
+                                                    Container(
+                                                      // height: height * 0.04,
+                                                      // width: widht * 0.26,
+                                                      decoration: BoxDecoration(
+                                                          color: AppColor.white,
+                                                          borderRadius: BorderRadius.circular(7),
+                                                          border: Border.all(
+                                                              color: AppColor.secondary)),
+                                                      child: FittedBox(
+                                                        fit: BoxFit.contain,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.all(4.0),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "${model.category!.displayName}",
+                                                              style: TextStyle(
+                                                                  fontWeight: FontWeight.normal,
+                                                                  color: AppColor.secondary,
+                                                                  fontSize: 13),
+                                                            ),
+                                                          ),
+// =======
+//                                                     CText(
+//                                                         text: "${model.name}",
+//                                                         color: AppColor.black,
+//                                                         fontsize: 19,
+//                                                         fontWeight: FontWeight.bold),
+//                                                     Padding(
+//                                                       padding: EdgeInsets.only(right: widht * 0.02),
+//                                                       child: Icon(Icons.more_horiz),
+//                                                     )
+//                                                   ],
+//                                                 ),
+//                                                 SizedBox(
+//                                                   height: height * 0.0075,
+//                                                 ),
+//                                                 Container(
+//                                                   // height: height * 0.04,
+//                                                   // width: widht * 0.26,
+//                                                   decoration: BoxDecoration(
+//                                                       color: AppColor.white,
+//                                                       borderRadius: BorderRadius.circular(7),
+//                                                       border: Border.all(color: AppColor.secondary)),
+//                                                   child: FittedBox(
+//                                                     fit: BoxFit.contain,
+//                                                     child: Padding(
+//                                                       padding: const EdgeInsets.all(4.0),
+//                                                       child: Center(
+//                                                         child: Text(
+//                                                           "${model.category!.displayName}",
+//                                                           style: TextStyle(
+//                                                               fontWeight: FontWeight.normal,
+//                                                               color: AppColor.secondary,
+//                                                               fontSize: 13),
+// >>>>>>> main
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: height * 0.04,
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: widht * 0.02),
-                                                  child: Row(
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    // mainAxisSize: MainAxisSize.max,
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      Row(
+                                                    SizedBox(
+                                                      height: height * 0.04,
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(right: widht * 0.02),
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment.center,
+                                                        // mainAxisSize: MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment.spaceBetween,
                                                         children: [
-                                                          const Icon(
-                                                              size: 14,
-                                                              Icons.location_on_outlined,
-                                                              color: AppColor.black),
+                                                          Row(
+                                                            children: [
+                                                              const Icon(
+                                                                  size: 14,
+                                                                  Icons.location_on_outlined,
+                                                                  color: AppColor.black),
+                                                              Text(
+                                                                "${km.toInt()} ${LocaleKeys.km_away.tr}",
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.normal,
+                                                                    fontSize: 14),
+                                                              )
+                                                            ],
+                                                          ),
                                                           Text(
-                                                            "${km.toInt()} ${LocaleKeys.km_away.tr}",
-                                                            style:
-                                                                TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
-                                                          )
+                                                            "AED${model.rate}",
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.bold,
+                                                                color: AppColor.secondary,
+                                                                fontSize: 14),
+                                                          ),
                                                         ],
                                                       ),
-                                                      Text(
-                                                        "\AED${model.rate}",
-                                                        style: TextStyle(
-                                                            fontWeight: FontWeight.bold,
-                                                            color: AppColor.secondary,
-                                                            fontSize: 14),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ]),
+                                                    ),
+                                                  ]),
                                             ))
                                       ])))));
                     } else {
@@ -663,33 +718,20 @@ class HomeView extends GetView<HomeController> {
 
     return [];
   }
-  
-   getService(BuildContext context) async{
+
+  getService(BuildContext context) async {
     GetStorage storage = GetStorage();
-     bool showcaseSeen = storage.read("showcase_seen")??false;
-     if(!showcaseSeen){
-        WidgetsBinding.instance.addPostFrameCallback((_) => ShowCaseWidget.of(context).startShowCase([
-          controller.keyOne,
-          controller.keyTwo,
-          controller.keyThree,
-          controller.keyFour,
-        ]));
-
-     }
+    bool showcaseSeen = storage.read("showcase_seen") ?? false;
+    if (!showcaseSeen) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => ShowCaseWidget.of(context).startShowCase([
+            controller.keyOne,
+            controller.keyTwo,
+            controller.keyThree,
+            controller.keyFour,
+          ]));
+    }
     storage.write("showcase_seen", true);
-
-   
-
-
-   
-
-
-
-
-   
-        
-
-   }
+  }
 }
 
 class CategoriesTabbar extends StatelessWidget {
@@ -777,7 +819,8 @@ class CategoriesTabbar extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6), color: AppColor.grey.withOpacity(0.2)),
+                              borderRadius: BorderRadius.circular(6),
+                              color: AppColor.grey.withOpacity(0.2)),
                           width: widht,
                           height: height * 0.165,
                         ),
@@ -876,7 +919,7 @@ class TabBarGrid extends StatelessWidget {
             speedAccuracy: 0);
     HomeController.to.getServices(name);
 
-    final widht = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
     return FutureBuilder(
@@ -885,164 +928,411 @@ class TabBarGrid extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Column(
             children: List.generate(
-                10,
-                (index) => Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: ShimmerWidget.rectangular(height: height * 0.165),
-                    )),
+              5,
+              (index) => Padding(
+                padding: const EdgeInsets.all(12),
+                child: ShimmerWidget.rectangular(height: height * 0.165),
+              ),
+            ),
           ); // Show loading indicator
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          final List<ServicesModel> servicelist = HomeController.to.servicelist;
+          final List<ServicesModel> serviceList = HomeController.to.servicelist;
+          // print(jsonEncode("service list ${jsonEncode(serviceList)}"));
 
           return ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: servicelist.isEmpty ? 10 : servicelist.length,
-              itemBuilder: (context, index) {
-                final model = servicelist[index];
-                logger.d("service lost is  ${servicelist[index].location}");
+// <<<<<<< usman
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: serviceList.isEmpty ? 10 : serviceList.length,
+            itemBuilder: (context, index) {
+              final model = serviceList[index];
+// =======
+//               shrinkWrap: true,
+//               physics: const NeverScrollableScrollPhysics(),
+//               itemCount: servicelist.isEmpty ? 10 : servicelist.length,
+//               itemBuilder: (context, index) {
+//                 final model = servicelist[index];
+//                 logger.d("service lost is  ${servicelist[index].location}");
+// >>>>>>> main
 
-                String emplocation = model.location!;
-                List emp = extractCoordinates(emplocation);
+              String empLocation =
+                  model.location ?? "0, 0"; // Default to "0, 0" if location is null
+              List<double> emp = extractCoordinates(empLocation);
 
-                double startLatitude = location.latitude;
-                double startLongitude = location.longitude;
-                double endLatitude = emp[0];
-                double endLongitude = emp[1];
+              double startLatitude = location.latitude;
+              double startLongitude = location.longitude;
+              double endLatitude = emp.isNotEmpty ? emp[0] : 0;
+              double endLongitude = emp.isNotEmpty ? emp[1] : 0;
 
-                double distanceInMeters =
-                    Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
+              double distanceInMeters = Geolocator.distanceBetween(
+                startLatitude,
+                startLongitude,
+                endLatitude,
+                endLongitude,
+              );
 
-                var km = distanceInMeters / 1000;
+              var km = distanceInMeters / 1000;
 
-                return InkWell(
-                  onTap: () {
-                    Get.to(() => CategoryItemView(
-                          model: model,
-                        ));
-                  },
-                  child: Card(
-                      elevation: 1.5,
-                      shadowColor: AppColor.white,
-                      color: AppColor.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      child: SizedBox(
-                          width: widht,
-                          height: height * 0.16,
-                          child: Padding(
-                              padding: const EdgeInsets.only(),
-                              child: Row(children: [
-                                Expanded(
-                                  flex: 3,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(12), bottomLeft: Radius.circular(12)),
-                                    child: SizedBox(
-                                      width: widht * 0.3,
-                                      height: height,
-                                      child: CachedNetworkImage(
-                                        fit: BoxFit.cover,
-                                        imageUrl: "https://homebrigadier.fly.dev${model.files![0].file}",
+              return InkWell(
+                onTap: () {
+                  Get.to(() => CategoryItemView(
+                        model: model,
+                      ));
+                },
+                child: Card(
+                  elevation: 1.5,
+                  shadowColor: AppColor.white,
+                  color: AppColor.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: SizedBox(
+                    width: width,
+                    height: height * 0.16,
+                    child: Padding(
+                      padding: const EdgeInsets.only(),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(12),
+                                bottomLeft: Radius.circular(12),
+                              ),
+                              child: SizedBox(
+                                width: width * 0.3,
+                                height: height,
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: "https://homebrigadier.fly.dev${model.files![0].file}",
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.02,
+                          ),
+                          Expanded(
+                            flex: 6,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: height * 0.01),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: CText(
+                                          text: "${model.name}",
+                                          color: AppColor.black,
+                                          fontsize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: width * 0.02),
+                                        child: Icon(Icons.more_horiz),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.0075,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColor.white,
+                                      borderRadius: BorderRadius.circular(7),
+                                      border: Border.all(color: AppColor.secondary),
+                                    ),
+                                    child: FittedBox(
+                                      fit: BoxFit.contain,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Center(
+                                          child: Text(
+                                            "${model.category!.displayName}",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: AppColor.secondary,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: widht * 0.02,
-                                ),
-                                Expanded(
-                                    flex: 6,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: height * 0.01),
-                                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                  SizedBox(
+                                    height: height * 0.04,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(right: width * 0.02),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(4.0),
-                                              child: CText(
-                                                  text: "${model.name}",
-                                                  color: AppColor.black,
-                                                  fontsize: 16,
-                                                  fontWeight: FontWeight.bold),
+                                            const Icon(
+                                              size: 14,
+                                              Icons.location_on_outlined,
+                                              color: AppColor.black,
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(right: widht * 0.02),
-                                              child: Icon(Icons.more_horiz),
+                                            Text(
+                                              "${km.toInt()} ${LocaleKeys.km_away.tr}",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 14,
+                                              ),
                                             )
                                           ],
                                         ),
-                                        SizedBox(
-                                          height: height * 0.0075,
-                                        ),
-                                        Container(
-                                          // height: height * 0.04,
-                                          // width: widht * 0.26,
-                                          decoration: BoxDecoration(
-                                              color: AppColor.white,
-                                              borderRadius: BorderRadius.circular(7),
-                                              border: Border.all(color: AppColor.secondary)),
-                                          child: FittedBox(
-                                            fit: BoxFit
-                                                .contain, // Adjusts the child's size to fit the parent's constraints
-
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(4.0),
-                                              child: Center(
-                                                child: Text(
-                                                  "${model.category!.displayName}",
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.normal,
-                                                      color: AppColor.secondary,
-                                                      fontSize: 15),
-                                                ),
-                                              ),
-                                            ),
+                                        Text(
+                                          "AED${model.rate}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColor.secondary,
+                                            fontSize: 14,
                                           ),
                                         ),
-                                        SizedBox(
-                                          height: height * 0.04,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(right: widht * 0.02),
-                                          child: Row(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            // mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  const Icon(
-                                                      size: 14, Icons.location_on_outlined, color: AppColor.black),
-                                                  Text(
-                                                    "${km.toInt()} ${LocaleKeys.km_away.tr}",
-                                                    style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
-                                                  )
-                                                ],
-                                              ),
-                                              Text(
-                                                "AED${model.rate}",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: AppColor.secondary,
-                                                    fontSize: 14),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ]),
-                                    ))
-                              ])))),
-                );
-              },
-              separatorBuilder: (context, index) => SizedBox(
-                    height: height * 0.01,
-                  ));
+// <<<<<<< usman
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+            separatorBuilder: (context, index) => SizedBox(
+              height: height * 0.01,
+            ),
+          );
+// =======
+//                                         SizedBox(
+//                                           height: height * 0.04,
+//                                         ),
+//                                         Padding(
+//                                           padding: EdgeInsets.only(right: widht * 0.02),
+//                                           child: Row(
+//                                             crossAxisAlignment: CrossAxisAlignment.center,
+//                                             // mainAxisSize: MainAxisSize.max,
+//                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                                             children: [
+//                                               Row(
+//                                                 children: [
+//                                                   const Icon(
+//                                                       size: 14, Icons.location_on_outlined, color: AppColor.black),
+//                                                   Text(
+//                                                     "${km.toInt()} ${LocaleKeys.km_away.tr}",
+//                                                     style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+//                                                   )
+//                                                 ],
+//                                               ),
+//                                               Text(
+//                                                 "AED${model.rate}",
+//                                                 style: TextStyle(
+//                                                     fontWeight: FontWeight.bold,
+//                                                     color: AppColor.secondary,
+//                                                     fontSize: 14),
+//                                               ),
+//                                             ],
+//                                           ),
+//                                         ),
+//                                       ]),
+//                                     ))
+//                               ])))),
+//                 );
+//               },
+//               separatorBuilder: (context, index) => SizedBox(
+//                     height: height * 0.01,
+//                   ));
+// >>>>>>> main
         }
       },
     );
+
+    // return FutureBuilder(
+    //   future: HomeController.to.getServices(name),
+    //   builder: (context, snapshot) {
+    //     if (snapshot.connectionState == ConnectionState.waiting) {
+    //       return Column(
+    //         children: List.generate(
+    //             5,
+    //             (index) => Padding(
+    //                   padding: const EdgeInsets.all(12),
+    //                   child: ShimmerWidget.rectangular(height: height * 0.165),
+    //                 )),
+    //       ); // Show loading indicator
+    //     } else if (snapshot.hasError) {
+    //       return Text('Error: ${snapshot.error}');
+    //     } else {
+    //       final List<ServicesModel> servicelist = HomeController.to.servicelist;
+    //
+    //       return ListView.separated(
+    //           shrinkWrap: true,
+    //           physics: const NeverScrollableScrollPhysics(),
+    //           itemCount: servicelist.isEmpty ? 10 : servicelist.length,
+    //           itemBuilder: (context, index) {
+    //             final model = servicelist[index];
+    //
+    //             String emplocation = model.location!;
+    //             List emp = extractCoordinates(emplocation);
+    //
+    //             double startLatitude = location.latitude;
+    //             double startLongitude = location.longitude;
+    //             double endLatitude = emp[0];
+    //             double endLongitude = emp[1];
+    //
+    //             double distanceInMeters = Geolocator.distanceBetween(
+    //                 startLatitude, startLongitude, endLatitude, endLongitude);
+    //
+    //             var km = distanceInMeters / 1000;
+    //
+    //             return InkWell(
+    //               onTap: () {
+    //                 Get.to(() => CategoryItemView(
+    //                       model: model,
+    //                     ));
+    //               },
+    //               child: Card(
+    //                   elevation: 1.5,
+    //                   shadowColor: AppColor.white,
+    //                   color: AppColor.white,
+    //                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    //                   child: SizedBox(
+    //                       width: widht,
+    //                       height: height * 0.16,
+    //                       child: Padding(
+    //                           padding: const EdgeInsets.only(),
+    //                           child: Row(children: [
+    //                             Expanded(
+    //                               flex: 3,
+    //                               child: ClipRRect(
+    //                                 borderRadius: BorderRadius.only(
+    //                                     topLeft: Radius.circular(12),
+    //                                     bottomLeft: Radius.circular(12)),
+    //                                 child: SizedBox(
+    //                                   width: widht * 0.3,
+    //                                   height: height,
+    //                                   child: CachedNetworkImage(
+    //                                     fit: BoxFit.cover,
+    //                                     imageUrl:
+    //                                         "https://homebrigadier.fly.dev${model.files![0].file}",
+    //                                   ),
+    //                                 ),
+    //                               ),
+    //                             ),
+    //                             SizedBox(
+    //                               width: widht * 0.02,
+    //                             ),
+    //                             Expanded(
+    //                                 flex: 6,
+    //                                 child: Padding(
+    //                                   padding: EdgeInsets.only(top: height * 0.01),
+    //                                   child: Column(
+    //                                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                                       children: [
+    //                                         Row(
+    //                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                                           children: [
+    //                                             Padding(
+    //                                               padding: const EdgeInsets.all(4.0),
+    //                                               child: CText(
+    //                                                   text: "${model.name}",
+    //                                                   color: AppColor.black,
+    //                                                   fontsize: 16,
+    //                                                   fontWeight: FontWeight.bold),
+    //                                             ),
+    //                                             Padding(
+    //                                               padding: EdgeInsets.only(right: widht * 0.02),
+    //                                               child: Icon(Icons.more_horiz),
+    //                                             )
+    //                                           ],
+    //                                         ),
+    //                                         SizedBox(
+    //                                           height: height * 0.0075,
+    //                                         ),
+    //                                         Container(
+    //                                           // height: height * 0.04,
+    //                                           // width: widht * 0.26,
+    //                                           decoration: BoxDecoration(
+    //                                               color: AppColor.white,
+    //                                               borderRadius: BorderRadius.circular(7),
+    //                                               border: Border.all(color: AppColor.secondary)),
+    //                                           child: FittedBox(
+    //                                             fit: BoxFit
+    //                                                 .contain, // Adjusts the child's size to fit the parent's constraints
+    //
+    //                                             child: Padding(
+    //                                               padding: const EdgeInsets.all(4.0),
+    //                                               child: Center(
+    //                                                 child: Text(
+    //                                                   "${model.category!.displayName}",
+    //                                                   style: TextStyle(
+    //                                                       fontWeight: FontWeight.normal,
+    //                                                       color: AppColor.secondary,
+    //                                                       fontSize: 15),
+    //                                                 ),
+    //                                               ),
+    //                                             ),
+    //                                           ),
+    //                                         ),
+    //                                         SizedBox(
+    //                                           height: height * 0.04,
+    //                                         ),
+    //                                         Padding(
+    //                                           padding: EdgeInsets.only(right: widht * 0.02),
+    //                                           child: Row(
+    //                                             crossAxisAlignment: CrossAxisAlignment.center,
+    //                                             // mainAxisSize: MainAxisSize.max,
+    //                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                                             children: [
+    //                                               Row(
+    //                                                 children: [
+    //                                                   const Icon(
+    //                                                       size: 14,
+    //                                                       Icons.location_on_outlined,
+    //                                                       color: AppColor.black),
+    //                                                   Text(
+    //                                                     "${km.toInt()} ${LocaleKeys.km_away.tr}",
+    //                                                     style: TextStyle(
+    //                                                         fontWeight: FontWeight.normal,
+    //                                                         fontSize: 14),
+    //                                                   )
+    //                                                 ],
+    //                                               ),
+    //                                               Text(
+    //                                                 "AED${model.rate}",
+    //                                                 style: TextStyle(
+    //                                                     fontWeight: FontWeight.bold,
+    //                                                     color: AppColor.secondary,
+    //                                                     fontSize: 14),
+    //                                               ),
+    //                                             ],
+    //                                           ),
+    //                                         ),
+    //                                       ]),
+    //                                 ))
+    //                           ])))),
+    //             );
+    //           },
+    //           separatorBuilder: (context, index) => SizedBox(
+    //                 height: height * 0.01,
+    //               ));
+    //     }
+    //   },
+    // );
   }
 
   List<double> extractCoordinates(String coordinates) {
@@ -1076,7 +1366,10 @@ class CustomRow extends StatelessWidget {
     super.key,
     required this.title,
     required this.end,
-    this.ontap, required this.keyg, required this.ntitle, required this.ndesc,
+    this.ontap,
+    required this.keyg,
+    required this.ntitle,
+    required this.ndesc,
   });
 
   @override
@@ -1090,22 +1383,17 @@ class CustomRow extends StatelessWidget {
           title,
           style: TextStyle(fontWeight: bold6, fontSize: size18),
         ),
-
-
         CoustomShowcaseWidget(
           keyg,
-                          
-                          ntitle,
-                          ndesc,
-                          InkWell(
-            onTap: ontap, // Use the provided onTap property
-            child: Text(
-              end,
-              style: TextStyle(fontWeight: bold6, fontSize: size16, color: AppColor.primary),
-            )),
-                          
+          ntitle,
+          ndesc,
+          InkWell(
+              onTap: ontap, // Use the provided onTap property
+              child: Text(
+                end,
+                style: TextStyle(fontWeight: bold6, fontSize: size16, color: AppColor.primary),
+              )),
         ),
-        
       ],
     );
   }
@@ -1144,7 +1432,8 @@ class CoustomShowcaseWidget extends StatelessWidget {
   final String description;
   final GlobalKey globalkey;
 
-  CoustomShowcaseWidget(this.globalkey, this.title, this.description, this.child);
+  const CoustomShowcaseWidget(this.globalkey, this.title, this.description, this.child,
+      {super.key});
 
   @override
   Widget build(BuildContext context) => Showcase(
