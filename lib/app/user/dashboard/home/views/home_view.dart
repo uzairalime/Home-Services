@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:io';
-import 'dart:math';
 
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -23,7 +22,6 @@ import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/shimmer.dart';
 import 'package:marquee/marquee.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 import '../../../../../generated/locales.g.dart';
@@ -39,7 +37,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     Get.put(BookingController());
 
-   getService(context);
+    getService(context);
 
     return GetBuilder<HomeController>(builder: (obj) {
       return Platform.isAndroid
@@ -90,7 +88,8 @@ class HomeView extends GetView<HomeController> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 8, right: 8, left: 16),
+              padding:
+                  const EdgeInsets.only(top: 8, bottom: 8, right: 8, left: 16),
               child: SizedBox(
                 width: widht,
                 height: height * 0.08,
@@ -115,7 +114,8 @@ class HomeView extends GetView<HomeController> {
                                 prefexIcon: Icons.search_rounded,
                                 filled: false,
                                 contentPadding: 8,
-                                hint: "Search for: ${controller.currentCharacter.value}",
+                                hint:
+                                    "Search for: ${controller.currentCharacter.value}",
                                 controller: controller.search,
                                 borderColor: AppColor.greylight,
                                 borderRadius: 10),
@@ -131,8 +131,8 @@ class HomeView extends GetView<HomeController> {
                                     id: "address",
                                     builder: (booking) {
                                       GetStorage storage = GetStorage();
-                                      final address =
-                                          storage.read("address") ?? booking.currentAddress.value;
+                                      final address = storage.read("address") ??
+                                          booking.currentAddress.value;
                                       logger.d("updated address is $address");
                                       return SizedBox(
                                         width: 60,
@@ -141,10 +141,12 @@ class HomeView extends GetView<HomeController> {
                                           style: TextStyle(fontSize: 16.0),
                                           // Customize the font size as needed
                                           scrollAxis: Axis.horizontal,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           blankSpace: 20.0,
                                           // Adjust the blank space between repetitions
-                                          velocity: 25.0, // Adjust the scrolling speed
+                                          velocity:
+                                              25.0, // Adjust the scrolling speed
                                         ),
                                       );
                                     }),
@@ -187,7 +189,8 @@ class HomeView extends GetView<HomeController> {
                   await obj.getOffers();
                 },
                 child: SingleChildScrollView(
-                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: EdgeInsets.only(
@@ -198,11 +201,15 @@ class HomeView extends GetView<HomeController> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           CustomRow(
-                            title: LocaleKeys.home_screen_items_special_offer.tr,
+                            title:
+                                LocaleKeys.home_screen_items_special_offer.tr,
                             end: LocaleKeys.home_screen_items_see_all.tr,
                             ontap: () {
                               Get.toNamed(Routes.SPECIAL_OFFERS);
-                            }, keyg: controller.keyTwo, ntitle: 'Special offers', ndesc: 'Click here and see all special offers',
+                            },
+                            keyg: controller.keyTwo,
+                            ntitle: 'Special offers',
+                            ndesc: 'Click here and see all special offers',
                           ),
                           SizedBox(
                             height: height * 0.015,
@@ -213,11 +220,14 @@ class HomeView extends GetView<HomeController> {
                             child: FutureBuilder(
                               future: controller.getOffers(),
                               builder: (context, snapshot) {
-                                if (snapshot.connectionState == ConnectionState.waiting) {
-                                  return ShimmerWidget.rectangular(height: height * 0.175);
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return ShimmerWidget.rectangular(
+                                      height: height * 0.175);
                                 } else if (snapshot.hasError) {
                                   return Center(
-                                      child: Text('Error: Something went wrong, please try again'));
+                                      child: Text(
+                                          'Error: Something went wrong, please try again'));
                                 } else {
                                   return Container(
                                     width: widht,
@@ -225,22 +235,29 @@ class HomeView extends GetView<HomeController> {
                                       borderRadius: BorderRadius.circular(18),
                                     ),
                                     child: controller.offerlist.isEmpty
-                                        ? ShimmerWidget.rectangular(height: height * 0.175)
+                                        ? ShimmerWidget.rectangular(
+                                            height: height * 0.175)
                                         : CarouselSlider(
                                             options: CarouselOptions(
                                               enlargeCenterPage: true,
                                               autoPlay: true,
-                                              autoPlayInterval: const Duration(seconds: 3),
+                                              autoPlayInterval:
+                                                  const Duration(seconds: 3),
                                               autoPlayAnimationDuration:
-                                                  const Duration(milliseconds: 800),
-                                              autoPlayCurve: Curves.fastOutSlowIn,
+                                                  const Duration(
+                                                      milliseconds: 800),
+                                              autoPlayCurve:
+                                                  Curves.fastOutSlowIn,
                                             ),
-                                            items: controller.offerlist.map((offer) {
+                                            items: controller.offerlist
+                                                .map((offer) {
                                               return Stack(
                                                 alignment: Alignment.center,
                                                 children: [
                                                   ClipRRect(
-                                                    borderRadius: BorderRadius.circular(8.0),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
                                                     child: CachedNetworkImage(
                                                       height: height * 0.175,
                                                       width: widht,
@@ -251,15 +268,19 @@ class HomeView extends GetView<HomeController> {
                                                   ),
                                                   Container(
                                                     decoration: BoxDecoration(
-                                                      color: AppColor.black.withOpacity(0.3),
-                                                      borderRadius: BorderRadius.circular(8),
+                                                      color: AppColor.black
+                                                          .withOpacity(0.3),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
                                                   ),
                                                   CText(
                                                     color: AppColor.white,
                                                     textAlign: TextAlign.center,
                                                     fontWeight: FontWeight.bold,
-                                                    text: "${offer.heading}\n${offer.description}",
+                                                    text:
+                                                        "${offer.heading}\n${offer.description}",
                                                   )
                                                 ],
                                               );
@@ -274,7 +295,8 @@ class HomeView extends GetView<HomeController> {
                             height: height * 0.015,
                           ),
                           CustomRow(
-                            ntitle: 'All Services', ndesc: 'Click here and see  all servies',
+                            ntitle: 'All Services',
+                            ndesc: 'Click here and see  all servies',
                             keyg: controller.keyThree,
                             title: LocaleKeys.home_screen_items_services.tr,
                             end: LocaleKeys.home_screen_items_see_all.tr,
@@ -301,12 +323,14 @@ class HomeView extends GetView<HomeController> {
                             height: height * 0.015,
                           ),
                           CustomRow(
-                            ntitle: 'Papular Servies', ndesc: 'Click here and see all papular services',
-                            keyg: controller.keyFour,
+                              ntitle: 'Papular Servies',
+                              ndesc: 'Click here and see all papular services',
+                              keyg: controller.keyFour,
                               ontap: () {
                                 Get.toNamed(Routes.POPULAR_SERVICES);
                               },
-                              title: LocaleKeys.home_screen_items_most_popular_services.tr,
+                              title: LocaleKeys
+                                  .home_screen_items_most_popular_services.tr,
                               end: LocaleKeys.home_screen_items_see_all.tr),
                           SizedBox(
                             height: height * 0.02,
@@ -339,7 +363,8 @@ class HomeView extends GetView<HomeController> {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  ShimmerWidget.rectangular(width: widht * 0.19, height: widht * 0.20),
+                  ShimmerWidget.rectangular(
+                      width: widht * 0.19, height: widht * 0.20),
                 ],
               );
             },
@@ -418,7 +443,8 @@ class HomeView extends GetView<HomeController> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    ShimmerWidget.circular(width: widht * 0.19, height: widht * 0.21),
+                    ShimmerWidget.circular(
+                        width: widht * 0.19, height: widht * 0.21),
                   ],
                 );
               },
@@ -463,13 +489,15 @@ class HomeView extends GetView<HomeController> {
                     10,
                     (index) => Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ShimmerWidget.rectangular(height: height * 0.175),
+                          child:
+                              ShimmerWidget.rectangular(height: height * 0.175),
                         )),
               );
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
-              final List<ServicesModel> servicelist = HomeController.to.servicelist;
+              final List<ServicesModel> servicelist =
+                  HomeController.to.servicelist;
 
               List<ServicesModel> filteredList = servicelist
                   .where((service) => service.category!.displayName!
@@ -493,7 +521,10 @@ class HomeView extends GetView<HomeController> {
                       double endLongitude = emp[1];
 
                       double distanceInMeters = Geolocator.distanceBetween(
-                          startLatitude, startLongitude, endLatitude, endLongitude);
+                          startLatitude,
+                          startLongitude,
+                          endLatitude,
+                          endLongitude);
 
                       var km = distanceInMeters / 1000;
 
@@ -510,8 +541,8 @@ class HomeView extends GetView<HomeController> {
                               elevation: 1.5,
                               shadowColor: AppColor.white,
                               color: AppColor.white,
-                              shape:
-                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
                               child: SizedBox(
                                   width: widht,
                                   height: height * 0.16,
@@ -523,7 +554,8 @@ class HomeView extends GetView<HomeController> {
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(12),
-                                                bottomLeft: Radius.circular(12)),
+                                                bottomLeft:
+                                                    Radius.circular(12)),
                                             child: SizedBox(
                                               width: widht * 0.3,
                                               height: height,
@@ -541,24 +573,34 @@ class HomeView extends GetView<HomeController> {
                                         Expanded(
                                             flex: 6,
                                             child: Padding(
-                                              padding: EdgeInsets.only(top: height * 0.01),
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
                                               child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
 // <<<<<<< usman
                                                     Row(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment.spaceBetween,
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
                                                         CText(
-                                                            text: "${model.name}",
-                                                            color: AppColor.black,
+                                                            text:
+                                                                "${model.name}",
+                                                            color:
+                                                                AppColor.black,
                                                             fontsize: 19,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                         Padding(
                                                           padding:
-                                                              EdgeInsets.only(right: widht * 0.02),
-                                                          child: Icon(Icons.more_horiz),
+                                                              EdgeInsets.only(
+                                                                  right: widht *
+                                                                      0.02),
+                                                          child: Icon(
+                                                              Icons.more_horiz),
                                                         )
                                                       ],
                                                     ),
@@ -570,19 +612,27 @@ class HomeView extends GetView<HomeController> {
                                                       // width: widht * 0.26,
                                                       decoration: BoxDecoration(
                                                           color: AppColor.white,
-                                                          borderRadius: BorderRadius.circular(7),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(7),
                                                           border: Border.all(
-                                                              color: AppColor.secondary)),
+                                                              color: AppColor
+                                                                  .secondary)),
                                                       child: FittedBox(
                                                         fit: BoxFit.contain,
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(4.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(4.0),
                                                           child: Center(
                                                             child: Text(
                                                               "${model.category!.displayName}",
                                                               style: TextStyle(
-                                                                  fontWeight: FontWeight.normal,
-                                                                  color: AppColor.secondary,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  color: AppColor
+                                                                      .secondary,
                                                                   fontSize: 13),
                                                             ),
                                                           ),
@@ -627,33 +677,44 @@ class HomeView extends GetView<HomeController> {
                                                       height: height * 0.04,
                                                     ),
                                                     Padding(
-                                                      padding: EdgeInsets.only(right: widht * 0.02),
+                                                      padding: EdgeInsets.only(
+                                                          right: widht * 0.02),
                                                       child: Row(
                                                         crossAxisAlignment:
-                                                            CrossAxisAlignment.center,
+                                                            CrossAxisAlignment
+                                                                .center,
                                                         // mainAxisSize: MainAxisSize.max,
                                                         mainAxisAlignment:
-                                                            MainAxisAlignment.spaceBetween,
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
                                                         children: [
                                                           Row(
                                                             children: [
                                                               const Icon(
                                                                   size: 14,
-                                                                  Icons.location_on_outlined,
-                                                                  color: AppColor.black),
+                                                                  Icons
+                                                                      .location_on_outlined,
+                                                                  color: AppColor
+                                                                      .black),
                                                               Text(
                                                                 "${km.toInt()} ${LocaleKeys.km_away.tr}",
                                                                 style: TextStyle(
-                                                                    fontWeight: FontWeight.normal,
-                                                                    fontSize: 14),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontSize:
+                                                                        14),
                                                               )
                                                             ],
                                                           ),
                                                           Text(
                                                             "\AED${model.rate}",
                                                             style: TextStyle(
-                                                                fontWeight: FontWeight.bold,
-                                                                color: AppColor.secondary,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: AppColor
+                                                                    .secondary,
                                                                 fontSize: 14),
                                                           ),
                                                         ],
@@ -716,33 +777,21 @@ class HomeView extends GetView<HomeController> {
 
     return [];
   }
-  
-   getService(BuildContext context) async{
+
+  getService(BuildContext context) async {
     GetStorage storage = GetStorage();
-     bool showcaseSeen = storage.read("showcase_seen")??false;
-     if(!showcaseSeen){
-        WidgetsBinding.instance.addPostFrameCallback((_) => ShowCaseWidget.of(context).startShowCase([
-          controller.keyOne,
-          controller.keyTwo,
-          controller.keyThree,
-          controller.keyFour,
-        ]));
-
-     }
+    bool showcaseSeen = storage.read("showcase_seen") ?? false;
+    if (!showcaseSeen) {
+      WidgetsBinding.instance.addPostFrameCallback(
+          (_) => ShowCaseWidget.of(context).startShowCase([
+                controller.keyOne,
+                controller.keyTwo,
+                controller.keyThree,
+                controller.keyFour,
+              ]));
+    }
     storage.write("showcase_seen", true);
-
-   
-
-
-   
-
-
-
-
-   
-        
-
-   }
+  }
 }
 
 class CategoriesTabbar extends StatelessWidget {
@@ -845,16 +894,19 @@ class CategoriesTabbar extends StatelessWidget {
             child: CText(text: "Some thing wrong"),
           );
         } else {
-          final List<CetegoryModel> categoryList = HomeController.to.categorylist;
+          final List<CetegoryModel> categoryList =
+              HomeController.to.categorylist;
 
           List<Tab> tabs1 = [const Tab(text: "All")];
 
-          tabs1.addAll(categoryList.map((category) => Tab(text: category.code)));
+          tabs1
+              .addAll(categoryList.map((category) => Tab(text: category.code)));
           logger.d("list length ${tabs1.length}");
 
           List<Tab> tabs = [const Tab(text: "All")];
 
-          tabs.addAll(categoryList.map((category) => Tab(text: category.displayName)));
+          tabs.addAll(
+              categoryList.map((category) => Tab(text: category.displayName)));
           // tabs.sort((a, b) {
           //   if (a.text == "All") {
           //     return -1; // "All" should come before any other tab
@@ -883,7 +935,8 @@ class CategoriesTabbar extends StatelessWidget {
                       },
                       radius: 35,
                       buttonMargin: const EdgeInsets.symmetric(horizontal: 8),
-                      contentPadding: const EdgeInsets.only(left: 18, right: 18, top: 0, bottom: 0),
+                      contentPadding: const EdgeInsets.only(
+                          left: 18, right: 18, top: 0, bottom: 0),
                       backgroundColor: AppColor.primary,
                       borderWidth: 1,
                       borderColor: AppColor.primary,
@@ -896,7 +949,9 @@ class CategoriesTabbar extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.02),
                   Obx(
-                    () => TabBarGrid(name: "${tabs1[HomeController.to.initialindex.value].text}"),
+                    () => TabBarGrid(
+                        name:
+                            "${tabs1[HomeController.to.initialindex.value].text}"),
                   )
                 ],
               ));
@@ -968,8 +1023,8 @@ class TabBarGrid extends StatelessWidget {
 //                 logger.d("service lost is  ${servicelist[index].location}");
 // >>>>>>> main
 
-              String empLocation =
-                  model.location ?? "0, 0"; // Default to "0, 0" if location is null
+              String empLocation = model.location ??
+                  "0, 0"; // Default to "0, 0" if location is null
               List<double> emp = extractCoordinates(empLocation);
 
               double startLatitude = location.latitude;
@@ -1018,7 +1073,8 @@ class TabBarGrid extends StatelessWidget {
                                 height: height,
                                 child: CachedNetworkImage(
                                   fit: BoxFit.cover,
-                                  imageUrl: "https://homebrigadier.fly.dev${model.files![0].file}",
+                                  imageUrl:
+                                      "https://homebrigadier.fly.dev${model.files![0].file}",
                                 ),
                               ),
                             ),
@@ -1034,7 +1090,8 @@ class TabBarGrid extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(4.0),
@@ -1046,7 +1103,8 @@ class TabBarGrid extends StatelessWidget {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(right: width * 0.02),
+                                        padding: EdgeInsets.only(
+                                            right: width * 0.02),
                                         child: Icon(Icons.more_horiz),
                                       )
                                     ],
@@ -1058,7 +1116,8 @@ class TabBarGrid extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       color: AppColor.white,
                                       borderRadius: BorderRadius.circular(7),
-                                      border: Border.all(color: AppColor.secondary),
+                                      border:
+                                          Border.all(color: AppColor.secondary),
                                     ),
                                     child: FittedBox(
                                       fit: BoxFit.contain,
@@ -1081,10 +1140,13 @@ class TabBarGrid extends StatelessWidget {
                                     height: height * 0.04,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(right: width * 0.02),
+                                    padding:
+                                        EdgeInsets.only(right: width * 0.02),
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Row(
                                           children: [
@@ -1377,7 +1439,10 @@ class CustomRow extends StatelessWidget {
     super.key,
     required this.title,
     required this.end,
-    this.ontap, required this.keyg, required this.ntitle, required this.ndesc,
+    this.ontap,
+    required this.keyg,
+    required this.ntitle,
+    required this.ndesc,
   });
 
   @override
@@ -1391,22 +1456,20 @@ class CustomRow extends StatelessWidget {
           title,
           style: TextStyle(fontWeight: bold6, fontSize: size18),
         ),
-
-
         CoustomShowcaseWidget(
           keyg,
-                          
-                          ntitle,
-                          ndesc,
-                          InkWell(
-            onTap: ontap, // Use the provided onTap property
-            child: Text(
-              end,
-              style: TextStyle(fontWeight: bold6, fontSize: size16, color: AppColor.primary),
-            )),
-                          
+          ntitle,
+          ndesc,
+          InkWell(
+              onTap: ontap, // Use the provided onTap property
+              child: Text(
+                end,
+                style: TextStyle(
+                    fontWeight: bold6,
+                    fontSize: size16,
+                    color: AppColor.primary),
+              )),
         ),
-        
       ],
     );
   }
@@ -1445,14 +1508,16 @@ class CoustomShowcaseWidget extends StatelessWidget {
   final String description;
   final GlobalKey globalkey;
 
-  CoustomShowcaseWidget(this.globalkey, this.title, this.description, this.child);
+  CoustomShowcaseWidget(
+      this.globalkey, this.title, this.description, this.child);
 
   @override
   Widget build(BuildContext context) => Showcase(
         key: globalkey,
         tooltipPadding: EdgeInsets.all(10),
         title: title,
-        titleTextStyle: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
+        titleTextStyle: TextStyle(
+            fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
         description: description,
         descTextStyle: TextStyle(fontSize: 12, color: Colors.black),
         overlayColor: Colors.grey,
