@@ -25,7 +25,6 @@ import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controll
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/service_model.dart';
-import 'package:home_brigadier/utils/logger.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
@@ -36,7 +35,7 @@ import '../controllers/selected_category_controller.dart';
 class SelectedCategoryView extends GetView<SelectedCategoryController> {
   final CetegoryModel? model;
 
-  const SelectedCategoryView({super.key, this.model});
+  const SelectedCategoryView({Key? key, this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,170 +49,204 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
         await con.getServices(model!.code.toString());
       },
       child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              model!.displayName.toString(),
-              style: appbar,
+        appBar: AppBar(
+          title: Text(
+            model!.displayName.toString(),
+            style: appbar,
+          ),
+        ),
+        body: Center(
+          child: SizedBox(
+            width: widht * 0.95,
+            height: height,
+            child: FutureBuilder(
+              future: con.getServices(model!.code.toString()),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text("Error"));
+                } else if (HomeController.to.servicelist.isEmpty) {
+                  return const Center(child: Text("No Service Avaliable"));
+                } else {
+                  final List<ServicesModel> servicelist = con.servicelist;
+                  return SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        for (var serviceModel in servicelist)
+                          CategoryItemCard(
+                            serviceModel: serviceModel,
+                            categoryModel: model!,
+                            context: context,
+                          ),
+                      ],
+                    ),
+                  );
+                }
+              },
             ),
           ),
-          body: Center(
-            child: SizedBox(
-              width: widht * 0.95,
-              height: height,
-              child: FutureBuilder(
-                future: con.getServices(model!.code.toString()),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return const Center(child: Text("Error"));
-                  } else if (HomeController.to.servicelist.isEmpty) {
-                    return const Center(child: Text("No Service Avaliable"));
-                  } else {
-                    final List<ServicesModel> servicelist = con.servicelist;
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: servicelist.length,
-                      itemBuilder: (context, index) {
-                        final service_model = servicelist[index];
-                        return CategoryItemCard(service_model, context, model!);
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
-          )),
+        ),
+      ),
     );
   }
 
-  CategoryItemCard(ServicesModel service_model, BuildContext context, CetegoryModel categ_model) {
+  Widget CategoryItemCard({
+    required ServicesModel serviceModel,
+    required CetegoryModel categoryModel,
+    required BuildContext context,
+  }) {
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
 
     var location = BookingController.to.currentPosition ??
         Position(
-            longitude: 25.20,
-            latitude: 55.27,
-            timestamp: DateTime.now(),
-            accuracy: 0,
-            altitude: 0,
-            altitudeAccuracy: 0,
-            heading: 0,
-            headingAccuracy: 0,
-            speed: 0,
-            speedAccuracy: 0);
+          longitude: 25.20,
+          latitude: 55.27,
+          timestamp: DateTime.now(),
+          accuracy: 0,
+          altitude: 0,
+          altitudeAccuracy: 0,
+          heading: 0,
+          headingAccuracy: 0,
+          speed: 0,
+          speedAccuracy: 0,
+        );
 
-    String emplocation = service_model.location!;
-    List emp = extractCoordinates(emplocation);
+    List<double> emp = extractCoordinates(serviceModel.location!);
+    double km = 0.0;
 
-    double startLatitude = location.latitude;
-    double startLongitude = location.longitude;
-    double endLatitude = emp[0];
-    double endLongitude = emp[1];
+    if (emp.isNotEmpty) {
+      double startLatitude = location.latitude;
+      double startLongitude = location.longitude;
+      double endLatitude = emp[0];
+      double endLongitude = emp[1];
 
-    double distanceInMeters = Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
-    var km = distanceInMeters / 1000;
+      double distanceInMeters = Geolocator.distanceBetween(
+        startLatitude,
+        startLongitude,
+        endLatitude,
+        endLongitude,
+      );
+      km = distanceInMeters / 1000;
+    }
 
     return InkWell(
       onTap: () {
-        Get.to(() => CategoryItemView(model: service_model));
+        Get.to(() => CategoryItemView(model: serviceModel));
       },
       child: Card(
-          shadowColor: AppColor.greylight.withOpacity(.4),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          child: Column(children: [
+        shadowColor: AppColor.greylight.withOpacity(.4),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          children: [
             SizedBox(
-              width: double.maxFinite,
               height: 150,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(mainAxisSize: MainAxisSize.max, children: [
-                  Expanded(
-                    flex: 1,
-                    child: SizedBox(
-                      width: double.maxFinite,
-                      height: double.maxFinite,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: "https://homebrigadier.fly.dev${service_model.files![0].file}",
-                          placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        height: double.maxFinite,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: CachedNetworkImage(
+                            fit: BoxFit.cover,
+                            imageUrl: "https://homebrigadier.fly.dev${serviceModel.files![0].file}",
+                            placeholder: (context, url) =>
+                                const Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    flex: 2,
-                    child: SizedBox(
-                        width: double.maxFinite,
-                        height: double.maxFinite,
-                        child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(width: 10),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${serviceModel.name}",
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: titleLarge),
+                          ),
+                          CText(
+                            text: categoryModel.displayName.toString(),
+                            color: AppColor.grey,
+                            fontsize: titleSmall,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          Text(
+                            "AED ${serviceModel.rate}/hr",
+                            style: TextStyle(
+                                color: AppColor.primary,
+                                fontWeight: FontWeight.w500,
+                                fontSize: titleSmall),
+                          ),
+                          Row(
                             children: [
-                              Text("${service_model.name} ",
-                                  style: TextStyle(
-                                      // color: AppColor.grey,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: titleLarge)),
+                              const Icon(Icons.access_time_outlined),
+                              const SizedBox(width: 5),
                               CText(
-                                  color: AppColor.grey,
-                                  text: categ_model.displayName.toString(),
-                                  fontsize: titleSmall,
-                                  fontWeight: FontWeight.w500),
-                              Text("AED ${service_model.rate}/hr",
-                                  style: TextStyle(
-                                      color: AppColor.primary, fontWeight: FontWeight.w500, fontSize: titleSmall)),
-                              Row(children: [
-                                const Icon(Icons.access_time_outlined),
-                                const SizedBox(width: 5),
-                                CText(
-                                    text: "${formatTime(service_model.openingHours![0].fromHour.toString())} - ",
-                                    fontsize: titleSmall),
-                                CText(
-                                    text: formatTime(service_model.openingHours![0].toHour.toString()),
-                                    fontsize: titleSmall)
-                              ]),
-                              SizedBox(
-                                height: 30,
-                                child: Center(
-                                  child: ListView(scrollDirection: Axis.horizontal, children: [
-                                    // const Icon(Icons.calendar_month,
-                                    //     size: 20),
-                                    // const SizedBox(width: 5),
-                                    for (var i in service_model.openingHours!)
-                                      days(name: getAbbreviatedWeekday(i.weekday!), size: titleSmall!),
-                                  ]),
-                                ),
+                                text:
+                                    "${formatTime(serviceModel.openingHours![0].fromHour.toString())} - ",
+                                fontsize: titleSmall,
                               ),
-                            ])),
-                  )
-                ]),
+                              CText(
+                                text: formatTime(serviceModel.openingHours![0].toHour.toString()),
+                                fontsize: titleSmall,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 30,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                for (var i in serviceModel.openingHours!)
+                                  days(
+                                    name: getAbbreviatedWeekday(i.weekday!),
+                                    size: titleSmall!,
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
-                height: 60,
-                width: double.maxFinite,
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, mainAxisSize: MainAxisSize.max, children: [
-                  Row(children: [
-                    const Icon(Icons.pin_drop_outlined, color: AppColor.secondary),
-                    const SizedBox(width: 5),
-                    CText(text: "${km.toInt()} ${LocaleKeys.km_away.tr}", fontsize: titleSmall),
-                  ]),
+              height: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.pin_drop_outlined, color: AppColor.secondary),
+                      const SizedBox(width: 5),
+                      CText(text: "${km.toInt()} ${LocaleKeys.km_away.tr}", fontsize: titleSmall),
+                    ],
+                  ),
                   bottomButton(
-                      model: service_model,
+                      model: serviceModel,
                       icon: Icons.shopping_cart_outlined,
                       size: titleSmall,
-                      txt: LocaleKeys.tailor_items_book_now.tr)
-                ])).paddingSymmetric(horizontal: 10)
-          ])),
+                      txt: LocaleKeys.tailor_items_book_now.tr),
+                ],
+              ),
+            ).paddingSymmetric(horizontal: 10),
+          ],
+        ),
+      ),
     );
   }
 
@@ -229,8 +262,10 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
         double longitude = double.parse(longitudeString);
 
         return [latitude, longitude];
-      } catch (e) {}
-    } else {}
+      } catch (e) {
+        // Handle parsing errors
+      }
+    }
 
     return [];
   }
@@ -239,7 +274,8 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-                side: BorderSide(color: AppColor.greylight), borderRadius: BorderRadius.circular(12)),
+                side: BorderSide(color: AppColor.greylight),
+                borderRadius: BorderRadius.circular(12)),
             elevation: 0,
             backgroundColor: AppColor.white),
         onPressed: () {
@@ -421,7 +457,8 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
         margin: const EdgeInsets.symmetric(horizontal: 3),
         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5), border: Border.all(width: 1, color: AppColor.greylight)),
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(width: 1, color: AppColor.greylight)),
         child: Center(child: CText(text: name, fontsize: size)));
   }
 
