@@ -36,6 +36,7 @@ Future<void> main() async {
     statusBarIconBrightness: Brightness.light,
   ));
 
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -44,14 +45,12 @@ Future<void> main() async {
   log("Start user Role ${GetStorage().read(SharedPreference.roleKey)}");
 
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome
-          .setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: [])
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: [])
       .then((_) => runApp(
             GetMaterialApp(
               translationsKeys: AppTranslation.translations,
-              locale: localeValue() == "العربية"
-                  ? const Locale('ar', 'SA')
-                  : const Locale('en', 'US'),
+              locale:
+                  localeValue() == "العربية" ? const Locale('ar', 'SA') : const Locale('en', 'US'),
               fallbackLocale: const Locale('en', 'US'),
               debugShowCheckedModeBanner: false,
               title: "home_brigadier",

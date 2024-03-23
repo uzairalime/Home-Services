@@ -56,6 +56,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   final ApiHelper _apiHelper = ApiHelper();
   SfRangeValues values = const SfRangeValues(40.0, 80.0);
   bool isSearch = false;
+
   // late SharedPreferences prefs;
 
   List<CetegoryModel> categorylist = [];
@@ -174,15 +175,11 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   getServices(String category) async {
     servicelist.clear();
-    final response = await _apiHelper.get(category == "All"
-        ? "user/service"
-        : "user/service/?category=$category");
-
+    final response = await _apiHelper
+        .get(category == "All" ? "user/service" : "user/service/?category=$category");
     final data = response.data;
-
-    List<ServicesModel> serviceList = (data as List)
-        .map((serviceJson) => ServicesModel.fromJson(serviceJson))
-        .toList();
+    List<ServicesModel> serviceList =
+        (data as List).map((serviceJson) => ServicesModel.fromJson(serviceJson)).toList();
 
     servicelist.clear();
 
@@ -217,9 +214,9 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
     final data = response.data;
 
-    List<OfferModel> offerList = (data as List)
-        .map((offerJson) => OfferModel.fromJson(offerJson))
-        .toList();
+
+    List<OfferModel> offerList =
+        (data as List).map((offerJson) => OfferModel.fromJson(offerJson)).toList();
 
     offerlist.clear();
 

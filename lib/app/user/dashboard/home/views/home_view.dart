@@ -17,7 +17,6 @@ import 'package:home_brigadier/model/category_name_model.dart';
 import 'package:home_brigadier/model/icon_model.dart';
 import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/utils/logger.dart';
-import 'package:home_brigadier/utils/shared_preferance.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/shimmer.dart';
@@ -708,7 +707,7 @@ class HomeView extends GetView<HomeController> {
                                                             ],
                                                           ),
                                                           Text(
-                                                            "\AED${model.rate}",
+                                                            "AED${model.rate}",
                                                             style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
@@ -782,13 +781,13 @@ class HomeView extends GetView<HomeController> {
     GetStorage storage = GetStorage();
     bool showcaseSeen = storage.read("showcase_seen") ?? false;
     if (!showcaseSeen) {
-      WidgetsBinding.instance.addPostFrameCallback(
-          (_) => ShowCaseWidget.of(context).startShowCase([
-                controller.keyOne,
-                controller.keyTwo,
-                controller.keyThree,
-                controller.keyFour,
-              ]));
+
+      WidgetsBinding.instance.addPostFrameCallback((_) => ShowCaseWidget.of(context).startShowCase([
+            controller.keyOne,
+            controller.keyTwo,
+            controller.keyThree,
+            controller.keyFour,
+          ]));
     }
     storage.write("showcase_seen", true);
   }
@@ -1464,10 +1463,7 @@ class CustomRow extends StatelessWidget {
               onTap: ontap, // Use the provided onTap property
               child: Text(
                 end,
-                style: TextStyle(
-                    fontWeight: bold6,
-                    fontSize: size16,
-                    color: AppColor.primary),
+                style: TextStyle(fontWeight: bold6, fontSize: size16, color: AppColor.primary),
               )),
         ),
       ],
@@ -1508,8 +1504,9 @@ class CoustomShowcaseWidget extends StatelessWidget {
   final String description;
   final GlobalKey globalkey;
 
-  CoustomShowcaseWidget(
-      this.globalkey, this.title, this.description, this.child);
+  const CoustomShowcaseWidget(this.globalkey, this.title, this.description, this.child,
+      {super.key});
+
 
   @override
   Widget build(BuildContext context) => Showcase(
