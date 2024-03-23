@@ -11,6 +11,7 @@ import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/services/apis/api_endpoints.dart';
 import 'package:home_brigadier/services/apis/api_helper.dart';
 import 'package:home_brigadier/utils/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../../../model/category_name_model.dart';
@@ -55,6 +56,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   final ApiHelper _apiHelper = ApiHelper();
   SfRangeValues values = const SfRangeValues(40.0, 80.0);
   bool isSearch = false;
+    late SharedPreferences prefs;
+
 
   List<CetegoryModel> categorylist = [];
   List<OfferModel> offerlist = [];
@@ -64,6 +67,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     isSearch = !isSearch;
     update();
   }
+  
 
   final List<String> category = [
     'Cleaning',
@@ -79,13 +83,23 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   void searchLoop() async {}
 
+  final keyOne = GlobalKey();
+  final keyTwo = GlobalKey();
+  final keyThree = GlobalKey();
+  final keyFour = GlobalKey();
+
   @override
-  void onInit() {
+   onInit()  {
     startLoop();
     getCategories();
     getOffers();
     getServices("");
     myScroll();
+          
+             
+
+
+
     super.onInit();
   }
 
@@ -163,13 +177,11 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   getServices(String category) async {
     servicelist.clear();
-    final response = await _apiHelper
-        .get(category == "All" ? "user/service" : "user/service/?category=$category");
+    final response = await _apiHelper.get(category == "All" ? "user/service" : "user/service/?category=$category");
 
     final data = response.data;
 
-    List<ServicesModel> serviceList =
-        (data as List).map((serviceJson) => ServicesModel.fromJson(serviceJson)).toList();
+    List<ServicesModel> serviceList = (data as List).map((serviceJson) => ServicesModel.fromJson(serviceJson)).toList();
 
     servicelist.clear();
 
@@ -203,8 +215,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
     final data = response.data;
 
-    List<OfferModel> offerList =
-        (data as List).map((offerJson) => OfferModel.fromJson(offerJson)).toList();
+    List<OfferModel> offerList = (data as List).map((offerJson) => OfferModel.fromJson(offerJson)).toList();
 
     offerlist.clear();
 
@@ -261,4 +272,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     scrollBottomBarController.removeListener(() {});
     super.onClose();
   }
+  
+
+ 
 }

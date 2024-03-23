@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:io';
+import 'dart:math';
 
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -17,10 +18,13 @@ import 'package:home_brigadier/model/category_name_model.dart';
 import 'package:home_brigadier/model/icon_model.dart';
 import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/utils/logger.dart';
+import 'package:home_brigadier/utils/shared_preferance.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/shimmer.dart';
 import 'package:marquee/marquee.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 import '../../../../../generated/locales.g.dart';
 import '../../../../../widget/c_text_field.dart';
@@ -34,6 +38,8 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(BookingController());
+
+   getService(context);
 
     return GetBuilder<HomeController>(builder: (obj) {
       return Platform.isAndroid
@@ -144,16 +150,21 @@ class HomeView extends GetView<HomeController> {
                                     }),
                               )
                             : SizedBox(),
-                        InkWell(
-                          onTap: () {
-                            Get.to(() => const SearchLocationScreen());
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Icon(
-                              size: 30,
-                              Icons.location_on,
-                              color: AppColor.primary,
+                        CoustomShowcaseWidget(
+                          controller.keyOne,
+                          'Location',
+                          'you location change from here',
+                          InkWell(
+                            onTap: () {
+                              Get.to(() => const SearchLocationScreen());
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Icon(
+                                size: 30,
+                                Icons.location_on,
+                                color: AppColor.primary,
+                              ),
                             ),
                           ),
                         ),
@@ -191,7 +202,7 @@ class HomeView extends GetView<HomeController> {
                             end: LocaleKeys.home_screen_items_see_all.tr,
                             ontap: () {
                               Get.toNamed(Routes.SPECIAL_OFFERS);
-                            },
+                            }, keyg: controller.keyTwo, ntitle: 'Special offers', ndesc: 'Click here and see all special offers',
                           ),
                           SizedBox(
                             height: height * 0.015,
@@ -263,6 +274,8 @@ class HomeView extends GetView<HomeController> {
                             height: height * 0.015,
                           ),
                           CustomRow(
+                            ntitle: 'All Services', ndesc: 'Click here and see  all servies',
+                            keyg: controller.keyThree,
                             title: LocaleKeys.home_screen_items_services.tr,
                             end: LocaleKeys.home_screen_items_see_all.tr,
                             ontap: () {
@@ -288,6 +301,8 @@ class HomeView extends GetView<HomeController> {
                             height: height * 0.015,
                           ),
                           CustomRow(
+                            ntitle: 'Papular Servies', ndesc: 'Click here and see all papular services',
+                            keyg: controller.keyFour,
                               ontap: () {
                                 Get.toNamed(Routes.POPULAR_SERVICES);
                               },
@@ -530,6 +545,7 @@ class HomeView extends GetView<HomeController> {
                                               child: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
+// <<<<<<< usman
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.spaceBetween,
@@ -570,6 +586,40 @@ class HomeView extends GetView<HomeController> {
                                                                   fontSize: 13),
                                                             ),
                                                           ),
+// =======
+//                                                     CText(
+//                                                         text: "${model.name}",
+//                                                         color: AppColor.black,
+//                                                         fontsize: 19,
+//                                                         fontWeight: FontWeight.bold),
+//                                                     Padding(
+//                                                       padding: EdgeInsets.only(right: widht * 0.02),
+//                                                       child: Icon(Icons.more_horiz),
+//                                                     )
+//                                                   ],
+//                                                 ),
+//                                                 SizedBox(
+//                                                   height: height * 0.0075,
+//                                                 ),
+//                                                 Container(
+//                                                   // height: height * 0.04,
+//                                                   // width: widht * 0.26,
+//                                                   decoration: BoxDecoration(
+//                                                       color: AppColor.white,
+//                                                       borderRadius: BorderRadius.circular(7),
+//                                                       border: Border.all(color: AppColor.secondary)),
+//                                                   child: FittedBox(
+//                                                     fit: BoxFit.contain,
+//                                                     child: Padding(
+//                                                       padding: const EdgeInsets.all(4.0),
+//                                                       child: Center(
+//                                                         child: Text(
+//                                                           "${model.category!.displayName}",
+//                                                           style: TextStyle(
+//                                                               fontWeight: FontWeight.normal,
+//                                                               color: AppColor.secondary,
+//                                                               fontSize: 13),
+// >>>>>>> main
                                                         ),
                                                       ),
                                                     ),
@@ -666,6 +716,33 @@ class HomeView extends GetView<HomeController> {
 
     return [];
   }
+  
+   getService(BuildContext context) async{
+    GetStorage storage = GetStorage();
+     bool showcaseSeen = storage.read("showcase_seen")??false;
+     if(!showcaseSeen){
+        WidgetsBinding.instance.addPostFrameCallback((_) => ShowCaseWidget.of(context).startShowCase([
+          controller.keyOne,
+          controller.keyTwo,
+          controller.keyThree,
+          controller.keyFour,
+        ]));
+
+     }
+    storage.write("showcase_seen", true);
+
+   
+
+
+   
+
+
+
+
+   
+        
+
+   }
 }
 
 class CategoriesTabbar extends StatelessWidget {
@@ -876,11 +953,20 @@ class TabBarGrid extends StatelessWidget {
           // print(jsonEncode("service list ${jsonEncode(serviceList)}"));
 
           return ListView.separated(
+// <<<<<<< usman
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: serviceList.isEmpty ? 10 : serviceList.length,
             itemBuilder: (context, index) {
               final model = serviceList[index];
+// =======
+//               shrinkWrap: true,
+//               physics: const NeverScrollableScrollPhysics(),
+//               itemCount: servicelist.isEmpty ? 10 : servicelist.length,
+//               itemBuilder: (context, index) {
+//                 final model = servicelist[index];
+//                 logger.d("service lost is  ${servicelist[index].location}");
+// >>>>>>> main
 
               String empLocation =
                   model.location ?? "0, 0"; // Default to "0, 0" if location is null
@@ -1024,6 +1110,7 @@ class TabBarGrid extends StatelessWidget {
                                             fontSize: 14,
                                           ),
                                         ),
+// <<<<<<< usman
                                       ],
                                     ),
                                   ),
@@ -1042,6 +1129,46 @@ class TabBarGrid extends StatelessWidget {
               height: height * 0.01,
             ),
           );
+// =======
+//                                         SizedBox(
+//                                           height: height * 0.04,
+//                                         ),
+//                                         Padding(
+//                                           padding: EdgeInsets.only(right: widht * 0.02),
+//                                           child: Row(
+//                                             crossAxisAlignment: CrossAxisAlignment.center,
+//                                             // mainAxisSize: MainAxisSize.max,
+//                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                                             children: [
+//                                               Row(
+//                                                 children: [
+//                                                   const Icon(
+//                                                       size: 14, Icons.location_on_outlined, color: AppColor.black),
+//                                                   Text(
+//                                                     "${km.toInt()} ${LocaleKeys.km_away.tr}",
+//                                                     style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+//                                                   )
+//                                                 ],
+//                                               ),
+//                                               Text(
+//                                                 "AED${model.rate}",
+//                                                 style: TextStyle(
+//                                                     fontWeight: FontWeight.bold,
+//                                                     color: AppColor.secondary,
+//                                                     fontSize: 14),
+//                                               ),
+//                                             ],
+//                                           ),
+//                                         ),
+//                                       ]),
+//                                     ))
+//                               ])))),
+//                 );
+//               },
+//               separatorBuilder: (context, index) => SizedBox(
+//                     height: height * 0.01,
+//                   ));
+// >>>>>>> main
         }
       },
     );
@@ -1220,7 +1347,7 @@ class TabBarGrid extends StatelessWidget {
   }
 
   List<double> extractCoordinates(String coordinates) {
-    List<String> coordinateList = coordinates.split(', ');
+    List<String> coordinateList = coordinates.split(',');
 
     if (coordinateList.length == 2) {
       String latitudeString = coordinateList[0];
@@ -1240,14 +1367,17 @@ class TabBarGrid extends StatelessWidget {
 
 class CustomRow extends StatelessWidget {
   final String title;
+  final String ntitle;
+  final String ndesc;
   final String end;
   final Function()? ontap;
+  final GlobalKey<State<StatefulWidget>> keyg;
 
   const CustomRow({
     super.key,
     required this.title,
     required this.end,
-    this.ontap,
+    this.ontap, required this.keyg, required this.ntitle, required this.ndesc,
   });
 
   @override
@@ -1261,12 +1391,22 @@ class CustomRow extends StatelessWidget {
           title,
           style: TextStyle(fontWeight: bold6, fontSize: size18),
         ),
-        InkWell(
+
+
+        CoustomShowcaseWidget(
+          keyg,
+                          
+                          ntitle,
+                          ndesc,
+                          InkWell(
             onTap: ontap, // Use the provided onTap property
             child: Text(
               end,
               style: TextStyle(fontWeight: bold6, fontSize: size16, color: AppColor.primary),
             )),
+                          
+        ),
+        
       ],
     );
   }
@@ -1297,4 +1437,26 @@ class ServiceModel {
     ServiceModel("Plumbing", "assets/icons/ic_plumbing_filled.svg"),
     // ServiceModel("Shifting", "assets/icons/ic_shifting_filled.svg"),
   ];
+}
+
+class CoustomShowcaseWidget extends StatelessWidget {
+  final Widget child;
+  final String title;
+  final String description;
+  final GlobalKey globalkey;
+
+  CoustomShowcaseWidget(this.globalkey, this.title, this.description, this.child);
+
+  @override
+  Widget build(BuildContext context) => Showcase(
+        key: globalkey,
+        tooltipPadding: EdgeInsets.all(10),
+        title: title,
+        titleTextStyle: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
+        description: description,
+        descTextStyle: TextStyle(fontSize: 12, color: Colors.black),
+        overlayColor: Colors.grey,
+        overlayOpacity: 0.7,
+        child: child,
+      );
 }

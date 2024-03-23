@@ -10,6 +10,7 @@ import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/user_role/user_role.dart';
 import 'package:home_brigadier/utils/isolate_manager.dart';
 import 'package:home_brigadier/utils/shared_preferance.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/seller/dashboard/views/dashboard_view.dart';
@@ -59,7 +60,10 @@ class ConnectivityService {
         if (StaticData.refreshToken.isNotEmpty) {
           int refreshTokenResult = await IsolateManager.refreshToken();
           if (refreshTokenResult == 200) {
-            Get.offAll(const SellerDashboardView());
+            Get.offAll(
+               const SellerDashboardView(),
+              
+            );
           } else {
             Get.offAll(() => const EmailLoginView(
                   role: 'seller',
@@ -78,12 +82,15 @@ class ConnectivityService {
         if (StaticData.refreshToken.isNotEmpty) {
           int refreshTokenResult = await IsolateManager.refreshToken();
           if (refreshTokenResult == 200) {
-            Get.to(const UserDashboardView());
+            Get.to(  const UserDashboardView(),
+              );
           } else {
-            Get.offAll(() => const UserDashboardView());
+            Get.offAll(() =>   const UserDashboardView(),
+              );
           }
         } else {
-          Get.offAll(() => const UserDashboardView());
+          Get.offAll(() =>  const UserDashboardView(),
+              );
         }
       }
 

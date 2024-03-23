@@ -42,6 +42,10 @@ Future<void> main() async {
 
   log("Start user Role ${GetStorage().read(SharedPreference.roleKey)}");
 
+
+WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays:[]).then(
+        (_) => 
   runApp(
     GetMaterialApp(
       translationsKeys: AppTranslation.translations,
@@ -54,5 +58,11 @@ Future<void> main() async {
       getPages: AppPages.routes,
       home: const SplashScreen(),
     ),
+  )
+
   );
+
+
+
+
 }

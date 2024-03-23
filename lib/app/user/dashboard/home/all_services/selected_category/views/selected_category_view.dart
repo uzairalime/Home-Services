@@ -251,7 +251,7 @@ class SelectedCategoryView extends GetView<SelectedCategoryController> {
   }
 
   List<double> extractCoordinates(String coordinates) {
-    List<String> coordinateList = coordinates.split(', ');
+    List<String> coordinateList = coordinates.split(',');
 
     if (coordinateList.length == 2) {
       String latitudeString = coordinateList[0];

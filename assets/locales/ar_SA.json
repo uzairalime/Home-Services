@@ -60,7 +60,7 @@
       "language": "اللغة",
       "_language": {
         "english": "English",
-        "العربية": "العربية"
+        "arabic": "العربية"
       },
       "privacy_policy": "سياسة الخصوصية",
       "_privacy_policy": {
@@ -384,7 +384,6 @@
     "reflexology": "التدليك بالضغط",
     "hair_services": "خدمات الشعر",
     "makeup_sevices": "خدمات المكياج"
-
   },
   "handy_man": {
     "handy_man": "الصانع الماهر",
@@ -403,7 +402,6 @@
     "general_maintenence": "صيانة عامة",
     "landscaping": "تنسيق الحدائق"
   },
-<<<<<<< HEAD
   "enteraddress": "أدخل عنوانك",
   "location_screen": {
     "set_loation": "تحديد الموقع",
@@ -418,7 +416,7 @@
     "select_cleanrs": "يرجى اختيار المنظفين",
     "select_subscription": "يرجى اختيار الاشتراك",
     "select_materials": "يرجى اختيار المواد",
-    "login_then_booking": "يرجى تسجيل الدخول ثم الحجز",
+    "login_then_booking": "الرجاء تسجيل الدخول للمتابعة",
     "add_address": "يرجى إضافة عنوان",
     "select_service": "يرجى اختيار الخدمة",
     "add_discription": "يرجى إضافة وصف",
@@ -430,15 +428,11 @@
     "opt_failed": "فشل في رمز التحقق",
     "enter_valid_number": "يرجى إدخال رقم صحيح",
     "successfully_payment": "تم الدفع بنجاح",
-    "enter_valid_otp": "أدخل رمز التحقق الصحيح"
+    "enter_valid_otp": "أدخل رمز التحقق الصحيح",
+    "enter_flat_number": "ادخل رقم الشقة"
   },
   "completed": "مكتمل",
   "upcomming": "قادم",
   "no_jobs_found": "لم يتم العثور على وظائف",
   "flat_number": "رقم الشقة #"
 }
-=======
-  "enteraddress": "أدخل عنوانك"
-}
-
->>>>>>> 4b6e057ad79fbf3cd59126b394547bdd9e8d11c1

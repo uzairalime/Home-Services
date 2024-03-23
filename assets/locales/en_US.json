@@ -60,7 +60,7 @@
       "language": "Language",
       "_language": {
         "english": "English",
-        "العربية": "Arabic"
+        "arabic": "Arabic"
       },
       "privacy_policy": "Privacy Policy",
       "_privacy_policy": {
@@ -384,7 +384,6 @@
     "reflexology": "Reflexology",
     "hair_services": "Hair Services",
     "makeup_sevices": "Makeup Services"
-
   },
   "handy_man": {
     "handy_man": "Handy Man",
@@ -403,7 +402,6 @@
     "general_maintenence": "General Maintenence",
     "landscaping": "Landscaping"
   },
-<<<<<<< HEAD
   "enteraddress": "Enter your address",
   "location_screen": {
     "set_loation": "Set Location",
@@ -418,7 +416,7 @@
     "select_cleanrs": "Please Select Cleaners",
     "select_subscription": "Please Select Subscription",
     "select_materials": "Please Select Materials",
-    "login_then_booking": "Please Login then Booking",
+    "login_then_booking": "Please login to Proceed",
     "add_address": "Please add a address",
     "select_service": "Please Select Service",
     "add_discription": "Please add discription",
@@ -430,15 +428,11 @@
     "opt_failed": "OTP failed",
     "enter_valid_number": "Enter a valid number",
     "successfully_payment": "Succecfuly payment completed",
-    "enter_valid_otp": "Enter valid OTP"
+    "enter_valid_otp": "Enter valid OTP",
+    "enter_flat_number": "Enter flat number"
   },
   "completed": "Completed",
   "upcomming": "Upcoming",
   "no_jobs_found": "No jobs found",
   "flat_number": "Flat #"
 }
-=======
-  "enteraddress": "Enter your address"
-}
-
->>>>>>> 4b6e057ad79fbf3cd59126b394547bdd9e8d11c1
