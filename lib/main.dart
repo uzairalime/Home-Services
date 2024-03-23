@@ -15,7 +15,8 @@ import 'package:home_brigadier/utils/shared_preferance.dart';
 
 import 'generated/locales.g.dart';
 
-String localeValue() => GetStorage().read(SharedPreference.langKey) ?? "English";
+String localeValue() =>
+    GetStorage().read(SharedPreference.langKey) ?? "English";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,9 +32,10 @@ Future<void> main() async {
   await GetStorage.init();
   ConnectivityService.connectivity();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      // statusBarColor: Colors.white,
-      // statusBarIconBrightness: Brightness.dark,
-      ));
+    statusBarColor: Colors.white,
+    statusBarIconBrightness: Brightness.light,
+  ));
+
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
