@@ -34,48 +34,6 @@ class _UserRoleViewState extends State<UserRoleView> {
               child: const VideoPlayerWidget(),
             ),
           ),
-          // Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: Container(
-          //     height: height * 0.25, // Adjusted height
-          //     decoration: const BoxDecoration(
-          //         color: AppColor.white,
-          //         borderRadius: BorderRadius.only(
-          //             topLeft: Radius.circular(25),
-          //             topRight: Radius.circular(25))),
-          //     child: Align(
-          //       alignment: Alignment.bottomCenter,
-          //       child: SizedBox(
-          //         height: height * 0.13,
-          //         child: Column(
-          //           mainAxisSize: MainAxisSize.max,
-          //           crossAxisAlignment: CrossAxisAlignment.center,
-          //           children: [
-          //             CText(
-          //               text: "Home Brigadier",
-          //               color: AppColor.secondary,
-          //               textAlign: TextAlign.center,
-          //               fontWeight: FontWeight.w500,
-          //               fontsize:
-          //                   Theme.of(context).textTheme.headlineSmall!.fontSize,
-          //             ),
-          //             SizedBox(
-          //               height: height * 0.01,
-          //             ),
-          //             CText(
-          //               text: "Home  Services on Demand",
-          //               textAlign: TextAlign.center,
-          //               color: AppColor.primary,
-          //               fontsize:
-          //                   Theme.of(context).textTheme.titleSmall!.fontSize,
-          //             )
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
-
           Positioned(
             left: 0,
             right: 0,
@@ -93,8 +51,7 @@ class _UserRoleViewState extends State<UserRoleView> {
                         color: AppColor.white,
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w500,
-                        fontsize:
-                            Theme.of(context).textTheme.headlineSmall!.fontSize,
+                        fontsize: Theme.of(context).textTheme.headlineSmall!.fontSize,
                       ),
                       SizedBox(
                         height: height * 0.01,
@@ -103,8 +60,7 @@ class _UserRoleViewState extends State<UserRoleView> {
                         text: "Home  Services on Demand",
                         textAlign: TextAlign.center,
                         color: AppColor.white,
-                        fontsize:
-                            Theme.of(context).textTheme.titleSmall!.fontSize,
+                        fontsize: Theme.of(context).textTheme.titleSmall!.fontSize,
                       )
                     ],
                   ),
@@ -125,16 +81,14 @@ class _UserRoleViewState extends State<UserRoleView> {
                         child: Card(
                           shadowColor: AppColor.greylight,
                           elevation: 15,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               SizedBox(
                                   height: 40,
                                   width: 40,
-                                  child:
-                                      Image.asset("assets/images/ic_find.png")),
+                                  child: Image.asset("assets/images/ic_find.png")),
                               const CText(
                                 text: "Find a Service",
                                 fontWeight: FontWeight.bold,
@@ -164,16 +118,14 @@ class _UserRoleViewState extends State<UserRoleView> {
                         child: Card(
                           shadowColor: AppColor.greylight,
                           elevation: 15,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               SizedBox(
                                   height: 40,
                                   width: 40,
-                                  child: Image.asset(
-                                      "assets/images/ic_selling.png")),
+                                  child: Image.asset("assets/images/ic_selling.png")),
                               const CText(
                                 text: "Find Customers",
                                 fontWeight: FontWeight.bold,
@@ -214,8 +166,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   late ChewieController chewieController;
   @override
   void initState() {
-    videoPlayerController =
-        VideoPlayerController.asset("assets/video/intro_video.mp4");
+    videoPlayerController = VideoPlayerController.asset("assets/video/intro_video.mp4");
 
     chewieController = ChewieController(
       videoPlayerController: videoPlayerController,
