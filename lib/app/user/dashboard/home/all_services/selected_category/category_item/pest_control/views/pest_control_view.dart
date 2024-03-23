@@ -54,7 +54,7 @@ class PestControlBookingView extends GetView<BookingController> {
                           "${LocaleKeys.house_cleaning_items_cont_button.tr} ${controller.total.value} AED ",
                       fontWeight: FontWeight.bold,
                       ontab: () {
-                        _onContinue();
+                        _onContinue(obj);
                       }),
                 ),
               ),
@@ -230,16 +230,16 @@ class PestControlBookingView extends GetView<BookingController> {
     );
   }
 
-  _onContinue() {
+  _onContinue(PestControlController pcon) {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
       showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.cleaner.value == 0) {
       showsnackbar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
-    } else if (controller.selectedweekplan.value.isEmpty) {
+    } else if (pcon.selectedSize.isEmpty) {
       showsnackbar(LocaleKeys.snack_bars_select_subscription.tr, true);
-    } else if (controller.selectedmaterial.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_materials.tr, true);
+    } else if (pcon.selectedInsects.isEmpty) {
+      showsnackbar(LocaleKeys.snack_bars_select_service.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

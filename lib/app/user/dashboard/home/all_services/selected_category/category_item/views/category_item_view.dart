@@ -77,8 +77,8 @@ class CategoryItemView extends GetView<CategoryItemController> {
                 color: AppColor.greylight,
               ))),
           child: Padding(
-            padding: const EdgeInsets.only(
-                top: 30, bottom: 20, left: 20, right: 20),
+            padding:
+                const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
             child: Row(
               children: [
                 Expanded(
@@ -88,111 +88,103 @@ class CategoryItemView extends GetView<CategoryItemController> {
                     logger.d("category is   ${model!.category!.code}");
                     switch (model!.category!.code) {
                       case 'tailor':
-                       BookingController.to.selectMaterials("No");
-                       BookingController.to.hours.value = 1;
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
 
-                          BookingController.to.claculateBill();
+                        BookingController.to.claculateBill();
 
                         Get.to(() => TailorView());
                         break;
                       case 'cleaning':
                         BookingController.to.hours.value = 1;
-                          BookingController.to.claculateBill();
+                        BookingController.to.claculateBill();
 
                         Get.to(() => const HouseCleaningBookingView());
                         break;
                       case 'acRepair':
-                      BookingController.to.hours.value = 1;
-                       BookingController.to.selectMaterials("No");
-                          BookingController.to.claculateBill();
-                          
+                        BookingController.to.hours.value = 1;
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.claculateBill();
 
                         Get.to(() => RepairingBookingView());
                         break;
                       case 'painting':
-                       BookingController.to.selectMaterials("No");
-                       BookingController.to.hours.value = 1;
-                          BookingController.to.claculateBill();
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
+                        BookingController.to.claculateBill();
 
                         Get.to(() => PaintingBookingView());
                         break;
                       case 'Laundry':
-                       BookingController.to.selectMaterials("No");
-                       BookingController.to.hours.value = 1;
-                          BookingController.to.claculateBill();
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
+                        BookingController.to.claculateBill();
 
                         Get.to(() => const LaundryBookingView());
                         break;
                       case 'electricity':
                         Get.to(() {
+                          BookingController.to.hours.value = 1;
+                          BookingController.to.selectMaterials("No");
 
-                           BookingController.to.hours.value = 1;
-                       BookingController.to.selectMaterials("No");
+                          BookingController.to.claculateBill();
 
-                              BookingController.to.claculateBill();
-
-                        
                           return ApplianceBookingView(model: model);
                         });
                         break;
-                        
-                      case 'plumbing':
-                       BookingController.to.selectMaterials("No");
-                       BookingController.to.hours.value = 1;
 
-                          BookingController.to.claculateBill();
+                      case 'plumbing':
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
+
+                        BookingController.to.claculateBill();
 
                         Get.to(() => PlumbingBookingView());
                         break;
                       case 'pestControl':
-                       BookingController.to.selectMaterials("No");
-                       BookingController.to.hours.value = 1;
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
 
-                          BookingController.to.claculateBill();
+                        BookingController.to.claculateBill();
 
                         Get.to(() => const PestControlBookingView());
                         break;
-    
+
                       case 'womenSalon':
-                       BookingController.to.selectMaterials("No");
-                       BookingController.to.hours.value = 1;
-                          BookingController.to.claculateBill();
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
+                        BookingController.to.claculateBill();
 
                         Get.to(() => WomenSalonView());
                         break;
                       case 'spa':
-                       BookingController.to.selectMaterials("No");
-                       BookingController.to.hours.value = 1;
-                          BookingController.to.claculateBill();
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
+                        BookingController.to.claculateBill();
 
                         Get.to(() => const SpaView());
                         break;
                       case 'menSalon':
-                      BookingController.to.selectMaterials("No");
-                       BookingController.to.hours.value = 1;
-                          BookingController.to.claculateBill();
+                        BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
+                        BookingController.to.claculateBill();
 
                         Get.to(() => const MenSalonView());
                         break;
                       case 'handyman':
-                      
-                           BookingController.to.hours.value = 1;
-                       BookingController.to.selectMaterials("No");
+                        BookingController.to.hours.value = 1;
+                        BookingController.to.selectMaterials("No");
 
-                          BookingController.to.claculateBill();
+                        BookingController.to.claculateBill();
 
                         Get.to(() => const HandymanView());
                         break;
                       default:
-                          BookingController.to.claculateBill();
+                        BookingController.to.claculateBill();
 
                         Get.to(() => const HouseCleaningBookingView());
                         break;
                     }
-             
-             
-             
-             
                   },
                   txtcolor: AppColor.white,
                   fontsize: widht * 0.045,
@@ -374,20 +366,19 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                   width: widht,
                                   height: height * 0.53,
                                   child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
-                                          imageBox(context,
-                                              model!.files![0].file!),
+                                          imageBox(
+                                              context, model!.files![0].file!),
                                           const SizedBox(
                                             width: 15,
                                           ),
-                                          imageBox(context,
-                                              model!.files![0].file!),
+                                          imageBox(
+                                              context, model!.files![0].file!),
                                         ],
                                       ),
                                       const SizedBox(
@@ -395,13 +386,13 @@ class CategoryItemView extends GetView<CategoryItemController> {
                                       ),
                                       Row(
                                         children: [
-                                          imageBox(context,
-                                              model!.files![0].file!),
+                                          imageBox(
+                                              context, model!.files![0].file!),
                                           const SizedBox(
                                             width: 15,
                                           ),
-                                          imageBox(context,
-                                              model!.files![0].file!),
+                                          imageBox(
+                                              context, model!.files![0].file!),
                                         ],
                                       )
                                     ],
