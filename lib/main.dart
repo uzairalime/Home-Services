@@ -15,7 +15,8 @@ import 'package:home_brigadier/utils/shared_preferance.dart';
 
 import 'generated/locales.g.dart';
 
-String localeValue() => GetStorage().read(SharedPreference.langKey) ?? "English";
+String localeValue() =>
+    GetStorage().read(SharedPreference.langKey) ?? "English";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,27 +33,32 @@ Future<void> main() async {
   ConnectivityService.connectivity();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.white,
-    statusBarIconBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
   ));
 
   SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   log("Start user Role ${GetStorage().read(SharedPreference.roleKey)}");
 
-  runApp(
-    GetMaterialApp(
-      translationsKeys: AppTranslation.translations,
-      locale: localeValue() == "العربية" ? const Locale('ar', 'SA') : const Locale('en', 'US'),
-      fallbackLocale: const Locale('en', 'US'),
-      debugShowCheckedModeBanner: false,
-      title: "home_brigadier",
-      theme: Themes.lightTheme,
-      themeMode: ThemeMode.light,
-      getPages: AppPages.routes,
-      home: const SplashScreen(),
-    ),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome
+          .setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: [])
+      .then((_) => runApp(
+            GetMaterialApp(
+              translationsKeys: AppTranslation.translations,
+              locale: localeValue() == "العربية"
+                  ? const Locale('ar', 'SA')
+                  : const Locale('en', 'US'),
+              fallbackLocale: const Locale('en', 'US'),
+              debugShowCheckedModeBanner: false,
+              title: "home_brigadier",
+              theme: Themes.lightTheme,
+              themeMode: ThemeMode.light,
+              getPages: AppPages.routes,
+              home: const SplashScreen(),
+            ),
+          ));
 }
