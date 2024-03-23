@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:io';
-import 'dart:math';
 
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -18,12 +17,10 @@ import 'package:home_brigadier/model/category_name_model.dart';
 import 'package:home_brigadier/model/icon_model.dart';
 import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/utils/logger.dart';
-import 'package:home_brigadier/utils/shared_preferance.dart';
 import 'package:home_brigadier/utils/style.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/shimmer.dart';
 import 'package:marquee/marquee.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 import '../../../../../generated/locales.g.dart';
@@ -39,7 +36,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     Get.put(BookingController());
 
-   getService(context);
+    getService(context);
 
     return GetBuilder<HomeController>(builder: (obj) {
       return Platform.isAndroid
@@ -202,7 +199,10 @@ class HomeView extends GetView<HomeController> {
                             end: LocaleKeys.home_screen_items_see_all.tr,
                             ontap: () {
                               Get.toNamed(Routes.SPECIAL_OFFERS);
-                            }, keyg: controller.keyTwo, ntitle: 'Special offers', ndesc: 'Click here and see all special offers',
+                            },
+                            keyg: controller.keyTwo,
+                            ntitle: 'Special offers',
+                            ndesc: 'Click here and see all special offers',
                           ),
                           SizedBox(
                             height: height * 0.015,
@@ -274,7 +274,8 @@ class HomeView extends GetView<HomeController> {
                             height: height * 0.015,
                           ),
                           CustomRow(
-                            ntitle: 'All Services', ndesc: 'Click here and see  all servies',
+                            ntitle: 'All Services',
+                            ndesc: 'Click here and see  all servies',
                             keyg: controller.keyThree,
                             title: LocaleKeys.home_screen_items_services.tr,
                             end: LocaleKeys.home_screen_items_see_all.tr,
@@ -301,8 +302,9 @@ class HomeView extends GetView<HomeController> {
                             height: height * 0.015,
                           ),
                           CustomRow(
-                            ntitle: 'Papular Servies', ndesc: 'Click here and see all papular services',
-                            keyg: controller.keyFour,
+                              ntitle: 'Papular Servies',
+                              ndesc: 'Click here and see all papular services',
+                              keyg: controller.keyFour,
                               ontap: () {
                                 Get.toNamed(Routes.POPULAR_SERVICES);
                               },
@@ -650,7 +652,7 @@ class HomeView extends GetView<HomeController> {
                                                             ],
                                                           ),
                                                           Text(
-                                                            "\AED${model.rate}",
+                                                            "AED${model.rate}",
                                                             style: TextStyle(
                                                                 fontWeight: FontWeight.bold,
                                                                 color: AppColor.secondary,
@@ -716,33 +718,20 @@ class HomeView extends GetView<HomeController> {
 
     return [];
   }
-  
-   getService(BuildContext context) async{
+
+  getService(BuildContext context) async {
     GetStorage storage = GetStorage();
-     bool showcaseSeen = storage.read("showcase_seen")??false;
-     if(!showcaseSeen){
-        WidgetsBinding.instance.addPostFrameCallback((_) => ShowCaseWidget.of(context).startShowCase([
-          controller.keyOne,
-          controller.keyTwo,
-          controller.keyThree,
-          controller.keyFour,
-        ]));
-
-     }
+    bool showcaseSeen = storage.read("showcase_seen") ?? false;
+    if (!showcaseSeen) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => ShowCaseWidget.of(context).startShowCase([
+            controller.keyOne,
+            controller.keyTwo,
+            controller.keyThree,
+            controller.keyFour,
+          ]));
+    }
     storage.write("showcase_seen", true);
-
-   
-
-
-   
-
-
-
-
-   
-        
-
-   }
+  }
 }
 
 class CategoriesTabbar extends StatelessWidget {
@@ -1377,7 +1366,10 @@ class CustomRow extends StatelessWidget {
     super.key,
     required this.title,
     required this.end,
-    this.ontap, required this.keyg, required this.ntitle, required this.ndesc,
+    this.ontap,
+    required this.keyg,
+    required this.ntitle,
+    required this.ndesc,
   });
 
   @override
@@ -1391,22 +1383,17 @@ class CustomRow extends StatelessWidget {
           title,
           style: TextStyle(fontWeight: bold6, fontSize: size18),
         ),
-
-
         CoustomShowcaseWidget(
           keyg,
-                          
-                          ntitle,
-                          ndesc,
-                          InkWell(
-            onTap: ontap, // Use the provided onTap property
-            child: Text(
-              end,
-              style: TextStyle(fontWeight: bold6, fontSize: size16, color: AppColor.primary),
-            )),
-                          
+          ntitle,
+          ndesc,
+          InkWell(
+              onTap: ontap, // Use the provided onTap property
+              child: Text(
+                end,
+                style: TextStyle(fontWeight: bold6, fontSize: size16, color: AppColor.primary),
+              )),
         ),
-        
       ],
     );
   }
@@ -1445,7 +1432,8 @@ class CoustomShowcaseWidget extends StatelessWidget {
   final String description;
   final GlobalKey globalkey;
 
-  CoustomShowcaseWidget(this.globalkey, this.title, this.description, this.child);
+  const CoustomShowcaseWidget(this.globalkey, this.title, this.description, this.child,
+      {super.key});
 
   @override
   Widget build(BuildContext context) => Showcase(
