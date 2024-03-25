@@ -9,14 +9,19 @@ import 'package:home_brigadier/generated/locales.g.dart';
 import '../../../../../../consts/app_color.dart';
 import '../../../../../../widget/cText.dart';
 
-class MyJobsView extends GetView<MyJobsController> {
+class MyJobsView extends StatefulWidget {
   const MyJobsView({Key? key}) : super(key: key);
+
+  @override
+  State<MyJobsView> createState() => _MyJobsViewState();
+}
+
+class _MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final titleMedium = Theme.of(context).textTheme.titleMedium!.fontSize;
-    final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
-    //  final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
+    final controller = Get.put(MyJobsController());
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
+    controller.tabController = TabController(length: 2, vsync: this);
 
     return DefaultTabController(
       length: 2,
@@ -33,6 +38,7 @@ class MyJobsView extends GetView<MyJobsController> {
                 color: Colors.black,
                 fontsize: mediaQueryHeight(context) * 0.025),
             bottom: TabBar(
+                controller: controller.tabController,
                 labelStyle: TextStyle(fontSize: titleSmall, fontWeight: FontWeight.bold),
                 unselectedLabelStyle: TextStyle(fontSize: titleSmall, color: AppColor.grey),
                 padding: EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
@@ -42,7 +48,9 @@ class MyJobsView extends GetView<MyJobsController> {
                   Tab(text: LocaleKeys.user_profile_item_upcoming.tr),
                   Tab(text: LocaleKeys.user_profile_item_completed.tr),
                 ])),
-        body: const TabBarView(children: [UpcomingView(), CompletedView()]),
+        body: TabBarView(
+            controller: controller.tabController,
+            children: const [UpcomingView(), CompletedView()]),
       ),
     );
   }

@@ -1,16 +1,44 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:dio/dio.dart' as deo;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../consts/static_data.dart';
 import '../../../../../../model/user_services_models/my_booking_booking_model.dart';
 
 class MyJobsController extends GetxController {
-  deo.Dio dio = deo.Dio();
+  static MyJobsController get to => Get.find<MyJobsController>();
+  late TabController tabController;
 
+  ///////
+  deo.Dio dio = deo.Dio();
+  List<String> status = [
+    "Pending",
+    "Accepted",
+    "Started",
+    "Canceled",
+    "Rejected",
+  ];
+  List<String> dialogStatus = [
+    "Pending",
+    "Accepted",
+    "Started",
+    "Canceled",
+    "Rejected",
+    "Completed"
+  ];
+
+  var selectedStatus = 'Pending'.obs;
+
+  void toggleSelection(String status) {
+    if (selectedStatus.value != status) {
+      selectedStatus.value = status;
+      update();
+    }
+  }
+
+  /////////////
   Future<List<MyServicesBookingModel>> fetchCompletedJobs() async {
     dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
 
@@ -19,7 +47,6 @@ class MyJobsController extends GetxController {
       if (response.statusCode == 200) {
         // Parse the response data into a list of Booking objects
         List<dynamic> jsonData = response.data;
-        log("Jobs ${jsonEncode(jsonData)}");
         List<MyServicesBookingModel> bookings =
             jsonData.map((data) => MyServicesBookingModel.fromJson(data)).toList();
         return bookings.where((booking) => booking.status == 'completed').toList();
@@ -31,22 +58,42 @@ class MyJobsController extends GetxController {
     }
   }
 
-  Future<List<MyServicesBookingModel>> fetchUpcomingJobs() async {
+  Future<List<MyServicesBookingModel>> fetchFilteredJobs() async {
     dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
 
     try {
       var response = await dio.get("https://homebrigadier.fly.dev/api/jobs/");
       if (response.statusCode == 200) {
-        // Parse the response data into a list of Booking objects
         List<dynamic> jsonData = response.data;
-        log("Jobs ${jsonEncode(jsonData)}");
         List<MyServicesBookingModel> bookings =
             jsonData.map((data) => MyServicesBookingModel.fromJson(data)).toList();
-        return bookings.where((booking) => booking.status == 'pending').toList();
+        return bookings.where((booking) => booking.status == selectedStatus.toLowerCase()).toList();
       } else {
         throw Exception('Failed to load data');
       }
     } catch (e) {
+      throw Exception('Error fetching data: $e');
+    } finally {}
+  }
+
+  Future<void> updateBookingStatus(
+      {required String status, required int jobId, cancel = false}) async {
+    dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+
+    print(status);
+    try {
+      var response = await dio.patch("https://homebrigadier.fly.dev/api/jobs/$jobId/",
+          data: {"status": status.toString().toLowerCase(), "cancel": true});
+      if (response.statusCode == 200) {
+        await fetchFilteredJobs();
+        showsnackbar("Booking $status");
+      } else {
+        showsnackbar("unable to change status", true);
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      showsnackbar("Something went wrong", true);
+
       throw Exception('Error fetching data: $e');
     }
   }
@@ -96,3 +143,22 @@ String formatDate(String dateString) {
 
   return formattedDate;
 }
+
+// Future<List<MyServicesBookingModel>> fetchUpcomingJobs() async {
+//   dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
+//
+//   try {
+//     var response = await dio.get("https://homebrigadier.fly.dev/api/jobs/");
+//     if (response.statusCode == 200) {
+//       // Parse the response data into a list of Booking objects
+//       List<dynamic> jsonData = response.data;
+//       List<MyServicesBookingModel> bookings =
+//           jsonData.map((data) => MyServicesBookingModel.fromJson(data)).toList();
+//       return bookings.where((booking) => booking.status == 'pending').toList();
+//     } else {
+//       throw Exception('Failed to load data');
+//     }
+//   } catch (e) {
+//     throw Exception('Error fetching data: $e');
+//   }
+// }
