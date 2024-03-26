@@ -33,7 +33,9 @@ class UpcomingView extends GetView<MyJobsController> {
                 child: Row(
                   children: [
                     Obx(() => IconButton(
-                          onPressed: controller.isAtStart.value ? null : controller.scrollBack,
+                          onPressed: controller.isAtStart.value
+                              ? null
+                              : controller.scrollBack,
                           iconSize: 15,
                           splashRadius: 20,
                           icon: const Icon(Icons.arrow_back_ios),
@@ -45,7 +47,7 @@ class UpcomingView extends GetView<MyJobsController> {
                         scrollDirection: Axis.horizontal,
                         children: controller.status.map((status) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
                             child: ChoiceChip(
                               // shape: StadiumBorder(
                               //   side: BorderSide(
@@ -57,14 +59,21 @@ class UpcomingView extends GetView<MyJobsController> {
                               // labelPadding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                               backgroundColor: AppColor.white,
                               selectedColor: AppColor.greylight,
+
                               showCheckmark: false,
                               label: CText(
+                                color:
+                                    controller.selectedStatus.contains(status)
+                                        ? AppColor.black
+                                        : AppColor.grey,
                                 text: status,
-                                fontsize: controller.selectedStatus.contains(status)
-                                    ? labelLarge
-                                    : labelMedium,
+                                fontsize:
+                                    controller.selectedStatus.contains(status)
+                                        ? labelLarge
+                                        : labelMedium,
                               ),
-                              selected: controller.selectedStatus.value.contains(status),
+                              selected: controller.selectedStatus.value
+                                  .contains(status),
                               onSelected: (isSelected) {
                                 controller.toggleSelection(status);
                               },
@@ -74,79 +83,88 @@ class UpcomingView extends GetView<MyJobsController> {
                       ),
                     ),
                     Obx(() => IconButton(
-                          onPressed: controller.isAtEnd.value ? null : controller.scrollForward,
+                          onPressed: controller.isAtEnd.value
+                              ? null
+                              : controller.scrollForward,
                           iconSize: 15,
                           splashRadius: 20,
                           icon: const Icon(Icons.arrow_forward_ios),
                         )),
                   ],
                 ),
-              ).paddingSymmetric(vertical: 7),
+              ).paddingOnly(top: 10),
               Expanded(
                 child: StreamBuilder(
                   stream: controller.fetchFilteredJobs().asStream(),
                   builder: (_, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: SizedBox(
-                          width: mediaQueryWidth(context) * 0.95,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: mediaQueryHeight(context) * 0.1,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    const ShimmerWidget.circular(width: 70, height: 70),
-                                    ShimmerWidget.rectangular(
-                                      height: mediaQueryHeight(context) * 0.07,
-                                      width: mediaQueryWidth(context) * 0.7,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              ShimmerWidget.rectangular(
-                                height: mediaQueryHeight(context) * 0.08,
-                              ),
-                              SizedBox(
-                                height: mediaQueryHeight(context) * 0.01,
-                              ),
-                              ShimmerWidget.rectangular(
-                                height: mediaQueryHeight(context) * 0.08,
-                              ),
-                              SizedBox(
-                                height: mediaQueryHeight(context) * 0.01,
-                              ),
-                              ShimmerWidget.rectangular(
-                                height: mediaQueryHeight(context) * 0.08,
-                              ),
-                              SizedBox(
-                                height: mediaQueryHeight(context) * 0.01,
-                              ),
-                              ShimmerWidget.rectangular(
-                                height: mediaQueryHeight(context) * 0.08,
-                              ),
-                              SizedBox(
-                                height: mediaQueryHeight(context) * 0.01,
-                              ),
-                              ShimmerWidget.rectangular(
-                                height: mediaQueryHeight(context) * 0.08,
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
+                      return const Center(child: CircularProgressIndicator()
+                          //  SizedBox(
+                          //   width: mediaQueryWidth(context) * 0.95,
+                          //   child: Column(
+                          //     children: [
+                          //       SizedBox(
+                          //         height: mediaQueryHeight(context) * 0.1,
+                          //         child: Row(
+                          //           mainAxisAlignment:
+                          //               MainAxisAlignment.spaceEvenly,
+                          //           children: [
+                          //             const ShimmerWidget.circular(
+                          //                 width: 70, height: 70),
+                          //             ShimmerWidget.rectangular(
+                          //               height: mediaQueryHeight(context) * 0.07,
+                          //               width: mediaQueryWidth(context) * 0.7,
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //       ShimmerWidget.rectangular(
+                          //         height: mediaQueryHeight(context) * 0.08,
+                          //       ),
+                          //       SizedBox(
+                          //         height: mediaQueryHeight(context) * 0.01,
+                          //       ),
+                          //       ShimmerWidget.rectangular(
+                          //         height: mediaQueryHeight(context) * 0.08,
+                          //       ),
+                          //       SizedBox(
+                          //         height: mediaQueryHeight(context) * 0.01,
+                          //       ),
+                          //       ShimmerWidget.rectangular(
+                          //         height: mediaQueryHeight(context) * 0.08,
+                          //       ),
+                          //       SizedBox(
+                          //         height: mediaQueryHeight(context) * 0.01,
+                          //       ),
+                          //       ShimmerWidget.rectangular(
+                          //         height: mediaQueryHeight(context) * 0.08,
+                          //       ),
+                          //       SizedBox(
+                          //         height: mediaQueryHeight(context) * 0.01,
+                          //       ),
+                          //       ShimmerWidget.rectangular(
+                          //         height: mediaQueryHeight(context) * 0.08,
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+
+                          );
                     } else if (snapshot.hasError) {
-                      return const Center(child: Text("Error while loading jobs"));
+                      return const Center(
+                          child: Text("Error while loading jobs"));
                     } else if (snapshot.data!.isEmpty) {
                       return Center(
-                        child: CText(text: LocaleKeys.no_jobs_found.tr, color: AppColor.black),
+                        child: CText(
+                            text: LocaleKeys.no_jobs_found.tr,
+                            color: AppColor.black),
                       );
                     } else {
                       // If data is successfully fetched
                       List<MyServicesBookingModel> item = snapshot.data!;
                       return ListView.builder(
                         itemCount: item.length,
+                        physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           MyServicesBookingModel model = item[index];
 
@@ -154,32 +172,40 @@ class UpcomingView extends GetView<MyJobsController> {
                               color: const Color(0xfff8f8f8),
                               elevation: 8,
                               shadowColor: AppColor.greylight,
-                              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                              shape:
-                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
                               child: Center(
                                 child: ExpansionTile(
-                                    childrenPadding: const EdgeInsets.symmetric(horizontal: 15),
+                                    childrenPadding: const EdgeInsets.symmetric(
+                                        horizontal: 15),
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12)),
-                                    initiallyExpanded: index == 0 ? true : false,
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    initiallyExpanded:
+                                        index == 0 ? true : false,
                                     leading: SizedBox(
                                       height: 100,
                                       width: 100,
                                       child: CachedNetworkImage(
                                           imageUrl:
                                               "https://homebrigadier.fly.dev${model.service.files[0].file}",
-                                          imageBuilder: (context, imageProvider) => Container(
-                                              width: 100,
-                                              height: 100,
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  image: DecorationImage(
-                                                    image: imageProvider,
-                                                    fit: BoxFit.cover,
-                                                  ))),
+                                          imageBuilder: (context,
+                                                  imageProvider) =>
+                                              Container(
+                                                  width: 100,
+                                                  height: 100,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.cover,
+                                                      ))),
                                           placeholder: (context, url) =>
-                                              const Center(child: CircularProgressIndicator()),
+                                              const Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
                                           errorWidget: (context, url, error) =>
                                               const Icon(Icons.error)),
                                     ),
@@ -187,7 +213,8 @@ class UpcomingView extends GetView<MyJobsController> {
                                             fontsize: titleMedium,
                                             textAlign: TextAlign.start,
                                             color: AppColor.black,
-                                            text: model.service.category.displayName,
+                                            text: model
+                                                .service.category.displayName,
                                             fontWeight: FontWeight.bold)
                                         .paddingOnly(bottom: 10),
                                     subtitle: CText(
@@ -198,29 +225,37 @@ class UpcomingView extends GetView<MyJobsController> {
                                       const Divider(),
                                       Row(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   CText(
-                                                    text: LocaleKeys.my_jobs_date.tr,
+                                                    text: LocaleKeys
+                                                        .my_jobs_date.tr,
                                                     fontsize: titleMedium,
                                                     fontWeight: FontWeight.bold,
                                                   ).marginOnly(bottom: 5),
                                                   CText(
-                                                    color: AppColor.black.withOpacity(0.6),
-                                                    text: formatDate(model.startAt),
-                                                  ).paddingSymmetric(vertical: 5)
+                                                    color: AppColor.black
+                                                        .withOpacity(0.6),
+                                                    text: formatDate(
+                                                        model.startAt),
+                                                  ).paddingSymmetric(
+                                                      vertical: 5)
                                                 ]),
                                             //
                                             Column(children: [
                                               CText(
-                                                text: LocaleKeys.my_jobs_time.tr,
+                                                text:
+                                                    LocaleKeys.my_jobs_time.tr,
                                                 fontWeight: FontWeight.bold,
                                               ).marginOnly(bottom: 5),
                                               CText(
-                                                      color: AppColor.black.withOpacity(0.6),
+                                                      color: AppColor.black
+                                                          .withOpacity(0.6),
                                                       text:
                                                           "${formatTime(model.service.openingHours[0].fromHour)}-"
                                                           "${formatTime(model.service.openingHours[0].toHour)}")
@@ -232,21 +267,26 @@ class UpcomingView extends GetView<MyJobsController> {
                                       const Divider(),
                                       Row(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   CText(
-                                                    text: LocaleKeys.my_jobs_price.tr,
+                                                    text: LocaleKeys
+                                                        .my_jobs_price.tr,
                                                     fontsize: titleMedium,
                                                     fontWeight: FontWeight.bold,
                                                   ).marginOnly(bottom: 5),
                                                   CText(
-                                                    color: AppColor.black.withOpacity(0.6),
+                                                    color: AppColor.black
+                                                        .withOpacity(0.6),
                                                     text:
                                                         "${LocaleKeys.my_jobs_aed.tr} ${model.price}",
-                                                  ).paddingSymmetric(vertical: 5)
+                                                  ).paddingSymmetric(
+                                                      vertical: 5)
                                                 ]),
                                             //
                                             Column(children: [
@@ -255,7 +295,8 @@ class UpcomingView extends GetView<MyJobsController> {
                                                 fontWeight: FontWeight.bold,
                                               ).marginOnly(bottom: 5),
                                               CText(
-                                                text: model.paymentStatus.capitalizeFirst!,
+                                                text: model.paymentStatus
+                                                    .capitalizeFirst!,
                                                 fontWeight: FontWeight.bold,
                                                 color: AppColor.primary,
                                               ).paddingSymmetric(vertical: 5)
@@ -266,21 +307,26 @@ class UpcomingView extends GetView<MyJobsController> {
                                       const Divider(),
                                       Row(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   CText(
-                                                    text: LocaleKeys.my_jobs_no_of_hours.tr,
+                                                    text: LocaleKeys
+                                                        .my_jobs_no_of_hours.tr,
                                                     fontsize: titleMedium,
                                                     fontWeight: FontWeight.bold,
                                                   ).marginOnly(bottom: 5),
                                                 ]),
                                             Column(children: [
                                               CText(
-                                                      color: AppColor.black.withOpacity(0.6),
-                                                      text: '${model.extraInfo['no_of_hours']}')
+                                                      color: AppColor.black
+                                                          .withOpacity(0.6),
+                                                      text:
+                                                          '${model.extraInfo['no_of_hours']}')
                                                   .marginOnly(bottom: 5),
                                             ])
                                           ]).marginSymmetric(vertical: 5),
@@ -289,20 +335,25 @@ class UpcomingView extends GetView<MyJobsController> {
                                       const Divider(),
                                       Row(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   CText(
-                                                    text: LocaleKeys.my_jobs_description.tr,
+                                                    text: LocaleKeys
+                                                        .my_jobs_description.tr,
                                                     fontsize: titleMedium,
                                                     fontWeight: FontWeight.bold,
                                                   ).marginOnly(bottom: 5),
                                                   CText(
-                                                    color: AppColor.black.withOpacity(0.6),
+                                                    color: AppColor.black
+                                                        .withOpacity(0.6),
                                                     text: model.description,
-                                                  ).paddingSymmetric(vertical: 5)
+                                                  ).paddingSymmetric(
+                                                      vertical: 5)
                                                 ]),
 
                                             ///
@@ -314,10 +365,13 @@ class UpcomingView extends GetView<MyJobsController> {
                                         height: 55,
                                         child: Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               CText(
-                                                  text: LocaleKeys.my_jobs_booking_status.tr,
+                                                  text: LocaleKeys
+                                                      .my_jobs_booking_status
+                                                      .tr,
                                                   fontsize: titleMedium,
                                                   fontWeight: FontWeight.bold),
                                               //
@@ -325,9 +379,11 @@ class UpcomingView extends GetView<MyJobsController> {
                                               InkWell(
                                                 onTap: () {
                                                   if (controller.selectedStatus.value != "Canceled" &&
-                                                      controller.selectedStatus.value !=
+                                                      controller.selectedStatus
+                                                              .value !=
                                                           "Rejected" &&
-                                                      controller.selectedStatus.value !=
+                                                      controller.selectedStatus
+                                                              .value !=
                                                           "Completed") {
                                                     statusDialog(
                                                         context: context,
@@ -337,18 +393,28 @@ class UpcomingView extends GetView<MyJobsController> {
                                                 },
                                                 child: Card(
                                                   shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(7)),
-                                                  color: AppColor.greylight.withOpacity(0.3),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              7)),
+                                                  color: AppColor.greylight
+                                                      .withOpacity(0.3),
                                                   elevation: 0,
                                                   child: Row(
                                                     children: [
-                                                      CText(text: model.status.capitalizeFirst!),
+                                                      CText(
+                                                          text: model.status
+                                                              .capitalizeFirst!),
                                                       const SizedBox(width: 10),
-                                                      controller.selectedStatus.value !=
+                                                      controller.selectedStatus
+                                                                      .value !=
                                                                   "Canceled" &&
-                                                              controller.selectedStatus.value !=
+                                                              controller
+                                                                      .selectedStatus
+                                                                      .value !=
                                                                   "Rejected" &&
-                                                              controller.selectedStatus.value !=
+                                                              controller
+                                                                      .selectedStatus
+                                                                      .value !=
                                                                   "Completed"
                                                           ? SvgPicture.asset(
                                                               height: 20,
@@ -356,7 +422,9 @@ class UpcomingView extends GetView<MyJobsController> {
                                                               "assets/icons/ic_pic_edit.svg")
                                                           : const SizedBox()
                                                     ],
-                                                  ).paddingSymmetric(horizontal: 10, vertical: 5),
+                                                  ).paddingSymmetric(
+                                                      horizontal: 10,
+                                                      vertical: 5),
                                                 ),
                                               )
                                             ]).marginSymmetric(vertical: 5),
@@ -366,12 +434,14 @@ class UpcomingView extends GetView<MyJobsController> {
                                       const Divider(),
                                       Row(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
                                             const Icon(Icons.pin_drop_outlined,
                                                 color: AppColor.primary),
                                             SizedBox(
-                                              width: mediaQueryWidth(context) * 0.7,
+                                              width: mediaQueryWidth(context) *
+                                                  0.7,
                                               child: Text(
                                                 softWrap: true,
                                                 model.address,
@@ -403,7 +473,8 @@ statusDialog(
     context: context,
     builder: (context) {
       return AlertDialog.adaptive(
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12))),
           title: const Text("Booking Status"),
           content: Column(
               mainAxisSize: MainAxisSize.min,
@@ -416,7 +487,9 @@ statusDialog(
                       if (MyJobsController.to.selectedStatus.toLowerCase() !=
                           controller.dialogStatus[index].toLowerCase()) {
                         showConfirmationBottomSheet(
-                            status: controller.dialogStatus[index], jobId: jobId, cancel: cancel);
+                            status: controller.dialogStatus[index],
+                            jobId: jobId,
+                            cancel: cancel);
                       }
                     }),
               )));
@@ -424,7 +497,8 @@ statusDialog(
   );
 }
 
-void showConfirmationBottomSheet({required String status, jobId, bool? cancel}) {
+void showConfirmationBottomSheet(
+    {required String status, jobId, bool? cancel}) {
   Get.bottomSheet(
     Container(
       decoration: const BoxDecoration(
@@ -471,10 +545,12 @@ void showConfirmationBottomSheet({required String status, jobId, bool? cancel}) 
               ElevatedButton(
                 onPressed: () async {
                   MyJobsController.to
-                      .updateBookingStatus(status: status, jobId: jobId, cancel: cancel)
+                      .updateBookingStatus(
+                          status: status, jobId: jobId, cancel: cancel)
                       .whenComplete(() {
                     if (status != "Completed") {
-                      MyJobsController.to.toggleSelection(status.capitalizeFirst!);
+                      MyJobsController.to
+                          .toggleSelection(status.capitalizeFirst!);
                     } else {
                       MyJobsController.to.tabController.animateTo(1);
                     }
@@ -500,6 +576,7 @@ void showConfirmationBottomSheet({required String status, jobId, bool? cancel}) 
         ],
       ),
     ),
-    barrierColor: Colors.black.withOpacity(0.5), // Add a semi-transparent background
+    barrierColor:
+        Colors.black.withOpacity(0.5), // Add a semi-transparent background
   );
 }
