@@ -13,7 +13,7 @@ import '../../house_cleaning/views/booking_details_view.dart';
 import '../controllers/spa_controller.dart';
 
 class SpaView extends GetView<BookingController> {
-  const SpaView({Key? key}) : super(key: key);
+  const SpaView({super.key});
 
   @override
   Widget build(BuildContext context) {

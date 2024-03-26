@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/shifting_controller.dart';
 
 class ShiftingView extends GetView<ShiftingController> {
-  const ShiftingView({Key? key}) : super(key: key);
+  const ShiftingView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

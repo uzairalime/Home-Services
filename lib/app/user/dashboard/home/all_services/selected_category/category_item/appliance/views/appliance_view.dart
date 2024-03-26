@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/appliance_controller.dart';
 
 class ApplianceView extends GetView<ApplianceController> {
-  const ApplianceView({Key? key}) : super(key: key);
+  const ApplianceView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

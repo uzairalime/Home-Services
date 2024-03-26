@@ -115,7 +115,7 @@ class LocationView extends GetView<BookingController> {
                             obj.mapController = controller;
                           },
                           initialCameraPosition: CameraPosition(
-                            target: obj.latLng ?? LatLng(25.204849, 55.270782),
+                            target: obj.latLng ?? const LatLng(25.204849, 55.270782),
                             // Initial map center
                             zoom: 10.0,
                           ),
@@ -196,7 +196,7 @@ class LocationView extends GetView<BookingController> {
                             )),
                       ),
                       obj.placeprediction.length == 0
-                          ? SizedBox()
+                          ? const SizedBox()
                           : Expanded(
                               child: locationTile(obj),
                             ),

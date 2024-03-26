@@ -13,7 +13,7 @@ import '../../../../../../widget/shimmer.dart';
 import '../controllers/user_profile_controller.dart';
 
 class MyServicesView extends GetView<UserProfileController> {
-  const MyServicesView({Key? key}) : super(key: key);
+  const MyServicesView({super.key});
   @override
   Widget build(BuildContext context) {
     final titleMedium = Theme.of(context).textTheme.titleMedium!.fontSize;

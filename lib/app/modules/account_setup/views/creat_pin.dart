@@ -10,7 +10,7 @@ import '../../../../widget/c_filled_btn.dart';
 import '../controllers/account_setup_controller.dart';
 
 class CreatePin extends GetView<AccountSetupController> {
-  const CreatePin({Key? key}) : super(key: key);
+  const CreatePin({super.key});
 
   @override
   Widget build(BuildContext context) {

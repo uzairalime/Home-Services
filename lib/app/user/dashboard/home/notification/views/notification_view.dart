@@ -8,7 +8,7 @@ import 'package:home_brigadier/widget/cText.dart';
 import '../controllers/notification_controller.dart';
 
 class NotificationView extends GetView<NotificationController> {
-  const NotificationView({Key? key}) : super(key: key);
+  const NotificationView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,7 @@ class NotificationView extends GetView<NotificationController> {
               children: [
                 Align(
                     alignment: Alignment.centerLeft,
-                    child: CText(
-                        text: "Today", fontWeight: bold6, fontsize: size18)),
+                    child: CText(text: "Today", fontWeight: bold6, fontsize: size18)),
                 SizedBox(
                   height: height * 0.02,
                 ),
@@ -69,8 +68,7 @@ class NotificationView extends GetView<NotificationController> {
                                 ));
                           }
 
-                          return notificationTile(
-                              index, widht, height, contect);
+                          return notificationTile(index, widht, height, contect);
                         }))
               ],
             ),
@@ -89,9 +87,7 @@ class NotificationView extends GetView<NotificationController> {
           width: widht,
           height: height * 0.125,
           decoration: BoxDecoration(
-              color:
-                  const Color(0xffEEEEEE),
-              borderRadius: BorderRadius.circular(15)),
+              color: const Color(0xffEEEEEE), borderRadius: BorderRadius.circular(15)),
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Row(

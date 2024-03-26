@@ -10,7 +10,7 @@ import 'package:home_brigadier/widget/c_filled_btn.dart';
 import '../controllers/bookmark_controller.dart';
 
 class BookmarkView extends GetView<BookmarkController> {
-  const BookmarkView({Key? key}) : super(key: key);
+  const BookmarkView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,14 +75,10 @@ class TabbarClass extends StatelessWidget {
             borderColor: AppColor.primary,
             unselectedBackgroundColor: Colors.transparent,
             unselectedLabelStyle: TextStyle(
-                color: AppColor.primary,
-                fontWeight: FontWeight.bold,
-                fontSize: widht * 0.04),
+                color: AppColor.primary, fontWeight: FontWeight.bold, fontSize: widht * 0.04),
             unselectedBorderColor: AppColor.primary,
             labelStyle: TextStyle(
-                color: AppColor.white,
-                fontWeight: FontWeight.bold,
-                fontSize: widht * 0.04),
+                color: AppColor.white, fontWeight: FontWeight.bold, fontSize: widht * 0.04),
             tabs: const [
               Tab(
                 text: "All",
@@ -151,8 +147,7 @@ class TabBarGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final widht = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    var brightness = MediaQuery.of(context).platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
+
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
       itemCount: 10,
@@ -163,16 +158,14 @@ class TabBarGrid extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 8),
             child: Card(
               elevation: 1.5,
-              shadowColor:  AppColor.white,
+              shadowColor: AppColor.white,
               color: AppColor.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               child: SizedBox(
                 width: widht,
                 height: height * 0.20,
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 12, right: 12, bottom: 12, top: 12),
+                  padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12, top: 12),
                   child: Row(
                     children: [
                       Expanded(
@@ -208,8 +201,7 @@ class TabBarGrid extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     const CText(
                                       text: "Kylee Danford",
@@ -305,8 +297,7 @@ class TabBarGrid extends StatelessWidget {
                         width: widht * 0.2,
                         height: 5,
                         decoration: BoxDecoration(
-                            color: AppColor.greylight,
-                            borderRadius: BorderRadius.circular(20)),
+                            color: AppColor.greylight, borderRadius: BorderRadius.circular(20)),
                       ),
                     ),
                     Align(
@@ -336,14 +327,13 @@ class TabBarGrid extends StatelessWidget {
                         elevation: 1.5,
                         shadowColor: AppColor.white,
                         color: const Color(0xffEEEEEE),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         child: SizedBox(
                           width: widht,
                           height: height * 0.16,
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 12, right: 12, bottom: 12, top: 12),
+                            padding:
+                                const EdgeInsets.only(left: 12, right: 12, bottom: 12, top: 12),
                             child: Row(
                               children: [
                                 Expanded(
@@ -370,22 +360,18 @@ class TabBarGrid extends StatelessWidget {
                                     child: Container(
                                       margin: const EdgeInsets.only(left: 8),
                                       child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               const CText(
                                                 text: "Kylee Danford",
                                                 color: AppColor.grey,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 12),
+                                                padding: const EdgeInsets.only(top: 12),
                                                 child: SvgPicture.asset(
                                                   index % 2 == 0
                                                       ? "assets/icons/ic_bookmark_outlined.svg"
@@ -410,8 +396,7 @@ class TabBarGrid extends StatelessWidget {
                                             fontsize: widht * 0.045,
                                           ),
                                           const Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
                                               Icon(
                                                 Icons.star,

@@ -15,7 +15,7 @@ import '../../profile/user_profile/controllers/user_profile_controller.dart';
 import '../controllers/start_earning_controller.dart';
 
 class StartEarningView extends GetView<StartEarningController> {
-  const StartEarningView({Key? key}) : super(key: key);
+  const StartEarningView({super.key});
 
   @override
   Widget build(BuildContext context) {

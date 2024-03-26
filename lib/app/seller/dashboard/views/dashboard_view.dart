@@ -15,7 +15,7 @@ import '../../../../generated/locales.g.dart';
 import '../controllers/dashboard_controller.dart';
 
 class SellerDashboardView extends GetView<SellerDashboardController> {
-  const SellerDashboardView({Key? key}) : super(key: key);
+  const SellerDashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {

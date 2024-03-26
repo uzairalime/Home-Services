@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/plumbing_controller.dart';
 
 class PlumbingView extends GetView<PlumbingController> {
-  const PlumbingView({Key? key}) : super(key: key);
+  const PlumbingView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

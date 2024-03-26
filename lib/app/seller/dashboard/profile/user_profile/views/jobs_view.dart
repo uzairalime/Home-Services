@@ -10,7 +10,7 @@ import '../../../../../../consts/app_color.dart';
 import '../../../../../../widget/cText.dart';
 
 class MyJobsView extends StatefulWidget {
-  const MyJobsView({Key? key}) : super(key: key);
+  const MyJobsView({super.key});
 
   @override
   State<MyJobsView> createState() => _MyJobsViewState();

@@ -11,7 +11,7 @@ import '../../../../../../widget/c_icon_btn.dart';
 import '../controllers/edit_profile_setting_controller.dart';
 
 class EditProfileSettingView extends GetView<EditProfileSettingController> {
-  const EditProfileSettingView({Key? key}) : super(key: key);
+  const EditProfileSettingView({super.key});
 
   @override
   Widget build(BuildContext context) {

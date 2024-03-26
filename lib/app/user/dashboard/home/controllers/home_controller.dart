@@ -29,8 +29,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   //// === for hide
 
   bool showAppbar = true; //this is to show app bar
-  ScrollController scrollBottomBarController =
-      ScrollController(); // set controller on scrolling
+  ScrollController scrollBottomBarController = ScrollController(); // set controller on scrolling
   bool isScrollingDown = false;
   bool show = true;
   double bottomBarHeight = 75;
@@ -138,15 +137,14 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
         for (int i = 0; i <= word.length; i++) {
           final String subWord = word.substring(0, i);
           sendPort.send(subWord);
-          sleep(Duration(milliseconds: 300)); // Adjust the delay as needed
+          sleep(const Duration(milliseconds: 300)); // Adjust the delay as needed
         }
-        sleep(
-            Duration(milliseconds: 1000)); // Delay before the reverse animation
+        sleep(const Duration(milliseconds: 1000)); // Delay before the reverse animation
 
         for (int i = word.length - 1; i >= 0; i--) {
           final String subWord = word.substring(0, i);
           sendPort.send(subWord);
-          sleep(Duration(milliseconds: 200)); // Adjust the delay as needed
+          sleep(const Duration(milliseconds: 200)); // Adjust the delay as needed
         }
       }
     }
@@ -154,16 +152,14 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   void myScroll() async {
     scrollBottomBarController.addListener(() {
-      if (scrollBottomBarController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
+      if (scrollBottomBarController.position.userScrollDirection == ScrollDirection.reverse) {
         if (!isScrollingDown) {
           isScrollingDown = true;
           showAppbar = false;
           hideBottomBar();
         }
       }
-      if (scrollBottomBarController.position.userScrollDirection ==
-          ScrollDirection.forward) {
+      if (scrollBottomBarController.position.userScrollDirection == ScrollDirection.forward) {
         if (isScrollingDown) {
           isScrollingDown = false;
           showAppbar = true;
@@ -195,9 +191,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
     final data = response.data;
 
-    List<CetegoryModel> categoryList = (data as List)
-        .map((categoryJson) => CetegoryModel.fromJson(categoryJson))
-        .toList();
+    List<CetegoryModel> categoryList =
+        (data as List).map((categoryJson) => CetegoryModel.fromJson(categoryJson)).toList();
 
     categorylist.clear();
 
@@ -213,7 +208,6 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     final response = await _apiHelper.get(USER_OFFER);
 
     final data = response.data;
-
 
     List<OfferModel> offerList =
         (data as List).map((offerJson) => OfferModel.fromJson(offerJson)).toList();

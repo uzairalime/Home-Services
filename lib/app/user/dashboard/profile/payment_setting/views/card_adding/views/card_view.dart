@@ -14,7 +14,7 @@ import '../components/mastercard.dart';
 import '../components/my_painter.dart';
 
 class AddingCardView extends StatefulWidget {
-  const AddingCardView({Key? key}) : super(key: key);
+  const AddingCardView({super.key});
 
   @override
   State<AddingCardView> createState() => _AddingCardViewState();

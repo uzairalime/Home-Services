@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/laundry/controllers/laundry_controller.dart';
 import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/c_text_field.dart';
@@ -12,11 +11,11 @@ import '../../../../../../../../../widget/c_filled_btn.dart';
 import '../../house_cleaning/views/booking_details_view.dart';
 
 class LaundryBookingView extends GetView<LaundryController> {
-  const LaundryBookingView({Key? key}) : super(key: key);
+  const LaundryBookingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-            // BookingController.to.claculateBill();
+    // BookingController.to.claculateBill();
 
     Get.put(LaundryController());
     final titleMedium = Theme.of(context).textTheme.titleMedium!.fontSize;
@@ -34,7 +33,6 @@ class LaundryBookingView extends GetView<LaundryController> {
             Get.back();
           },
         ),
-       
         title: Text(
           'Laundary Service',
           style: TextStyle(
@@ -49,8 +47,7 @@ class LaundryBookingView extends GetView<LaundryController> {
             SizedBox(
               width: widht * 0.9,
               child: const CText(
-                  textAlign: TextAlign.left,
-                  text: 'Choose the size of house and color you want '),
+                  textAlign: TextAlign.left, text: 'Choose the size of house and color you want '),
             ),
             SizedBox(
               height: height * 0.02,
@@ -118,8 +115,7 @@ class LaundryBookingView extends GetView<LaundryController> {
                       onChanged: (String? newValue) {
                         controller.selectedservice.value = newValue!;
                       },
-                      items: controller.serviceList
-                          .map<DropdownMenuItem<String>>((String value) {
+                      items: controller.serviceList.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: CText(text: value, color: txtTheme),
@@ -160,8 +156,7 @@ class LaundryBookingView extends GetView<LaundryController> {
                       onChanged: (String? newValue) {
                         controller.fragranceservice.value = newValue!;
                       },
-                      items: controller.fragranceList
-                          .map<DropdownMenuItem<String>>((String value) {
+                      items: controller.fragranceList.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: CText(text: value, color: txtTheme),
@@ -181,11 +176,11 @@ class LaundryBookingView extends GetView<LaundryController> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: CButton(
-                 borderradius: widht * 0.075,
+                borderradius: widht * 0.075,
                 text: "Continue - AED 0",
                 shadow: true,
                 fontWeight: FontWeight.bold,
-                ontab: () => Get.to(() =>  BookingDetailsView()),
+                ontab: () => Get.to(() => BookingDetailsView()),
               ),
             ),
             SizedBox(

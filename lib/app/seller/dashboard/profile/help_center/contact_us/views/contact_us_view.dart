@@ -7,32 +7,26 @@ import '../../../../../../../widget/cText.dart';
 import '../controllers/contact_us_controller.dart';
 
 class ContactUsView extends GetView<ContactUsController> {
-  const ContactUsView({Key? key}) : super(key: key);
+  const ContactUsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
+        padding: EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
         child: ListView(children: const [
           ContactUsListTile(
               title: "Customer Service",
               leading: Icon(Icons.headset_mic, color: AppColor.secondary)),
           ContactUsListTile(
-              title: "WhatsApp",
-              leading: Icon(Icons.camera_alt, color: AppColor.secondary)),
+              title: "WhatsApp", leading: Icon(Icons.camera_alt, color: AppColor.secondary)),
           ContactUsListTile(
-              title: "Website",
-              leading: Icon(Icons.language, color: AppColor.secondary)),
+              title: "Website", leading: Icon(Icons.language, color: AppColor.secondary)),
           ContactUsListTile(
-              title: "Facebook",
-              leading: Icon(Icons.sensor_occupied, color: AppColor.secondary)),
+              title: "Facebook", leading: Icon(Icons.sensor_occupied, color: AppColor.secondary)),
           ContactUsListTile(
-              title: "Twitter",
-              leading: Icon(Icons.biotech_rounded, color: AppColor.secondary)),
+              title: "Twitter", leading: Icon(Icons.biotech_rounded, color: AppColor.secondary)),
           ContactUsListTile(
-              title: "Instagram",
-              leading: Icon(Icons.camera, color: AppColor.secondary)),
+              title: "Instagram", leading: Icon(Icons.camera, color: AppColor.secondary)),
         ]));
   }
 }

@@ -65,8 +65,7 @@ class ReviewView extends GetView {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        color: AppColor.white,
-                        borderRadius: BorderRadius.circular(15)),
+                        color: AppColor.white, borderRadius: BorderRadius.circular(15)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
                       child: Row(
@@ -77,8 +76,7 @@ class ReviewView extends GetView {
                             fontsize: 13,
                             fontWeight: bold4,
                           ),
-                          Icon(Icons.keyboard_arrow_down_outlined,
-                              color:  AppColor.black)
+                          const Icon(Icons.keyboard_arrow_down_outlined, color: AppColor.black)
                         ],
                       ),
                     ),
@@ -88,8 +86,7 @@ class ReviewView extends GetView {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        color: AppColor.white,
-                        borderRadius: BorderRadius.circular(15)),
+                        color: AppColor.white, borderRadius: BorderRadius.circular(15)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
                       child: Column(
@@ -128,8 +125,7 @@ class ReviewView extends GetView {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        color:  AppColor.white,
-                        borderRadius: BorderRadius.circular(15)),
+                        color: AppColor.white, borderRadius: BorderRadius.circular(15)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
                       child: Row(

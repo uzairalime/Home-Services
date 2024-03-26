@@ -110,7 +110,7 @@ class RepairingBookingView extends GetView<ReparingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Ac Service'
+                                    color: controller.selectedweekplan.value == 'Ac Service'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.ac_reparing_items_ac_service.tr),
@@ -127,7 +127,7 @@ class RepairingBookingView extends GetView<ReparingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Ac Repair'
+                                    color: controller.selectedweekplan.value == 'Ac Repair'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.ac_reparing_items_ac_repaire.tr),
@@ -144,7 +144,7 @@ class RepairingBookingView extends GetView<ReparingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Ac Install'
+                                    color: controller.selectedweekplan.value == 'Ac Install'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.ac_reparing_items_ac_install.tr),
@@ -161,7 +161,7 @@ class RepairingBookingView extends GetView<ReparingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Ac Uninstall'
+                                    color: controller.selectedweekplan.value == 'Ac Uninstall'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.ac_reparing_items_ac_uninstall.tr),

@@ -22,13 +22,10 @@ import '../../../../user/dashboard/views/dashboard_view.dart';
 import '../controllers/profile_controller.dart';
 
 class SellerProfileView extends GetView<SellerProfileController> {
-  const SellerProfileView({Key? key}) : super(key: key);
+  const SellerProfileView({super.key});
   @override
   Widget build(BuildContext context) {
     Get.put(SellerProfileController());
-
-    // final svgTheme = Theme.of(context).textTheme.titleMedium!.color;
-    final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
     final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
     controller.getUserInfo();

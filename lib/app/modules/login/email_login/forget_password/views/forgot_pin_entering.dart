@@ -13,7 +13,7 @@ import '../controllers/forget_password_controller.dart';
 class EnterPin extends GetView<PinController> {
   final String? role;
 
-  const EnterPin({Key? key, this.role}) : super(key: key);
+  const EnterPin({super.key, this.role});
 
   @override
   Widget build(BuildContext context) {

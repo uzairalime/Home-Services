@@ -15,7 +15,7 @@ import '../../../../widget/c_filled_btn.dart';
 import '../controllers/account_setup_controller.dart';
 
 class AccountSetupView extends GetView<AccountSetupController> {
-  const AccountSetupView({Key? key}) : super(key: key);
+  const AccountSetupView({super.key});
 
   @override
   Widget build(BuildContext context) {

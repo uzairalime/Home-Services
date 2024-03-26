@@ -13,7 +13,7 @@ import '../../house_cleaning/views/booking_details_view.dart';
 import '../controllers/handyman_controller.dart';
 
 class HandymanView extends GetView<BookingController> {
-  const HandymanView({Key? key}) : super(key: key);
+  const HandymanView({super.key});
 
   @override
   Widget build(BuildContext context) {

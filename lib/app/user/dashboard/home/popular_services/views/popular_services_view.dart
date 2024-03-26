@@ -18,7 +18,7 @@ import 'package:home_brigadier/widget/cText.dart';
 import '../controllers/popular_services_controller.dart';
 
 class PopularServicesView extends GetView<PopularServicesController> {
-  const PopularServicesView({Key? key}) : super(key: key);
+  const PopularServicesView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -105,9 +105,9 @@ class TabBarGrid extends StatelessWidget {
   final String name;
 
   const TabBarGrid({
-    Key? key, // Add key parameter
+    super.key, // Add key parameter
     required this.name,
-  }) : super(key: key); // Pass key to super constructor
+  }); // Pass key to super constructor
 
   @override
   Widget build(BuildContext context) {

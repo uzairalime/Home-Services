@@ -4,17 +4,16 @@ import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 import 'package:home_brigadier/consts/media_query.dart';
-import 'package:home_brigadier/consts/static_data.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../controllers/dashboard_controller.dart';
 
 class UserDashboardView extends GetView<UserDashboardController> {
-  const UserDashboardView({Key? key}) : super(key: key);
+  const UserDashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final storage = Get.put(UserDashboardController());
+    Get.put(UserDashboardController());
     return GetBuilder<UserDashboardController>(
         init: UserDashboardController(),
         builder: (builderContext) {

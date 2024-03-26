@@ -8,7 +8,7 @@ import '../../../../../../widget/c_icon_btn.dart';
 import '../controllers/language_setting_controller.dart';
 
 class LanguageSettingView extends GetView<LanguageSettingController> {
-  const LanguageSettingView({Key? key}) : super(key: key);
+  const LanguageSettingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class LanguageSettingView extends GetView<LanguageSettingController> {
 }
 
 class NotificationListTile extends StatelessWidget {
-  const NotificationListTile({Key? key, required this.title}) : super(key: key);
+  const NotificationListTile({super.key, required this.title});
 
   final String title;
 

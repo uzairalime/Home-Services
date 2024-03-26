@@ -12,7 +12,7 @@ import '../../../../../widget/c_icon_btn.dart';
 import '../controllers/inbox_controller.dart';
 
 class InboxView extends GetView<InboxController> {
-  const InboxView({Key? key}) : super(key: key);
+  const InboxView({super.key});
 
   @override
   Widget build(BuildContext context) {

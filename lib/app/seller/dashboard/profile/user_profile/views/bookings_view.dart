@@ -13,7 +13,7 @@ import '../../../../../../widget/cText.dart';
 import '../../../../../../widget/shimmer.dart';
 
 class MyBookingsView extends GetView<MyBookingController> {
-  const MyBookingsView({Key? key}) : super(key: key);
+  const MyBookingsView({super.key});
   @override
   Widget build(BuildContext context) {
     Get.put(MyBookingController());
@@ -101,16 +101,11 @@ class MyBookingsView extends GetView<MyBookingController> {
                     ],
                   ),
                 ));
-              }else if(snapshot.data!.isEmpty){
-                 return Center(
+              } else if (snapshot.data!.isEmpty) {
+                return const Center(
                   child: Text("You have not any booking yet."),
                 );
-                
-
-              }
-              
-              
-               else if (snapshot.hasError) {
+              } else if (snapshot.hasError) {
                 return Center(
                   child: Text(snapshot.error.toString()),
                 );

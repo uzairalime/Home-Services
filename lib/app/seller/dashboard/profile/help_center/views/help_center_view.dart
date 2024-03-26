@@ -11,7 +11,7 @@ import '../../../../../../widget/c_icon_btn.dart';
 import '../controllers/help_center_controller.dart';
 
 class HelpCenterView extends GetView<HelpCenterController> {
-  const HelpCenterView({Key? key}) : super(key: key);
+  const HelpCenterView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,7 @@ class HelpCenterView extends GetView<HelpCenterController> {
               child: Scaffold(
                   appBar: AppBar(
                       leading: CIconBtn(
-                          onPressed: () => Get.back(),
-                          child: Icon(Icons.adaptive.arrow_back)),
+                          onPressed: () => Get.back(), child: Icon(Icons.adaptive.arrow_back)),
                       title: CText(
                           text: "Notification",
                           color: txtTheme,
@@ -36,24 +35,18 @@ class HelpCenterView extends GetView<HelpCenterController> {
                       actions: [
                         CIconBtn(
                             onPressed: () {},
-                            child: SvgPicture.asset(
-                                "assets/icons/ic_more_outlined.svg",
+                            child: SvgPicture.asset("assets/icons/ic_more_outlined.svg",
                                 color: svgTheme))
                       ],
                       bottom: TabBar(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: mediaQueryWidth(context) * 0.05),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
                           automaticIndicatorColorAdjustment: true,
                           indicatorWeight: 3,
-                          tabs: const [
-                            Tab(text: 'FAQ'),
-                            Tab(text: 'Contact us')
-                          ])),
-                  body:
-                      const TabBarView(children: [FaqView(), ContactUsView()]),
+                          tabs: const [Tab(text: 'FAQ'), Tab(text: 'Contact us')])),
+                  body: const TabBarView(children: [FaqView(), ContactUsView()]),
                   floatingActionButton: FloatingActionButton(
-                      onPressed: () {},
-                      child: const Icon(Icons.add, color: AppColor.white))));
+                      onPressed: () {}, child: const Icon(Icons.add, color: AppColor.white))));
         });
   }
 }

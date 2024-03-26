@@ -9,7 +9,7 @@ import 'package:home_brigadier/widget/cText.dart';
 import '../controllers/bookings_controller.dart';
 
 class BookingsView extends GetView<BookingsController> {
-  const BookingsView({Key? key}) : super(key: key);
+  const BookingsView({super.key});
 
   @override
   Widget build(BuildContext context) {

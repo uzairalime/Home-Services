@@ -30,7 +30,7 @@ class PaymetController extends GetxController {
           PaymentSheetGooglePay(merchantCountryCode: "IND", currencyCode: "INR", testEnv: true);
 
       var paymentIntentId = paymentIntent!['id'];
-      logger.d("payment id is ${paymentIntentId}");
+      logger.d("payment id is $paymentIntentId");
 
       //STEP 2: Initialize Payment Sheet
       await Stripe.instance.initPaymentSheet(

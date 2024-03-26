@@ -128,9 +128,9 @@ class PaintingBookingView extends GetView<PaintingController> {
                                       child: Container(
                                         width: widht * 0.1,
                                         height: height * 0.055,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
-                                        child: Center(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
+                                        child: const Center(
                                           child: Icon(
                                             Icons.remove,
                                             size: 16,
@@ -157,9 +157,9 @@ class PaintingBookingView extends GetView<PaintingController> {
                                       child: Container(
                                         width: widht * 0.1,
                                         height: height * 0.055,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
-                                        child: Center(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
+                                        child: const Center(
                                           child: Icon(
                                             Icons.add,
                                             size: 16,
@@ -192,7 +192,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Studio'
+                                    color: controller.selectedweekplan.value == 'Studio'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_studio.tr),
@@ -209,7 +209,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == '1 BR'
+                                    color: controller.selectedweekplan.value == '1 BR'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_1_br.tr),
@@ -226,7 +226,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == '2 BR'
+                                    color: controller.selectedweekplan.value == '2 BR'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_2_br.tr),
@@ -243,7 +243,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == '3 BR'
+                                    color: controller.selectedweekplan.value == '3 BR'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_3_br.tr),
@@ -260,7 +260,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == '4 BR'
+                                    color: controller.selectedweekplan.value == '4 BR'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_4_br.tr),
@@ -277,7 +277,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                 shape: const StadiumBorder(
                                     side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan == 'Villa'
+                                    color: controller.selectedweekplan.value == 'Villa'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_villa.tr),

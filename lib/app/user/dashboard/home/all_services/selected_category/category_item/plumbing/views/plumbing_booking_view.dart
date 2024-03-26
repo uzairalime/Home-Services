@@ -130,7 +130,6 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                       child: Container(
                                         width: widht * 0.1,
                                         height: height * 0.055,
-                                        // ignore: prefer_const_constructors
                                         decoration: BoxDecoration(
                                             color: const Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: Center(

@@ -6,7 +6,7 @@ import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
 class PrivacyPolicyView extends GetView<PrivacyPolicyController> {
-  const PrivacyPolicyView({Key? key}) : super(key: key);
+  const PrivacyPolicyView({super.key});
 
   @override
   Widget build(BuildContext context) {

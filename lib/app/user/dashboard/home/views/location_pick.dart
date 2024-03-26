@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/model/place_auto_complate_response.dart';
-import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:home_brigadier/utils/animation_dialog.dart';
-import 'package:home_brigadier/utils/dialog_helper.dart';
 import 'package:home_brigadier/utils/logger.dart';
 import "package:http/http.dart" as http;
 
@@ -14,7 +12,7 @@ import '../../../../../generated/locales.g.dart';
 import '../../../../../model/main.dart';
 
 class SearchLocationScreen extends StatefulWidget {
-  const SearchLocationScreen({Key? key}) : super(key: key);
+  const SearchLocationScreen({super.key});
 
   @override
   State<SearchLocationScreen> createState() => _SearchLocationScreenState();
@@ -22,15 +20,10 @@ class SearchLocationScreen extends StatefulWidget {
 
 class _SearchLocationScreenState extends State<SearchLocationScreen>
     with SingleTickerProviderStateMixin {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   List<AutocompletePrediction> placeprediction = [];
   void placeAutoComplete(String query) async {
-    Uri uri = Uri.https("maps.googleapis.com",
-        "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
+    Uri uri = Uri.https(
+        "maps.googleapis.com", "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
     String? response = await NetwordUtils.fetchUl(uri);
     if (response != null) {
       logger.d(response);
@@ -47,8 +40,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
   @override
   Widget build(BuildContext context) {
     GetStorage storage = GetStorage();
-    final address =
-        storage.read("address") ?? BookingController.to.currentAddress;
+    final address = storage.read("address") ?? BookingController.to.currentAddress;
 
     return Scaffold(
       appBar: AppBar(
@@ -130,20 +122,14 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
 //                       LocaleKeys.location_screen_something_went_wrong.tr, true);
 //                 });
 // =======
-               
-               
-                BookingController.to.getCurrentPosition(context);
-                 
-               
-               
 
+                BookingController.to.getCurrentPosition(context);
               },
               icon: SvgPicture.asset(
                 "assets/icons/location.svg",
                 height: 16,
               ),
-              label:
-                  Text(LocaleKeys.location_screen_use_my_current_loaction.tr),
+              label: Text(LocaleKeys.location_screen_use_my_current_loaction.tr),
               style: ElevatedButton.styleFrom(
                 backgroundColor: secondaryColor10LightTheme,
                 foregroundColor: textColorLightTheme,
@@ -166,13 +152,11 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 12),
-                          child: Text(
-                              LocaleKeys.location_screen_selected_loaction.tr),
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                          child: Text(LocaleKeys.location_screen_selected_loaction.tr),
                         )),
                     LocationListTile(
-                      location: '${address}',
+                      location: '$address',
                       press: () {},
                     ),
                   ],
@@ -183,23 +167,19 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
                     itemBuilder: (context, index) {
                       return LocationListTile(
                         press: () {
-                          
-                          
                           BookingController.to.currentAddress.value =
                               placeprediction[index].description!;
 
                           GetStorage storage = GetStorage();
-                          storage.write(
-                              "address", placeprediction[index].description!);
+                          storage.write("address", placeprediction[index].description!);
 
                           Get.back();
                           showDialog(
                               context: context,
                               barrierDismissible: false,
                               builder: (context) => AnimationDialog(
-                                    text: LocaleKeys
-                                        .location_screen_successfully_address_changed
-                                        .tr,
+                                    text:
+                                        LocaleKeys.location_screen_successfully_address_changed.tr,
                                   ));
 
                           logger.d(placeprediction[index].description);
@@ -219,10 +199,10 @@ class _SearchLocationScreenState extends State<SearchLocationScreen>
 
 class LocationListTile extends StatelessWidget {
   const LocationListTile({
-    Key? key,
+    super.key,
     required this.location,
     required this.press,
-  }) : super(key: key);
+  });
 
   final String location;
   final VoidCallback press;

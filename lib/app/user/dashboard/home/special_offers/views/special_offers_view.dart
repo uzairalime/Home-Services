@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/controllers/home_controller.dart';
 import 'package:home_brigadier/consts/app_color.dart';
@@ -12,7 +11,7 @@ import 'package:home_brigadier/widget/shimmer.dart';
 import '../controllers/special_offers_controller.dart';
 
 class SpecialOffersView extends GetView<SpecialOffersController> {
-  const SpecialOffersView({Key? key}) : super(key: key);
+  const SpecialOffersView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +43,8 @@ class SpecialOffersView extends GetView<SpecialOffersController> {
                       children: List.generate(
                           7,
                           (index) => Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 4, vertical: 8),
-                                child: ShimmerWidget.rectangular(
-                                    height: height * 0.16),
+                                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                                child: ShimmerWidget.rectangular(height: height * 0.16),
                               )),
                     ),
                   );
@@ -67,20 +64,17 @@ class SpecialOffersView extends GetView<SpecialOffersController> {
                                 borderRadius: BorderRadius.circular(18),
                               ),
                               child: HomeController.to.offerlist.isEmpty
-                                  ? ShimmerWidget.rectangular(
-                                      height: height * 0.16)
+                                  ? ShimmerWidget.rectangular(height: height * 0.16)
                                   : Stack(
                                       alignment: Alignment.center,
                                       children: [
                                         ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          borderRadius: BorderRadius.circular(8.0),
                                           child: CachedNetworkImage(
                                             height: 120,
                                             width: widht,
                                             fit: BoxFit.fitWidth,
-                                            imageUrl:
-                                                "https://homebrigadier.fly.dev${modde.image}",
+                                            imageUrl: "https://homebrigadier.fly.dev${modde.image}",
                                             // placeholder: (context, url) =>
                                             //     CircularProgressIndicator(),
                                             // errorWidget:
@@ -90,18 +84,15 @@ class SpecialOffersView extends GetView<SpecialOffersController> {
                                         ),
                                         Container(
                                           decoration: BoxDecoration(
-                                            color:
-                                                AppColor.black.withOpacity(0.3),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
+                                            color: AppColor.black.withOpacity(0.3),
+                                            borderRadius: BorderRadius.circular(8),
                                           ),
                                         ),
                                         CText(
                                           color: AppColor.white,
                                           textAlign: TextAlign.center,
                                           fontWeight: FontWeight.w500,
-                                          text:
-                                              "${modde.heading}\n${modde.description}",
+                                          text: "${modde.heading}\n${modde.description}",
                                         )
                                       ],
                                     )

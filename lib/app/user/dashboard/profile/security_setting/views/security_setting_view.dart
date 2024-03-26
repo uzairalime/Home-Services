@@ -9,7 +9,7 @@ import '../../../../../../widget/c_icon_btn.dart';
 import '../controllers/security_setting_controller.dart';
 
 class SecuritySettingView extends GetView<SecuritySettingController> {
-  const SecuritySettingView({Key? key}) : super(key: key);
+  const SecuritySettingView({super.key});
 
   @override
   Widget build(BuildContext context) {

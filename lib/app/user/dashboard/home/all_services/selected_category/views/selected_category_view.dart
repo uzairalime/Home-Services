@@ -35,7 +35,7 @@ import '../controllers/selected_category_controller.dart';
 class SelectedCategoryView extends GetView<SelectedCategoryController> {
   final CetegoryModel? model;
 
-  const SelectedCategoryView({Key? key, this.model}) : super(key: key);
+  const SelectedCategoryView({super.key, this.model});
 
   @override
   Widget build(BuildContext context) {

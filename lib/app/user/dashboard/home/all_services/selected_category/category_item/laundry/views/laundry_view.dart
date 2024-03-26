@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/laundry_controller.dart';
 
 class LaundryView extends GetView<LaundryController> {
-  const LaundryView({Key? key}) : super(key: key);
+  const LaundryView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
