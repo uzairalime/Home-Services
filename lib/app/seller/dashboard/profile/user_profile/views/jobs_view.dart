@@ -37,23 +37,6 @@ class _MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
                 fontsize: mediaQueryHeight(context) * 0.025),
-            actions: [
-              Obx(() =>
-                  IconButton(
-                      onPressed: () {
-                        controller.isFilter.value = !controller.isFilter.value;
-                        controller.update();
-                      },
-                      icon: controller.isFilter.value
-                          ? const Icon(
-                        Icons.filter_alt,
-                        color: AppColor.secondary,
-                      )
-                          : const Icon(
-                        Icons.filter_alt_off_outlined,
-                        color: AppColor.primary,
-                      ))),
-            ],
             bottom: TabBar(
                 controller: controller.tabController,
                 labelStyle: TextStyle(fontSize: titleSmall, fontWeight: FontWeight.bold),

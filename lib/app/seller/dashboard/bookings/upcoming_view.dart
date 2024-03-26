@@ -25,48 +25,40 @@ class UpcomingView extends GetView<MyJobsController> {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Obx(() =>
-              controller.isFilter.value == true
-                  ? SizedBox(
+              SizedBox(
                   height: 40,
                   width: mediaQueryWidth(context),
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
+                  child: Row(
                     children: controller.status.map((status) {
                       return Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 3),
-                          child: ChoiceChip(
-                            shape: StadiumBorder(
-                              side: BorderSide(
-                                color: controller.selectedStatus.contains(status)
-                                    ? Colors.transparent
-                                    : AppColor.primary,
-                              ),
+                        child: ChoiceChip(
+                          shape: StadiumBorder(
+                            side: BorderSide(
+                              color: controller.selectedStatus.contains(status)
+                                  ? Colors.transparent
+                                  : AppColor.primary,
                             ),
-                            labelPadding: const EdgeInsets.symmetric(horizontal: 4),
-                            backgroundColor: AppColor.white,
-                            selectedColor: AppColor.primary,
-                            showCheckmark: false,
-                            label: Text(
-                              status,
-                              style: TextStyle(
-                                color: controller.selectedStatus.contains(status)
-                                    ? AppColor.white
-                                    : Colors.black,
-                              ),
-                            ),
-                            selected: controller.selectedStatus.value.contains(status),
-                            onSelected: (isSelected) {
-                              controller.toggleSelection(status);
-                            },
                           ),
+                          // labelPadding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                          backgroundColor: AppColor.white,
+                          selectedColor: AppColor.primary,
+                          showCheckmark: false,
+                          label: Text(
+                            status,
+                            style: TextStyle(
+                              color: controller.selectedStatus.contains(status)
+                                  ? AppColor.white
+                                  : Colors.black,
+                            ),
+                          ),
+                          selected: controller.selectedStatus.value.contains(status),
+                          onSelected: (isSelected) {
+                            controller.toggleSelection(status);
+                          },
                         ),
                       );
                     }).toList(),
-                  )).paddingSymmetric(vertical: 5)
-                  : const SizedBox()),
+                  )).paddingSymmetric(vertical: 5),
               Expanded(
                 child: StreamBuilder(
                   stream: controller.fetchFilteredJobs().asStream(),
