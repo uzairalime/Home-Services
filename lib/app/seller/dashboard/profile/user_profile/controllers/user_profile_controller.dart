@@ -15,12 +15,13 @@ import '../../../../../../model/user_services_models/my_service_post_model.dart'
 import '../../../../../../model/user_services_models/my_services_resp_model.dart';
 import '../../../../../../services/apis/toast.dart';
 import '../../../../../../utils/animation_dialog.dart';
+import '../../../controllers/dashboard_controller.dart';
 
 class UserProfileController extends GetxController {
   static UserProfileController get to => Get.find();
+  static final con = Get.put(SellerDashboardController());
 
   ScrollController scrollController = ScrollController();
-  RxBool deleteLoading = false.obs;
   String profileFileId = '';
 
   var weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
@@ -244,11 +245,11 @@ class UserProfileController extends GetxController {
                 )).then((value) => Get.back());
       }
     } on SocketException catch (e) {
-      showsnackbar("Error: Check Internet Connection", true);
+      showSnackBar("Error: Check Internet Connection", true);
 
       print("SocketException: $e");
     } catch (e) {
-      showsnackbar("Failed to Update: Try again", true);
+      showSnackBar("Failed to Update: Try again", true);
 
       print("Error: $e");
     } finally {
@@ -274,14 +275,14 @@ class UserProfileController extends GetxController {
           files = FileModel.fromJson(value.data);
           profileFileId = files.id!;
           // print(profileFileId);
-          showsnackbar("Image Upload Successfully");
+          showSnackBar("Image Upload Successfully");
           update();
         });
       });
     } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection", true);
+      showSnackBar("failed to upload: check internet connection", true);
     } catch (e) {
-      showsnackbar("failed to upload: file already exist", true);
+      showSnackBar("failed to upload: file already exist", true);
     } finally {
       // profileUploading.value = false;
       update();
@@ -308,14 +309,14 @@ class UserProfileController extends GetxController {
           // frontFileId = files.id!;
           GlobalVariable.serviceModel.files![1].file = files.file;
           // print(frontFileId);
-          showsnackbar("Image Upload Successfully");
+          showSnackBar("Image Upload Successfully");
           update();
         });
       });
     } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection", true);
+      showSnackBar("failed to upload: check internet connection", true);
     } catch (e) {
-      showsnackbar("failed to upload: file already exist", true);
+      showSnackBar("failed to upload: file already exist", true);
     } finally {
       update();
     }
@@ -340,14 +341,14 @@ class UserProfileController extends GetxController {
           // backFileId = files.id!;
           GlobalVariable.serviceModel.files![2].file = files.file;
           // print(backFileId);
-          showsnackbar("Image Upload Successfully");
+          showSnackBar("Image Upload Successfully");
           update();
         });
       });
     } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection", true);
+      showSnackBar("failed to upload: check internet connection", true);
     } catch (e) {
-      showsnackbar("failed to upload: file already exist", true);
+      showSnackBar("failed to upload: file already exist", true);
     } finally {
       update();
     }
@@ -373,14 +374,14 @@ class UserProfileController extends GetxController {
           // workingFileId = files.id!;
           GlobalVariable.serviceModel.files![3].file = files.file;
           // print(workingFileId);
-          showsnackbar("Image Upload Successfully");
+          showSnackBar("Image Upload Successfully");
           update();
         });
       });
     } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection", true);
+      showSnackBar("failed to upload: check internet connection", true);
     } catch (e) {
-      showsnackbar("failed to upload: file already exist", true);
+      showSnackBar("failed to upload: file already exist", true);
     } finally {
       update();
     }
@@ -425,25 +426,32 @@ class UserProfileController extends GetxController {
     }
   }
 
-  Future<void> deleteServices({required id}) async {
+  Future<void> deleteServices({required id, required context}) async {
     dio.options.headers['accept'] = 'application/json';
     dio.options.headers['Authorization'] = 'Bearer ${StaticData.accessToken}';
 
-    print(id);
     try {
-      deleteLoading.value = true;
-
+      isLoading.value = true;
+      update([2]);
       final response = await dio.delete("https://homebrigadier.fly.dev/api/service/$id/");
+      print("status code ${response.statusCode}");
       if (response.statusCode == 200) {
-        showsnackbar("Delete Successfully");
-      } else {
-        throw Exception('Failed to load data');
+        await showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => const AnimationDialog(
+                  text: '',
+                ));
+        await fetchServices();
+        update();
+        Navigator.pop(context);
       }
-    } catch (error) {
-      throw Exception('Failed to load data: $error');
+    } catch (e) {
+      showSnackBar("Active service cannot deleted", true);
+      Navigator.pop(context);
     } finally {
-      deleteLoading.value = false;
-      Get.back();
+      isLoading.value = false;
+      update([2]);
     }
   }
 }

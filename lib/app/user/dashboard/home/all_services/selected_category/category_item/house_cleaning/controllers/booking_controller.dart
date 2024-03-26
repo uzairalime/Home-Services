@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -19,6 +20,7 @@ import 'package:home_brigadier/services/apis/api_helper.dart';
 import 'package:home_brigadier/services/apis/toast.dart';
 import 'package:home_brigadier/utils/animation_dialog.dart';
 import 'package:home_brigadier/utils/dialog_helper.dart';
+
 import '../../../../../../../../../utils/logger.dart';
 import '../../../../../../../../routes/app_pages.dart';
 
@@ -29,14 +31,13 @@ class BookingController extends GetxController {
 
   List<AutocompletePrediction> placeprediction = [];
   void placeAutoComplete(String query) async {
-    Uri uri = Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
+    Uri uri = Uri.https(
+        "maps.googleapis.com", "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
     String? response = await NetwordUtils.fetchUl(uri);
-    if (response != null) {
-      logger.d(response);
-      PlaceAutocompleteResponse result = PlaceAutocompleteResponse.parseAutocompleteResult(response);
-      if (result.predictions != null) {
-        placeprediction = result.predictions!;
-      }
+    logger.d(response);
+    PlaceAutocompleteResponse result = PlaceAutocompleteResponse.parseAutocompleteResult(response);
+    if (result.predictions != null) {
+      placeprediction = result.predictions!;
     }
     update();
   }
@@ -170,21 +171,23 @@ class BookingController extends GetxController {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Location services are disabled. Please enable the services')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Location services are disabled. Please enable the services')));
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Location permissions are denied')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Location permissions are denied')));
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Location permissions are permanently denied, we cannot request permissions.')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content:
+              Text('Location permissions are permanently denied, we cannot request permissions.')));
       return false;
     }
     return true;
@@ -194,7 +197,8 @@ class BookingController extends GetxController {
     final hasPermission = await _handleLocationPermission(context);
 
     if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((Position position) {
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
       currentPosition = position;
       cPosition = "${currentPosition?.latitude}, ${currentPosition?.longitude}";
       currentPosition = position;
@@ -234,7 +238,7 @@ class BookingController extends GetxController {
     // update();
 
     String? stringValue = servicemodel!.rate;
-    double doubleValue = double.parse(stringValue!);
+    double doubleValue = double.parse(stringValue);
     int rate = doubleValue.toInt();
 
     final hour = hours.value;
@@ -280,7 +284,7 @@ class BookingController extends GetxController {
         });
       } else {
         DialogHelper.hideLoading();
-        showsnackbar("some thing went wrong", true);
+        showSnackBar("some thing went wrong", true);
         instruction.clear();
         flat.clear();
         addressController.clear();

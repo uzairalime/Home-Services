@@ -1,5 +1,6 @@
 {
   "required_field": "Required Field",
+  "delete_warn": "Are you sure you want to Delete?",
   "minimum_1_required": "Minimum 1 Required",
   "exit_dialog": {
     "exit": "Exit?",

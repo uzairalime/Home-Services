@@ -549,7 +549,7 @@ class StartEarningView extends GetView<StartEarningController> {
                                             if (allImagesSelected) {
                                               controller.addNewService(context);
                                             } else {
-                                              showsnackbar("Image not selected", true);
+                                              showSnackBar("Image not selected", true);
                                             }
                                           } else {
                                             controller.scrollController.animateTo(

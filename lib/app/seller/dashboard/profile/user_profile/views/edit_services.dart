@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +33,7 @@ class _EditUserServiceState extends State<EditUserService> {
     controller = Get.put(UserProfileController());
     con = Get.put(BookingController());
 
-    List<RespOpeningHours>? openingHours =
-        GlobalVariable.serviceModel.openingHours;
+    List<RespOpeningHours>? openingHours = GlobalVariable.serviceModel.openingHours;
     controller.nameController.text = GlobalVariable.serviceModel.name!;
     controller.descController.text = GlobalVariable.serviceModel.description!;
     controller.rateController.text = GlobalVariable.serviceModel.rate!;
@@ -47,7 +43,7 @@ class _EditUserServiceState extends State<EditUserService> {
     controller.file3 = GlobalVariable.serviceModel.files![2].id!;
     controller.file4 = GlobalVariable.serviceModel.files![3].id!;
 
-    for (var element in openingHours!) {
+    for (var element in openingHours) {
       if (controller.selectedWeekdays.contains(element.weekday)) {
       } else {
         controller.selectedWeekdays.add(element.weekday!);
@@ -63,17 +59,27 @@ class _EditUserServiceState extends State<EditUserService> {
 
     return Scaffold(
         appBar: AppBar(
-            centerTitle: true,
-            title: CText(
-                text: LocaleKeys.dashboard_profile_edit_profile.tr,
-                fontWeight: FontWeight.bold,
-                color: txtTheme,
-                fontsize: mediaQueryHeight(context) * 0.025)),
+          centerTitle: false,
+          title: CText(
+              text: LocaleKeys.dashboard_profile_edit_profile.tr,
+              fontWeight: FontWeight.bold,
+              color: txtTheme,
+              fontsize: mediaQueryHeight(context) * 0.025),
+          actions: [
+            IconButton(
+                splashRadius: 15,
+                onPressed: () {
+                  showConfirmationBottomSheet(GlobalVariable.serviceModel.id, controller, context);
+                },
+                icon: Icon(
+                  Icons.delete_forever,
+                  color: AppColor.red.withOpacity(0.7),
+                ))
+          ],
+        ),
         body: GetBuilder(
-            initState: (state) {
-              log(jsonEncode(GlobalVariable.serviceModel.files));
-            },
-            init: Get.put(UserProfileController()),
+            id: 2,
+            init: UserProfileController(),
             builder: (_) {
               return controller.isLoading.value
                   ? const Center(child: CircularProgressIndicator())
@@ -82,8 +88,7 @@ class _EditUserServiceState extends State<EditUserService> {
                       child: SingleChildScrollView(
                         controller: controller.scrollController,
                         physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -91,8 +96,7 @@ class _EditUserServiceState extends State<EditUserService> {
                               width: double.maxFinite,
                               child: CText(
                                   textAlign: TextAlign.start,
-                                  text:
-                                      LocaleKeys.edit_services_service_info.tr,
+                                  text: LocaleKeys.edit_services_service_info.tr,
                                   fontsize: 30,
                                   fontWeight: FontWeight.w500),
                             ),
@@ -104,9 +108,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                   textAlign: TextAlign.start,
                                   style: const TextStyle(color: Colors.grey),
                                 )),
-
-                            title(
-                                context, LocaleKeys.edit_services_full_name.tr),
+                            title(context, LocaleKeys.edit_services_full_name.tr),
                             CTextField(
                               contentPadding: 15,
                               hint: LocaleKeys.edit_services_enter_full_name.tr,
@@ -122,8 +124,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                 return null;
                               },
                             ),
-                            title(context,
-                                LocaleKeys.edit_services_selected_catg.tr),
+                            title(context, LocaleKeys.edit_services_selected_catg.tr),
                             Directionality(
                               textDirection: TextDirection.ltr,
                               child: CustomDropdown<String>(
@@ -133,31 +134,23 @@ class _EditUserServiceState extends State<EditUserService> {
                                     }
                                     return null;
                                   },
-                                  initialItem:
-                                      controller.selectedCategory.value,
+                                  initialItem: controller.selectedCategory.value,
                                   decoration: CustomDropdownDecoration(
                                       errorStyle: const TextStyle(fontSize: 13),
-                                      expandedBorder:
-                                          Border.all(color: AppColor.primary),
-                                      closedBorder: controller
-                                              .categoryFocus.value
+                                      expandedBorder: Border.all(color: AppColor.primary),
+                                      closedBorder: controller.categoryFocus.value
                                           ? Border.all(color: AppColor.primary)
-                                          : Border.all(
-                                              color: Colors.transparent),
-                                      closedFillColor:
-                                          AppColor.greylight.withOpacity(0.1)),
-                                  hintText: LocaleKeys
-                                      .edit_services_enter_select_catg.tr,
+                                          : Border.all(color: Colors.transparent),
+                                      closedFillColor: AppColor.greylight.withOpacity(0.1)),
+                                  hintText: LocaleKeys.edit_services_enter_select_catg.tr,
                                   items: controller.menuItems,
                                   onChanged: (newValue) {
-                                    controller.selectedCategory.value =
-                                        newValue;
+                                    controller.selectedCategory.value = newValue;
                                     controller.onSelectCategory(newValue);
                                     controller.update();
                                   }),
                             ),
-                            title(context,
-                                LocaleKeys.edit_services_discription.tr),
+                            title(context, LocaleKeys.edit_services_discription.tr),
                             CTextField(
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -166,18 +159,14 @@ class _EditUserServiceState extends State<EditUserService> {
                                   return null;
                                 },
                                 contentPadding: 15,
-                                hint: LocaleKeys
-                                    .edit_services_enter_decription.tr,
+                                hint: LocaleKeys.edit_services_enter_decription.tr,
                                 controller: controller.descController,
                                 borderColor: Colors.transparent,
                                 borderRadius: 12,
                                 maxLines: 5,
                                 filled: true,
                                 fillColor: Colors.grey.withOpacity(0.1)),
-                            title(
-                                context,
-                                LocaleKeys
-                                    .edit_services_select_working_hour.tr),
+                            title(context, LocaleKeys.edit_services_select_working_hour.tr),
                             Directionality(
                               textDirection: TextDirection.ltr,
                               child: Row(children: [
@@ -190,26 +179,19 @@ class _EditUserServiceState extends State<EditUserService> {
                                           return null;
                                         },
                                         decoration: CustomDropdownDecoration(
-                                            errorStyle:
-                                                const TextStyle(fontSize: 12),
-                                            expandedBorder: Border.all(
-                                                color: AppColor.primary),
-                                            closedBorder: Border.all(
-                                                color: Colors.transparent),
-                                            closedFillColor: AppColor.greylight
-                                                .withOpacity(0.1)),
+                                            errorStyle: const TextStyle(fontSize: 12),
+                                            expandedBorder: Border.all(color: AppColor.primary),
+                                            closedBorder: Border.all(color: Colors.transparent),
+                                            closedFillColor: AppColor.greylight.withOpacity(0.1)),
                                         hintBuilder: (context, hint) {
                                           return Text(hint,
                                               style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: AppColor.grey));
+                                                  fontSize: 14, color: AppColor.grey));
                                         },
-                                        hintText: LocaleKeys
-                                            .edit_services_enter_from_hours.tr,
+                                        hintText: LocaleKeys.edit_services_enter_from_hours.tr,
                                         items: controller.hours,
                                         onChanged: (newValue) {
-                                          controller.selectedFrom.value =
-                                              convertTo24Hour(newValue);
+                                          controller.selectedFrom.value = convertTo24Hour(newValue);
                                           // print(controller.selectedFrom.value);
                                         })),
                                 const SizedBox(width: 30),
@@ -222,33 +204,24 @@ class _EditUserServiceState extends State<EditUserService> {
                                           return null;
                                         },
                                         decoration: CustomDropdownDecoration(
-                                          errorStyle:
-                                              const TextStyle(fontSize: 13),
-                                          expandedBorder: Border.all(
-                                              color: AppColor.primary),
-                                          closedBorder: Border.all(
-                                              color: Colors.transparent),
-                                          closedFillColor: AppColor.greylight
-                                              .withOpacity(0.1),
+                                          errorStyle: const TextStyle(fontSize: 13),
+                                          expandedBorder: Border.all(color: AppColor.primary),
+                                          closedBorder: Border.all(color: Colors.transparent),
+                                          closedFillColor: AppColor.greylight.withOpacity(0.1),
                                         ),
                                         hintBuilder: (context, hint) {
                                           return Text(hint,
                                               style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: AppColor.grey));
+                                                  fontSize: 14, color: AppColor.grey));
                                         },
-                                        hintText: LocaleKeys
-                                            .edit_services_enter_till_hours.tr,
+                                        hintText: LocaleKeys.edit_services_enter_till_hours.tr,
                                         items: controller.hours,
                                         onChanged: (newValue) {
-                                          controller.selectedTill.value =
-                                              convertTo24Hour(newValue);
+                                          controller.selectedTill.value = convertTo24Hour(newValue);
                                         }))
                               ]),
                             ),
-                            title(context,
-                                LocaleKeys.edit_services_selct_working_days.tr),
-
+                            title(context, LocaleKeys.edit_services_selct_working_days.tr),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -256,51 +229,40 @@ class _EditUserServiceState extends State<EditUserService> {
                                   height: 80,
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: controller
-                                                  .selectedWeekdays.isEmpty
+                                          color: controller.selectedWeekdays.isEmpty
                                               ? AppColor.red
                                               : Colors.transparent),
                                       borderRadius: BorderRadius.circular(12),
-                                      color:
-                                          AppColor.greylight.withOpacity(0.1)),
+                                      color: AppColor.greylight.withOpacity(0.1)),
                                   child: ListView(
                                     physics: const BouncingScrollPhysics(),
                                     scrollDirection: Axis.horizontal,
-                                    children:
-                                        controller.weekdays.map((weekday) {
+                                    children: controller.weekdays.map((weekday) {
                                       return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 4),
+                                        padding: const EdgeInsets.symmetric(horizontal: 4),
                                         child: ChoiceChip(
                                           shape: StadiumBorder(
                                               side: BorderSide(
-                                                  color: controller
-                                                          .selectedWeekdays
-                                                          .contains(weekday)
-                                                      ? Colors.transparent
-                                                      : AppColor.primary)),
-                                          labelPadding:
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 7, vertical: 3),
+                                                  color:
+                                                      controller.selectedWeekdays.contains(weekday)
+                                                          ? Colors.transparent
+                                                          : AppColor.primary)),
+                                          labelPadding: const EdgeInsets.symmetric(
+                                              horizontal: 7, vertical: 3),
                                           backgroundColor: AppColor.white,
                                           selectedColor: AppColor.primary,
                                           showCheckmark: false,
                                           label: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 8),
+                                            padding: const EdgeInsets.symmetric(horizontal: 8),
                                             child: Text(
-                                                weekday[0].toUpperCase() +
-                                                    weekday[1] +
-                                                    weekday[2],
+                                                weekday[0].toUpperCase() + weekday[1] + weekday[2],
                                                 style: TextStyle(
-                                                    color: controller
-                                                            .selectedWeekdays
+                                                    color: controller.selectedWeekdays
                                                             .contains(weekday)
                                                         ? AppColor.white
                                                         : Colors.black)),
                                           ),
-                                          selected: controller.selectedWeekdays
-                                              .contains(weekday),
+                                          selected: controller.selectedWeekdays.contains(weekday),
                                           onSelected: (isSelected) {
                                             controller.toggleSelection(weekday);
                                             controller.update();
@@ -319,8 +281,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                     : const SizedBox()
                               ],
                             ),
-                            title(context,
-                                LocaleKeys.edit_services_rate_per_hour.tr),
+                            title(context, LocaleKeys.edit_services_rate_per_hour.tr),
                             Directionality(
                               textDirection: TextDirection.ltr,
                               child: CTextField(
@@ -336,8 +297,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                   suffix: Container(
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                        color:
-                                            AppColor.greylight.withOpacity(0.2),
+                                        color: AppColor.greylight.withOpacity(0.2),
                                         borderRadius: const BorderRadius.only(
                                             topRight: Radius.circular(12),
                                             bottomRight: Radius.circular(12))),
@@ -357,32 +317,6 @@ class _EditUserServiceState extends State<EditUserService> {
                                   contentPadding: 5,
                                   borderRadius: 12),
                             ),
-                            // const SizedBox(height: 30),
-
-                            // SizedBox(
-                            //   width: mediaQueryWidth(context),
-                            //   height: mediaQueryHeight(context) * 0.4,
-                            //   child: ClipRRect(
-                            //     borderRadius: BorderRadius.circular(12),
-                            //     child: GoogleMap(
-                            //       myLocationEnabled: true,
-                            //       markers: Set<Marker>.of(con.mapmarker),
-                            //       onMapCreated: (controller) {
-                            //         con.mapController = controller;
-                            //       },
-                            //       initialCameraPosition: const CameraPosition(
-                            //         target: LatLng(55.27, 25.20),
-                            //         // Initial map center
-                            //         zoom: 10.0,
-                            //       ),
-                            //       onTap: (LatLng location) {
-                            //         // logger.d("change lang $location");
-                            //         con.pickLocation(location);
-                            //       },
-                            //     ),
-                            //   ),
-                            // ),
-
                             title(context, LocaleKeys.edit_services_address.tr),
                             CTextField(
                                 validator: (value) {
@@ -399,112 +333,56 @@ class _EditUserServiceState extends State<EditUserService> {
                                 filled: true,
                                 keyboardType: TextInputType.streetAddress,
                                 fillColor: Colors.grey.withOpacity(0.1)),
-                            title(context,
-                                LocaleKeys.edit_services_upload_picture.tr),
-
-                            // Container(
-                            //     height: 200,
-                            //     width: double.infinity,
-                            //     decoration: BoxDecoration(
-                            //         color: Colors.grey.withOpacity(0.1),
-                            //         borderRadius: BorderRadius.circular(12)),
-                            //     child: InkWell(
-                            //         onTap: () => controller.pickImageFromGallery(),
-                            //         child: Container(
-                            //             height: 200,
-                            //             width: double.infinity,
-                            //             decoration: BoxDecoration(
-                            //                 color: Colors.grey.withOpacity(0.1),
-                            //                 borderRadius: BorderRadius.circular(12)),
-                            //             child: controller.imgUploading.value
-                            //                 ? const Center(child: CircularProgressIndicator())
-                            //                 : controller.selectedImage.value != null
-                            //                     ? ClipRRect(
-                            //                         borderRadius: BorderRadius.circular(12),
-                            //                         child: Image.file(
-                            //                             controller.selectedImage.value!,
-                            //                             fit: BoxFit.cover))
-                            //                     : Column(
-                            //                         mainAxisSize: MainAxisSize.max,
-                            //                         mainAxisAlignment: MainAxisAlignment.center,
-                            //                         crossAxisAlignment: CrossAxisAlignment.center,
-                            //                         children: [
-                            //                             const Icon(Icons.image_outlined),
-                            //                             Text(LocaleKeys
-                            //                                 .edit_services_upload_picture.tr)
-                            //                           ])))),
-
+                            title(context, LocaleKeys.edit_services_upload_picture.tr),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              padding: const EdgeInsets.symmetric(vertical: 8.0),
                               child: ListView.builder(
-                                itemCount:
-                                    GlobalVariable.serviceModel.files?.length ??
-                                        0,
+                                itemCount: GlobalVariable.serviceModel.files?.length ?? 0,
                                 shrinkWrap: true,
-                                physics:
-                                    const NeverScrollableScrollPhysics(), // Add this line
+                                physics: const NeverScrollableScrollPhysics(), // Add this line
                                 itemBuilder: (context, index) {
-                                  String? fileName = GlobalVariable
-                                      .serviceModel.files?[index].filename;
-                                  String? url = GlobalVariable
-                                      .serviceModel.files?[index].file;
+                                  String? fileName =
+                                      GlobalVariable.serviceModel.files?[index].filename;
+                                  String? url = GlobalVariable.serviceModel.files?[index].file;
                                   return Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 5),
+                                      margin: const EdgeInsets.symmetric(vertical: 5),
                                       decoration: BoxDecoration(
-                                          color: AppColor.greylight
-                                              .withOpacity(0.3),
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
+                                          color: AppColor.greylight.withOpacity(0.3),
+                                          borderRadius: BorderRadius.circular(12)),
+                                      padding: const EdgeInsets.symmetric(horizontal: 10),
                                       height: 70,
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           CachedNetworkImage(
                                               fit: BoxFit.contain,
-                                              errorWidget:
-                                                  (context, url, error) {
+                                              errorWidget: (context, url, error) {
                                                 return CircleAvatar(
                                                   radius: 30,
                                                   backgroundImage:
-                                                      CachedNetworkImageProvider(
-                                                          errorUrl),
+                                                      CachedNetworkImageProvider(errorUrl),
                                                 );
                                               },
                                               placeholder: (context, url) {
                                                 return const Center(
-                                                    child:
-                                                        CircularProgressIndicator());
+                                                    child: CircularProgressIndicator());
                                               },
-                                              imageBuilder:
-                                                  (context, imageProvider) {
+                                              imageBuilder: (context, imageProvider) {
                                                 return CircleAvatar(
-                                                    radius: 30,
-                                                    backgroundImage:
-                                                        imageProvider);
+                                                    radius: 30, backgroundImage: imageProvider);
                                               },
-                                              imageUrl:
-                                                  "https://homebrigadier.fly.dev$url"),
+                                              imageUrl: "https://homebrigadier.fly.dev$url"),
                                           SizedBox(
-                                              width: mediaQueryWidth(context) *
-                                                  0.5,
+                                              width: mediaQueryWidth(context) * 0.5,
                                               child: CText(
                                                   text: fileName
                                                       .toString()
                                                       .replaceAll('_', ' ')
-                                                      .replaceAll(
-                                                          'back img', 'ID Back')
-                                                      .replaceAll('front img',
-                                                          'ID Front')
-                                                      .replaceAll('profile img',
-                                                          'Profile Image')
-                                                      .replaceAll('working img',
-                                                          'Portfolio Image')
+                                                      .replaceAll('back img', 'ID Back')
+                                                      .replaceAll('front img', 'ID Front')
+                                                      .replaceAll('profile img', 'Profile Image')
+                                                      .replaceAll('working img', 'Portfolio Image')
                                                       .split('.')
                                                       .first)),
                                           IconButton(
@@ -532,7 +410,7 @@ class _EditUserServiceState extends State<EditUserService> {
                                                 //     break;
                                                 // }
                                               },
-                                              icon: SizedBox()
+                                              icon: const SizedBox()
                                               // const Icon(
                                               //   Icons.mode_edit_outlined,
                                               //   color: AppColor.secondary,
@@ -543,7 +421,6 @@ class _EditUserServiceState extends State<EditUserService> {
                                 },
                               ),
                             ),
-
                             const SizedBox(height: 30),
                             Align(
                                 alignment: Alignment.center,
@@ -552,40 +429,29 @@ class _EditUserServiceState extends State<EditUserService> {
                                       int? id = GlobalVariable.serviceModel.id;
 
                                       if (_formKey.currentState!.validate()) {
-                                        if (id != null) {
-                                          controller.updateUserService(
-                                              id: id,
-                                              context: context,
-                                              name: controller
-                                                  .nameController.text,
-                                              description: controller
-                                                  .descController.text,
-                                              fileIds: [
-                                                controller.file1,
-                                                controller.file2,
-                                                controller.file3,
-                                                controller.file4
-                                              ],
-                                              category: convertToCamelCase(
-                                                  controller
-                                                      .selectedCategory.value),
-                                              address: controller
-                                                  .addressController.text,
-                                              location: cPosition,
-                                              weekDays:
-                                                  controller.selectedWeekdays,
-                                              from_hour:
-                                                  controller.selectedFrom.value,
-                                              to_hour:
-                                                  controller.selectedTill.value,
-                                              rate: controller
-                                                  .rateController.text);
-                                        }
+                                        controller.updateUserService(
+                                            id: id,
+                                            context: context,
+                                            name: controller.nameController.text,
+                                            description: controller.descController.text,
+                                            fileIds: [
+                                              controller.file1,
+                                              controller.file2,
+                                              controller.file3,
+                                              controller.file4
+                                            ],
+                                            category: convertToCamelCase(
+                                                controller.selectedCategory.value),
+                                            address: controller.addressController.text,
+                                            location: cPosition,
+                                            weekDays: controller.selectedWeekdays,
+                                            from_hour: controller.selectedFrom.value,
+                                            to_hour: controller.selectedTill.value,
+                                            rate: controller.rateController.text);
                                       } else {
                                         controller.scrollController.animateTo(
                                           0.0,
-                                          duration:
-                                              const Duration(milliseconds: 500),
+                                          duration: const Duration(milliseconds: 500),
                                           curve: Curves.easeInOut,
                                         );
                                       }
@@ -604,8 +470,7 @@ class _EditUserServiceState extends State<EditUserService> {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColor.greylight.withOpacity(0.1)),
+            borderRadius: BorderRadius.circular(12), color: AppColor.greylight.withOpacity(0.1)),
         child: child);
   }
 
@@ -613,9 +478,80 @@ class _EditUserServiceState extends State<EditUserService> {
     final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
     return Padding(
         padding: const EdgeInsets.only(top: 18, bottom: 8),
-        child: CText(
-            textAlign: TextAlign.start, text: text, fontsize: titleLarge));
+        child: CText(textAlign: TextAlign.start, text: text, fontsize: titleLarge));
   }
+}
+
+void showConfirmationBottomSheet(id, UserProfileController controller, context) {
+  Get.bottomSheet(
+    Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            LocaleKeys.delete_warn.tr,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Get.back(); // Close the bottom sheet
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColor.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  child: Text(
+                    LocaleKeys.house_cleaning_items_no.tr,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  Get.back();
+                  controller.deleteServices(id: id, context: context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColor.secondary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  child: Text(
+                    LocaleKeys.house_cleaning_items_yes.tr,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    ),
+    barrierColor: Colors.black.withOpacity(0.5), // Add a semi-transparent background
+  );
 }
 
 void resetValue(UserProfileController controller) {

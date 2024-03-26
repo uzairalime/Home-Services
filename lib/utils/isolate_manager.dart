@@ -40,7 +40,7 @@ class IsolateManager {
         return 200;
       }
     } on SocketException {
-      showsnackbar("Failed to Sign in: Check Internet Connection", true);
+      showSnackBar("Failed to Sign in: Check Internet Connection", true);
     } catch (e) {
       print("error :${e.toString()}");
     }

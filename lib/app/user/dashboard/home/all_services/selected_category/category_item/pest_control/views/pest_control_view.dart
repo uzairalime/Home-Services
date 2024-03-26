@@ -46,8 +46,7 @@ class PestControlBookingView extends GetView<BookingController> {
                       color: AppColor.greylight,
                     ))),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 30, bottom: 20, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
                   child: CButton(
                       borderradius: widht * 0.075,
                       text:
@@ -71,8 +70,7 @@ class PestControlBookingView extends GetView<BookingController> {
             child: SizedBox(
               width: widht,
               child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: widht * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -92,27 +90,23 @@ class PestControlBookingView extends GetView<BookingController> {
                             child: Wrap(
                               children: obj.flatsizelabel.map((size) {
                                 return Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  padding: const EdgeInsets.symmetric(horizontal: 4),
                                   child: ChoiceChip(
                                     shape: StadiumBorder(
                                         side: BorderSide(
-                                            color:
-                                                obj.selectedSize.contains(size)
-                                                    ? Colors.transparent
-                                                    : AppColor.primary)),
-                                    labelPadding: const EdgeInsets.symmetric(
-                                        horizontal: 7, vertical: 3),
+                                            color: obj.selectedSize.contains(size)
+                                                ? Colors.transparent
+                                                : AppColor.primary)),
+                                    labelPadding:
+                                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                                     backgroundColor: AppColor.white,
                                     selectedColor: AppColor.primary,
                                     showCheckmark: false,
                                     label: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                       child: Text(size,
                                           style: TextStyle(
-                                              color: obj.selectedSize
-                                                      .contains(size)
+                                              color: obj.selectedSize.contains(size)
                                                   ? AppColor.white
                                                   : Colors.black)),
                                     ),
@@ -145,32 +139,27 @@ class PestControlBookingView extends GetView<BookingController> {
                             child: Wrap(
                               children: obj.insectlabel.map((insect) {
                                 return Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  padding: const EdgeInsets.symmetric(horizontal: 4),
                                   child: ChoiceChip(
                                     shape: StadiumBorder(
                                         side: BorderSide(
-                                            color: obj.selectedInsects
-                                                    .contains(insect)
+                                            color: obj.selectedInsects.contains(insect)
                                                 ? Colors.transparent
                                                 : AppColor.primary)),
-                                    labelPadding: const EdgeInsets.symmetric(
-                                        horizontal: 7, vertical: 3),
+                                    labelPadding:
+                                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                                     backgroundColor: AppColor.white,
                                     selectedColor: AppColor.primary,
                                     showCheckmark: false,
                                     label: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                       child: Text(insect,
                                           style: TextStyle(
-                                              color: obj.selectedInsects
-                                                      .contains(insect)
+                                              color: obj.selectedInsects.contains(insect)
                                                   ? AppColor.white
                                                   : Colors.black)),
                                     ),
-                                    selected:
-                                        obj.selectedInsects.contains(insect),
+                                    selected: obj.selectedInsects.contains(insect),
                                     onSelected: (isSelected) {
                                       obj.toggleSelection(insect);
                                       obj.update();
@@ -185,16 +174,13 @@ class PestControlBookingView extends GetView<BookingController> {
                             child: CText2(
                                 textAlign: TextAlign.start,
                                 fontsize: titleSmall,
-                                text: LocaleKeys
-                                    .house_cleaning_items_addditional_charges_aed
-                                    .tr),
+                                text: LocaleKeys.house_cleaning_items_addditional_charges_aed.tr),
                           ),
                           SizedBox(
                             height: height * 0.03,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -210,18 +196,14 @@ class PestControlBookingView extends GetView<BookingController> {
                                 controller: controller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .house_cleaning_items_example_insutruction
-                                        .tr,
+                                    hintText:
+                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(
-                                            color: AppColor.secondary)),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)))),
+                                        borderRadius: BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
@@ -233,13 +215,13 @@ class PestControlBookingView extends GetView<BookingController> {
   _onContinue(PestControlController pcon) {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
-      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.cleaner.value == 0) {
-      showsnackbar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
     } else if (pcon.selectedSize.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_subscription.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_subscription.tr, true);
     } else if (pcon.selectedInsects.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_service.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_service.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

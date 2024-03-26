@@ -13,7 +13,7 @@ import 'package:home_brigadier/consts/app_color.dart';
 //       fontSize: 16.0);
 // }
 
-showsnackbar(String messege, [bool iserror = false]) {
+showSnackBar(String messege, [bool iserror = false]) async {
   Get.showSnackbar(GetSnackBar(
     message: messege,
     snackPosition: SnackPosition.TOP,

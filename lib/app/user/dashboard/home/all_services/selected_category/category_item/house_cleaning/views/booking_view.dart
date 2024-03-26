@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/views/booking_details_view.dart';
 import 'package:home_brigadier/consts/app_color.dart';
@@ -20,7 +19,6 @@ class HouseCleaningBookingView extends GetView<BookingController> {
   Widget build(BuildContext context) {
     // BookingController.to.claculateBill();
 
-   
     final widht = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
@@ -46,8 +44,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                       color: AppColor.greylight,
                     ))),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 30, bottom: 20, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
                   child: CButton(
                       borderradius: widht * 0.075,
                       text:
@@ -71,14 +68,12 @@ class HouseCleaningBookingView extends GetView<BookingController> {
             child: SizedBox(
               width: widht,
               child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: widht * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_how_many_hours.tr,
+                            text: LocaleKeys.house_cleaning_items_how_many_hours.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -94,14 +89,12 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                   color: const Color(0xffF5F5F5),
                                   borderRadius: BorderRadius.circular(8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 12, right: 12),
+                                padding: const EdgeInsets.only(left: 12, right: 12),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     CText(
-                                      text: LocaleKeys
-                                          .house_cleaning_items_hours.tr,
+                                      text: LocaleKeys.house_cleaning_items_hours.tr,
                                       fontWeight: bold6,
                                       fontsize: 16,
                                     ),
@@ -115,8 +108,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: const Center(
                                           child: Icon(
                                             Icons.remove,
@@ -145,8 +137,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: const Center(
                                           child: Icon(
                                             Icons.add,
@@ -165,8 +156,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                             height: height * 0.01,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_how_many_cleaner.tr,
+                            text: LocaleKeys.house_cleaning_items_how_many_cleaner.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -182,14 +172,12 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                   color: const Color(0xffF5F5F5),
                                   borderRadius: BorderRadius.circular(8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 12, right: 12),
+                                padding: const EdgeInsets.only(left: 12, right: 12),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     CText(
-                                      text: LocaleKeys
-                                          .house_cleaning_items_cleaners.tr,
+                                      text: LocaleKeys.house_cleaning_items_cleaners.tr,
                                       fontWeight: bold6,
                                       fontsize: 16,
                                     ),
@@ -203,8 +191,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: const Center(
                                           child: Icon(
                                             Icons.remove,
@@ -233,8 +220,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: const Center(
                                           child: Icon(
                                             Icons.add,
@@ -254,8 +240,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                             height: height * 0.01,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_how_often_need_claning.tr,
+                            text: LocaleKeys.house_cleaning_items_how_often_need_claning.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -273,8 +258,8 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     ChoiceChip(
-                                      labelPadding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 3),
+                                      labelPadding:
+                                          const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                       backgroundColor: AppColor.white,
                                       selectedColor: AppColor.secondary,
                                       shape: RoundedRectangleBorder(
@@ -282,20 +267,14 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                           color: AppColor.secondary,
                                           width: 1.0,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(22.0),
+                                        borderRadius: BorderRadius.circular(22.0),
                                       ),
                                       label: CText(
-                                          color: controller
-                                                      .selectedweekplan.value ==
-                                                  'Once'
+                                          color: controller.selectedweekplan.value == 'Once'
                                               ? AppColor.white
                                               : AppColor.black,
-                                          text: LocaleKeys
-                                              .house_cleaning_items_once.tr),
-                                      selected:
-                                          controller.selectedweekplan.value ==
-                                              'Once',
+                                          text: LocaleKeys.house_cleaning_items_once.tr),
+                                      selected: controller.selectedweekplan.value == 'Once',
                                       onSelected: (bool selected) {
                                         controller.selectWeekplan('Once');
                                       },
@@ -304,8 +283,8 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                       width: widht * 0.05,
                                     ),
                                     ChoiceChip(
-                                      labelPadding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 3),
+                                      labelPadding:
+                                          const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                       backgroundColor: AppColor.white,
                                       selectedColor: AppColor.secondary,
                                       shape: RoundedRectangleBorder(
@@ -313,19 +292,14 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                           color: AppColor.secondary,
                                           width: 1.0,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(22.0),
+                                        borderRadius: BorderRadius.circular(22.0),
                                       ),
                                       label: CText(
-                                          color: controller.selectedweekplan ==
-                                                  'Weekly'
+                                          color: controller.selectedweekplan == 'Weekly'
                                               ? AppColor.white
                                               : AppColor.black,
-                                          text: LocaleKeys
-                                              .house_cleaning_items_weekly.tr),
-                                      selected:
-                                          controller.selectedweekplan.value ==
-                                              'Weekly',
+                                          text: LocaleKeys.house_cleaning_items_weekly.tr),
+                                      selected: controller.selectedweekplan.value == 'Weekly',
                                       onSelected: (bool selected) {
                                         controller.selectWeekplan('Weekly');
                                       },
@@ -334,28 +308,22 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                       width: widht * 0.05,
                                     ),
                                     ChoiceChip(
-                                      labelPadding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 3),
+                                      labelPadding:
+                                          const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                       backgroundColor: AppColor.white,
                                       selectedColor: AppColor.secondary,
                                       shape: StadiumBorder(
                                           side: BorderSide(
-                                              color: controller.selectedmaterial
-                                                          .value ==
-                                                      'Bi-Weekly'
-                                                  ? AppColor.secondary
-                                                  : AppColor.secondary)),
+                                              color:
+                                                  controller.selectedmaterial.value == 'Bi-Weekly'
+                                                      ? AppColor.secondary
+                                                      : AppColor.secondary)),
                                       label: CText(
-                                          color: controller.selectedweekplan ==
-                                                  'Bi-Weekly'
+                                          color: controller.selectedweekplan == 'Bi-Weekly'
                                               ? AppColor.white
                                               : AppColor.black,
-                                          text: LocaleKeys
-                                              .house_cleaning_items_Bi_weekly
-                                              .tr),
-                                      selected:
-                                          controller.selectedweekplan.value ==
-                                              'Bi-Weekly',
+                                          text: LocaleKeys.house_cleaning_items_Bi_weekly.tr),
+                                      selected: controller.selectedweekplan.value == 'Bi-Weekly',
                                       onSelected: (bool selected) {
                                         controller.selectWeekplan('Bi-Weekly');
                                       },
@@ -363,8 +331,8 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                   ],
                                 ),
                                 ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 3),
+                                  labelPadding:
+                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: RoundedRectangleBorder(
@@ -375,19 +343,15 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                     borderRadius: BorderRadius.circular(22.0),
                                   ),
                                   label: CText(
-                                      color:
-                                          controller.selectedweekplan.value ==
-                                                  'Multiple Times a Week'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                      text: LocaleKeys
-                                          .house_cleaning_items_Mutilple_time
-                                          .tr),
-                                  selected: controller.selectedweekplan.value ==
-                                      'Multiple Times a Week',
+                                      color: controller.selectedweekplan.value ==
+                                              'Multiple Times a Week'
+                                          ? AppColor.white
+                                          : AppColor.black,
+                                      text: LocaleKeys.house_cleaning_items_Mutilple_time.tr),
+                                  selected:
+                                      controller.selectedweekplan.value == 'Multiple Times a Week',
                                   onSelected: (bool selected) {
-                                    controller.selectWeekplan(
-                                        'Multiple Times a Week');
+                                    controller.selectWeekplan('Multiple Times a Week');
                                   },
                                 ),
                               ],
@@ -397,8 +361,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                             height: height * 0.01,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_did_need_material.tr,
+                            text: LocaleKeys.house_cleaning_items_did_need_material.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -412,27 +375,22 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                               children: [
                                 ChoiceChip(
                                   label: CText(
-                                      color:
-                                          controller.selectedmaterial == 'Yes'
-                                              ? AppColor.white
-                                              : AppColor.black,
-                                      text: LocaleKeys
-                                          .house_cleaning_items_yes.tr),
-                                  selected: controller.selectedmaterial.value ==
-                                      'Yes',
+                                      color: controller.selectedmaterial == 'Yes'
+                                          ? AppColor.white
+                                          : AppColor.black,
+                                      text: LocaleKeys.house_cleaning_items_yes.tr),
+                                  selected: controller.selectedmaterial.value == 'Yes',
                                   onSelected: (bool selected) {
                                     controller.selectMaterials('Yes');
                                     controller.claculateBill();
                                   },
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 3),
+                                  labelPadding:
+                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: StadiumBorder(
                                       side: BorderSide(
-                                          color: controller
-                                                      .selectedmaterial.value ==
-                                                  'Yes'
+                                          color: controller.selectedmaterial.value == 'Yes'
                                               ? AppColor.secondary
                                               : AppColor.secondary)),
                                 ),
@@ -440,25 +398,21 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                   width: widht * 0.05,
                                 ),
                                 ChoiceChip(
-                                  labelPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 3),
+                                  labelPadding:
+                                      const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                                   backgroundColor: AppColor.white,
                                   selectedColor: AppColor.secondary,
                                   shape: StadiumBorder(
                                       side: BorderSide(
-                                          color: controller
-                                                      .selectedmaterial.value ==
-                                                  'No'
+                                          color: controller.selectedmaterial.value == 'No'
                                               ? AppColor.secondary
                                               : AppColor.secondary)),
                                   label: CText(
                                       color: controller.selectedmaterial == 'No'
                                           ? AppColor.white
                                           : AppColor.black,
-                                      text: LocaleKeys
-                                          .house_cleaning_items_no.tr),
-                                  selected:
-                                      controller.selectedmaterial.value == 'No',
+                                      text: LocaleKeys.house_cleaning_items_no.tr),
+                                  selected: controller.selectedmaterial.value == 'No',
                                   onSelected: (bool selected) {
                                     controller.selectMaterials('No');
                                     controller.claculateBill();
@@ -474,16 +428,13 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                             child: CText(
                                 textAlign: TextAlign.start,
                                 fontsize: titleSmall,
-                                text: LocaleKeys
-                                    .house_cleaning_items_addditional_charges_aed
-                                    .tr),
+                                text: LocaleKeys.house_cleaning_items_addditional_charges_aed.tr),
                           ),
                           SizedBox(
                             height: height * 0.03,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -499,18 +450,14 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                 controller: controller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .house_cleaning_items_example_insutruction
-                                        .tr,
+                                    hintText:
+                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(
-                                            color: AppColor.secondary)),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)))),
+                                        borderRadius: BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
@@ -522,13 +469,13 @@ class HouseCleaningBookingView extends GetView<BookingController> {
   _onContinue() {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
-      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.cleaner.value == 0) {
-      showsnackbar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
     } else if (controller.selectedweekplan.value.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_subscription.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_subscription.tr, true);
     } else if (controller.selectedmaterial.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_materials.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_materials.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,
