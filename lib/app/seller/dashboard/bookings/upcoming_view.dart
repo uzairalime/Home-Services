@@ -32,8 +32,15 @@ class UpcomingView extends GetView<MyJobsController> {
                 width: mediaQueryWidth(context),
                 child: Row(
                   children: [
+                    Obx(() => IconButton(
+                          onPressed: controller.isAtStart.value ? null : controller.scrollBack,
+                          iconSize: 15,
+                          splashRadius: 20,
+                          icon: const Icon(Icons.arrow_back_ios),
+                        )),
                     Expanded(
                       child: ListView(
+                        controller: controller.scrollController,
                         physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         children: controller.status.map((status) {
@@ -66,6 +73,12 @@ class UpcomingView extends GetView<MyJobsController> {
                         }).toList(),
                       ),
                     ),
+                    Obx(() => IconButton(
+                          onPressed: controller.isAtEnd.value ? null : controller.scrollForward,
+                          iconSize: 15,
+                          splashRadius: 20,
+                          icon: const Icon(Icons.arrow_forward_ios),
+                        )),
                   ],
                 ),
               ).paddingSymmetric(vertical: 7),

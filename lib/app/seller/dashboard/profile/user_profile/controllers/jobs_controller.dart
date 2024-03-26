@@ -10,6 +10,42 @@ import '../../../../../../model/user_services_models/my_booking_booking_model.da
 class MyJobsController extends GetxController {
   static MyJobsController get to => Get.find<MyJobsController>();
   late TabController tabController;
+  final ScrollController scrollController = ScrollController();
+  final isAtStart = true.obs;
+  final isAtEnd = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    scrollController.addListener(_scrollListener);
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
+  }
+
+  void _scrollListener() {
+    isAtStart.value = scrollController.position.pixels == scrollController.position.minScrollExtent;
+    isAtEnd.value = scrollController.position.pixels == scrollController.position.maxScrollExtent;
+  }
+
+  void scrollBack() {
+    scrollController.animateTo(
+      scrollController.position.minScrollExtent,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void scrollForward() {
+    scrollController.animateTo(
+      scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
 
   ///////
   deo.Dio dio = deo.Dio();
