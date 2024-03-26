@@ -47,8 +47,7 @@ class HandymanView extends GetView<BookingController> {
                       color: AppColor.greylight,
                     ))),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 30, bottom: 20, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
                   child: CButton(
                       borderradius: widht * 0.075,
                       text:
@@ -72,14 +71,12 @@ class HandymanView extends GetView<BookingController> {
             child: SizedBox(
               width: widht,
               child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: widht * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_how_many_hours.tr,
+                            text: LocaleKeys.house_cleaning_items_how_many_hours.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -95,14 +92,12 @@ class HandymanView extends GetView<BookingController> {
                                   color: const Color(0xffF5F5F5),
                                   borderRadius: BorderRadius.circular(8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 12, right: 12),
+                                padding: const EdgeInsets.only(left: 12, right: 12),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     CText(
-                                      text: LocaleKeys
-                                          .house_cleaning_items_hours.tr,
+                                      text: LocaleKeys.house_cleaning_items_hours.tr,
                                       fontWeight: bold6,
                                       fontsize: 16,
                                     ),
@@ -116,8 +111,7 @@ class HandymanView extends GetView<BookingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: const Center(
                                           child: Icon(
                                             Icons.remove,
@@ -146,8 +140,7 @@ class HandymanView extends GetView<BookingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: const BoxDecoration(
-                                            color: Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: const Center(
                                           child: Icon(
                                             Icons.add,
@@ -263,32 +256,27 @@ class HandymanView extends GetView<BookingController> {
                             child: Wrap(
                               children: obj.services.map((service) {
                                 return Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  padding: const EdgeInsets.symmetric(horizontal: 4),
                                   child: ChoiceChip(
                                     shape: StadiumBorder(
                                         side: BorderSide(
-                                            color: obj.selectedServices
-                                                    .contains(service)
+                                            color: obj.selectedServices.contains(service)
                                                 ? Colors.transparent
                                                 : AppColor.primary)),
-                                    labelPadding: const EdgeInsets.symmetric(
-                                        horizontal: 7, vertical: 3),
+                                    labelPadding:
+                                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                                     backgroundColor: AppColor.white,
                                     selectedColor: AppColor.primary,
                                     showCheckmark: false,
                                     label: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                       child: Text(service,
                                           style: TextStyle(
-                                              color: obj.selectedServices
-                                                      .contains(service)
+                                              color: obj.selectedServices.contains(service)
                                                   ? AppColor.white
                                                   : Colors.black)),
                                     ),
-                                    selected:
-                                        obj.selectedServices.contains(service),
+                                    selected: obj.selectedServices.contains(service),
                                     onSelected: (isSelected) {
                                       obj.toggleSelection(service);
                                     },
@@ -304,16 +292,13 @@ class HandymanView extends GetView<BookingController> {
                             child: CText2(
                                 textAlign: TextAlign.start,
                                 fontsize: titleSmall,
-                                text: LocaleKeys
-                                    .house_cleaning_items_addditional_charges_aed
-                                    .tr),
+                                text: LocaleKeys.house_cleaning_items_addditional_charges_aed.tr),
                           ),
                           SizedBox(
                             height: height * 0.03,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -329,18 +314,14 @@ class HandymanView extends GetView<BookingController> {
                                 controller: controller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .house_cleaning_items_example_insutruction
-                                        .tr,
+                                    hintText:
+                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(
-                                            color: AppColor.secondary)),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)))),
+                                        borderRadius: BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
@@ -352,13 +333,13 @@ class HandymanView extends GetView<BookingController> {
   _onContinue() {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
-      showsnackbar("please select hours", true);
+      showSnackBar("please select hours", true);
     } else if (controller.cleaner.value == 0) {
-      showsnackbar("please select cleaners", true);
+      showSnackBar("please select cleaners", true);
     } else if (controller.selectedweekplan.value.isEmpty) {
-      showsnackbar("please select subscription", true);
+      showSnackBar("please select subscription", true);
     } else if (controller.selectedmaterial.isEmpty) {
-      showsnackbar("please select materials", true);
+      showSnackBar("please select materials", true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

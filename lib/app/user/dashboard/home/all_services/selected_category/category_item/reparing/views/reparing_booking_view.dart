@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/reparing/controllers/reparing_controller.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
@@ -41,8 +40,7 @@ class RepairingBookingView extends GetView<ReparingController> {
                   color: AppColor.greylight,
                 ))),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 30, bottom: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
               child: Obx(
                 () => CButton(
                   borderradius: widht * 0.075,
@@ -60,8 +58,7 @@ class RepairingBookingView extends GetView<ReparingController> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(
-                     icon:  Icon(Icons.adaptive.arrow_back),
-
+            icon: Icon(Icons.adaptive.arrow_back),
             onPressed: () {
               Get.back();
             },
@@ -84,8 +81,7 @@ class RepairingBookingView extends GetView<ReparingController> {
             child: SizedBox(
               width: widht,
               child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: widht * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -96,8 +92,7 @@ class RepairingBookingView extends GetView<ReparingController> {
                           // ),
 
                           CText(
-                            text: LocaleKeys
-                                .ac_reparing_items_what_kind_of_service.tr,
+                            text: LocaleKeys.ac_reparing_items_what_kind_of_service.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -108,106 +103,86 @@ class RepairingBookingView extends GetView<ReparingController> {
                             spacing: 10,
                             children: [
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan ==
-                                            'Ac Service'
+                                    color: controller.selectedweekplan == 'Ac Service'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .ac_reparing_items_ac_service.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Ac Service',
+                                    text: LocaleKeys.ac_reparing_items_ac_service.tr),
+                                selected: controller.selectedweekplan.value == 'Ac Service',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Ac Service');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan ==
-                                            'Ac Repair'
+                                    color: controller.selectedweekplan == 'Ac Repair'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .ac_reparing_items_ac_repaire.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Ac Repair',
+                                    text: LocaleKeys.ac_reparing_items_ac_repaire.tr),
+                                selected: controller.selectedweekplan.value == 'Ac Repair',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Ac Repair');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    vertical: 3, horizontal: 10),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan ==
-                                            'Ac Install'
+                                    color: controller.selectedweekplan == 'Ac Install'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .ac_reparing_items_ac_install.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Ac Install',
+                                    text: LocaleKeys.ac_reparing_items_ac_install.tr),
+                                selected: controller.selectedweekplan.value == 'Ac Install',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Ac Install');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan ==
-                                            'Ac Uninstall'
+                                    color: controller.selectedweekplan == 'Ac Uninstall'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .ac_reparing_items_ac_uninstall.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Ac Uninstall',
+                                    text: LocaleKeys.ac_reparing_items_ac_uninstall.tr),
+                                selected: controller.selectedweekplan.value == 'Ac Uninstall',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Ac Uninstall');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan ==
-                                            'Gas Refil'
+                                    color: controller.selectedweekplan == 'Gas Refil'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .ac_reparing_items_gas_refil.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Gas Refil',
+                                    text: LocaleKeys.ac_reparing_items_gas_refil.tr),
+                                selected: controller.selectedweekplan.value == 'Gas Refil',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Gas Refil');
                                 },
@@ -218,8 +193,7 @@ class RepairingBookingView extends GetView<ReparingController> {
                             height: height * 0.02,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -235,18 +209,14 @@ class RepairingBookingView extends GetView<ReparingController> {
                                 controller: bookingcontroller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .house_cleaning_items_example_insutruction
-                                        .tr,
+                                    hintText:
+                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(
-                                            color: AppColor.secondary)),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)))),
+                                        borderRadius: BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
@@ -258,11 +228,11 @@ class RepairingBookingView extends GetView<ReparingController> {
   _ongo() {
     if (bookingcontroller.hours.value == 0) {
       logger.d(bookingcontroller.hours.value);
-      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.selectedweekplan.value == "") {
-      showsnackbar(LocaleKeys.snack_bars_select_service.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_service.tr, true);
     } else if (bookingcontroller.instruction.value.text == "") {
-      showsnackbar(LocaleKeys.snack_bars_add_discription.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_add_discription.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

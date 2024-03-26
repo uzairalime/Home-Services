@@ -1,5 +1,6 @@
 {
   "required_field": "يتطلب حقلا",
+  "delete_warn": "هل أنت متأكد أنك تريد الحذف؟",
   "minimum_1_required": "الحد الأدنى 1 مطلوب",
   "exit_dialog": {
     "exit": "هل ترغب في الخروج؟",

@@ -47,8 +47,7 @@ class SpaView extends GetView<BookingController> {
                     color: AppColor.greylight,
                   ))),
               child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 30, bottom: 20, left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
                 child: CButton(
                     borderradius: widht * 0.075,
                     text:
@@ -72,8 +71,7 @@ class SpaView extends GetView<BookingController> {
           child: SizedBox(
             width: widht,
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: widht * 0.05, vertical: height * 0.025),
+              padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
               child: Obx(
                 () => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,8 +90,7 @@ class SpaView extends GetView<BookingController> {
                         width: widht,
                         height: height * 0.075,
                         decoration: BoxDecoration(
-                            color: const Color(0xffF5F5F5),
-                            borderRadius: BorderRadius.circular(8)),
+                            color: const Color(0xffF5F5F5), borderRadius: BorderRadius.circular(8)),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 12, right: 12),
                           child: Row(
@@ -114,8 +111,7 @@ class SpaView extends GetView<BookingController> {
                                   width: widht * 0.1,
                                   height: height * 0.055,
                                   decoration: const BoxDecoration(
-                                      color: Color(0xffF1E7FF),
-                                      shape: BoxShape.circle),
+                                      color: Color(0xffF1E7FF), shape: BoxShape.circle),
                                   child: const Center(
                                     child: Icon(
                                       Icons.remove,
@@ -144,8 +140,7 @@ class SpaView extends GetView<BookingController> {
                                   width: widht * 0.1,
                                   height: height * 0.055,
                                   decoration: const BoxDecoration(
-                                      color: Color(0xffF1E7FF),
-                                      shape: BoxShape.circle),
+                                      color: Color(0xffF1E7FF), shape: BoxShape.circle),
                                   child: const Center(
                                     child: Icon(
                                       Icons.add,
@@ -265,22 +260,18 @@ class SpaView extends GetView<BookingController> {
                             child: ChoiceChip(
                               shape: StadiumBorder(
                                   side: BorderSide(
-                                      color:
-                                          obj.selectedServices.contains(insect)
-                                              ? Colors.transparent
-                                              : AppColor.primary)),
-                              labelPadding: const EdgeInsets.symmetric(
-                                  horizontal: 7, vertical: 3),
+                                      color: obj.selectedServices.contains(insect)
+                                          ? Colors.transparent
+                                          : AppColor.primary)),
+                              labelPadding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                               backgroundColor: AppColor.white,
                               selectedColor: AppColor.primary,
                               showCheckmark: false,
                               label: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Text(insect,
                                     style: TextStyle(
-                                        color: obj.selectedServices
-                                                .contains(insect)
+                                        color: obj.selectedServices.contains(insect)
                                             ? AppColor.white
                                             : Colors.black)),
                               ),
@@ -300,15 +291,13 @@ class SpaView extends GetView<BookingController> {
                       child: CText2(
                           textAlign: TextAlign.start,
                           fontsize: titleSmall,
-                          text: LocaleKeys
-                              .house_cleaning_items_addditional_charges_aed.tr),
+                          text: LocaleKeys.house_cleaning_items_addditional_charges_aed.tr),
                     ),
                     SizedBox(
                       height: height * 0.03,
                     ),
                     CText(
-                      text: LocaleKeys
-                          .house_cleaning_items_special_insutuction.tr,
+                      text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                       textAlign: TextAlign.start,
                       fontsize: titlelarge,
                       fontWeight: bold4,
@@ -324,15 +313,13 @@ class SpaView extends GetView<BookingController> {
                           controller: controller.instruction,
                           maxLines: 10,
                           decoration: InputDecoration(
-                              hintText: LocaleKeys
-                                  .house_cleaning_items_example_insutruction.tr,
+                              hintText: LocaleKeys.house_cleaning_items_example_insutruction.tr,
                               hintStyle: TextStyle(fontSize: titleSmall),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.0),
-                                  borderSide: const BorderSide(
-                                      color: AppColor.secondary)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.0)))),
+                                  borderSide: const BorderSide(color: AppColor.secondary)),
+                              border:
+                                  OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)))),
                     )
                   ],
                 ),
@@ -347,13 +334,13 @@ class SpaView extends GetView<BookingController> {
   _onContinue() {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
-      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.cleaner.value == 0) {
-      showsnackbar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
     } else if (controller.selectedweekplan.value.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_subscription.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_subscription.tr, true);
     } else if (controller.selectedmaterial.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_materials.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_materials.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

@@ -32,16 +32,15 @@ class EmailLoginController extends GetxController {
       Map<String, dynamic> postData = {"mobile": "+971${phoneController.text}"};
 
       // print(jsonEncode(postData));
-      var response = await dio.post(
-          'https://homebrigadier.fly.dev/api/generate-otp/',
+      var response = await dio.post('https://homebrigadier.fly.dev/api/generate-otp/',
           data: jsonEncode(postData));
 
       return response.statusCode;
     } on SocketException catch (_) {
-      showsnackbar("Failed to Sign in: Check Internet Connection");
+      showSnackBar("Failed to Sign in: Check Internet Connection");
       //print('SocketException: $e');
     } catch (e) {
-      showsnackbar("Failed to Sign in: Try again");
+      showSnackBar("Failed to Sign in: Try again");
       // print('Error posting data: $e');
     } finally {
       isLoading.value = false;

@@ -53,9 +53,9 @@ class PinController extends GetxController {
         }
       }
     } on SocketException catch (_) {
-      showsnackbar("Failed to Sign in: Check Internet Connection", true);
+      showSnackBar("Failed to Sign in: Check Internet Connection", true);
     } catch (e) {
-      showsnackbar("Failed to Sign in: Try again", true);
+      showSnackBar("Failed to Sign in: Try again", true);
     } finally {
       isLoading.value = false;
       update();

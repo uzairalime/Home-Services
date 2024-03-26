@@ -143,23 +143,22 @@ class TailorController extends GetxController {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services')));
+          content: Text('Location services are disabled. Please enable the services')));
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Location permissions are denied')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Location permissions are denied')));
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location permissions are permanently denied, we cannot request permissions.')));
+          content:
+              Text('Location permissions are permanently denied, we cannot request permissions.')));
       return false;
     }
     return true;
@@ -184,8 +183,7 @@ class TailorController extends GetxController {
   }
 
   Future<void> _getAddressFromLatLng(Position position) async {
-    await placemarkFromCoordinates(
-            currentPosition!.latitude, currentPosition!.longitude)
+    await placemarkFromCoordinates(currentPosition!.latitude, currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
 
@@ -205,13 +203,12 @@ class TailorController extends GetxController {
     update();
     // rate pr hours
     String? stringValue = servicemodel!.rate;
-    double doubleValue = double.parse(stringValue!);
+    double doubleValue = double.parse(stringValue);
     int rate = doubleValue.toInt();
     final hour = hours.value;
     final cleaers = pieces.value;
     final material = selectedmaterial.value;
-    final bill =
-        ((rate * hour) * cleaers) + (material == "Yes" ? (hour * 4) : 0);
+    final bill = ((rate * hour) * cleaers) + (material == "Yes" ? (hour * 4) : 0);
 
     total.value = bill;
   }
@@ -223,7 +220,7 @@ class TailorController extends GetxController {
       final data = response.data;
 
       DialogHelper.hideLoading();
-      showsnackbar("successfully booking");
+      showSnackBar("successfully booking");
       responseBookingModel = ResponseBookingModel.fromJson(data);
       logger.d("responsemodel ====> ${responseBookingModel!}");
 

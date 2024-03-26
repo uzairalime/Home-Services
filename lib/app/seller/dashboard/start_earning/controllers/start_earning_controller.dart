@@ -258,13 +258,13 @@ class StartEarningController extends GetxController {
           files = RespFiles.fromJson(value.data);
           profileFileId = files.id!;
           print("profileFileId $profileFileId");
-          showsnackbar("Image Upload Successfully");
+          showSnackBar("Image Upload Successfully");
         });
       });
     } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection");
+      showSnackBar("failed to upload: check internet connection");
     } catch (e) {
-      showsnackbar("failed to upload: file already exist");
+      showSnackBar("failed to upload: file already exist");
     } finally {
       profileUploading.value = false;
       update();
@@ -289,13 +289,13 @@ class StartEarningController extends GetxController {
           files = RespFiles.fromJson(value.data);
           workingFileId = files.id!;
           print("workingFileId $workingFileId");
-          showsnackbar("Image Upload Successfully");
+          showSnackBar("Image Upload Successfully");
         });
       });
     } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection");
+      showSnackBar("failed to upload: check internet connection");
     } catch (e) {
-      showsnackbar("failed to upload: file already exist");
+      showSnackBar("failed to upload: file already exist");
     } finally {
       workingUploading.value = false;
       update();
@@ -320,13 +320,13 @@ class StartEarningController extends GetxController {
           files = RespFiles.fromJson(value.data);
           frontFileId = files.id!;
           print("frontFileId $frontFileId");
-          showsnackbar("Image Upload Successfully");
+          showSnackBar("Image Upload Successfully");
         });
       });
     } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection");
+      showSnackBar("failed to upload: check internet connection");
     } catch (e) {
-      showsnackbar("failed to upload: file already exist");
+      showSnackBar("failed to upload: file already exist");
     } finally {
       frontUploading.value = false;
       update();
@@ -351,13 +351,13 @@ class StartEarningController extends GetxController {
           files = RespFiles.fromJson(value.data);
           backFileId = files.id!;
           print("backFileId $backFileId");
-          showsnackbar("Image Upload Successfully");
+          showSnackBar("Image Upload Successfully");
         });
       });
     } on SocketException catch (_) {
-      showsnackbar("failed to upload: check internet connection");
+      showSnackBar("failed to upload: check internet connection");
     } catch (e) {
-      showsnackbar("failed to upload: file already exist");
+      showSnackBar("failed to upload: file already exist");
     } finally {
       backUploading.value = false;
       update();

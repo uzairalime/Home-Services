@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/plumbing/controllers/plumbing_controller.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
@@ -46,8 +45,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                   color: AppColor.greylight,
                 ))),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 30, bottom: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
               child: Obx(
                 () => CButton(
                   borderradius: widht * 0.075,
@@ -65,8 +63,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(
-                    icon:  Icon(Icons.adaptive.arrow_back),
-
+            icon: Icon(Icons.adaptive.arrow_back),
             onPressed: () {
               Get.back();
             },
@@ -89,14 +86,12 @@ class PlumbingBookingView extends GetView<PlumbingController> {
             child: SizedBox(
               width: widht,
               child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: widht * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CText(
-                            text: LocaleKeys
-                                .plumbing_repairing_item_how_many_hours.tr,
+                            text: LocaleKeys.plumbing_repairing_item_how_many_hours.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -112,14 +107,12 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                   color: const Color(0xffF5F5F5),
                                   borderRadius: BorderRadius.circular(8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 12, right: 12),
+                                padding: const EdgeInsets.only(left: 12, right: 12),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     CText(
-                                      text: LocaleKeys
-                                          .plumbing_repairing_item_hours.tr,
+                                      text: LocaleKeys.plumbing_repairing_item_hours.tr,
                                       fontWeight: bold6,
                                       fontsize: 16,
                                     ),
@@ -127,8 +120,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                     InkWell(
                                       onTap: () {
                                         bookingcontroller.hours_decrese();
-                                        Get.find<BookingController>()
-                                            .claculateBill();
+                                        Get.find<BookingController>().claculateBill();
                                         // bookingcontroller.claculateBill();
                                         print(
                                             "=======================================${bookingcontroller.total}");
@@ -140,8 +132,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                         height: height * 0.055,
                                         // ignore: prefer_const_constructors
                                         decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
                                             Icons.remove,
@@ -155,8 +146,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                       width: widht * 0.04,
                                     ),
                                     CText(
-                                      text: bookingcontroller.hours.value
-                                          .toString(),
+                                      text: bookingcontroller.hours.value.toString(),
                                       fontWeight: FontWeight.bold,
                                     ),
                                     SizedBox(
@@ -171,8 +161,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
                                             Icons.add,
@@ -191,9 +180,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                             height: height * 0.01,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .plumbing_repairing_item_what_kind_of_service
-                                .tr,
+                            text: LocaleKeys.plumbing_repairing_item_what_kind_of_service.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -201,171 +188,137 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                             spacing: 10,
                             children: [
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan.value ==
-                                            'Basin & Sink'
+                                    color: controller.selectedweekplan.value == 'Basin & Sink'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .plumbing_repairing_item_basin_sink.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Basin & Sink',
+                                    text: LocaleKeys.plumbing_repairing_item_basin_sink.tr),
+                                selected: controller.selectedweekplan.value == 'Basin & Sink',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Basin & Sink');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan.value ==
-                                            'Grouting'
+                                    color: controller.selectedweekplan.value == 'Grouting'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .plumbing_repairing_item_grouting.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Grouting',
+                                    text: LocaleKeys.plumbing_repairing_item_grouting.tr),
+                                selected: controller.selectedweekplan.value == 'Grouting',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Grouting');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    vertical: 3, horizontal: 10),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan.value ==
-                                            'Bath Fitting'
+                                    color: controller.selectedweekplan.value == 'Bath Fitting'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .plumbing_repairing_item_bath_fiting
-                                        .tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Bath Fitting',
+                                    text: LocaleKeys.plumbing_repairing_item_bath_fiting.tr),
+                                selected: controller.selectedweekplan.value == 'Bath Fitting',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Bath Fitting');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan.value ==
-                                            'Motors'
+                                    color: controller.selectedweekplan.value == 'Motors'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .plumbing_repairing_item_motors.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Motors',
+                                    text: LocaleKeys.plumbing_repairing_item_motors.tr),
+                                selected: controller.selectedweekplan.value == 'Motors',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Motors');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan.value ==
-                                            'Toilets'
+                                    color: controller.selectedweekplan.value == 'Toilets'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .plumbing_repairing_item_toilets.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Toilets',
+                                    text: LocaleKeys.plumbing_repairing_item_toilets.tr),
+                                selected: controller.selectedweekplan.value == 'Toilets',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Toilets');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan.value ==
-                                            'Tap & Mixer'
+                                    color: controller.selectedweekplan.value == 'Tap & Mixer'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .plumbing_repairing_item_tap_mixer.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Tap & Mixer',
+                                    text: LocaleKeys.plumbing_repairing_item_tap_mixer.tr),
+                                selected: controller.selectedweekplan.value == 'Tap & Mixer',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Tap & Mixer');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan.value ==
-                                            'Draining Pipes'
+                                    color: controller.selectedweekplan.value == 'Draining Pipes'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .plumbing_repairing_item_draining_pipes
-                                        .tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Draining Pipes',
+                                    text: LocaleKeys.plumbing_repairing_item_draining_pipes.tr),
+                                selected: controller.selectedweekplan.value == 'Draining Pipes',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Draining Pipes');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan.value ==
-                                            'Water Tank'
+                                    color: controller.selectedweekplan.value == 'Water Tank'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .plumbing_repairing_item_water_tank.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Water Tank',
+                                    text: LocaleKeys.plumbing_repairing_item_water_tank.tr),
+                                selected: controller.selectedweekplan.value == 'Water Tank',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Water Tank');
                                 },
@@ -376,8 +329,7 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                             height: height * 0.03,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -393,18 +345,14 @@ class PlumbingBookingView extends GetView<PlumbingController> {
                                 controller: bookingcontroller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .house_cleaning_items_example_insutruction
-                                        .tr,
+                                    hintText:
+                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(
-                                            color: AppColor.secondary)),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)))),
+                                        borderRadius: BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
@@ -416,11 +364,11 @@ class PlumbingBookingView extends GetView<PlumbingController> {
   _ongo() {
     if (bookingcontroller.hours.value == 0) {
       logger.d(bookingcontroller.hours.value);
-      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.selectedweekplan.value == "") {
-      showsnackbar(LocaleKeys.snack_bars_select_service.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_service.tr, true);
     } else if (bookingcontroller.instruction.value.text == "") {
-      showsnackbar(LocaleKeys.snack_bars_add_discription.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_add_discription.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

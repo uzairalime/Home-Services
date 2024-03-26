@@ -45,8 +45,7 @@ class WomenSalonView extends GetView<BookingController> {
                       color: AppColor.greylight,
                     ))),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 30, bottom: 20, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
                   child: CButton(
                       borderradius: width * 0.075,
                       text:
@@ -70,8 +69,7 @@ class WomenSalonView extends GetView<BookingController> {
             child: SizedBox(
               width: width,
               child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -92,37 +90,29 @@ class WomenSalonView extends GetView<BookingController> {
                           SizedBox(
                             width: double.maxFinite,
                             child: Wrap(
-                              children:
-                                  womencontoller.insectlabel.map((insect) {
+                              children: womencontoller.insectlabel.map((insect) {
                                 return Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  padding: const EdgeInsets.symmetric(horizontal: 4),
                                   child: ChoiceChip(
                                     shape: StadiumBorder(
                                         side: BorderSide(
-                                            color: womencontoller
-                                                    .selectedInsects
-                                                    .contains(insect)
+                                            color: womencontoller.selectedInsects.contains(insect)
                                                 ? Colors.transparent
                                                 : AppColor.primary)),
-                                    labelPadding: const EdgeInsets.symmetric(
-                                        horizontal: 7, vertical: 3),
+                                    labelPadding:
+                                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                                     backgroundColor: AppColor.white,
                                     selectedColor: AppColor.primary,
                                     showCheckmark: false,
                                     label: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                       child: Text(insect,
                                           style: TextStyle(
-                                              color: womencontoller
-                                                      .selectedInsects
-                                                      .contains(insect)
+                                              color: womencontoller.selectedInsects.contains(insect)
                                                   ? AppColor.white
                                                   : Colors.black)),
                                     ),
-                                    selected: womencontoller.selectedInsects
-                                        .contains(insect),
+                                    selected: womencontoller.selectedInsects.contains(insect),
                                     onSelected: (isSelected) {
                                       womencontoller.toggleSelection(insect);
                                       womencontoller.update();
@@ -136,16 +126,13 @@ class WomenSalonView extends GetView<BookingController> {
                             child: CText(
                                 textAlign: TextAlign.start,
                                 fontsize: titleSmall,
-                                text: LocaleKeys
-                                    .house_cleaning_items_addditional_charges_aed
-                                    .tr),
+                                text: LocaleKeys.house_cleaning_items_addditional_charges_aed.tr),
                           ),
                           SizedBox(
                             height: height * 0.01,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -161,18 +148,14 @@ class WomenSalonView extends GetView<BookingController> {
                                 controller: bookingcontroller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .house_cleaning_items_example_insutruction
-                                        .tr,
+                                    hintText:
+                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(
-                                            color: AppColor.secondary)),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)))),
+                                        borderRadius: BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
@@ -184,11 +167,11 @@ class WomenSalonView extends GetView<BookingController> {
   _onContinue(WomenSalonController controller) {
     if (bookingcontroller.hours.value == 0) {
       logger.d(bookingcontroller.hours.value);
-      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (bookingcontroller.cleaner.value == 0) {
-      showsnackbar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
     } else if (controller.selectedInsects.value.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_service.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_service.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

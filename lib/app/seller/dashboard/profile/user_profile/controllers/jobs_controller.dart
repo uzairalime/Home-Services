@@ -27,10 +27,8 @@ class MyJobsController extends GetxController {
   }
 
   void _scrollListener() {
-    isAtStart.value = scrollController.position.pixels ==
-        scrollController.position.minScrollExtent;
-    isAtEnd.value = scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent;
+    isAtStart.value = scrollController.position.pixels == scrollController.position.minScrollExtent;
+    isAtEnd.value = scrollController.position.pixels == scrollController.position.maxScrollExtent;
   }
 
   void scrollBack() {
@@ -85,12 +83,9 @@ class MyJobsController extends GetxController {
       if (response.statusCode == 200) {
         // Parse the response data into a list of Booking objects
         List<dynamic> jsonData = response.data;
-        List<MyServicesBookingModel> bookings = jsonData
-            .map((data) => MyServicesBookingModel.fromJson(data))
-            .toList();
-        return bookings
-            .where((booking) => booking.status == 'completed')
-            .toList();
+        List<MyServicesBookingModel> bookings =
+            jsonData.map((data) => MyServicesBookingModel.fromJson(data)).toList();
+        return bookings.where((booking) => booking.status == 'completed').toList();
       } else {
         throw Exception('Failed to load data');
       }
@@ -106,12 +101,9 @@ class MyJobsController extends GetxController {
       var response = await dio.get("https://homebrigadier.fly.dev/api/jobs/");
       if (response.statusCode == 200) {
         List<dynamic> jsonData = response.data;
-        List<MyServicesBookingModel> bookings = jsonData
-            .map((data) => MyServicesBookingModel.fromJson(data))
-            .toList();
-        return bookings
-            .where((booking) => booking.status == selectedStatus.toLowerCase())
-            .toList();
+        List<MyServicesBookingModel> bookings =
+            jsonData.map((data) => MyServicesBookingModel.fromJson(data)).toList();
+        return bookings.where((booking) => booking.status == selectedStatus.toLowerCase()).toList();
       } else {
         throw Exception('Failed to load data');
       }
@@ -126,26 +118,24 @@ class MyJobsController extends GetxController {
 
     print(status);
     try {
-      var response = await dio.patch(
-          "https://homebrigadier.fly.dev/api/jobs/$jobId/",
+      var response = await dio.patch("https://homebrigadier.fly.dev/api/jobs/$jobId/",
           data: {"status": status.toString().toLowerCase(), "cancel": true});
       if (response.statusCode == 200) {
         await fetchFilteredJobs();
-        showsnackbar("Booking $status");
+        showSnackBar("Booking $status");
       } else {
-        showsnackbar("unable to change status", true);
+        showSnackBar("unable to change status", true);
         throw Exception('Failed to load data');
       }
     } catch (e) {
-      showsnackbar("Something went wrong", true);
+      showSnackBar("Something went wrong", true);
 
       throw Exception('Error fetching data: $e');
     }
   }
 }
 
-List<MyServicesBookingModel> sortBookingsByStartAt(
-    List<MyServicesBookingModel> bookings) {
+List<MyServicesBookingModel> sortBookingsByStartAt(List<MyServicesBookingModel> bookings) {
   bookings.sort((a, b) {
     // Put large IDs at the top
     if (a.id > b.id) {

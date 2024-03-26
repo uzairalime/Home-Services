@@ -8,7 +8,6 @@ import '../../../../consts/media_query.dart';
 import '../../../../generated/locales.g.dart';
 import '../../../../model/user_services_models/my_booking_booking_model.dart';
 import '../../../../widget/cText.dart';
-import '../../../../widget/shimmer.dart';
 
 class CompletedView extends GetView<MyJobsController> {
   const CompletedView({Key? key}) : super(key: key);

@@ -66,8 +66,7 @@ class LocationView extends GetView<BookingController> {
                         color: AppColor.greylight,
                       ))),
                   child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 30, bottom: 20, left: 20, right: 20),
+                      padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
                       child: CButton(
                         fontsize: 16,
                         text:
@@ -77,19 +76,14 @@ class LocationView extends GetView<BookingController> {
                         fontWeight: bold6,
                         ontab: () {
                           if (obj.addressController.text.isEmpty) {
-                            showsnackbar(
-                                LocaleKeys.snack_bars_add_address.tr, true);
+                            showSnackBar(LocaleKeys.snack_bars_add_address.tr, true);
                           } else if (obj.flat.text.isEmpty) {
-                            showsnackbar(
-                                LocaleKeys.snack_bar_enter_flat_number.tr,
-                                true);
+                            showSnackBar(LocaleKeys.snack_bar_enter_flat_number.tr, true);
                           } else {
                             if (StaticData.refreshToken.isNotEmpty) {
                               _onButtonPress(context, obj.addressController);
                             } else {
-                              showsnackbar(
-                                  LocaleKeys.snack_bars_login_then_booking.tr,
-                                  true);
+                              showSnackBar(LocaleKeys.snack_bars_login_then_booking.tr, true);
                               Get.to(() => const EmailLoginView(
                                     role: "buyer",
                                   ));
@@ -105,8 +99,7 @@ class LocationView extends GetView<BookingController> {
                 ),
               ),
               body: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: widht * 0.05, vertical: height * 0.025),
+                padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                 child: SizedBox(
                   width: widht,
                   height: height,
@@ -146,8 +139,7 @@ class LocationView extends GetView<BookingController> {
                         height: height * 0.01,
                       ),
                       CText(
-                        text:
-                            LocaleKeys.location_view_items_location_details.tr,
+                        text: LocaleKeys.location_view_items_location_details.tr,
                         fontWeight: FontWeight.w600,
                         fontsize: widht * 0.05,
                       ),
@@ -195,8 +187,7 @@ class LocationView extends GetView<BookingController> {
                             isDense: true,
                             contentPadding: const EdgeInsets.all(12),
                             hintText: LocaleKeys.enteraddress.tr,
-                            hintStyle: TextStyle(
-                                color: AppColor.grey, fontSize: widht * 0.04),
+                            hintStyle: TextStyle(color: AppColor.grey, fontSize: widht * 0.04),
                             filled: true,
                             fillColor: const Color(0xffF5F5F5),
                             border: OutlineInputBorder(
@@ -252,8 +243,7 @@ class LocationView extends GetView<BookingController> {
       itemBuilder: (context, index) {
         return LocationListTile(
           press: () async {
-            obj.addressController.text =
-                obj.placeprediction[index].description!;
+            obj.addressController.text = obj.placeprediction[index].description!;
 
             obj.placeprediction.clear();
             obj.update();

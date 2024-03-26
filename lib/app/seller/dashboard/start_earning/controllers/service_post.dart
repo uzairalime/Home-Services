@@ -69,12 +69,12 @@ class PostService {
         });
       }
     } on SocketException catch (_) {
-      showsnackbar("Error: Check Internet Connection", true);
+      showSnackBar("Error: Check Internet Connection", true);
 
       // print("SocketException: $e");
     } catch (e) {
       log(e.toString());
-      showsnackbar("Failed to Upload: Try again", true);
+      showSnackBar("Failed to Upload: Try again", true);
 
       //print("Error: $e");
     }

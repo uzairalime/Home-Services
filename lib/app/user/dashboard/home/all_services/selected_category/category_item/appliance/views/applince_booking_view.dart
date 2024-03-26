@@ -41,7 +41,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
               padding: const EdgeInsets.all(20),
               child: Obx(
                 () => CButton(
-                     borderradius: width * 0.075,
+                  borderradius: width * 0.075,
                   btnwidth: mediaQueryWidth(context) * 0.9,
                   text:
                       "${LocaleKeys.painting_items_continue_button.tr} AED ${BookingController.to.total.value}",
@@ -49,7 +49,6 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                   ontab: () {
                     atleastone();
                   },
-                 
                 ),
               )),
         ),
@@ -57,12 +56,11 @@ class ApplianceBookingView extends GetView<ApplianceController> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
-          icon:  Icon(Icons.adaptive.arrow_back),
+          icon: Icon(Icons.adaptive.arrow_back),
           onPressed: () {
             Get.back();
           },
         ),
-        
         title: Text(
           LocaleKeys.applience_items_applience_service.tr,
           style: TextStyle(
@@ -114,7 +112,6 @@ class ApplianceBookingView extends GetView<ApplianceController> {
                                   activeColor: AppColor.primary,
                                   onChanged: (value) {
                                     log(value.toString());
-                                   
                                   },
                                 ),
                               ),
@@ -401,7 +398,7 @@ class ApplianceBookingView extends GetView<ApplianceController> {
         controller.iscond_.value == false &&
         controller.isgrilli_.value == false &&
         controller.iswasher.value == false) {
-      showsnackbar("Please Select at least one ",true);
+      showSnackBar("Please Select at least one ", true);
     } else {
       Get.to(() => BookingDetailsView(
             model: model,

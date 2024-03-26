@@ -47,8 +47,7 @@ class TailorView extends GetView<TailorController> {
                     color: AppColor.greylight,
                   ))),
               child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 30, bottom: 20, left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
                 child: CButton(
                     borderradius: widht * 0.075,
                     text:
@@ -67,8 +66,7 @@ class TailorView extends GetView<TailorController> {
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.only(
-                    top: 12, left: 12, right: 18, bottom: 12),
+                padding: const EdgeInsets.only(top: 12, left: 12, right: 18, bottom: 12),
                 child: SvgPicture.asset(
                   "assets/icons/ic_more_outlined.svg",
                   fit: BoxFit.scaleDown,
@@ -88,15 +86,14 @@ class TailorView extends GetView<TailorController> {
               child: SizedBox(
                 width: widht,
                 child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: widht * 0.05, vertical: height * 0.025),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                     child: Obx(
                       () => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_how_many_cleaner.tr,
+                            text: LocaleKeys.house_cleaning_items_how_many_cleaner.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -112,8 +109,7 @@ class TailorView extends GetView<TailorController> {
                                   color: const Color(0xffF5F5F5),
                                   borderRadius: BorderRadius.circular(8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 12, right: 12),
+                                padding: const EdgeInsets.only(left: 12, right: 12),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -131,8 +127,7 @@ class TailorView extends GetView<TailorController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
                                             Icons.remove,
@@ -160,8 +155,7 @@ class TailorView extends GetView<TailorController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
                                             Icons.add,
@@ -181,8 +175,7 @@ class TailorView extends GetView<TailorController> {
                             height: height * 0.01,
                           ),
                           CText(
-                            text:
-                                LocaleKeys.tailor_items_what_kind_of_service.tr,
+                            text: LocaleKeys.tailor_items_what_kind_of_service.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -193,22 +186,18 @@ class TailorView extends GetView<TailorController> {
                           Wrap(
                             children: [
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan ==
-                                            'New Stitching'
+                                    color: controller.selectedweekplan == 'New Stitching'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text: LocaleKeys
-                                        .tailor_items_new_stitching.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'New Stitching',
+                                    text: LocaleKeys.tailor_items_new_stitching.tr),
+                                selected: controller.selectedweekplan.value == 'New Stitching',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('New Stitching');
                                 },
@@ -217,22 +206,18 @@ class TailorView extends GetView<TailorController> {
                                 width: widht * 0.02,
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color: controller.selectedweekplan ==
-                                            'Alteration'
+                                    color: controller.selectedweekplan == 'Alteration'
                                         ? AppColor.white
                                         : AppColor.black,
-                                    text:
-                                        LocaleKeys.tailor_items_alteration.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Alteration',
+                                    text: LocaleKeys.tailor_items_alteration.tr),
+                                selected: controller.selectedweekplan.value == 'Alteration',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Alteration');
                                 },
@@ -241,21 +226,18 @@ class TailorView extends GetView<TailorController> {
                                 width: widht * 0.02,
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    vertical: 3, horizontal: 10),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color:
-                                        controller.selectedweekplan == 'Others'
-                                            ? AppColor.white
-                                            : AppColor.black,
+                                    color: controller.selectedweekplan == 'Others'
+                                        ? AppColor.white
+                                        : AppColor.black,
                                     text: LocaleKeys.tailor_items_others.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Others',
+                                selected: controller.selectedweekplan.value == 'Others',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Others');
                                 },
@@ -267,8 +249,7 @@ class TailorView extends GetView<TailorController> {
                             height: height * 0.03,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -284,18 +265,14 @@ class TailorView extends GetView<TailorController> {
                                 controller: controller.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .house_cleaning_items_example_insutruction
-                                        .tr,
+                                    hintText:
+                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(
-                                            color: AppColor.secondary)),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)))),
+                                        borderRadius: BorderRadius.circular(12.0)))),
                           )
                         ],
                       ),
@@ -309,11 +286,11 @@ class TailorView extends GetView<TailorController> {
   onContinue() {
     if (controller.hours.value == 0) {
       logger.d(controller.hours.value);
-      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.pieces.value == 0) {
-      showsnackbar(LocaleKeys.snack_bars_select_piecec.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_piecec.tr, true);
     } else if (controller.selectedweekplan.value.isEmpty) {
-      showsnackbar(LocaleKeys.snack_bars_select_subscription.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_subscription.tr, true);
     } else {
       // print()
       // print(

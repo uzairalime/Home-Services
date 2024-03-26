@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/widget/cText.dart';
@@ -46,8 +45,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                   color: AppColor.greylight,
                 ))),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 30, bottom: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
               child: Obx(
                 () => CButton(
                   borderradius: widht * 0.075,
@@ -91,8 +89,7 @@ class PaintingBookingView extends GetView<PaintingController> {
             child: SizedBox(
               width: widht,
               child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: widht * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -113,8 +110,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                   color: const Color(0xffF5F5F5),
                                   borderRadius: BorderRadius.circular(8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 12, right: 12),
+                                padding: const EdgeInsets.only(left: 12, right: 12),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -133,8 +129,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
                                             Icons.remove,
@@ -148,8 +143,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                       width: widht * 0.04,
                                     ),
                                     CText(
-                                      text: bookingcontrolle.hours.value
-                                          .toString(),
+                                      text: bookingcontrolle.hours.value.toString(),
                                       fontWeight: FontWeight.bold,
                                     ),
                                     SizedBox(
@@ -164,8 +158,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                                         width: widht * 0.1,
                                         height: height * 0.055,
                                         decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF),
-                                            shape: BoxShape.circle),
+                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
                                         child: Center(
                                           child: Icon(
                                             Icons.add,
@@ -184,8 +177,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                             height: height * 0.01,
                           ),
                           CText(
-                            text:
-                                LocaleKeys.painting_items_size_of_your_home.tr,
+                            text: LocaleKeys.painting_items_size_of_your_home.tr,
                             fontsize: titlelarge,
                             fontWeight: bold4,
                           ),
@@ -193,117 +185,103 @@ class PaintingBookingView extends GetView<PaintingController> {
                             spacing: 10,
                             children: [
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color:
-                                        controller.selectedweekplan == 'Studio'
-                                            ? AppColor.white
-                                            : AppColor.black,
+                                    color: controller.selectedweekplan == 'Studio'
+                                        ? AppColor.white
+                                        : AppColor.black,
                                     text: LocaleKeys.painting_items_studio.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Studio',
+                                selected: controller.selectedweekplan.value == 'Studio',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Studio');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
                                     color: controller.selectedweekplan == '1 BR'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_1_br.tr),
-                                selected:
-                                    controller.selectedweekplan.value == '1 BR',
+                                selected: controller.selectedweekplan.value == '1 BR',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('1 BR');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    vertical: 3, horizontal: 10),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
                                     color: controller.selectedweekplan == '2 BR'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_2_br.tr),
-                                selected:
-                                    controller.selectedweekplan.value == '2 BR',
+                                selected: controller.selectedweekplan.value == '2 BR',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('2 BR');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
                                     color: controller.selectedweekplan == '3 BR'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_3_br.tr),
-                                selected:
-                                    controller.selectedweekplan.value == '3 BR',
+                                selected: controller.selectedweekplan.value == '3 BR',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('3 BR');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
                                     color: controller.selectedweekplan == '4 BR'
                                         ? AppColor.white
                                         : AppColor.black,
                                     text: LocaleKeys.painting_items_4_br.tr),
-                                selected:
-                                    controller.selectedweekplan.value == '4 BR',
+                                selected: controller.selectedweekplan.value == '4 BR',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('4 BR');
                                 },
                               ),
                               ChoiceChip(
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
+                                labelPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                                 backgroundColor: AppColor.white,
                                 selectedColor: AppColor.secondary,
                                 shape: const StadiumBorder(
-                                    side:
-                                        BorderSide(color: AppColor.secondary)),
+                                    side: BorderSide(color: AppColor.secondary)),
                                 label: CText(
-                                    color:
-                                        controller.selectedweekplan == 'Villa'
-                                            ? AppColor.white
-                                            : AppColor.black,
+                                    color: controller.selectedweekplan == 'Villa'
+                                        ? AppColor.white
+                                        : AppColor.black,
                                     text: LocaleKeys.painting_items_villa.tr),
-                                selected: controller.selectedweekplan.value ==
-                                    'Villa',
+                                selected: controller.selectedweekplan.value == 'Villa',
                                 onSelected: (bool selected) {
                                   controller.selectWeekplan('Villa');
                                 },
@@ -314,8 +292,7 @@ class PaintingBookingView extends GetView<PaintingController> {
                             height: height * 0.03,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .house_cleaning_items_special_insutuction.tr,
+                            text: LocaleKeys.house_cleaning_items_special_insutuction.tr,
                             textAlign: TextAlign.start,
                             fontsize: titlelarge,
                             fontWeight: bold4,
@@ -331,18 +308,14 @@ class PaintingBookingView extends GetView<PaintingController> {
                                 controller: bookingcontrolle.instruction,
                                 maxLines: 10,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .house_cleaning_items_example_insutruction
-                                        .tr,
+                                    hintText:
+                                        LocaleKeys.house_cleaning_items_example_insutruction.tr,
                                     hintStyle: TextStyle(fontSize: titleSmall),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        borderSide: const BorderSide(
-                                            color: AppColor.secondary)),
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderSide: const BorderSide(color: AppColor.secondary)),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)))),
+                                        borderRadius: BorderRadius.circular(12.0)))),
                           )
                         ],
                       ))),
@@ -354,11 +327,11 @@ class PaintingBookingView extends GetView<PaintingController> {
   _ongo() {
     if (bookingcontrolle.hours.value == 0) {
       logger.d(bookingcontrolle.hours.value);
-      showsnackbar(LocaleKeys.snack_bars_select_hours.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (bookingcontrolle.instruction.value.text == "") {
-      showsnackbar(LocaleKeys.snack_bars_add_discription.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_add_discription.tr, true);
     } else if (controller.selectedweekplan.value == "") {
-      showsnackbar(LocaleKeys.snack_bars_select_house_size.tr, true);
+      showSnackBar(LocaleKeys.snack_bars_select_house_size.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
             model: BookingController.to.servicemodel,

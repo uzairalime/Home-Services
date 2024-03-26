@@ -93,7 +93,7 @@ class PaymentView extends GetView<BookingController> {
   _proceedPayemtn(BuildContext context) {
     if (controller.selectedRadio.value == 0) {
     } else {
-      showsnackbar("this time only stripe available");
+      showSnackBar("this time only stripe available");
     }
   }
 }

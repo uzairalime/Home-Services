@@ -45,7 +45,7 @@ class PaymetController extends GetxController {
       displayPaymentSheet(context);
     } catch (err) {
       logger.d("error========= $err");
-      showsnackbar(LocaleKeys.location_screen_something_went_wrong.tr, true);
+      showSnackBar(LocaleKeys.location_screen_something_went_wrong.tr, true);
     }
   }
 
@@ -78,7 +78,7 @@ class PaymetController extends GetxController {
     try {
       await Stripe.instance.presentPaymentSheet();
 
-      showsnackbar(LocaleKeys.snack_bar_successfully_payment.tr);
+      showSnackBar(LocaleKeys.snack_bar_successfully_payment.tr);
 
       // showDialog(
       //     context: context,
