@@ -10,6 +10,7 @@ import '../../../../../../model/user_services_models/my_booking_booking_model.da
 class MyJobsController extends GetxController {
   static MyJobsController get to => Get.find<MyJobsController>();
   late TabController tabController;
+  RxBool isFilter = true.obs;
 
   ///////
   deo.Dio dio = deo.Dio();
@@ -67,7 +68,11 @@ class MyJobsController extends GetxController {
         List<dynamic> jsonData = response.data;
         List<MyServicesBookingModel> bookings =
             jsonData.map((data) => MyServicesBookingModel.fromJson(data)).toList();
-        return bookings.where((booking) => booking.status == selectedStatus.toLowerCase()).toList();
+        return isFilter.value == true
+            ? bookings.where((booking) {
+          return booking.status == selectedStatus.toLowerCase();
+        }).toList()
+            : bookings;
       } else {
         throw Exception('Failed to load data');
       }
