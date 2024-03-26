@@ -434,5 +434,12 @@
   "completed": "Completed",
   "upcomming": "Upcoming",
   "no_jobs_found": "No jobs found",
-  "flat_number": "Flat #"
+  "flat_number": "Flat #",
+  "upcommming": {
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "started": "Started",
+    "canceled": "Cancled",
+    "rejected": "Rejected"
+  }
 }
