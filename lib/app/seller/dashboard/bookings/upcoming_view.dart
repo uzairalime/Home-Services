@@ -18,6 +18,8 @@ class UpcomingView extends GetView<MyJobsController> {
   Widget build(BuildContext context) {
     Get.put(MyJobsController());
     final titleMedium = Theme.of(context).textTheme.titleMedium!.fontSize;
+    final labelLarge = Theme.of(context).textTheme.labelLarge!.fontSize;
+    final labelMedium = Theme.of(context).textTheme.labelMedium!.fontSize;
 
     return GetBuilder(
         init: Get.put(MyJobsController()),
@@ -26,39 +28,47 @@ class UpcomingView extends GetView<MyJobsController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                  height: 40,
-                  width: mediaQueryWidth(context),
-                  child: Row(
-                    children: controller.status.map((status) {
-                      return Expanded(
-                        child: ChoiceChip(
-                          shape: StadiumBorder(
-                            side: BorderSide(
-                              color: controller.selectedStatus.contains(status)
-                                  ? Colors.transparent
-                                  : AppColor.primary,
+                height: 30,
+                width: mediaQueryWidth(context),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ListView(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        children: controller.status.map((status) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: ChoiceChip(
+                              // shape: StadiumBorder(
+                              //   side: BorderSide(
+                              //     color: controller.selectedStatus.contains(status)
+                              //         ? Colors.transparent
+                              //         : AppColor.primary,
+                              //   ),
+                              // ),
+                              // labelPadding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                              backgroundColor: AppColor.white,
+                              selectedColor: AppColor.greylight,
+                              showCheckmark: false,
+                              label: CText(
+                                text: status,
+                                fontsize: controller.selectedStatus.contains(status)
+                                    ? labelLarge
+                                    : labelMedium,
+                              ),
+                              selected: controller.selectedStatus.value.contains(status),
+                              onSelected: (isSelected) {
+                                controller.toggleSelection(status);
+                              },
                             ),
-                          ),
-                          // labelPadding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-                          backgroundColor: AppColor.white,
-                          selectedColor: AppColor.primary,
-                          showCheckmark: false,
-                          label: Text(
-                            status,
-                            style: TextStyle(
-                              color: controller.selectedStatus.contains(status)
-                                  ? AppColor.white
-                                  : Colors.black,
-                            ),
-                          ),
-                          selected: controller.selectedStatus.value.contains(status),
-                          onSelected: (isSelected) {
-                            controller.toggleSelection(status);
-                          },
-                        ),
-                      );
-                    }).toList(),
-                  )).paddingSymmetric(vertical: 5),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ).paddingSymmetric(vertical: 7),
               Expanded(
                 child: StreamBuilder(
                   stream: controller.fetchFilteredJobs().asStream(),

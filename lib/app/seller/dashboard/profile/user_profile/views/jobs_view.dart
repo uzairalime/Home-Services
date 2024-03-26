@@ -49,6 +49,7 @@ class _MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
                   Tab(text: LocaleKeys.user_profile_item_completed.tr),
                 ])),
         body: TabBarView(
+            physics: const BouncingScrollPhysics(),
             controller: controller.tabController,
             children: const [UpcomingView(), CompletedView()]),
       ),
