@@ -11,7 +11,7 @@ import '../../../../../../widget/c_app_bar.dart';
 import '../controllers/forget_password_controller.dart';
 
 class ForgetPasswordView extends GetView<ForgetPasswordController> {
-  const ForgetPasswordView({Key? key}) : super(key: key);
+  const ForgetPasswordView({super.key});
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ForgetPasswordController>(builder: (obj) {
@@ -26,7 +26,6 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                 Get.back();
               },
             ),
-            actions: [],
             title: 'Forgot Password',
           ),
         ),
@@ -37,16 +36,14 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
             child: Column(
               children: [
                 const Image(
-                    image: AssetImage('assets/images/forget_pass.png'),
-                    fit: BoxFit.scaleDown),
+                    image: AssetImage('assets/images/forget_pass.png'), fit: BoxFit.scaleDown),
                 SizedBox(
                   height: mediaQueryHeight(context) * 0.01,
                 ),
                 SizedBox(
                   height: mediaQueryHeight(context) * 0.06,
                   child: const CText(
-                    text:
-                        'Select which contact detail should we use to reset your password',
+                    text: 'Select which contact detail should we use to reset your password',
                     textAlign: TextAlign.start,
                   ),
                 ),
@@ -62,8 +59,7 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                     padding: EdgeInsets.all(mediaQueryHeight(context) * 0.001),
                     decoration: BoxDecoration(
                         // color: Colors.grey.withOpacity(0.1),
-                        border: Border.all(
-                            color: obj.issms ? AppColor.primary : Colors.grey),
+                        border: Border.all(color: obj.issms ? AppColor.primary : Colors.grey),
                         borderRadius: BorderRadius.circular(15)),
                     child: Row(
                       children: [
@@ -72,12 +68,9 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                           width: MediaQuery.of(context).size.width * 0.25,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: const Color.fromRGBO(158, 158, 158, 1)
-                                .withOpacity(0.1),
+                            color: const Color.fromRGBO(158, 158, 158, 1).withOpacity(0.1),
                           ),
-                          child: Center(
-                              child: SvgPicture.asset(
-                                  "assets/icons/ic_message.svg")),
+                          child: Center(child: SvgPicture.asset("assets/icons/ic_message.svg")),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -110,9 +103,7 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                     decoration: BoxDecoration(
                         // color: Colors.grey.withOpacity(0.1),
                         border: Border.all(
-                            width: 0.9,
-                            color:
-                                obj.isemail ? AppColor.primary : Colors.grey),
+                            width: 0.9, color: obj.isemail ? AppColor.primary : Colors.grey),
                         borderRadius: BorderRadius.circular(15)),
                     child: Row(
                       children: [
@@ -121,12 +112,9 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                           width: MediaQuery.of(context).size.width * 0.25,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: const Color.fromRGBO(158, 158, 158, 1)
-                                .withOpacity(0.1),
+                            color: const Color.fromRGBO(158, 158, 158, 1).withOpacity(0.1),
                           ),
-                          child: Center(
-                              child: SvgPicture.asset(
-                                  "assets/icons/ic_email.svg")),
+                          child: Center(child: SvgPicture.asset("assets/icons/ic_email.svg")),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,

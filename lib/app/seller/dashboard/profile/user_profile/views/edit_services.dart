@@ -43,7 +43,7 @@ class _EditUserServiceState extends State<EditUserService> {
     controller.file3 = GlobalVariable.serviceModel.files![2].id!;
     controller.file4 = GlobalVariable.serviceModel.files![3].id!;
 
-    for (var element in openingHours) {
+    for (var element in openingHours!) {
       if (controller.selectedWeekdays.contains(element.weekday)) {
       } else {
         controller.selectedWeekdays.add(element.weekday!);
@@ -430,7 +430,7 @@ class _EditUserServiceState extends State<EditUserService> {
 
                                       if (_formKey.currentState!.validate()) {
                                         controller.updateUserService(
-                                            id: id,
+                                            id: id!,
                                             context: context,
                                             name: controller.nameController.text,
                                             description: controller.descController.text,

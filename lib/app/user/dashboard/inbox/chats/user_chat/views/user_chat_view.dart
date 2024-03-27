@@ -10,7 +10,7 @@ import '../../../../../../../widget/c_icon_btn.dart';
 import '../controllers/user_chat_controller.dart';
 
 class UserChatView extends GetView<UserChatController> {
-  const UserChatView({Key? key}) : super(key: key);
+  const UserChatView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,8 @@ class UserChatView extends GetView<UserChatController> {
 
     return Scaffold(
         appBar: AppBar(
-            leading: CIconBtn(
-                onPressed: () => Get.back(),
-                child: Icon(Icons.adaptive.arrow_back)),
-            title: CText(
-                text: "Jenny Wilson", color: txtTheme, fontsize: titleLarge),
+            leading: CIconBtn(onPressed: () => Get.back(), child: Icon(Icons.adaptive.arrow_back)),
+            title: CText(text: "Jenny Wilson", color: txtTheme, fontsize: titleLarge),
             actions: [
               CIconBtn(
                   onPressed: () {},
@@ -32,8 +29,7 @@ class UserChatView extends GetView<UserChatController> {
                       height: 20, color: svgTheme)),
               CIconBtn(
                   onPressed: () {},
-                  child: SvgPicture.asset("assets/icons/ic_more_outlined.svg",
-                      color: svgTheme))
+                  child: SvgPicture.asset("assets/icons/ic_more_outlined.svg", color: svgTheme))
             ]),
         floatingActionButton: SizedBox(
             height: mediaQueryHeight(context) * 0.09,

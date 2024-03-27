@@ -7,7 +7,7 @@ import 'package:home_brigadier/widget/cText.dart';
 import '../controllers/user_call_controller.dart';
 
 class UserCallView extends GetView<UserCallController> {
-  const UserCallView({Key? key}) : super(key: key);
+  const UserCallView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,10 @@ class UserCallView extends GetView<UserCallController> {
         body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: mediaQueryHeight(context) * 0.1),
+              padding: EdgeInsets.symmetric(vertical: mediaQueryHeight(context) * 0.1),
               child: SvgPicture.asset("assets/icons/ic_person_bubble.svg"),
             ),
-            CText(
-                text: "Jenny Wilson",
-                fontsize: titleLarge,
-                fontWeight: FontWeight.w500),
+            CText(text: "Jenny Wilson", fontsize: titleLarge, fontWeight: FontWeight.w500),
             CText(
                 text: "${DateTime.now().hour}:${DateTime.now().minute} Minutes",
                 fontsize: titleSmall)

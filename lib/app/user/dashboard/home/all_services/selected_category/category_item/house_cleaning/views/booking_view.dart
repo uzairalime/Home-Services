@@ -295,7 +295,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                         borderRadius: BorderRadius.circular(22.0),
                                       ),
                                       label: CText(
-                                          color: controller.selectedweekplan == 'Weekly'
+                                          color: controller.selectedweekplan.value == 'Weekly'
                                               ? AppColor.white
                                               : AppColor.black,
                                           text: LocaleKeys.house_cleaning_items_weekly.tr),
@@ -319,7 +319,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                                       ? AppColor.secondary
                                                       : AppColor.secondary)),
                                       label: CText(
-                                          color: controller.selectedweekplan == 'Bi-Weekly'
+                                          color: controller.selectedweekplan.value == 'Bi-Weekly'
                                               ? AppColor.white
                                               : AppColor.black,
                                           text: LocaleKeys.house_cleaning_items_Bi_weekly.tr),
@@ -375,7 +375,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                               children: [
                                 ChoiceChip(
                                   label: CText(
-                                      color: controller.selectedmaterial == 'Yes'
+                                      color: controller.selectedmaterial.value == 'Yes'
                                           ? AppColor.white
                                           : AppColor.black,
                                       text: LocaleKeys.house_cleaning_items_yes.tr),
@@ -408,7 +408,7 @@ class HouseCleaningBookingView extends GetView<BookingController> {
                                               ? AppColor.secondary
                                               : AppColor.secondary)),
                                   label: CText(
-                                      color: controller.selectedmaterial == 'No'
+                                      color: controller.selectedmaterial.value == 'No'
                                           ? AppColor.white
                                           : AppColor.black,
                                       text: LocaleKeys.house_cleaning_items_no.tr),

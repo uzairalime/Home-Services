@@ -9,7 +9,7 @@ import '../../../../../../widget/c_icon_btn.dart';
 import '../controllers/notification_setting_controller.dart';
 
 class NotificationSettingView extends GetView<NotificationSettingController> {
-  const NotificationSettingView({Key? key}) : super(key: key);
+  const NotificationSettingView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -22,16 +22,13 @@ import '../../../../modules/login/email_login/views/email_login_view.dart';
 import '../controllers/profile_controller.dart';
 
 class UserProfileView extends GetView<ProfileController> {
-  const UserProfileView({Key? key}) : super(key: key);
+  const UserProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileController());
-    final con = Get.put(ProfileController());
-    // final svgTheme = Theme.of(context).textTheme.titleMedium!.color;
+    Get.put(ProfileController());
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
-    final titleLarge = Theme.of(context).textTheme.titleLarge!.fontSize;
-    final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
     controller.getUserInfo();
     return Scaffold(
       appBar: AppBar(

@@ -6,22 +6,17 @@ class AnimationDialog extends StatefulWidget {
   final String? path;
   final String text;
 
-
-  const AnimationDialog({Key? key, this.path, required this.text}) : super(key: key);
-
-
+  const AnimationDialog({super.key, this.path, required this.text});
 
   @override
   State<AnimationDialog> createState() => _AnimationDialogState();
 }
 
 class _AnimationDialogState extends State<AnimationDialog> with SingleTickerProviderStateMixin {
-
   late AnimationController controller;
 
   @override
   void initState() {
-
     controller = AnimationController(vsync: this, duration: const Duration(seconds: 3));
 
     controller.addStatusListener((status) async {
@@ -51,10 +46,8 @@ class _AnimationDialogState extends State<AnimationDialog> with SingleTickerProv
           mainAxisSize: MainAxisSize.min,
           children: [
             Lottie.asset(
-
                 width: widht * 0.3,
                 height: widht * 0.3,
-
                 fit: BoxFit.cover,
                 widget.path ?? "assets/images/done.json",
                 repeat: false,

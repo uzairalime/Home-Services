@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:home_brigadier/consts/app_color.dart';
+
 class CAppBar extends StatelessWidget {
   const CAppBar(
       {super.key,
       required this.title,
-      required this.actions,
+      this.actions,
       this.titleColor,
       this.leading,
       this.subtTitle});
 
   final String title;
   final String? subtTitle;
-  final List<Widget> actions;
+  final List<Widget>? actions;
   final Color? titleColor;
   final Widget? leading;
 

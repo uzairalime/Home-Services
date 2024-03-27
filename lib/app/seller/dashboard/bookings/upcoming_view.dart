@@ -11,7 +11,7 @@ import '../../../../generated/locales.g.dart';
 import '../../../../model/user_services_models/my_booking_booking_model.dart';
 
 class UpcomingView extends GetView<MyJobsController> {
-  const UpcomingView({Key? key}) : super(key: key);
+  const UpcomingView({super.key});
 
   @override
   Widget build(BuildContext context) {

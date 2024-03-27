@@ -6,13 +6,12 @@ import 'package:home_brigadier/widget/cText.dart';
 import 'package:home_brigadier/widget/c_filled_btn.dart';
 import 'package:home_brigadier/widget/c_text_field.dart';
 
-
 import '../../../../consts/media_query.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/signup_controller.dart';
 
 class SignupView extends GetView<SignupController> {
-  const SignupView({Key? key}) : super(key: key);
+  const SignupView({super.key});
 
   @override
   Widget build(BuildContext context) {

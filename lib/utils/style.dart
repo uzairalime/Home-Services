@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:home_brigadier/consts/app_color.dart';
 
 // font weights
@@ -18,15 +17,11 @@ FontWeight bold9 = FontWeight.w900;
 double defaultRadius = 12;
 double defaultPadding = 25;
 
-
-
-     double referenceScreenWidth = 375.0;
-     double bodysize = 20;
+double referenceScreenWidth = 375.0;
+double bodysize = 20;
 
 class AppTextStyle {
   BuildContext? context;
-
-
 
   static setReferenceScreenWidth(double width) {
     referenceScreenWidth = width;
@@ -35,8 +30,6 @@ class AppTextStyle {
   static const TextStyle defaultStyle = TextStyle(
     fontSize: 16.0, // Default font size
     color: Colors.black, // Default text color
-    
-
   );
 
   static TextStyle headingStyle(BuildContext context) {
@@ -45,8 +38,6 @@ class AppTextStyle {
       fontWeight: FontWeight.bold,
     );
   }
-
-  
 
   static TextStyle subheadingStyle(BuildContext context) {
     return defaultStyle.copyWith(
@@ -66,25 +57,12 @@ class AppTextStyle {
       fontSize: adaptiveFontSize(context, 14.0),
     );
   }
-
-  
-
-
-
-
-
 }
 
- double adaptiveFontSize(BuildContext context, double fontSize) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    return (fontSize * screenWidth) /referenceScreenWidth;
-  }
-
-
-
-
-
-
+double adaptiveFontSize(BuildContext context, double fontSize) {
+  double screenWidth = MediaQuery.of(context).size.width;
+  return (fontSize * screenWidth) / referenceScreenWidth;
+}
 
 // sizes
 
@@ -94,18 +72,14 @@ double size18 = 18;
 double size32 = 32;
 double size12 = 12;
 
-
 // appbar
-TextStyle appbar =
-    TextStyle(fontSize: size22, fontWeight: bold6, color: AppColor.black);
+TextStyle appbar = TextStyle(fontSize: size22, fontWeight: bold6, color: AppColor.black);
 
 // unselected tab
-TextStyle unselectedtab =
-    TextStyle(fontWeight: bold5, fontSize: 14, color: AppColor.primary);
+TextStyle unselectedtab = TextStyle(fontWeight: bold5, fontSize: 14, color: AppColor.primary);
 
 // selected tab
-TextStyle selectedtab =
-    TextStyle(fontWeight: bold, fontSize: 14, color: AppColor.white);
+TextStyle selectedtab = TextStyle(fontWeight: bold, fontSize: 14, color: AppColor.white);
 
 // tab bar styling
 
@@ -113,8 +87,7 @@ double tabbarradius = 40;
 
 EdgeInsets buttonmargin = const EdgeInsets.symmetric(horizontal: 20);
 
-EdgeInsets tabbatcontentPaddiing =
-    const EdgeInsets.symmetric(vertical: 2, horizontal: 24);
+EdgeInsets tabbatcontentPaddiing = const EdgeInsets.symmetric(vertical: 2, horizontal: 24);
 
 double appbariconsize = 24;
 
@@ -124,5 +97,4 @@ bool isDarkmode(BuildContext context) =>
 
 // header action padding
 
-EdgeInsets appbaractionpadding =
-    const EdgeInsets.only(top: 12, left: 12, right: 18, bottom: 12);
+EdgeInsets appbaractionpadding = const EdgeInsets.only(top: 12, left: 12, right: 18, bottom: 12);

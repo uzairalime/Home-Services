@@ -13,7 +13,7 @@ import '../../../../../../../../../widget/c_filled_btn.dart';
 import '../controllers/men_salon_controller.dart';
 
 class MenSalonView extends GetView<BookingController> {
-  const MenSalonView({Key? key}) : super(key: key);
+  const MenSalonView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +170,7 @@ class MenSalonView extends GetView<BookingController> {
       showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (controller.cleaner.value == 0) {
       showSnackBar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
-    } else if (MenSalonController.to.selectedInsects.value.isEmpty) {
+    } else if (MenSalonController.to.selectedInsects.isEmpty) {
       showSnackBar(LocaleKeys.snack_bars_select_service.tr, true);
     } else if (controller.selectedmaterial.isEmpty) {
       showSnackBar(LocaleKeys.snack_bars_select_materials.tr, true);

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/consts/media_query.dart';
 import 'package:home_brigadier/widget/cText.dart';
+
 import '../../../../widget/c_filled_btn.dart';
 import '../controllers/account_setup_controller.dart';
 
 class AddFinger extends GetView<AccountSetupController> {
-  const AddFinger({Key? key}) : super(key: key);
+  const AddFinger({super.key});
 
   @override
   Widget build(BuildContext context) {

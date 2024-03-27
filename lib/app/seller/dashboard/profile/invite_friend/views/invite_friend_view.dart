@@ -1,8 +1,10 @@
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
+
 import '../../../../../../consts/app_color.dart';
 import '../../../../../../consts/media_query.dart';
 import '../../../../../../widget/cText.dart';
@@ -10,7 +12,7 @@ import '../../../../../../widget/c_icon_btn.dart';
 import '../controllers/invite_friend_controller.dart';
 
 class InviteFriendView extends GetView<InviteFriendController> {
-  const InviteFriendView({Key? key}) : super(key: key);
+  const InviteFriendView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +24,14 @@ class InviteFriendView extends GetView<InviteFriendController> {
       builder: (_) {
         return Scaffold(
             appBar: AppBar(
-                leading: CIconBtn(
-                    onPressed: () => Get.back(),
-                    child: Icon(Icons.adaptive.arrow_back)),
+                leading:
+                    CIconBtn(onPressed: () => Get.back(), child: Icon(Icons.adaptive.arrow_back)),
                 title: InkWell(
                   onTap: () {
                     controller.getPhoneData();
                   },
                   child: CText(
-                      text: LocaleKeys
-                          .dashboard_profile__invite_a_friend_invite_friend.tr,
+                      text: LocaleKeys.dashboard_profile__invite_a_friend_invite_friend.tr,
                       color: txtTheme,
                       fontsize: titleMedium,
                       fontWeight: FontWeight.bold),
@@ -41,7 +41,7 @@ class InviteFriendView extends GetView<InviteFriendController> {
               builder: (context, snapshot) {
                 print(snapshot.data);
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   const Center(child: Text("No Contact found"));
                 } else if (snapshot.data == null || snapshot.data!.isEmpty) {
@@ -66,10 +66,8 @@ class InviteFriendView extends GetView<InviteFriendController> {
                           child: Row(
                             children: [
                               (snapshot.data![index].photo == null)
-                                  ? const CircleAvatar(
-                                      child: Icon(Icons.person))
-                                  : CircleAvatar(
-                                      backgroundImage: MemoryImage(image!)),
+                                  ? const CircleAvatar(child: Icon(Icons.person))
+                                  : CircleAvatar(backgroundImage: MemoryImage(image!)),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -85,8 +83,7 @@ class InviteFriendView extends GetView<InviteFriendController> {
                                       overflow: TextOverflow.ellipsis,
                                       snapshot.data![index].displayName,
                                       style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500),
+                                          fontSize: 18, fontWeight: FontWeight.w500),
                                     ),
                                     Text(num),
                                   ],
@@ -110,9 +107,8 @@ class InviteFriendView extends GetView<InviteFriendController> {
                                     ),
                                     child: Center(
                                       child: CText(
-                                        text: LocaleKeys
-                                            .dashboard_profile__invite_a_friend_invite
-                                            .tr,
+                                        text:
+                                            LocaleKeys.dashboard_profile__invite_a_friend_invite.tr,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.green,
                                       ),
@@ -213,8 +209,8 @@ class ShareBtn extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            decoration: BoxDecoration(
-                color: AppColor.grey.withOpacity(0.2), shape: BoxShape.circle),
+            decoration:
+                BoxDecoration(color: AppColor.grey.withOpacity(0.2), shape: BoxShape.circle),
             child: Center(child: FaIcon(icon, size: 37, color: color)),
           ),
           const SizedBox(height: 10),

@@ -28,8 +28,9 @@ import '../spa/views/spa_view.dart';
 import '../women_salon/views/women_salon_view.dart';
 
 class CategoryItemView extends GetView<CategoryItemController> {
-  ServicesModel? model;
-  CategoryItemView({super.key, this.model});
+  final ServicesModel? model;
+
+  const CategoryItemView({super.key, this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class CategoryItemView extends GetView<CategoryItemController> {
                 child: Container(
                   decoration:
                       BoxDecoration(color: AppColor.black.withOpacity(0.7), shape: BoxShape.circle),
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_back,
                     color: AppColor.white,
                   ),
@@ -433,10 +434,10 @@ class CategoryItemView extends GetView<CategoryItemController> {
 
 class ImageSlider extends StatelessWidget {
   const ImageSlider({
-    Key? key,
+    super.key,
     required this.model,
     required this.obj,
-  }) : super(key: key);
+  });
 
   final ServicesModel? model;
   final CategoryItemController obj;

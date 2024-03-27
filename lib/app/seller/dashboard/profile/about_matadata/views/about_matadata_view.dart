@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:home_brigadier/consts/app_color.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_brigadier/consts/media_query.dart';
 import 'package:home_brigadier/widget/cText.dart';
+
 // import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../model/meta_data.dart';
 import '../../../../../../widget/c_icon_btn.dart';
 import '../controllers/about_matadata_controller.dart';
 
 class AboutMatadataView extends GetView<AboutMatadataController> {
-  const AboutMatadataView({Key? key}) : super(key: key);
+  const AboutMatadataView({super.key});
   @override
   Widget build(BuildContext context) {
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
@@ -22,9 +23,8 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
         builder: (builderContext) {
           return Scaffold(
             appBar: AppBar(
-                leading: CIconBtn(
-                    onPressed: () => Get.back(),
-                    child: Icon(Icons.adaptive.arrow_back)),
+                leading:
+                    CIconBtn(onPressed: () => Get.back(), child: Icon(Icons.adaptive.arrow_back)),
                 title: CText(
                     text: "About",
                     color: txtTheme,
@@ -66,8 +66,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           height: 30,
                                           width: 50,
                                           decoration: BoxDecoration(
-                                              color: AppColor.grey
-                                                  .withOpacity(0.25),
+                                              color: AppColor.grey.withOpacity(0.25),
                                               shape: BoxShape.circle),
                                           child: Center(
                                             child: SvgPicture.asset(
@@ -95,8 +94,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           alignment: Alignment.centerRight,
                                           child: InkWell(
                                             onTap: () {
-                                              controller.dail_launcher(
-                                                  userdata.mobile);
+                                              controller.dail_launcher(userdata.mobile);
                                             },
                                             child: const Icon(
                                               Icons.arrow_outward_sharp,
@@ -123,8 +121,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           height: 30,
                                           width: 50,
                                           decoration: BoxDecoration(
-                                              color: AppColor.grey
-                                                  .withOpacity(0.25),
+                                              color: AppColor.grey.withOpacity(0.25),
                                               shape: BoxShape.circle),
                                           child: Center(
                                             child: SvgPicture.asset(
@@ -150,8 +147,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           alignment: Alignment.centerRight,
                                           child: InkWell(
                                             onTap: () {
-                                              controller.mail_launcher(
-                                                  userdata.supportEmail);
+                                              controller.mail_launcher(userdata.supportEmail);
                                             },
                                             child: const Icon(
                                               Icons.arrow_outward_sharp,
@@ -179,8 +175,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             width: 50,
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: AppColor.grey
-                                                    .withOpacity(0.25)),
+                                                color: AppColor.grey.withOpacity(0.25)),
                                             child: const Center(
                                                 child: FaIcon(
                                               FontAwesomeIcons.whatsapp,
@@ -203,8 +198,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           alignment: Alignment.centerRight,
                                           child: InkWell(
                                             onTap: () {
-                                              controller.whatsapplauncher(
-                                                  userdata.mobile);
+                                              controller.whatsapplauncher(userdata.mobile);
                                             },
                                             child: const Icon(
                                               Icons.arrow_outward_sharp,
@@ -232,8 +226,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             width: 50,
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: AppColor.grey
-                                                    .withOpacity(0.25)),
+                                                color: AppColor.grey.withOpacity(0.25)),
                                             child: const Center(
                                                 child: FaIcon(
                                               FontAwesomeIcons.facebook,
@@ -242,16 +235,14 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           ),
                                         )),
                                     Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20),
+                                        padding: const EdgeInsets.only(left: 20),
                                         child: SizedBox(
                                           width: mediaQueryWidth(context) * 0.5,
                                           child: Text(
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               userdata.facebook.toString(),
-                                              style: const TextStyle(
-                                                  color: Colors.blue)),
+                                              style: const TextStyle(color: Colors.blue)),
                                         )),
                                     SizedBox(
                                       width: mediaQueryWidth(context) * 0.2,
@@ -259,8 +250,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           alignment: Alignment.centerRight,
                                           child: InkWell(
                                             onTap: () {
-                                              controller.facebooklaauncher(
-                                                  userdata.facebook);
+                                              controller.facebooklaauncher(userdata.facebook);
                                             },
                                             child: const Icon(
                                               Icons.arrow_outward_sharp,
@@ -288,8 +278,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             width: 50,
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: AppColor.grey
-                                                    .withOpacity(0.25)),
+                                                color: AppColor.grey.withOpacity(0.25)),
                                             child: const Center(
                                                 child: FaIcon(
                                               FontAwesomeIcons.instagram,
@@ -305,8 +294,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             userdata.instagram.toString(),
-                                            style: const TextStyle(
-                                                color: Colors.blue)),
+                                            style: const TextStyle(color: Colors.blue)),
                                       ),
                                     ),
                                     SizedBox(
@@ -315,9 +303,8 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           alignment: Alignment.centerRight,
                                           child: InkWell(
                                             onTap: () {
-                                              controller.instagramlauncher(
-                                                  userdata.instagram
-                                                      .toString());
+                                              controller
+                                                  .instagramlauncher(userdata.instagram.toString());
                                             },
                                             child: const Icon(
                                               Icons.arrow_outward_sharp,
@@ -345,8 +332,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             width: 50,
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: AppColor.grey
-                                                    .withOpacity(0.25)),
+                                                color: AppColor.grey.withOpacity(0.25)),
                                             child: const Center(
                                                 child: FaIcon(
                                               FontAwesomeIcons.linkedinIn,
@@ -362,8 +348,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             userdata.linkedin.toString(),
-                                            style: const TextStyle(
-                                                color: Colors.blue)),
+                                            style: const TextStyle(color: Colors.blue)),
                                       ),
                                     ),
                                     SizedBox(
@@ -373,8 +358,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           child: InkWell(
                                             onTap: () {
                                               controller
-                                                  .launchLinkedInProfileLink(
-                                                      userdata.linkedin);
+                                                  .launchLinkedInProfileLink(userdata.linkedin);
                                             },
                                             child: const Icon(
                                               Icons.arrow_outward_sharp,
@@ -402,8 +386,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             width: 50,
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: AppColor.grey
-                                                    .withOpacity(0.25)),
+                                                color: AppColor.grey.withOpacity(0.25)),
                                             child: const Center(
                                                 child: FaIcon(
                                               FontAwesomeIcons.twitter,
@@ -419,8 +402,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             userdata.twitter.toString(),
-                                            style: const TextStyle(
-                                                color: Colors.blue)),
+                                            style: const TextStyle(color: Colors.blue)),
                                       ),
                                     ),
                                     SizedBox(
@@ -429,8 +411,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           alignment: Alignment.centerRight,
                                           child: InkWell(
                                             onTap: () {
-                                              controller.twitterlauncher(
-                                                  userdata.twitter);
+                                              controller.twitterlauncher(userdata.twitter);
                                             },
                                             child: const Icon(
                                               Icons.arrow_outward_sharp,
@@ -458,8 +439,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                             width: 50,
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: AppColor.grey
-                                                    .withOpacity(0.25)),
+                                                color: AppColor.grey.withOpacity(0.25)),
                                             child: const Center(
                                                 child: FaIcon(
                                               FontAwesomeIcons.youtube,
@@ -475,8 +455,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           userdata.youtube.toString(),
-                                          style: const TextStyle(
-                                              color: Colors.blue),
+                                          style: const TextStyle(color: Colors.blue),
                                         ),
                                       ),
                                     ),
@@ -486,8 +465,7 @@ class AboutMatadataView extends GetView<AboutMatadataController> {
                                           alignment: Alignment.centerRight,
                                           child: InkWell(
                                             onTap: () {
-                                              controller.youtubelaunch(
-                                                  userdata.youtube);
+                                              controller.youtubelaunch(userdata.youtube);
                                             },
                                             child: const Icon(
                                               Icons.arrow_outward_sharp,

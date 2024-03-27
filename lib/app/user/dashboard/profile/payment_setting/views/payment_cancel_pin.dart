@@ -9,7 +9,7 @@ import 'package:home_brigadier/widget/cText.dart';
 import '../../../../../routes/app_pages.dart';
 
 class PaymentCancelPin extends GetView {
-  const PaymentCancelPin({Key? key}) : super(key: key);
+  const PaymentCancelPin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +66,7 @@ class PaymentCancelPin extends GetView {
                         fieldWidth: 50.0,
                         borderWidth: 1.0,
                         activeBorderColor: AppColor.primary,
-                        activeBackgroundColor:
-                            AppColor.secondary.withOpacity(0.1),
+                        activeBackgroundColor: AppColor.secondary.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(10.0),
                         keyboardType: TextInputType.number,
                         autoHideKeyboard: false,

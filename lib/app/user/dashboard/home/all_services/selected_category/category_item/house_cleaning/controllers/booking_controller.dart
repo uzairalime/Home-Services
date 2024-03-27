@@ -35,7 +35,7 @@ class BookingController extends GetxController {
         "maps.googleapis.com", "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
     String? response = await NetwordUtils.fetchUl(uri);
     logger.d(response);
-    PlaceAutocompleteResponse result = PlaceAutocompleteResponse.parseAutocompleteResult(response);
+    PlaceAutocompleteResponse result = PlaceAutocompleteResponse.parseAutocompleteResult(response!);
     if (result.predictions != null) {
       placeprediction = result.predictions!;
     }
@@ -238,7 +238,7 @@ class BookingController extends GetxController {
     // update();
 
     String? stringValue = servicemodel!.rate;
-    double doubleValue = double.parse(stringValue);
+    double doubleValue = double.parse(stringValue!);
     int rate = doubleValue.toInt();
 
     final hour = hours.value;

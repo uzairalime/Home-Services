@@ -132,12 +132,12 @@ class AppPages {
                   children: [
                     GetPage(
                       name: _Paths.CATEGORY_ITEM,
-                      page: () => CategoryItemView(),
+                      page: () => const CategoryItemView(),
                       binding: CategoryItemBinding(),
                       children: [
                         GetPage(
                           name: _Paths.BOOKING,
-                          page: () => HouseCleaningBookingView(),
+                          page: () => const HouseCleaningBookingView(),
                           binding: BookingBinding(),
                         ),
                         GetPage(

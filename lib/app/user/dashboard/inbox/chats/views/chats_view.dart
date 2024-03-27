@@ -9,7 +9,7 @@ import 'package:home_brigadier/widget/cText.dart';
 import '../controllers/chats_controller.dart';
 
 class ChatsView extends GetView<ChatsController> {
-  const ChatsView({Key? key}) : super(key: key);
+  const ChatsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,7 @@ class ChatsView extends GetView<ChatsController> {
                   title: 'Jenny Wilson',
                   subTitle: 'I have booked your house',
                   leading: const CircleAvatar(
-                      radius: 40,
-                      backgroundImage:
-                          AssetImage("assets/images/img_people.png")),
+                      radius: 40, backgroundImage: AssetImage("assets/images/img_people.png")),
                   date: '${DateTime.now().hour}:${DateTime.now().minute}',
                   smsCount: index)));
         });
@@ -38,14 +36,13 @@ class ChatsView extends GetView<ChatsController> {
 // ChatListTile
 class ChatListTile extends GetView<ChatsController> {
   const ChatListTile(
-      {Key? key,
+      {super.key,
       required this.index,
       required this.title,
       required this.subTitle,
       required this.leading,
       required this.date,
-      required this.smsCount})
-      : super(key: key);
+      required this.smsCount});
 
   final int index;
   final String title;

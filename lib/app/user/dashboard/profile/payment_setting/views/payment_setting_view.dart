@@ -10,7 +10,7 @@ import 'package:home_brigadier/widget/cText.dart';
 import 'card_adding/views/card_view.dart';
 
 class PaymentSettingView extends GetView<PaymentSettingController> {
-  const PaymentSettingView({Key? key}) : super(key: key);
+  const PaymentSettingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,14 +102,14 @@ class PaymentSettingView extends GetView<PaymentSettingController> {
                         child: InkWell(
                           onTap: () {
                             // Get.to(AddingCardView());
-                            Get.to(() => AddingCardView());
+                            Get.to(() => const AddingCardView());
                           },
                           child: Container(
                               height: 25,
                               width: 25,
                               decoration: BoxDecoration(
                                   color: AppColor.grey.withOpacity(0.2), shape: BoxShape.circle),
-                              child: Center(child: Icon(Icons.add))),
+                              child: const Center(child: Icon(Icons.add))),
                         ),
                       )),
                 ),

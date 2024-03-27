@@ -13,7 +13,7 @@ import '../../house_cleaning/controllers/booking_controller.dart';
 import '../../house_cleaning/views/booking_details_view.dart';
 
 class PestControlBookingView extends GetView<BookingController> {
-  const PestControlBookingView({Key? key}) : super(key: key);
+  const PestControlBookingView({super.key});
 
   @override
   Widget build(BuildContext context) {

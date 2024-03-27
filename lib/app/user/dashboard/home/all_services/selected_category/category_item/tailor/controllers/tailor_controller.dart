@@ -203,7 +203,7 @@ class TailorController extends GetxController {
     update();
     // rate pr hours
     String? stringValue = servicemodel!.rate;
-    double doubleValue = double.parse(stringValue);
+    double doubleValue = double.parse(stringValue!);
     int rate = doubleValue.toInt();
     final hour = hours.value;
     final cleaers = pieces.value;
@@ -278,11 +278,6 @@ class TailorController extends GetxController {
   //     update();
   //   }
   // }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   clearONCleaningPageRemove() {
     hours.value = 0;

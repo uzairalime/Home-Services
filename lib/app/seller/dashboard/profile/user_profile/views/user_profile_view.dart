@@ -9,12 +9,11 @@ import '../../../../../../widget/cText.dart';
 import '../controllers/user_profile_controller.dart';
 
 class UserProfileView extends GetView<UserProfileController> {
-  const UserProfileView({Key? key}) : super(key: key);
+  const UserProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final txtTheme = Theme.of(context).textTheme.titleMedium!.color;
-    final titleSmall = Theme.of(context).textTheme.titleSmall!.fontSize;
     Get.put(UserProfileController());
     return Scaffold(
         appBar: AppBar(

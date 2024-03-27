@@ -11,7 +11,7 @@ import '../../../../../../widget/c_text_field.dart';
 import '../controllers/forget_password_controller.dart';
 
 class CreateNewPassword extends GetView<ForgetPasswordController> {
-  const CreateNewPassword({Key? key}) : super(key: key);
+  const CreateNewPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,6 @@ class CreateNewPassword extends GetView<ForgetPasswordController> {
               Get.back();
             },
           ),
-          actions: [],
           title: Text(
             'Create New Password',
             style: TextStyle(

@@ -1,14 +1,9 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/views/location_view.dart';
 import 'package:home_brigadier/consts/app_color.dart';
-
 import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/model/service_model.dart';
 import 'package:home_brigadier/utils/style.dart';
@@ -45,8 +40,7 @@ class BookingDetailsView extends GetView {
                   color: AppColor.greylight,
                 ))),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 30, bottom: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
               child: CButton(
                 text:
                     "${LocaleKeys.booking_detail_items_continue_button.tr} ${controller.total} AED",
@@ -70,8 +64,7 @@ class BookingDetailsView extends GetView {
               init: BookingController(),
               builder: (obj) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: widht * 0.05, vertical: height * 0.025),
+                  padding: EdgeInsets.symmetric(horizontal: widht * 0.05, vertical: height * 0.025),
                   child: SingleChildScrollView(
                     child: SizedBox(
                       width: widht,
@@ -79,46 +72,36 @@ class BookingDetailsView extends GetView {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CText(
-                            text:
-                                LocaleKeys.booking_detail_items_select_date.tr,
+                            text: LocaleKeys.booking_detail_items_select_date.tr,
                             fontWeight: bold4,
                             fontsize: 14,
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
-
                           TableCalendar(
                             firstDay: obj.start,
                             lastDay: obj.lastday,
                             focusedDay: obj.selectedDate,
                             rowHeight: height * 0.043,
-                              calendarStyle: const CalendarStyle(
+                            calendarStyle: const CalendarStyle(
                                 cellMargin: EdgeInsets.all(4),
-                                selectedDecoration: BoxDecoration(
-                                    color: AppColor.primary,
-                                    shape: BoxShape.circle),
-                                selectedTextStyle: TextStyle(
-                                    fontSize: 13, color: AppColor.white),
+                                selectedDecoration:
+                                    BoxDecoration(color: AppColor.primary, shape: BoxShape.circle),
+                                selectedTextStyle: TextStyle(fontSize: 13, color: AppColor.white),
                                 defaultTextStyle: TextStyle(fontSize: 12)),
-                           
-                           
-                            selectedDayPredicate: (day) =>
-                                isSameDay(day, obj.selectedDate),
+                            selectedDayPredicate: (day) => isSameDay(day, obj.selectedDate),
                             onDaySelected: (selectedDay, focusedDay) =>
                                 obj.selectdate(selectedDay, focusedDay),
                             availableGestures: AvailableGestures.all,
-                            headerStyle: const HeaderStyle(
-                                formatButtonVisible: false,
-                                titleCentered: true),
+                            headerStyle:
+                                const HeaderStyle(formatButtonVisible: false, titleCentered: true),
                           ),
-                         
                           SizedBox(
                             height: height * 0.04,
                           ),
                           CText(
-                            text: LocaleKeys
-                                .booking_detail_items_choose_start_time.tr,
+                            text: LocaleKeys.booking_detail_items_choose_start_time.tr,
                             fontWeight: bold6,
                             fontsize: 16,
                           ),
@@ -126,8 +109,7 @@ class BookingDetailsView extends GetView {
                             height: height * 0.03,
                           ),
                           DefaultTabController(
-                            length: generateTabs(
-                                    model!.openingHours![0].fromHour,
+                            length: generateTabs(model!.openingHours![0].fromHour,
                                     model!.openingHours![0].toHour)
                                 .length,
                             initialIndex: 0,
@@ -141,20 +123,17 @@ class BookingDetailsView extends GetView {
                                       _picDateTime(context, val);
                                     },
                                     radius: 35,
-                                    buttonMargin: const EdgeInsets.symmetric(
-                                        horizontal: 8),
+                                    buttonMargin: const EdgeInsets.symmetric(horizontal: 8),
                                     contentPadding: const EdgeInsets.only(
                                         left: 18, right: 18, top: 0, bottom: 0),
                                     backgroundColor: AppColor.primary,
                                     borderWidth: 1,
                                     borderColor: AppColor.primary,
-                                    unselectedBackgroundColor:
-                                        Colors.transparent,
+                                    unselectedBackgroundColor: Colors.transparent,
                                     unselectedLabelStyle: unselectedtab,
                                     unselectedBorderColor: AppColor.primary,
                                     labelStyle: selectedtab,
-                                    tabs: generateTabs(
-                                        model!.openingHours![0].fromHour,
+                                    tabs: generateTabs(model!.openingHours![0].fromHour,
                                         model!.openingHours![0].toHour),
                                   ),
                                 ),
@@ -171,8 +150,7 @@ class BookingDetailsView extends GetView {
   }
 
   DateTime calculateSelectedTime(int index) {
-    DateTime openingTime =
-        DateTime.parse("2022-01-01 ${model!.openingHours![0].fromHour}");
+    DateTime openingTime = DateTime.parse("2022-01-01 ${model!.openingHours![0].fromHour}");
 
     DateTime selectedTime = openingTime.add(Duration(minutes: 30 * index));
 
@@ -215,12 +193,9 @@ class BookingDetailsView extends GetView {
     DateTime selecteddate = BookingController.to.selectedDate;
 
     DateTime startdatetime = selecteddate.add(Duration(
-        hours: selectedtime.hour,
-        minutes: selectedtime.minute,
-        seconds: selectedtime.second));
+        hours: selectedtime.hour, minutes: selectedtime.minute, seconds: selectedtime.second));
 
-    DateTime enddatetime =
-        startdatetime.add(Duration(hours: BookingController.to.hours.value));
+    DateTime enddatetime = startdatetime.add(Duration(hours: BookingController.to.hours.value));
 
     BookingController.to.setStartdatetime(startdatetime);
     BookingController.to.setEnddatetime(enddatetime);

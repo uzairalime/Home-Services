@@ -126,9 +126,9 @@ class TailorView extends GetView<TailorController> {
                                       child: Container(
                                         width: widht * 0.1,
                                         height: height * 0.055,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
-                                        child: Center(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
+                                        child: const Center(
                                           child: Icon(
                                             Icons.remove,
                                             size: 16,
@@ -154,9 +154,9 @@ class TailorView extends GetView<TailorController> {
                                       child: Container(
                                         width: widht * 0.1,
                                         height: height * 0.055,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xffF1E7FF), shape: BoxShape.circle),
-                                        child: Center(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xffF1E7FF), shape: BoxShape.circle),
+                                        child: const Center(
                                           child: Icon(
                                             Icons.add,
                                             size: 16,

@@ -15,7 +15,7 @@ import 'package:home_brigadier/widget/shimmer.dart';
 import '../controllers/all_services_controller.dart';
 
 class AllServicesView extends GetView<AllServicesController> {
-  const AllServicesView({Key? key}) : super(key: key);
+  const AllServicesView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +54,7 @@ class AllServicesView extends GetView<AllServicesController> {
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
-                              ShimmerWidget.rectangular(
-                                  width: widht * 0.19, height: widht * 0.21),
+                              ShimmerWidget.rectangular(width: widht * 0.19, height: widht * 0.21),
                             ],
                           );
                         },
@@ -67,8 +66,7 @@ class AllServicesView extends GetView<AllServicesController> {
 
                       return GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount:
-                            categoryList.isEmpty ? 10 : categoryList.length,
+                        itemCount: categoryList.isEmpty ? 10 : categoryList.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisSpacing: widht * 0.01,
                           mainAxisSpacing: height * 0.01,
@@ -88,8 +86,7 @@ class AllServicesView extends GetView<AllServicesController> {
   }
 
   InkWell CategoryItem(double widht, double height, CetegoryModel model) {
-    int icon = ServiceIconModel.servicesicon
-        .indexWhere((icon) => icon.title == model.displayName);
+    int icon = ServiceIconModel.servicesicon.indexWhere((icon) => icon.title == model.displayName);
     return InkWell(
       onTap: () {
         Get.to(() => SelectedCategoryView(model: model));

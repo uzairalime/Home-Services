@@ -4,8 +4,8 @@ import 'package:home_brigadier/generated/locales.g.dart';
 
 class CardAlertDialog extends StatelessWidget {
   const CardAlertDialog({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

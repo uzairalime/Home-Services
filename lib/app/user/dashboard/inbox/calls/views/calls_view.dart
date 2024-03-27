@@ -9,7 +9,7 @@ import '../../../../../routes/app_pages.dart';
 import '../controllers/calls_controller.dart';
 
 class CallsView extends GetView<CallsController> {
-  const CallsView({Key? key}) : super(key: key);
+  const CallsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,10 @@ class CallsView extends GetView<CallsController> {
             title: 'Jenny Wilson',
             subTitle: 'I have booked your house',
             leading: const CircleAvatar(
-                radius: 40,
-                backgroundImage: AssetImage("assets/images/img_people.png")),
+                radius: 40, backgroundImage: AssetImage("assets/images/img_people.png")),
             date: '${DateTime.now().hour}:${DateTime.now().minute}',
             callType: CallType.Incomming,
-            callIcon: const Icon(Icons.archive_rounded,
-                color: Colors.green, size: 20),
+            callIcon: const Icon(Icons.archive_rounded, color: Colors.green, size: 20),
           );
         });
   }
@@ -35,7 +33,7 @@ class CallsView extends GetView<CallsController> {
 
 class CallListTile extends GetView<CallsController> {
   const CallListTile(
-      {Key? key,
+      {super.key,
       required this.index,
       required this.title,
       required this.subTitle,
@@ -43,8 +41,7 @@ class CallListTile extends GetView<CallsController> {
       required this.date,
       required this.callType,
       this.onPressed,
-      required this.callIcon})
-      : super(key: key);
+      required this.callIcon});
 
   final int index;
   final String title;

@@ -13,7 +13,7 @@ import '../../house_cleaning/views/booking_details_view.dart';
 import '../controllers/women_salon_controller.dart';
 
 class WomenSalonView extends GetView<BookingController> {
-  WomenSalonView({Key? key}) : super(key: key);
+  WomenSalonView({super.key});
   final bookingcontroller = Get.put(BookingController());
   @override
   Widget build(BuildContext context) {
@@ -170,7 +170,7 @@ class WomenSalonView extends GetView<BookingController> {
       showSnackBar(LocaleKeys.snack_bars_select_hours.tr, true);
     } else if (bookingcontroller.cleaner.value == 0) {
       showSnackBar(LocaleKeys.snack_bars_select_cleanrs.tr, true);
-    } else if (controller.selectedInsects.value.isEmpty) {
+    } else if (controller.selectedInsects.isEmpty) {
       showSnackBar(LocaleKeys.snack_bars_select_service.tr, true);
     } else {
       Get.to(() => BookingDetailsView(
