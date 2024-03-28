@@ -40,7 +40,7 @@ class EmailLoginController extends GetxController {
       showSnackBar("Failed to Sign in: Check Internet Connection");
       //print('SocketException: $e');
     } catch (e) {
-      showSnackBar("Failed to Sign in: Try again");
+      // showSnackBar("Failed to Sign in: Try again");
       // print('Error posting data: $e');
     } finally {
       isLoading.value = false;

@@ -9,6 +9,7 @@ import 'package:home_brigadier/widget/c_text_field.dart';
 
 import '../../../../../services/apis/toast.dart';
 import '../../../../../widget/cText.dart';
+import '../../../../../widget/c_filled_btn.dart';
 import '../controllers/email_login_controller.dart';
 import '../forget_password/views/forgot_pin_entering.dart';
 
@@ -53,7 +54,6 @@ class EmailLoginView extends GetView<EmailLoginController> {
                             height: 150,
                           )),
                           SizedBox(height: mediaQueryHeight(context) * 0.05),
-
                           Directionality(
                             textDirection: TextDirection.ltr,
                             child: Row(
@@ -81,7 +81,6 @@ class EmailLoginView extends GetView<EmailLoginController> {
                               ],
                             ),
                           ),
-
                           SizedBox(height: mediaQueryHeight(context) * 0.05),
                           Focus(
                             onFocusChange: (value) {
@@ -132,28 +131,28 @@ class EmailLoginView extends GetView<EmailLoginController> {
                                           contentPadding: 5,
                                           borderRadius: 12,
                                           onChanged: (p0) {
-                                            if (controller.phoneController.text.length == 9) {
-                                              if (controller.phoneController.text.isNotEmpty &&
-                                                  controller.phoneController.text.length == 9) {
-                                                controller.generateOTP().then((value) {
-                                                  if (value == 200) {
-                                                    showSnackBar(
-                                                        LocaleKeys.snack_bar_enter_valid_otp.tr);
-                                                    Get.offAll(() => const EnterPin(),
-                                                        duration: const Duration(seconds: 1),
-                                                        transition: Transition.native,
-                                                        arguments: controller.phoneController.text);
-                                                  } else {
-                                                    showSnackBar(
-                                                        LocaleKeys.snack_bar_opt_failed.tr, true);
-                                                  }
-                                                });
-                                              } else {
-                                                showSnackBar(
-                                                    LocaleKeys.snack_bar_enter_valid_number.tr,
-                                                    true);
-                                              }
-                                            }
+                                            // if (controller.phoneController.text.length == 9) {
+                                            //   if (controller.phoneController.text.isNotEmpty &&
+                                            //       controller.phoneController.text.length == 9) {
+                                            //     controller.generateOTP().then((value) {
+                                            //       if (value == 200) {
+                                            //         showSnackBar(
+                                            //             LocaleKeys.snack_bar_enter_valid_otp.tr);
+                                            //         Get.offAll(() => const EnterPin(),
+                                            //             duration: const Duration(seconds: 1),
+                                            //             transition: Transition.native,
+                                            //             arguments: controller.phoneController.text);
+                                            //       } else {
+                                            //         showSnackBar(
+                                            //             LocaleKeys.snack_bar_opt_failed.tr, true);
+                                            //       }
+                                            //     });
+                                            //   } else {
+                                            //     showSnackBar(
+                                            //         LocaleKeys.snack_bar_enter_valid_number.tr,
+                                            //         true);
+                                            //   }
+                                            // }
                                           },
                                         ),
                                       ),
@@ -162,27 +161,52 @@ class EmailLoginView extends GetView<EmailLoginController> {
                             ),
                           ),
                           const Spacer(),
-                          // CButton(
-                          //     text: LocaleKeys.log_in_item_sign_in.tr,
-                          //     fontsize: 14,
-                          //     fontWeight: FontWeight.w500,
-                          //     shadow: true,
-                          //     ontab: () {
-                          //       if (controller.phoneController.text.isNotEmpty &&
-                          //           controller.phoneController.text.length == 9) {
-                          //         controller.generateOTP().then((value) {
-                          //           if (value == 200) {
-                          //             showsnackbar("Enter OTP");
-                          //             Get.offAll(() => const EnterPin(),
-                          //                 arguments: controller.phoneController.text);
-                          //           } else {
-                          //             showsnackbar("OTP Failed", true);
-                          //           }
-                          //         });
-                          //       } else {
-                          //         showsnackbar("Enter a valid number", true);
-                          //       }
-                          //     }),
+                          Center(
+                            child: SizedBox(
+                              height: 50,
+                              width: mediaQueryWidth(context) * 0.8,
+                              child: CButton(
+                                  text: LocaleKeys.log_in_item_sign_in.tr,
+                                  fontsize: 14,
+                                  borderradius: 50,
+                                  fontWeight: FontWeight.w500,
+                                  shadow: true,
+                                  ontab: () {
+                                    if (controller.phoneController.text.isNotEmpty &&
+                                        controller.phoneController.text.length == 9) {
+                                      controller.generateOTP().then((value) {
+                                        if (value == 200) {
+                                          // showSnackBar(LocaleKeys.snack_bar_enter_valid_otp.tr);
+                                          Get.to(() => const EnterPin(),
+                                              duration: const Duration(seconds: 1),
+                                              transition: Transition.native,
+                                              arguments: controller.phoneController.text);
+                                        } else {
+                                          showSnackBar(LocaleKeys.snack_bar_opt_failed.tr, true);
+                                        }
+                                      });
+                                    } else {
+                                      showSnackBar(
+                                          LocaleKeys.snack_bar_enter_valid_number.tr, true);
+                                    }
+
+                                    // if (controller.phoneController.text.isNotEmpty &&
+                                    //     controller.phoneController.text.length == 9) {
+                                    //   controller.generateOTP().then((value) {
+                                    //     if (value == 200) {
+                                    //       showSnackBar("Enter OTP");
+                                    //       Get.offAll(() => const EnterPin(),
+                                    //           arguments: controller.phoneController.text);
+                                    //     } else {
+                                    //       showSnackBar("OTP Failed", true);
+                                    //     }
+                                    //   });
+                                    // } else {
+                                    //   showSnackBar("Enter a valid number", true);
+                                    // }
+                                  }),
+                            ),
+                          ),
                           SizedBox(
                             height: height * 0.02,
                           )
