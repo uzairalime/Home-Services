@@ -42,10 +42,6 @@ class PinController extends GetxController {
         /// store UserPreference
         await SharedPreference.storeToken(access: data.access, refresh: data.refresh);
 
-        // GetStorage _storage = GetStorage();
-        // _storage.write("role", role);
-        // SharedPreference.storeRole(role: "seller");
-
         if (StaticData.role == "seller") {
           Get.offAll(() => const SellerDashboardView());
         } else {
