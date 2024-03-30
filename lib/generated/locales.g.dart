@@ -29,29 +29,41 @@ class LocaleKeys {
   static const dashboard_profile_name = 'dashboard_profile_name';
   static const dashboard_profile_userName = 'dashboard_profile_userName';
   static const dashboard_profile_mobile = 'dashboard_profile_mobile';
-  static const dashboard_profile_edit_profile = 'dashboard_profile_edit_profile';
+  static const dashboard_profile_edit_profile =
+      'dashboard_profile_edit_profile';
   static const dashboard_profile__edit_profile_phone_number =
       'dashboard_profile__edit_profile_phone_number';
-  static const dashboard_profile__edit_profile_address = 'dashboard_profile__edit_profile_address';
-  static const dashboard_profile__edit_profile_update = 'dashboard_profile__edit_profile_update';
-  static const dashboard_profile_notification = 'dashboard_profile_notification';
-  static const dashboard_profile__notification_sound = 'dashboard_profile__notification_sound';
-  static const dashboard_profile__notification_vibrate = 'dashboard_profile__notification_vibrate';
+  static const dashboard_profile__edit_profile_address =
+      'dashboard_profile__edit_profile_address';
+  static const dashboard_profile__edit_profile_update =
+      'dashboard_profile__edit_profile_update';
+  static const dashboard_profile_notification =
+      'dashboard_profile_notification';
+  static const dashboard_profile__notification_sound =
+      'dashboard_profile__notification_sound';
+  static const dashboard_profile__notification_vibrate =
+      'dashboard_profile__notification_vibrate';
   static const dashboard_profile__notification_special_offer =
       'dashboard_profile__notification_special_offer';
   static const dashboard_profile__notification_promo_discount =
       'dashboard_profile__notification_promo_discount';
-  static const dashboard_profile__notification_payment = 'dashboard_profile__notification_payment';
+  static const dashboard_profile__notification_payment =
+      'dashboard_profile__notification_payment';
   static const dashboard_profile__notification_cashBack =
       'dashboard_profile__notification_cashBack';
   static const dashboard_profile_payment = 'dashboard_profile_payment';
   static const dashboard_profile__payment_payment_method =
       'dashboard_profile__payment_payment_method';
-  static const dashboard_profile__payment_user_msg = 'dashboard_profile__payment_user_msg';
-  static const dashboard_profile__payment_google_pay = 'dashboard_profile__payment_google_pay';
-  static const dashboard_profile__payment_apple_pay = 'dashboard_profile__payment_apple_pay';
-  static const dashboard_profile__payment_master_card = 'dashboard_profile__payment_master_card';
-  static const dashboard_profile__payment_add_a_card = 'dashboard_profile__payment_add_a_card';
+  static const dashboard_profile__payment_user_msg =
+      'dashboard_profile__payment_user_msg';
+  static const dashboard_profile__payment_google_pay =
+      'dashboard_profile__payment_google_pay';
+  static const dashboard_profile__payment_apple_pay =
+      'dashboard_profile__payment_apple_pay';
+  static const dashboard_profile__payment_master_card =
+      'dashboard_profile__payment_master_card';
+  static const dashboard_profile__payment_add_a_card =
+      'dashboard_profile__payment_add_a_card';
   static const dashboard_profile__payment__add_a_card_card_number =
       'dashboard_profile__payment__add_a_card_card_number';
   static const dashboard_profile__payment__add_a_card_full_name =
@@ -63,83 +75,119 @@ class LocaleKeys {
   static const dashboard_profile__payment__add_a_card_dialog_msg =
       'dashboard_profile__payment__add_a_card_dialog_msg';
   static const dashboard_profile_language = 'dashboard_profile_language';
-  static const dashboard_profile__language_english = 'dashboard_profile__language_english';
-  static const dashboard_profile__language_arabic = 'dashboard_profile__language_arabic';
-  static const dashboard_profile_privacy_policy = 'dashboard_profile_privacy_policy';
+  static const dashboard_profile__language_english =
+      'dashboard_profile__language_english';
+  static const dashboard_profile__language_arabic =
+      'dashboard_profile__language_arabic';
+  static const dashboard_profile_privacy_policy =
+      'dashboard_profile_privacy_policy';
   static const dashboard_profile__privacy_policy_detail_0 =
       'dashboard_profile__privacy_policy_detail_0';
-  static const dashboard_profile__privacy_policy_txt_1 = 'dashboard_profile__privacy_policy_txt_1';
+  static const dashboard_profile__privacy_policy_txt_1 =
+      'dashboard_profile__privacy_policy_txt_1';
   static const dashboard_profile__privacy_policy_detail_1 =
       'dashboard_profile__privacy_policy_detail_1';
-  static const dashboard_profile__privacy_policy_txt_2 = 'dashboard_profile__privacy_policy_txt_2';
+  static const dashboard_profile__privacy_policy_txt_2 =
+      'dashboard_profile__privacy_policy_txt_2';
   static const dashboard_profile__privacy_policy_detail_2 =
       'dashboard_profile__privacy_policy_detail_2';
-  static const dashboard_profile__privacy_policy_txt_3 = 'dashboard_profile__privacy_policy_txt_3';
+  static const dashboard_profile__privacy_policy_txt_3 =
+      'dashboard_profile__privacy_policy_txt_3';
   static const dashboard_profile__privacy_policy_detail_3 =
       'dashboard_profile__privacy_policy_detail_3';
-  static const dashboard_profile__privacy_policy_txt_4 = 'dashboard_profile__privacy_policy_txt_4';
+  static const dashboard_profile__privacy_policy_txt_4 =
+      'dashboard_profile__privacy_policy_txt_4';
   static const dashboard_profile__privacy_policy_detail_4 =
       'dashboard_profile__privacy_policy_detail_4';
-  static const dashboard_profile__privacy_policy_txt_5 = 'dashboard_profile__privacy_policy_txt_5';
+  static const dashboard_profile__privacy_policy_txt_5 =
+      'dashboard_profile__privacy_policy_txt_5';
   static const dashboard_profile__privacy_policy_detail_5 =
       'dashboard_profile__privacy_policy_detail_5';
-  static const dashboard_profile__privacy_policy_txt_6 = 'dashboard_profile__privacy_policy_txt_6';
+  static const dashboard_profile__privacy_policy_txt_6 =
+      'dashboard_profile__privacy_policy_txt_6';
   static const dashboard_profile__privacy_policy_detail_6 =
       'dashboard_profile__privacy_policy_detail_6';
-  static const dashboard_profile__privacy_policy_txt_7 = 'dashboard_profile__privacy_policy_txt_7';
+  static const dashboard_profile__privacy_policy_txt_7 =
+      'dashboard_profile__privacy_policy_txt_7';
   static const dashboard_profile__privacy_policy_detail_7 =
       'dashboard_profile__privacy_policy_detail_7';
-  static const dashboard_profile__privacy_policy_txt_8 = 'dashboard_profile__privacy_policy_txt_8';
+  static const dashboard_profile__privacy_policy_txt_8 =
+      'dashboard_profile__privacy_policy_txt_8';
   static const dashboard_profile__privacy_policy_detail_8 =
       'dashboard_profile__privacy_policy_detail_8';
   static const dashboard_profile_help_centre = 'dashboard_profile_help_centre';
-  static const dashboard_profile_invite_a_friend = 'dashboard_profile_invite_a_friend';
+  static const dashboard_profile_invite_a_friend =
+      'dashboard_profile_invite_a_friend';
   static const dashboard_profile__invite_a_friend_invite_friend =
       'dashboard_profile__invite_a_friend_invite_friend';
   static const dashboard_profile__invite_a_friend_invite =
       'dashboard_profile__invite_a_friend_invite';
   static const dashboard_profile_logout = 'dashboard_profile_logout';
-  static const dashboard_profile__logout_warning_msg = 'dashboard_profile__logout_warning_msg';
-  static const dashboard_profile__logout_cancel = 'dashboard_profile__logout_cancel';
+  static const dashboard_profile__logout_warning_msg =
+      'dashboard_profile__logout_warning_msg';
+  static const dashboard_profile__logout_cancel =
+      'dashboard_profile__logout_cancel';
   static const dashboard_profile__logout_yes = 'dashboard_profile__logout_yes';
-  static const start_earning_item_villa_number = 'start_earning_item_villa_number';
+  static const start_earning_item_villa_number =
+      'start_earning_item_villa_number';
   static const start_earning_item_area = 'start_earning_item_area';
-  static const start_earning_item_service_info = 'start_earning_item_service_info';
+  static const start_earning_item_service_info =
+      'start_earning_item_service_info';
   static const start_earning_item_txt = 'start_earning_item_txt';
   static const start_earning_item_full_name = 'start_earning_item_full_name';
-  static const start_earning_item_enter_full_name = 'start_earning_item_enter_full_name';
-  static const start_earning_item_selected_catg = 'start_earning_item_selected_catg';
-  static const start_earning_item_enter_select_catg = 'start_earning_item_enter_select_catg';
-  static const start_earning_item_discription = 'start_earning_item_discription';
-  static const start_earning_item_enter_decription = 'start_earning_item_enter_decription';
-  static const start_earning_item_select_working_hour = 'start_earning_item_select_working_hour';
-  static const start_earning_item_enter_from_hours = 'start_earning_item_enter_from_hours';
-  static const start_earning_item_enter_till_hours = 'start_earning_item_enter_till_hours';
-  static const start_earning_item_selct_working_days = 'start_earning_item_selct_working_days';
-  static const start_earning_item_rate_per_hour = 'start_earning_item_rate_per_hour';
+  static const start_earning_item_enter_full_name =
+      'start_earning_item_enter_full_name';
+  static const start_earning_item_selected_catg =
+      'start_earning_item_selected_catg';
+  static const start_earning_item_enter_select_catg =
+      'start_earning_item_enter_select_catg';
+  static const start_earning_item_discription =
+      'start_earning_item_discription';
+  static const start_earning_item_enter_decription =
+      'start_earning_item_enter_decription';
+  static const start_earning_item_select_working_hour =
+      'start_earning_item_select_working_hour';
+  static const start_earning_item_enter_from_hours =
+      'start_earning_item_enter_from_hours';
+  static const start_earning_item_enter_till_hours =
+      'start_earning_item_enter_till_hours';
+  static const start_earning_item_selct_working_days =
+      'start_earning_item_selct_working_days';
+  static const start_earning_item_rate_per_hour =
+      'start_earning_item_rate_per_hour';
   static const start_earning_item_enter_rate = 'start_earning_item_enter_rate';
-  static const start_earning_item_for_location = 'start_earning_item_for_location';
+  static const start_earning_item_for_location =
+      'start_earning_item_for_location';
   static const start_earning_item_address = 'start_earning_item_address';
-  static const start_earning_item_enter_address = 'start_earning_item_enter_address';
-  static const start_earning_item_upload_picture = 'start_earning_item_upload_picture';
-  static const start_earning_item_tap_to_upload = 'start_earning_item_tap_to_upload';
+  static const start_earning_item_enter_address =
+      'start_earning_item_enter_address';
+  static const start_earning_item_upload_picture =
+      'start_earning_item_upload_picture';
+  static const start_earning_item_tap_to_upload =
+      'start_earning_item_tap_to_upload';
   static const start_earning_item_submit = 'start_earning_item_submit';
   static const faq_items_faq = 'faq_items_faq';
   static const faq_items_tabba_items_general = 'faq_items_tabba_items_general';
   static const faq_items_tabba_items_account = 'faq_items_tabba_items_account';
   static const faq_items_tabba_items_service = 'faq_items_tabba_items_service';
   static const faq_items_tabba_items_payment = 'faq_items_tabba_items_payment';
-  static const faq_items_tabba_items_appliance = 'faq_items_tabba_items_appliance';
-  static const faq_items_tabba_items_Plumbing = 'faq_items_tabba_items_Plumbing';
-  static const faq_items_tabba_items_shifting = 'faq_items_tabba_items_shifting';
+  static const faq_items_tabba_items_appliance =
+      'faq_items_tabba_items_appliance';
+  static const faq_items_tabba_items_Plumbing =
+      'faq_items_tabba_items_Plumbing';
+  static const faq_items_tabba_items_shifting =
+      'faq_items_tabba_items_shifting';
   static const faq_items_enter_search = 'faq_items_enter_search';
-  static const faq_items_questions_item_what_hamb = 'faq_items_questions_item_what_hamb';
+  static const faq_items_questions_item_what_hamb =
+      'faq_items_questions_item_what_hamb';
   static const faq_items_questions_item_what_hamb_detail =
       'faq_items_questions_item_what_hamb_detail';
-  static const faq_items_questions_item_why_hamb = 'faq_items_questions_item_why_hamb';
+  static const faq_items_questions_item_why_hamb =
+      'faq_items_questions_item_why_hamb';
   static const faq_items_questions_item_why_hamb_detail =
       'faq_items_questions_item_why_hamb_detail';
-  static const faq_items_questions_item_booking_hamo = 'faq_items_questions_item_booking_hamo';
+  static const faq_items_questions_item_booking_hamo =
+      'faq_items_questions_item_booking_hamo';
   static const faq_items_questions_item_booking_hamo_detail =
       'faq_items_questions_item_booking_hamo_detail';
   static const faq_items_questions_item_how_pay_service =
@@ -150,7 +198,8 @@ class LocaleKeys {
       'faq_items_questions_item_cancel_change_service';
   static const faq_items_questions_item_cancel_change_service_detail =
       'faq_items_questions_item_cancel_change_service_detail';
-  static const faq_items_questions_item_personal_info = 'faq_items_questions_item_personal_info';
+  static const faq_items_questions_item_personal_info =
+      'faq_items_questions_item_personal_info';
   static const faq_items_questions_item_personal_info_detail =
       'faq_items_questions_item_personal_info_detail';
   static const log_in_item_msg = 'log_in_item_msg';
@@ -164,33 +213,44 @@ class LocaleKeys {
   static const verifyOtp_items_resend = 'verifyOtp_items_resend';
   static const verifyOtp_items_verify = 'verifyOtp_items_verify';
   static const home_screen_items_search_for = 'home_screen_items_search_for';
-  static const home_screen_items_special_offer = 'home_screen_items_special_offer';
+  static const home_screen_items_special_offer =
+      'home_screen_items_special_offer';
   static const home_screen_items_see_all = 'home_screen_items_see_all';
   static const home_screen_items_services = 'home_screen_items_services';
-  static const home_screen_items_most_popular_services = 'home_screen_items_most_popular_services';
-  static const user_profile_item_user_ptofile = 'user_profile_item_user_ptofile';
+  static const home_screen_items_most_popular_services =
+      'home_screen_items_most_popular_services';
+  static const user_profile_item_user_ptofile =
+      'user_profile_item_user_ptofile';
   static const user_profile_item_jobs = 'user_profile_item_jobs';
   static const user_profile_item_services = 'user_profile_item_services';
   static const user_profile_item_booking = 'user_profile_item_booking';
-  static const user_profile_item_all_services = 'user_profile_item_all_services';
+  static const user_profile_item_all_services =
+      'user_profile_item_all_services';
   static const user_profile_item_upcoming = 'user_profile_item_upcoming';
   static const user_profile_item_completed = 'user_profile_item_completed';
-  static const category_items_catagory_button = 'category_items_catagory_button';
+  static const category_items_catagory_button =
+      'category_items_catagory_button';
   static const category_items_floor_price = 'category_items_floor_price';
   static const category_items_about_me = 'category_items_about_me';
   static const category_items_photos_videos = 'category_items_photos_videos';
-  static const house_cleaning_items_house_cleaning = 'house_cleaning_items_house_cleaning';
-  static const house_cleaning_items_how_many_hours = 'house_cleaning_items_how_many_hours';
+  static const house_cleaning_items_house_cleaning =
+      'house_cleaning_items_house_cleaning';
+  static const house_cleaning_items_how_many_hours =
+      'house_cleaning_items_how_many_hours';
   static const house_cleaning_items_hours = 'house_cleaning_items_hours';
-  static const house_cleaning_items_how_many_cleaner = 'house_cleaning_items_how_many_cleaner';
+  static const house_cleaning_items_how_many_cleaner =
+      'house_cleaning_items_how_many_cleaner';
   static const house_cleaning_items_cleaners = 'house_cleaning_items_cleaners';
   static const house_cleaning_items_how_often_need_claning =
       'house_cleaning_items_how_often_need_claning';
   static const house_cleaning_items_once = 'house_cleaning_items_once';
   static const house_cleaning_items_weekly = 'house_cleaning_items_weekly';
-  static const house_cleaning_items_Bi_weekly = 'house_cleaning_items_Bi_weekly';
-  static const house_cleaning_items_Mutilple_time = 'house_cleaning_items_Mutilple_time';
-  static const house_cleaning_items_did_need_material = 'house_cleaning_items_did_need_material';
+  static const house_cleaning_items_Bi_weekly =
+      'house_cleaning_items_Bi_weekly';
+  static const house_cleaning_items_Mutilple_time =
+      'house_cleaning_items_Mutilple_time';
+  static const house_cleaning_items_did_need_material =
+      'house_cleaning_items_did_need_material';
   static const house_cleaning_items_yes = 'house_cleaning_items_yes';
   static const house_cleaning_items_no = 'house_cleaning_items_no';
   static const house_cleaning_items_addditional_charges_aed =
@@ -199,75 +259,107 @@ class LocaleKeys {
       'house_cleaning_items_special_insutuction';
   static const house_cleaning_items_example_insutruction =
       'house_cleaning_items_example_insutruction';
-  static const house_cleaning_items_cont_button = 'house_cleaning_items_cont_button';
-  static const booking_detail_items_booking_detail = 'booking_detail_items_booking_detail';
-  static const booking_detail_items_select_date = 'booking_detail_items_select_date';
-  static const booking_detail_items_choose_start_time = 'booking_detail_items_choose_start_time';
-  static const booking_detail_items_continue_button = 'booking_detail_items_continue_button';
+  static const house_cleaning_items_cont_button =
+      'house_cleaning_items_cont_button';
+  static const booking_detail_items_booking_detail =
+      'booking_detail_items_booking_detail';
+  static const booking_detail_items_select_date =
+      'booking_detail_items_select_date';
+  static const booking_detail_items_choose_start_time =
+      'booking_detail_items_choose_start_time';
+  static const booking_detail_items_continue_button =
+      'booking_detail_items_continue_button';
   static const location_view_items_Location_address_view =
       'location_view_items_Location_address_view';
-  static const location_view_items_location_details = 'location_view_items_location_details';
+  static const location_view_items_location_details =
+      'location_view_items_location_details';
   static const location_view_items_address = 'location_view_items_address';
-  static const location_view_items_continue_button = 'location_view_items_continue_button';
+  static const location_view_items_continue_button =
+      'location_view_items_continue_button';
   static const painting_items_painting = 'painting_items_painting';
   static const painting_items_how_many_hours = 'painting_items_how_many_hours';
   static const painting_items_hours = 'painting_items_hours';
-  static const painting_items_size_of_your_home = 'painting_items_size_of_your_home';
+  static const painting_items_size_of_your_home =
+      'painting_items_size_of_your_home';
   static const painting_items_studio = 'painting_items_studio';
   static const painting_items_1_br = 'painting_items_1_br';
   static const painting_items_2_br = 'painting_items_2_br';
   static const painting_items_3_br = 'painting_items_3_br';
   static const painting_items_4_br = 'painting_items_4_br';
   static const painting_items_villa = 'painting_items_villa';
-  static const painting_items_continue_button = 'painting_items_continue_button';
-  static const painting_items_special_instruction = 'painting_items_special_instruction';
-  static const painting_items_example_instruction = 'painting_items_example_instruction';
-  static const applience_items_applience_service = 'applience_items_applience_service';
-  static const applience_items_choose_applience = 'applience_items_choose_applience';
+  static const painting_items_continue_button =
+      'painting_items_continue_button';
+  static const painting_items_special_instruction =
+      'painting_items_special_instruction';
+  static const painting_items_example_instruction =
+      'painting_items_example_instruction';
+  static const applience_items_applience_service =
+      'applience_items_applience_service';
+  static const applience_items_choose_applience =
+      'applience_items_choose_applience';
   static const applience_items_washing_mach = 'applience_items_washing_mach';
   static const applience_items_refrig = 'applience_items_refrig';
   static const applience_items_dispancer = 'applience_items_dispancer';
   static const applience_items_air_condi = 'applience_items_air_condi';
-  static const applience_items_grilling_machine = 'applience_items_grilling_machine';
+  static const applience_items_grilling_machine =
+      'applience_items_grilling_machine';
   static const applience_items_washers = 'applience_items_washers';
   static const applience_items_drayer = 'applience_items_drayer';
   static const applience_items_machnic = 'applience_items_machnic';
-  static const applience_items_continue_button = 'applience_items_continue_button';
+  static const applience_items_continue_button =
+      'applience_items_continue_button';
   static const plumbing_repairing_item_plumbing_reparing =
       'plumbing_repairing_item_plumbing_reparing';
-  static const plumbing_repairing_item_how_many_hours = 'plumbing_repairing_item_how_many_hours';
+  static const plumbing_repairing_item_how_many_hours =
+      'plumbing_repairing_item_how_many_hours';
   static const plumbing_repairing_item_hours = 'plumbing_repairing_item_hours';
   static const plumbing_repairing_item_what_kind_of_service =
       'plumbing_repairing_item_what_kind_of_service';
-  static const plumbing_repairing_item_basin_sink = 'plumbing_repairing_item_basin_sink';
-  static const plumbing_repairing_item_grouting = 'plumbing_repairing_item_grouting';
-  static const plumbing_repairing_item_bath_fiting = 'plumbing_repairing_item_bath_fiting';
-  static const plumbing_repairing_item_motors = 'plumbing_repairing_item_motors';
-  static const plumbing_repairing_item_toilets = 'plumbing_repairing_item_toilets';
-  static const plumbing_repairing_item_tap_mixer = 'plumbing_repairing_item_tap_mixer';
-  static const plumbing_repairing_item_draining_pipes = 'plumbing_repairing_item_draining_pipes';
-  static const plumbing_repairing_item_water_tank = 'plumbing_repairing_item_water_tank';
+  static const plumbing_repairing_item_basin_sink =
+      'plumbing_repairing_item_basin_sink';
+  static const plumbing_repairing_item_grouting =
+      'plumbing_repairing_item_grouting';
+  static const plumbing_repairing_item_bath_fiting =
+      'plumbing_repairing_item_bath_fiting';
+  static const plumbing_repairing_item_motors =
+      'plumbing_repairing_item_motors';
+  static const plumbing_repairing_item_toilets =
+      'plumbing_repairing_item_toilets';
+  static const plumbing_repairing_item_tap_mixer =
+      'plumbing_repairing_item_tap_mixer';
+  static const plumbing_repairing_item_draining_pipes =
+      'plumbing_repairing_item_draining_pipes';
+  static const plumbing_repairing_item_water_tank =
+      'plumbing_repairing_item_water_tank';
   static const tailor_items_tailor = 'tailor_items_tailor';
   static const tailor_items_pieces = 'tailor_items_pieces';
-  static const tailor_items_what_kind_of_service = 'tailor_items_what_kind_of_service';
+  static const tailor_items_what_kind_of_service =
+      'tailor_items_what_kind_of_service';
   static const tailor_items_new_stitching = 'tailor_items_new_stitching';
   static const tailor_items_alteration = 'tailor_items_alteration';
   static const tailor_items_others = 'tailor_items_others';
   static const tailor_items_book_now = 'tailor_items_book_now';
   static const tailor_items_how_many_pieces = 'tailor_items_how_many_pieces';
-  static const special_offer_items_special_offer = 'special_offer_items_special_offer';
+  static const special_offer_items_special_offer =
+      'special_offer_items_special_offer';
   static const edit_services_service_info = 'edit_services_service_info';
   static const edit_services_txt = 'edit_services_txt';
   static const edit_services_full_name = 'edit_services_full_name';
   static const edit_services_enter_full_name = 'edit_services_enter_full_name';
   static const edit_services_selected_catg = 'edit_services_selected_catg';
-  static const edit_services_enter_select_catg = 'edit_services_enter_select_catg';
+  static const edit_services_enter_select_catg =
+      'edit_services_enter_select_catg';
   static const edit_services_discription = 'edit_services_discription';
-  static const edit_services_enter_decription = 'edit_services_enter_decription';
-  static const edit_services_select_working_hour = 'edit_services_select_working_hour';
-  static const edit_services_enter_from_hours = 'edit_services_enter_from_hours';
-  static const edit_services_enter_till_hours = 'edit_services_enter_till_hours';
-  static const edit_services_selct_working_days = 'edit_services_selct_working_days';
+  static const edit_services_enter_decription =
+      'edit_services_enter_decription';
+  static const edit_services_select_working_hour =
+      'edit_services_select_working_hour';
+  static const edit_services_enter_from_hours =
+      'edit_services_enter_from_hours';
+  static const edit_services_enter_till_hours =
+      'edit_services_enter_till_hours';
+  static const edit_services_selct_working_days =
+      'edit_services_selct_working_days';
   static const edit_services_rate_per_hour = 'edit_services_rate_per_hour';
   static const edit_services_enter_rate = 'edit_services_enter_rate';
   static const edit_services_for_location = 'edit_services_for_location';
@@ -293,13 +385,16 @@ class LocaleKeys {
   static const my_booking_aed = 'my_booking_aed';
   static const my_booking_booking_status = 'my_booking_booking_status';
   static const ac_reparing_items_reparing = 'ac_reparing_items_reparing';
-  static const ac_reparing_items_how_many_hours = 'ac_reparing_items_how_many_hours';
+  static const ac_reparing_items_how_many_hours =
+      'ac_reparing_items_how_many_hours';
   static const ac_reparing_items_hours = 'ac_reparing_items_hours';
-  static const ac_reparing_items_what_kind_of_service = 'ac_reparing_items_what_kind_of_service';
+  static const ac_reparing_items_what_kind_of_service =
+      'ac_reparing_items_what_kind_of_service';
   static const ac_reparing_items_ac_service = 'ac_reparing_items_ac_service';
   static const ac_reparing_items_ac_repaire = 'ac_reparing_items_ac_repaire';
   static const ac_reparing_items_ac_install = 'ac_reparing_items_ac_install';
-  static const ac_reparing_items_ac_uninstall = 'ac_reparing_items_ac_uninstall';
+  static const ac_reparing_items_ac_uninstall =
+      'ac_reparing_items_ac_uninstall';
   static const ac_reparing_items_gas_refil = 'ac_reparing_items_gas_refil';
   static const km_away = 'km_away';
   static const switch_mode_seller_mode = 'switch_mode_seller_mode';
@@ -313,7 +408,8 @@ class LocaleKeys {
   static const men_saloon_pedicure = 'men_saloon_pedicure';
   static const men_saloon_face_care = 'men_saloon_face_care';
   static const men_saloon_express_massage = 'men_saloon_express_massage';
-  static const men_saloon_chest_back_trimming = 'men_saloon_chest_back_trimming';
+  static const men_saloon_chest_back_trimming =
+      'men_saloon_chest_back_trimming';
   static const men_saloon_hair_beard_color = 'men_saloon_hair_beard_color';
   static const women_saloon_women_saloon = 'women_saloon_women_saloon';
   static const women_saloon_bridal_package = 'women_saloon_bridal_package';
@@ -371,15 +467,20 @@ class LocaleKeys {
   static const handy_man_landscaping = 'handy_man_landscaping';
   static const enteraddress = 'enteraddress';
   static const location_screen_set_loation = 'location_screen_set_loation';
-  static const location_screen_search_your_loaction = 'location_screen_search_your_loaction';
+  static const location_screen_search_your_loaction =
+      'location_screen_search_your_loaction';
   static const location_screen_successfully_address_changed =
       'location_screen_successfully_address_changed';
-  static const location_screen_something_went_wrong = 'location_screen_something_went_wrong';
-  static const location_screen_use_my_current_loaction = 'location_screen_use_my_current_loaction';
-  static const location_screen_selected_loaction = 'location_screen_selected_loaction';
+  static const location_screen_something_went_wrong =
+      'location_screen_something_went_wrong';
+  static const location_screen_use_my_current_loaction =
+      'location_screen_use_my_current_loaction';
+  static const location_screen_selected_loaction =
+      'location_screen_selected_loaction';
   static const snack_bars_select_hours = 'snack_bars_select_hours';
   static const snack_bars_select_cleanrs = 'snack_bars_select_cleanrs';
-  static const snack_bars_select_subscription = 'snack_bars_select_subscription';
+  static const snack_bars_select_subscription =
+      'snack_bars_select_subscription';
   static const snack_bars_select_materials = 'snack_bars_select_materials';
   static const snack_bars_login_then_booking = 'snack_bars_login_then_booking';
   static const snack_bars_add_address = 'snack_bars_add_address';
@@ -390,7 +491,8 @@ class LocaleKeys {
   static const snack_bar_enter_otp = 'snack_bar_enter_otp';
   static const snack_bar_opt_failed = 'snack_bar_opt_failed';
   static const snack_bar_enter_valid_number = 'snack_bar_enter_valid_number';
-  static const snack_bar_successfully_payment = 'snack_bar_successfully_payment';
+  static const snack_bar_successfully_payment =
+      'snack_bar_successfully_payment';
   static const snack_bar_enter_valid_otp = 'snack_bar_enter_valid_otp';
   static const snack_bar_enter_flat_number = 'snack_bar_enter_flat_number';
   static const completed = 'completed';
@@ -402,8 +504,10 @@ class LocaleKeys {
   static const upcommming_started = 'upcommming_started';
   static const upcommming_canceled = 'upcommming_canceled';
   static const upcommming_rejected = 'upcommming_rejected';
-  static const painting_items_special_insutuction = 'painting_items_special_insutuction';
-  static const painting_items_example_insutruction = 'painting_items_example_insutruction';
+  static const painting_items_special_insutuction =
+      'painting_items_special_insutuction';
+  static const painting_items_example_insutruction =
+      'painting_items_example_insutruction';
   static const tailor_items_how_many_peices = 'tailor_items_how_many_peices';
 }
 
@@ -448,7 +552,8 @@ class Locales {
     'dashboard_profile__payment__add_a_card_card_number': 'رقم البطاقة',
     'dashboard_profile__payment__add_a_card_full_name': 'الاسم الكامل',
     'dashboard_profile__payment__add_a_card_add_card': 'إضافة بطاقة',
-    'dashboard_profile__payment__add_a_card_dialog_succeed': 'تمت إضافة البطاقة بنجاح',
+    'dashboard_profile__payment__add_a_card_dialog_succeed':
+        'تمت إضافة البطاقة بنجاح',
     'dashboard_profile__payment__add_a_card_dialog_msg':
         'يمكنك الآن استخدام بطاقتك لإجراء المدفوعات',
     'dashboard_profile_language': 'اللغة',
@@ -533,15 +638,17 @@ class Locales {
     'faq_items_questions_item_how_pay_service': 'كيف يمكنني الدفع عن الخدمة؟',
     'faq_items_questions_item_how_pay_service_detail':
         'يمكنك اختيار الدفع عن الخدمة باستخدام بطاقة الائتمان عبر الإنترنت أو نقدًا بمجرد اكتمال المهمة. إذا اخترت الدفع ببطاقة الائتمان، فسنقوم بمعالجة الدفع قبل تقديم الخدمة، مما يضمن عملية تنفيذ أكثر سلاسة. سنقوم أيضًا بإعلامك من خلال التطبيق وعبر البريد الإلكتروني للإبقاء على علم بحالة الدفع وأية تفاصيل أخرى ذات صلة.',
-    'faq_items_questions_item_cancel_change_service': 'هل يمكنني تغيير أو إلغاء الخدمة؟',
+    'faq_items_questions_item_cancel_change_service':
+        'هل يمكنني تغيير أو إلغاء الخدمة؟',
     'faq_items_questions_item_cancel_change_service_detail':
         'نعم. ستكون لديك الخيار لإلغاء أو تعديل حجزك حتى قبل 24 ساعة من بدء الخدمة. إذا قمت بإلغاء أو تغيير حجزك قبل أقل من 24 ساعة من بدء الحجز، فقد تضطر إلى دفع رسوم إلغاء/تعديل متأخرة.',
-    'faq_items_questions_item_personal_info': 'كيف سيتم استخدام معلوماتي الشخصية؟',
+    'faq_items_questions_item_personal_info':
+        'كيف سيتم استخدام معلوماتي الشخصية؟',
     'faq_items_questions_item_personal_info_detail':
         'نحن نقدر خصوصيتك. ستُستخدم معلوماتك الشخصية فقط من قبل هوم بريجادير والشركات التي تختارها لتوصيل العروض المخصصة الخاصة بك.',
     'log_in_item_msg': 'تسجيل الدخول',
     'log_in_item_enter_phone': 'أدخل رقم الهاتف',
-    'log_in_item_sign_in': 'يكمل',
+    'log_in_item_sign_in': 'تسجيل الدخول',
     'log_in_item_or': 'ليس لديك حساب',
     'log_in_item_sign_up': 'إنشاء حساب',
     'verifyOtp_items_enter_pin': 'أدخل رمز التحقق',
@@ -562,13 +669,14 @@ class Locales {
     'user_profile_item_upcoming': 'القادمة',
     'user_profile_item_completed': 'المكتملة',
     'category_items_catagory_button': 'الحجز',
-    'category_items_floor_price': 'السعر الأدنى',
+    'category_items_floor_price': 'السعر الأساسي',
     'category_items_about_me': 'نبذة عني',
     'category_items_photos_videos': 'الصور والفيديوهات',
     'house_cleaning_items_house_cleaning': 'تنظيف المنزل',
     'house_cleaning_items_how_many_hours': 'كم ساعة يجب أن يبقوا؟',
     'house_cleaning_items_hours': 'ساعات',
-    'house_cleaning_items_how_many_cleaner': 'كم عدد عمال النظافة التي تحتاجها؟',
+    'house_cleaning_items_how_many_cleaner':
+        'كم عدد عمال النظافة التي تحتاجها؟',
     'house_cleaning_items_cleaners': 'عمال النظافة',
     'house_cleaning_items_how_often_need_claning': 'كم مرة تحتاج للتنظيف؟',
     'house_cleaning_items_once': 'مرة واحدة',
@@ -618,7 +726,8 @@ class Locales {
     'applience_items_machnic': 'فني الأجهزة',
     'applience_items_continue_button': 'متابعة - \$20',
     'plumbing_repairing_item_plumbing_reparing': 'إصلاح السباكة',
-    'plumbing_repairing_item_how_many_hours': 'كم عدد الساعات التي يجب أن يبقوا؟',
+    'plumbing_repairing_item_how_many_hours':
+        'كم عدد الساعات التي يجب أن يبقوا؟',
     'plumbing_repairing_item_hours': 'ساعات',
     'plumbing_repairing_item_what_kind_of_service': 'أي نوع من الخدمات تحتاج؟',
     'plumbing_repairing_item_basin_sink': 'حوض ومغسلة',
@@ -639,7 +748,8 @@ class Locales {
     'tailor_items_how_many_pieces': 'كم عدد القطع التي تحتاجها؟',
     'special_offer_items_special_offer': 'عروض خاصة',
     'edit_services_service_info': 'معلومات الخدمة',
-    'edit_services_txt': 'بمجرد ملء هذا النموذج، سيتصل فريقنا بك لتسهيل قائمة خدماتك',
+    'edit_services_txt':
+        'بمجرد ملء هذا النموذج، سيتصل فريقنا بك لتسهيل قائمة خدماتك',
     'edit_services_full_name': 'الاسم الكامل',
     'edit_services_enter_full_name': 'أدخل اسمك الكامل',
     'edit_services_selected_catg': 'الفئة المحددة',
@@ -755,7 +865,8 @@ class Locales {
     'location_screen_set_loation': 'تحديد الموقع',
     'location_screen_search_your_loaction': 'ابحث عن موقعك',
     'location_screen_successfully_address_changed': 'تم تغيير العنوان بنجاح',
-    'location_screen_something_went_wrong': 'حدث خطأ ما، يرجى المحاولة مرة أخرى!',
+    'location_screen_something_went_wrong':
+        'حدث خطأ ما، يرجى المحاولة مرة أخرى!',
     'location_screen_use_my_current_loaction': 'استخدم موقعي الحالي',
     'location_screen_selected_loaction': 'الموقع المحدد',
     'snack_bars_select_hours': 'يرجى اختيار الساعات',
@@ -798,7 +909,7 @@ class Locales {
     'dashboard_items_home': 'Home',
     'dashboard_items_bookings': 'Bookings',
     'dashboard_items_start_earning': 'Start Earning',
-    'dashboard_items_faq': 'Faq',
+    'dashboard_items_faq': 'FAQs',
     'dashboard_items_profile': 'Profile',
     'dashboard_profile_name': 'Name',
     'dashboard_profile_userName': 'UserName',
@@ -816,7 +927,8 @@ class Locales {
     'dashboard_profile__notification_cashBack': 'CashBack',
     'dashboard_profile_payment': 'Payment',
     'dashboard_profile__payment_payment_method': 'Payment Method',
-    'dashboard_profile__payment_user_msg': 'Please select a payment refund method',
+    'dashboard_profile__payment_user_msg':
+        'Please select a payment refund method',
     'dashboard_profile__payment_google_pay': 'Google pay',
     'dashboard_profile__payment_apple_pay': 'Apple Pay',
     'dashboard_profile__payment_master_card': 'Master Card',
@@ -824,19 +936,22 @@ class Locales {
     'dashboard_profile__payment__add_a_card_card_number': 'Card Number',
     'dashboard_profile__payment__add_a_card_full_name': 'Full Name',
     'dashboard_profile__payment__add_a_card_add_card': 'Add Card',
-    'dashboard_profile__payment__add_a_card_dialog_succeed': 'Card Added Successfully',
+    'dashboard_profile__payment__add_a_card_dialog_succeed':
+        'Card Added Successfully',
     'dashboard_profile__payment__add_a_card_dialog_msg':
         'You can now use your card to make payments',
     'dashboard_profile_language': 'Language',
     'dashboard_profile__language_english': 'English',
-    'dashboard_profile__language_arabic': 'العربية',
+    'dashboard_profile__language_arabic': 'Arabic',
     'dashboard_profile_privacy_policy': 'Privacy Policy',
     'dashboard_profile__privacy_policy_detail_0':
         'Since we value your privacy, we will treat your personal information in accordance with the guidelines outlined in this policy. On our website, cookies are used. You provide your consent for us to use cookies in line with this policy by using our website and accepting its conditions. Which types of data do we gather? These are the types of personal information that we might gather, keep, and use Information about your computer and about your visits to and use of this website (including your IP address, geographical location, browser type and version, operating system, referral source, length of visit, page views and website navigation)Information relating to any transactions carried out between you and us on or in relation to this website, including information relating to any purchases you make of our goods or services (including booking a cleaner through Home Brigadier)Information that you provide to us for the purpose of registering with us (including your name, address and email address)Information that you provide to us for the purpose of subscribing to our website services, email notifications and/or newsletters (including your name and email address)You must first get the agreement of the individual whose personal information you are disclosing to us, granting us permission to share and process that information in compliance with our privacy policy.No third parties will keep, rent, share, sell, or lease any credit/debit card details or personally identifying information.',
-    'dashboard_profile__privacy_policy_txt_1': 'Using Your Personal Information',
+    'dashboard_profile__privacy_policy_txt_1':
+        'Using Your Personal Information',
     'dashboard_profile__privacy_policy_detail_1':
         'We will use your personal information for the following purposes:Managing our website and improving your browsing experience by personalizing it.Sending you statements, invoices, and collecting payments.Sending you non-marketing commercial communications.Fulfilling your requests for email notifications, newsletters, and other marketing communications, if you have given us explicit consent.',
-    'dashboard_profile__privacy_policy_txt_2': 'Disclosure of Personal Information',
+    'dashboard_profile__privacy_policy_txt_2':
+        'Disclosure of Personal Information',
     'dashboard_profile__privacy_policy_detail_2':
         'We may disclose your personal information to:Our employees, officers, agents, suppliers, or subcontractors, as reasonably necessary for the purposes described in this Privacy Policy.Any member of our group of companies (including subsidiaries and ultimate holding company) as required for the purposes outlined in this policy.To comply with legal obligations, ongoing legal proceedings, or to establish, exercise, or defend our legal rights (including sharing information with third parties to prevent fraud and reduce credit risk).',
     'dashboard_profile__privacy_policy_txt_3': 'Cookies',
@@ -845,7 +960,8 @@ class Locales {
     'dashboard_profile__privacy_policy_txt_4': 'International data transfers',
     'dashboard_profile__privacy_policy_detail_4':
         'To provide our services, we may process, store, and transfer the data we collect between the countries in which we operate. By submitting personal information to our website, you explicitly consent to such data transfers.',
-    'dashboard_profile__privacy_policy_txt_5': 'Security of your personal information',
+    'dashboard_profile__privacy_policy_txt_5':
+        'Security of your personal information',
     'dashboard_profile__privacy_policy_detail_5':
         'We take your privacy and data security seriously. We have implemented appropriate organizational and technical security measures to protect your personal information. Your data is stored on our password- and firewall-protected, secure servers. Encryption technology is used to secure electronic transactions conducted through our website.',
     'dashboard_profile__privacy_policy_txt_6': 'Your rights',
@@ -854,7 +970,8 @@ class Locales {
     'dashboard_profile__privacy_policy_txt_7': 'Third party websites',
     'dashboard_profile__privacy_policy_detail_7':
         'Our website may contain links to third-party websites. Please note that this Privacy Policy applies solely to our website and services. We are not responsible for the privacy policies or practices of third-party websites. We encourage you to review the privacy policies of any third-party sites you may visit.',
-    'dashboard_profile__privacy_policy_txt_8': 'Data Collection for Reservations',
+    'dashboard_profile__privacy_policy_txt_8':
+        'Data Collection for Reservations',
     'dashboard_profile__privacy_policy_detail_8':
         'To provide our residential services, we collect information including your home address, phone number, email address, latitude, and longitude. This data is essential for us to contact you and locate your address for service delivery. If you wish to have this data removed, please email us at contact@homebrigadier.com with your request.',
     'dashboard_profile_help_centre': 'Help Centre',
@@ -909,15 +1026,17 @@ class Locales {
     'faq_items_questions_item_how_pay_service': 'How do I pay for service?',
     'faq_items_questions_item_how_pay_service_detail':
         'You can choose to pay for the service using a credit card online or with cash once the task has been completed. If you opt to pay with a credit card, we will process the payment before the service is delivered, ensuring a smoother transaction. We will also notify you through the app and via email to keep you informed about the payment status and any other relevant details.\n',
-    'faq_items_questions_item_cancel_change_service': 'Can I change or cancel my service?',
+    'faq_items_questions_item_cancel_change_service':
+        'Can I change or cancel my service?',
     'faq_items_questions_item_cancel_change_service_detail':
         'Yes. You will have the option to cancel or modify your booking up to 24 hours before the service starts. If you cancel or change your booking less than 24 hours in advance of the booking, then you might have to pay a late cancellation/modification fee.',
-    'faq_items_questions_item_personal_info': 'How will my personal information be used?',
+    'faq_items_questions_item_personal_info':
+        'How will my personal information be used?',
     'faq_items_questions_item_personal_info_detail':
         'We value your privacy. Your personal contact information will only be used by HomeBrigadier and the companies you select to communicate your personalized quotes.',
     'log_in_item_msg': 'Login',
     'log_in_item_enter_phone': 'Enter Phone Number',
-    'log_in_item_sign_in': 'Continue',
+    'log_in_item_sign_in': 'Sign in',
     'log_in_item_or': 'Don\'t have an account',
     'log_in_item_sign_up': 'Sign Up',
     'verifyOtp_items_enter_pin': 'Enter OTP',
@@ -938,7 +1057,7 @@ class Locales {
     'user_profile_item_upcoming': 'Upcoming',
     'user_profile_item_completed': 'Completed',
     'category_items_catagory_button': 'Booking',
-    'category_items_floor_price': 'Floor Price',
+    'category_items_floor_price': 'Base Price',
     'category_items_about_me': 'About Me',
     'category_items_photos_videos': 'Photos & Videos',
     'house_cleaning_items_house_cleaning': 'House Cleaning',
@@ -946,7 +1065,8 @@ class Locales {
     'house_cleaning_items_hours': 'Hours',
     'house_cleaning_items_how_many_cleaner': 'How many Cleaners do you need?',
     'house_cleaning_items_cleaners': 'Cleaners',
-    'house_cleaning_items_how_often_need_claning': 'How Often do you need cleaning?',
+    'house_cleaning_items_how_often_need_claning':
+        'How Often do you need cleaning?',
     'house_cleaning_items_once': 'Once',
     'house_cleaning_items_weekly': 'Weekly',
     'house_cleaning_items_Bi_weekly': 'Bi-Weekly',
@@ -956,7 +1076,8 @@ class Locales {
     'house_cleaning_items_no': 'NO',
     'house_cleaning_items_addditional_charges_aed':
         'An additional charges of AED 4/hr applies for sleaning material',
-    'house_cleaning_items_special_insutuction': 'Do you Have any special instruction?',
+    'house_cleaning_items_special_insutuction':
+        'Do you Have any special instruction?',
     'house_cleaning_items_example_insutruction':
         'Example you are not at home, or You will need to bring a gate pass . I will not be at home and leaving the key under mat etc.',
     'house_cleaning_items_cont_button': 'Continue -',
@@ -979,7 +1100,8 @@ class Locales {
     'painting_items_4_br': '4 Br',
     'painting_items_villa': 'Villa',
     'painting_items_continue_button': 'Continue -',
-    'painting_items_special_insutuction': 'Do you Have any special instruction?',
+    'painting_items_special_insutuction':
+        'Do you Have any special instruction?',
     'painting_items_example_insutruction':
         'Example you are not at home, or You will need to bring a gate pass . I will not be at home and leaving the key under mat etc.',
     'applience_items_applience_service': 'Applience Services',
@@ -994,9 +1116,11 @@ class Locales {
     'applience_items_machnic': 'Machnic',
     'applience_items_continue_button': 'Continue -\$20',
     'plumbing_repairing_item_plumbing_reparing': 'PLumbing Reparing',
-    'plumbing_repairing_item_how_many_hours': 'How many hours should they stay?',
+    'plumbing_repairing_item_how_many_hours':
+        'How many hours should they stay?',
     'plumbing_repairing_item_hours': 'Hours',
-    'plumbing_repairing_item_what_kind_of_service': 'What kind of service do you need',
+    'plumbing_repairing_item_what_kind_of_service':
+        'What kind of service do you need',
     'plumbing_repairing_item_basin_sink': 'Basin & Sink',
     'plumbing_repairing_item_grouting': 'Grouting',
     'plumbing_repairing_item_bath_fiting': 'Bath Fiting',
@@ -1054,7 +1178,8 @@ class Locales {
     'ac_reparing_items_reparing': 'Reparing',
     'ac_reparing_items_how_many_hours': 'How many hours should they stay?',
     'ac_reparing_items_hours': 'Hours',
-    'ac_reparing_items_what_kind_of_service': 'What kind of service do you need',
+    'ac_reparing_items_what_kind_of_service':
+        'What kind of service do you need',
     'ac_reparing_items_ac_service': 'Ac Service',
     'ac_reparing_items_ac_repaire': 'Ac Repair',
     'ac_reparing_items_ac_install': 'Ac Install',
@@ -1131,8 +1256,10 @@ class Locales {
     'enteraddress': 'Enter your address',
     'location_screen_set_loation': 'Set Location',
     'location_screen_search_your_loaction': 'Search your location',
-    'location_screen_successfully_address_changed': 'Successfully Address Changed',
-    'location_screen_something_went_wrong': 'Something Went Wrong please try again !',
+    'location_screen_successfully_address_changed':
+        'Successfully Address Changed',
+    'location_screen_something_went_wrong':
+        'Something Went Wrong please try again !',
     'location_screen_use_my_current_loaction': 'Use my current location',
     'location_screen_selected_loaction': 'Selected Loacton',
     'snack_bars_select_hours': 'Please Select Hours',

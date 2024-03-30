@@ -31,11 +31,12 @@ class BookingController extends GetxController {
 
   List<AutocompletePrediction> placeprediction = [];
   void placeAutoComplete(String query) async {
-    Uri uri = Uri.https(
-        "maps.googleapis.com", "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
+    Uri uri = Uri.https("maps.googleapis.com",
+        "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
     String? response = await NetwordUtils.fetchUl(uri);
     logger.d(response);
-    PlaceAutocompleteResponse result = PlaceAutocompleteResponse.parseAutocompleteResult(response!);
+    PlaceAutocompleteResponse result =
+        PlaceAutocompleteResponse.parseAutocompleteResult(response!);
     if (result.predictions != null) {
       placeprediction = result.predictions!;
     }
@@ -129,13 +130,13 @@ class BookingController extends GetxController {
   var workingHour = 0.obs;
 
   hours_decrese() {
-    if (hours > 0) {
+    if (hours > 1) {
       hours.value--;
     }
   }
 
   cleaner_decrese() {
-    if (cleaner > 0) {
+    if (cleaner > 1) {
       cleaner.value--;
     }
   }
@@ -172,22 +173,23 @@ class BookingController extends GetxController {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Location services are disabled. Please enable the services')));
+          content: Text(
+              'Location services are disabled. Please enable the services')));
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Location permissions are denied')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content:
-              Text('Location permissions are permanently denied, we cannot request permissions.')));
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
       return false;
     }
     return true;
@@ -210,7 +212,8 @@ class BookingController extends GetxController {
   }
 
   Future<void> _getAddressFromLatLng(Position position, context) async {
-    await placemarkFromCoordinates(currentPosition!.latitude, currentPosition!.longitude)
+    await placemarkFromCoordinates(
+            currentPosition!.latitude, currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
 
@@ -244,7 +247,8 @@ class BookingController extends GetxController {
     final hour = hours.value;
     final cleaers = cleaner.value;
     final material = selectedmaterial.value;
-    final bill = ((rate * hour) * cleaers) + (material == "Yes" ? (hour * 4) : 0);
+    final bill =
+        ((rate * hour) * cleaers) + (material == "Yes" ? (hour * 4) : 0);
 
     total.value = bill;
   }
@@ -252,16 +256,20 @@ class BookingController extends GetxController {
   postbooking(PostBookingModel model, BuildContext context) async {
     DialogHelper.showLoading();
 
-    await _apiHelper.post("user/booking/", model.toJson()).then((response) async {
+    await _apiHelper
+        .post("user/booking/", model.toJson())
+        .then((response) async {
       final id = response.data["id"];
       logger.d("id  is ====== $id");
 
       String amount = response.data["price"];
       logger.d("payment is =========== $amount");
       if (id != null) {
-        await _apiHelper.post("user/booking/$id/payment-sheet/", {}).then((response) async {
+        await _apiHelper
+            .post("user/booking/$id/payment-sheet/", {}).then((response) async {
           String paymentIntent = response.data["payment_intent"];
-          logger.d("pyament intet is============= ${response.data["payment_intent"]}");
+          logger.d(
+              "pyament intet is============= ${response.data["payment_intent"]}");
 
           DialogHelper.hideLoading();
           Get.offNamed(Routes.DASHBOARD);
