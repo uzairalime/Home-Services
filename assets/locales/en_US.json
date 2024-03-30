@@ -18,7 +18,7 @@
       "home": "Home",
       "bookings": "Bookings",
       "start_earning": "Start Earning",
-      "faq": "Faq",
+      "faq": "FAQs",
       "profile": "Profile"
     },
     "profile": {
@@ -180,7 +180,7 @@
   },
   "category_items": {
     "catagory_button": "Booking",
-    "floor_price": "Floor Price",
+    "floor_price": "Base Price",
     "about_me": "About Me",
     "photos_videos": "Photos & Videos"
   },
