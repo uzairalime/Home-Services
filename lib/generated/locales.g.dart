@@ -11,6 +11,16 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
+  static const search_search_for = 'search_search_for';
+  static const search_cleaning = 'search_cleaning';
+  static const search_painting = 'search_painting';
+  static const search_tailor = 'search_tailor';
+  static const search_handyman = 'search_handyman';
+  static const search_pest_control = 'search_pest_control';
+  static const search_women_salon = 'search_women_salon';
+  static const search_men_salon = 'search_men_salon';
+  static const search_spa = 'search_spa';
+  static const search_electricity = 'search_electricity';
   static const required_field = 'required_field';
   static const delete_warn = 'delete_warn';
   static const minimum_1_required = 'minimum_1_required';
@@ -513,6 +523,16 @@ class LocaleKeys {
 
 class Locales {
   static const ar_SA = {
+    'search_search_for': 'البحث عن',
+    'search_cleaning': 'تنظيف',
+    'search_painting': 'رسم',
+    'search_tailor': 'خياط',
+    'search_handyman': 'حرفي',
+    'search_pest_control': 'مكافحة الحشرات',
+    'search_women_salon': 'صالون نسائي',
+    'search_men_salon': 'صالون رجالي',
+    'search_spa': 'منتجع صحي',
+    'search_electricity': 'كهرباء',
     'required_field': 'يتطلب حقلا',
     'delete_warn': 'هل أنت متأكد أنك تريد الحذف؟',
     'minimum_1_required': 'الحد الأدنى 1 مطلوب',
@@ -896,6 +916,16 @@ class Locales {
     'upcommming_rejected': 'تم الرفض',
   };
   static const en_US = {
+    'search_search_for': 'Search for',
+    'search_cleaning': 'cleaning',
+    'search_painting': 'painting',
+    'search_tailor': 'tailor',
+    'search_handyman': 'handyman',
+    'search_pest_control': 'pest control',
+    'search_women_salon': 'women salon',
+    'search_men_salon': 'men salon',
+    'search_spa': 'spa',
+    'search_electricity': 'electricity',
     'required_field': 'Required Field',
     'delete_warn': 'Are you sure you want to Delete?',
     'minimum_1_required': 'Minimum 1 Required',
@@ -942,7 +972,7 @@ class Locales {
         'You can now use your card to make payments',
     'dashboard_profile_language': 'Language',
     'dashboard_profile__language_english': 'English',
-    'dashboard_profile__language_arabic': 'Arabic',
+    'dashboard_profile__language_arabic': 'العربية',
     'dashboard_profile_privacy_policy': 'Privacy Policy',
     'dashboard_profile__privacy_policy_detail_0':
         'Since we value your privacy, we will treat your personal information in accordance with the guidelines outlined in this policy. On our website, cookies are used. You provide your consent for us to use cookies in line with this policy by using our website and accepting its conditions. Which types of data do we gather? These are the types of personal information that we might gather, keep, and use Information about your computer and about your visits to and use of this website (including your IP address, geographical location, browser type and version, operating system, referral source, length of visit, page views and website navigation)Information relating to any transactions carried out between you and us on or in relation to this website, including information relating to any purchases you make of our goods or services (including booking a cleaner through Home Brigadier)Information that you provide to us for the purpose of registering with us (including your name, address and email address)Information that you provide to us for the purpose of subscribing to our website services, email notifications and/or newsletters (including your name and email address)You must first get the agreement of the individual whose personal information you are disclosing to us, granting us permission to share and process that information in compliance with our privacy policy.No third parties will keep, rent, share, sell, or lease any credit/debit card details or personally identifying information.',
