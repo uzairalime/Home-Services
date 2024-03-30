@@ -1,17 +1,4 @@
 {
-
-  "search": {
-    "search_for": "Search for",
-    "cleaning":     "cleaning",
-    "painting":     "painting",
-    "tailor":       "tailor",
-    "handyman":     "handyman",
-    "pest_control": "pest control",
-    "women_salon":  "women salon",
-    "men_salon":    "men salon",
-    "spa":          "spa",
-    "electricity":  "electricity"
-  },
   "required_field": "Required Field",
   "delete_warn": "Are you sure you want to Delete?",
   "minimum_1_required": "Minimum 1 Required",

@@ -11,16 +11,6 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
-  static const search_search_for = 'search_search_for';
-  static const search_cleaning = 'search_cleaning';
-  static const search_painting = 'search_painting';
-  static const search_tailor = 'search_tailor';
-  static const search_handyman = 'search_handyman';
-  static const search_pest_control = 'search_pest_control';
-  static const search_women_salon = 'search_women_salon';
-  static const search_men_salon = 'search_men_salon';
-  static const search_spa = 'search_spa';
-  static const search_electricity = 'search_electricity';
   static const required_field = 'required_field';
   static const delete_warn = 'delete_warn';
   static const minimum_1_required = 'minimum_1_required';
@@ -523,16 +513,6 @@ class LocaleKeys {
 
 class Locales {
   static const ar_SA = {
-    'search_search_for': 'البحث عن',
-    'search_cleaning': 'تنظيف',
-    'search_painting': 'رسم',
-    'search_tailor': 'خياط',
-    'search_handyman': 'حرفي',
-    'search_pest_control': 'مكافحة الحشرات',
-    'search_women_salon': 'صالون نسائي',
-    'search_men_salon': 'صالون رجالي',
-    'search_spa': 'منتجع صحي',
-    'search_electricity': 'كهرباء',
     'required_field': 'يتطلب حقلا',
     'delete_warn': 'هل أنت متأكد أنك تريد الحذف؟',
     'minimum_1_required': 'الحد الأدنى 1 مطلوب',
@@ -916,16 +896,6 @@ class Locales {
     'upcommming_rejected': 'تم الرفض',
   };
   static const en_US = {
-    'search_search_for': 'Search for',
-    'search_cleaning': 'cleaning',
-    'search_painting': 'painting',
-    'search_tailor': 'tailor',
-    'search_handyman': 'handyman',
-    'search_pest_control': 'pest control',
-    'search_women_salon': 'women salon',
-    'search_men_salon': 'men salon',
-    'search_spa': 'spa',
-    'search_electricity': 'electricity',
     'required_field': 'Required Field',
     'delete_warn': 'Are you sure you want to Delete?',
     'minimum_1_required': 'Minimum 1 Required',
