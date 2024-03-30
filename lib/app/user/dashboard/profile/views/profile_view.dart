@@ -34,7 +34,8 @@ class UserProfileView extends GetView<ProfileController> {
       appBar: AppBar(
         leading: Container(
           decoration: const BoxDecoration(
-              image: DecorationImage(image: AssetImage("assets/icons/ic_launcher_icon.png")),
+              image: DecorationImage(
+                  image: AssetImage("assets/icons/ic_launcher_icon.png")),
               borderRadius: BorderRadius.all(Radius.circular(6))),
         ),
         title: CText(
@@ -124,7 +125,8 @@ class ProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      CircleAvatar(backgroundImage: image, radius: mediaQueryWidth(context) * 0.13),
+      CircleAvatar(
+          backgroundImage: image, radius: mediaQueryWidth(context) * 0.13),
       Positioned(
           bottom: mediaQueryHeight(context) * 0.005,
           right: mediaQueryWidth(context) * 0.02,
@@ -167,7 +169,8 @@ class SettingListView extends StatelessWidget {
 
                       SharedPreference.getToken();
                       if (StaticData.refreshToken.isNotEmpty) {
-                        int refreshTokenResult = await IsolateManager.refreshToken();
+                        int refreshTokenResult =
+                            await IsolateManager.refreshToken();
                         if (refreshTokenResult == 200) {
                           Get.offAll(const SellerDashboardView());
                         } else {
@@ -199,14 +202,14 @@ class SettingListView extends StatelessWidget {
         //         leading: SvgPicture.asset("assets/icons/ic_notification.svg",
         //             color: AppColor.black.withOpacity(0.5)),
         //         title: LocaleKeys.dashboard_profile_notification.tr)),
-        Divider(
-          color: AppColor.greylight,
-        ),
-        SettingListItem(
-            onTap: () => Get.to(() => const PaymentSettingView()),
-            SettingList(
-                leading: const Icon(Icons.account_balance_wallet_outlined),
-                title: LocaleKeys.dashboard_profile_payment.tr)),
+        // Divider(
+        //   color: AppColor.greylight,
+        // ),
+        // SettingListItem(
+        //     onTap: () => Get.to(() => const PaymentSettingView()),
+        //     SettingList(
+        //         leading: const Icon(Icons.account_balance_wallet_outlined),
+        //         title: LocaleKeys.dashboard_profile_payment.tr)),
         Divider(
           color: AppColor.greylight,
         ),
@@ -244,7 +247,8 @@ class SettingListView extends StatelessWidget {
               });
         },
             SettingList(
-                leading: const Icon(Icons.logout), title: LocaleKeys.dashboard_profile_logout.tr)),
+                leading: const Icon(Icons.logout),
+                title: LocaleKeys.dashboard_profile_logout.tr)),
         Divider(
           color: AppColor.greylight,
         ),
@@ -255,7 +259,8 @@ class SettingListView extends StatelessWidget {
   Widget buildBottomSheetContent(BuildContext context) {
     return Container(
         width: mediaQueryWidth(context),
-        padding: EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
+        padding:
+            EdgeInsets.symmetric(horizontal: mediaQueryWidth(context) * 0.05),
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -264,44 +269,50 @@ class SettingListView extends StatelessWidget {
                   text: LocaleKeys.dashboard_profile__logout_warning_msg.tr,
                   fontsize: Theme.of(context).textTheme.titleLarge!.fontSize),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                    Expanded(
-                        flex: 1,
-                        child: CFilledBtn(
-                            text: LocaleKeys.dashboard_profile__logout_cancel.tr,
-                            onPressed: () {
-                              Get.back();
-                            },
-                            height: 56,
-                            textColor: AppColor.secondary,
-                            btnBg: AppColor.grey.withOpacity(0.3))),
-                    const SizedBox(width: 10),
-                    Expanded(
-                        flex: 2,
-                        child: CFilledBtn(
-                            text: LocaleKeys.dashboard_profile__logout_yes.tr,
-                            onPressed: () {
-                              IsolateManager isolateManager = IsolateManager();
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: CFilledBtn(
+                                text: LocaleKeys
+                                    .dashboard_profile__logout_cancel.tr,
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                height: 56,
+                                textColor: AppColor.secondary,
+                                btnBg: AppColor.grey.withOpacity(0.3))),
+                        const SizedBox(width: 10),
+                        Expanded(
+                            flex: 2,
+                            child: CFilledBtn(
+                                text:
+                                    LocaleKeys.dashboard_profile__logout_yes.tr,
+                                onPressed: () {
+                                  IsolateManager isolateManager =
+                                      IsolateManager();
 
-                              /// clear tokens
-                              StaticData.accessToken = '';
-                              StaticData.refreshToken = '';
-                              StaticData.userName = '';
-                              StaticData.firstName = '';
-                              StaticData.lastName = '';
-                              StaticData.mobile = '';
-                              StaticData.role = '';
-                              SharedPreference.clearToken();
-                              SharedPreference.clearRole();
+                                  /// clear tokens
+                                  StaticData.accessToken = '';
+                                  StaticData.refreshToken = '';
+                                  StaticData.userName = '';
+                                  StaticData.firstName = '';
+                                  StaticData.lastName = '';
+                                  StaticData.mobile = '';
+                                  StaticData.role = '';
+                                  SharedPreference.clearToken();
+                                  SharedPreference.clearRole();
 
-                              /// terminate isolate
-                              isolateManager.terminateIsolate();
-                              Get.offAll(() => const UserRoleView());
-                            },
-                            height: 56,
-                            btnBg: AppColor.secondary))
-                  ]))
+                                  /// terminate isolate
+                                  isolateManager.terminateIsolate();
+                                  Get.offAll(() => const UserRoleView());
+                                },
+                                height: 56,
+                                btnBg: AppColor.secondary))
+                      ]))
             ]));
   }
 }

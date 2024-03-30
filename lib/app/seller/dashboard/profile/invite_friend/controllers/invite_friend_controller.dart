@@ -22,8 +22,13 @@ class InviteFriendController extends GetxController {
     //print(contactsList!.length);
   }
 
-  whatsappLauncher(number) async {
-    String url = 'https://wa.me/$number';
+  whatsappLauncher(String number) async {
+    String message = 'Hello, this is a test message!';
+
+    String encodedMessage = Uri.encodeComponent(message);
+
+    String url = 'https://wa.me/$number/?text=$encodedMessage';
+
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url));
     } else {
