@@ -24,14 +24,16 @@ class InviteFriendView extends GetView<InviteFriendController> {
       builder: (_) {
         return Scaffold(
             appBar: AppBar(
-                leading:
-                    CIconBtn(onPressed: () => Get.back(), child: Icon(Icons.adaptive.arrow_back)),
+                leading: CIconBtn(
+                    onPressed: () => Get.back(),
+                    child: Icon(Icons.adaptive.arrow_back)),
                 title: InkWell(
                   onTap: () {
                     controller.getPhoneData();
                   },
                   child: CText(
-                      text: LocaleKeys.dashboard_profile__invite_a_friend_invite_friend.tr,
+                      text: LocaleKeys
+                          .dashboard_profile__invite_a_friend_invite_friend.tr,
                       color: txtTheme,
                       fontsize: titleMedium,
                       fontWeight: FontWeight.bold),
@@ -54,6 +56,10 @@ class InviteFriendView extends GetView<InviteFriendController> {
                         String num = (snapshot.data![index].phones.isNotEmpty)
                             ? (snapshot.data![index].phones.first.number)
                             : "--";
+                        String name = (snapshot
+                                .data![index].name.first.isNotEmpty)
+                            ? "${snapshot.data![index].name.first}${snapshot.data![index].name.middle}${snapshot.data![index].name.last}"
+                            : "--";
 
                         return Container(
                           height: 70,
@@ -66,8 +72,10 @@ class InviteFriendView extends GetView<InviteFriendController> {
                           child: Row(
                             children: [
                               (snapshot.data![index].photo == null)
-                                  ? const CircleAvatar(child: Icon(Icons.person))
-                                  : CircleAvatar(backgroundImage: MemoryImage(image!)),
+                                  ? const CircleAvatar(
+                                      child: Icon(Icons.person))
+                                  : CircleAvatar(
+                                      backgroundImage: MemoryImage(image!)),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -83,7 +91,8 @@ class InviteFriendView extends GetView<InviteFriendController> {
                                       overflow: TextOverflow.ellipsis,
                                       snapshot.data![index].displayName,
                                       style: const TextStyle(
-                                          fontSize: 18, fontWeight: FontWeight.w500),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     Text(num),
                                   ],
@@ -95,8 +104,7 @@ class InviteFriendView extends GetView<InviteFriendController> {
                               Expanded(
                                 child: InkWell(
                                   onTap: () {
-                                    showCustomAlertDialog(context, num);
-                                    // controller.whatsapplauncher(num);
+                                    showCustomAlertDialog(context, num, name);
                                   },
                                   child: Container(
                                     height: 30,
@@ -107,8 +115,9 @@ class InviteFriendView extends GetView<InviteFriendController> {
                                     ),
                                     child: Center(
                                       child: CText(
-                                        text:
-                                            LocaleKeys.dashboard_profile__invite_a_friend_invite.tr,
+                                        text: LocaleKeys
+                                            .dashboard_profile__invite_a_friend_invite
+                                            .tr,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.green,
                                       ),
@@ -128,7 +137,7 @@ class InviteFriendView extends GetView<InviteFriendController> {
     );
   }
 
-  showCustomAlertDialog(BuildContext context, String number) {
+  showCustomAlertDialog(BuildContext context, String number, String name) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -161,12 +170,12 @@ class InviteFriendView extends GetView<InviteFriendController> {
                       icon: FontAwesomeIcons.whatsapp,
                     ),
                     ShareBtn(
-                      onTap: () => controller.launchMessenger(),
+                      onTap: () => controller.launchMessenger(number, name),
                       controller: controller,
                       color: Colors.blue,
                       number: number,
-                      txt: "Facebook",
-                      icon: FontAwesomeIcons.facebook,
+                      txt: "Messenger",
+                      icon: FontAwesomeIcons.facebookMessenger,
                     ),
                     ShareBtn(
                       onTap: () => controller.sendSMS(number),
@@ -209,8 +218,8 @@ class ShareBtn extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            decoration:
-                BoxDecoration(color: AppColor.grey.withOpacity(0.2), shape: BoxShape.circle),
+            decoration: BoxDecoration(
+                color: AppColor.grey.withOpacity(0.2), shape: BoxShape.circle),
             child: Center(child: FaIcon(icon, size: 37, color: color)),
           ),
           const SizedBox(height: 10),

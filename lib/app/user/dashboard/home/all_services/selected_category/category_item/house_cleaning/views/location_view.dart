@@ -12,6 +12,7 @@ import 'package:home_brigadier/app/payment/stripe.dart';
 import 'package:home_brigadier/app/user/dashboard/home/all_services/selected_category/category_item/house_cleaning/controllers/booking_controller.dart';
 import 'package:home_brigadier/app/user/dashboard/home/views/location_pick.dart';
 import 'package:home_brigadier/consts/app_color.dart';
+import 'package:home_brigadier/consts/global_variable.dart';
 import 'package:home_brigadier/consts/media_query.dart';
 import 'package:home_brigadier/consts/static_data.dart';
 import 'package:home_brigadier/generated/locales.g.dart';
@@ -84,9 +85,7 @@ class LocationView extends GetView<BookingController> {
                               _onButtonPress(context, obj.addressController);
                             } else {
                               showSnackBar(LocaleKeys.snack_bars_login_then_booking.tr, true);
-                              Get.to(() => const EmailLoginView(
-                                    role: "buyer",
-                                  ));
+                              Get.to(() => const EmailLoginView(role: "buyer"));
                             }
                           }
                         },

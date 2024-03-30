@@ -65,8 +65,9 @@ class EmailLoginView extends GetView<EmailLoginController> {
                                     },
                                     icon: Icons.language,
                                     txt: "English",
-                                    borderColor:
-                                        localeValue() != "العربية" ? AppColor.secondary : null),
+                                    borderColor: localeValue() != "العربية"
+                                        ? AppColor.secondary
+                                        : null),
                                 SizedBox(
                                   width: mediaQueryWidth(context) * 0.10,
                                 ),
@@ -76,8 +77,9 @@ class EmailLoginView extends GetView<EmailLoginController> {
                                     },
                                     icon: Icons.translate,
                                     txt: "العربية",
-                                    borderColor:
-                                        localeValue() == "العربية" ? AppColor.secondary : null)
+                                    borderColor: localeValue() == "العربية"
+                                        ? AppColor.secondary
+                                        : null)
                               ],
                             ),
                           ),
@@ -105,7 +107,8 @@ class EmailLoginView extends GetView<EmailLoginController> {
                                     children: [
                                       Container(
                                         decoration: BoxDecoration(
-                                          color: AppColor.greylight.withOpacity(0.2),
+                                          color: AppColor.greylight
+                                              .withOpacity(0.2),
                                           borderRadius: const BorderRadius.only(
                                             bottomLeft: Radius.circular(12),
                                             topLeft: Radius.circular(12),
@@ -123,9 +126,11 @@ class EmailLoginView extends GetView<EmailLoginController> {
                                         child: CTextField(
                                           maxlength: 9,
                                           focusBorderColor: Colors.transparent,
-                                          hint: LocaleKeys.log_in_item_enter_phone.tr,
+                                          hint: LocaleKeys
+                                              .log_in_item_enter_phone.tr,
                                           keyboardType: TextInputType.phone,
-                                          controller: controller.phoneController,
+                                          controller:
+                                              controller.phoneController,
                                           borderColor: Colors.transparent,
                                           counterText: '',
                                           contentPadding: 5,
@@ -162,54 +167,43 @@ class EmailLoginView extends GetView<EmailLoginController> {
                           ),
                           const Spacer(),
                           Center(
-                            child: SizedBox(
-                              height: 50,
-                              width: mediaQueryWidth(context) * 0.8,
-                              child: CButton(
-                                  text: LocaleKeys.log_in_item_sign_in.tr,
-                                  fontsize: 14,
-                                  borderradius: 50,
-                                  fontWeight: FontWeight.w500,
-                                  shadow: true,
-                                  ontab: () {
-                                    if (controller.phoneController.text.isNotEmpty &&
-                                        controller.phoneController.text.length == 9) {
-                                      controller.generateOTP().then((value) {
-                                        if (value == 200) {
-                                          // showSnackBar(LocaleKeys.snack_bar_enter_valid_otp.tr);
-                                          Get.to(() => const EnterPin(),
-                                              duration: const Duration(seconds: 1),
-                                              transition: Transition.native,
-                                              arguments: controller.phoneController.text);
-                                        } else {
-                                          showSnackBar(LocaleKeys.snack_bar_opt_failed.tr, true);
-                                        }
-                                      });
-                                    } else {
-                                      showSnackBar(
-                                          LocaleKeys.snack_bar_enter_valid_number.tr, true);
-                                    }
-
-                                    // if (controller.phoneController.text.isNotEmpty &&
-                                    //     controller.phoneController.text.length == 9) {
-                                    //   controller.generateOTP().then((value) {
-                                    //     if (value == 200) {
-                                    //       showSnackBar("Enter OTP");
-                                    //       Get.offAll(() => const EnterPin(),
-                                    //           arguments: controller.phoneController.text);
-                                    //     } else {
-                                    //       showSnackBar("OTP Failed", true);
-                                    //     }
-                                    //   });
-                                    // } else {
-                                    //   showSnackBar("Enter a valid number", true);
-                                    // }
-                                  }),
-                            ),
+                            child: CButton(
+                                btnheight: 50,
+                                btnwidth: mediaQueryWidth(context) * 0.8,
+                                text: LocaleKeys.log_in_item_sign_in.tr,
+                                fontsize: 14,
+                                borderradius: 50,
+                                fontWeight: FontWeight.w500,
+                                shadow: true,
+                                ontab: () {
+                                  if (controller
+                                          .phoneController.text.isNotEmpty &&
+                                      controller.phoneController.text.length ==
+                                          9) {
+                                    controller.generateOTP().then((value) {
+                                      if (value == 200) {
+                                        // showSnackBar(LocaleKeys.snack_bar_enter_valid_otp.tr);
+                                        Get.to(() => const EnterPin(),
+                                            duration:
+                                                const Duration(seconds: 1),
+                                            transition: Transition.native,
+                                            arguments: controller
+                                                .phoneController.text);
+                                      } else {
+                                        showSnackBar(
+                                            LocaleKeys.snack_bar_opt_failed.tr,
+                                            true);
+                                      }
+                                    });
+                                  } else {
+                                    showSnackBar(
+                                        LocaleKeys
+                                            .snack_bar_enter_valid_number.tr,
+                                        true);
+                                  }
+                                }),
                           ),
-                          SizedBox(
-                            height: height * 0.02,
-                          )
+                          SizedBox(height: height * 0.02),
                         ],
                       ),
                     ),
@@ -221,7 +215,12 @@ class EmailLoginView extends GetView<EmailLoginController> {
 
 class LocalsBtn extends StatelessWidget {
   const LocalsBtn(
-      {super.key, required this.icon, required this.txt, this.bg, this.onTap, this.borderColor});
+      {super.key,
+      required this.icon,
+      required this.txt,
+      this.bg,
+      this.onTap,
+      this.borderColor});
 
   final Color? borderColor;
   final IconData icon;
@@ -238,10 +237,13 @@ class LocalsBtn extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: borderColor ?? AppColor.greylight,
               elevation: 0,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12))),
           onPressed: onTap,
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            Icon(icon, color: borderColor != null ? AppColor.white : AppColor.black),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Icon(icon,
+                color: borderColor != null ? AppColor.white : AppColor.black),
             const Spacer(),
             Text(
               txt,
