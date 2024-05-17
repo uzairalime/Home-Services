@@ -6,7 +6,8 @@ import 'package:home_brigadier/generated/locales.g.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
 class DefaultScreen extends StatefulWidget {
-  const DefaultScreen({super.key});
+  final String? msg;
+  const DefaultScreen({super.key, this.msg});
 
   @override
   State<DefaultScreen> createState() => _DefaultScreenState();
@@ -29,7 +30,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(LocaleKeys.connectivity_no_internet.tr),
+            Text(widget.msg ?? LocaleKeys.connectivity_no_internet.tr),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
@@ -37,8 +38,9 @@ class _DefaultScreenState extends State<DefaultScreen> {
                   setState(() {
                     isCheck = true;
                   });
-                  var connectivityResult = await Connectivity().checkConnectivity();
-                  if (connectivityResult != ConnectivityResult.none) {
+                  var connectivityResult =
+                      await Connectivity().checkConnectivity();
+                  if (!connectivityResult.contains(ConnectivityResult.none)) {
                     Get.back();
                   }
                 } finally {

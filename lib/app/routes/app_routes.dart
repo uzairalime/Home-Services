@@ -184,11 +184,9 @@ abstract class _Paths {
   static const DASHBOARD = '/dashboard';
   static const WELCOME = '/welcome';
   static const HOME = '/home';
-
   static const BOOKINGS = '/bookings';
   static const CALENDER = '/calender';
   static const INBOX = '/inbox';
-
   static const PROFILE = '/profile';
   static const LOGIN = '/login';
   static const SIGNUP = '/signup';
@@ -202,20 +200,7 @@ abstract class _Paths {
   static const SELECTED_CATEGORY = '/selected-category';
   static const CATEGORY_ITEM = '/category-item';
   static const BOOKING = '/booking';
-
-  // static const DASHBOARD = '/dashboard';
-  // static const WELCOME = '/welcome';
-  // static const HOME = '/home';
-  // static const BOOKINGS = '/bookings';
-  // static const CALENDER = '/calender';
-  // static const INBOX = '/inbox';
-  // static const PROFILE = '/profile';
-  // static const LOGIN = '/login';
-  // static const SIGNUP = '/signup';
-  // static const EMAIL_LOGIN = '/email-login';
-  // static const ACCOUNT_SETUP = '/account-setup';
   static const FORGET_PASSWORD = '/forget-password';
-
   static const UPCOMING = '/upcoming';
   static const CANCELLED = '/cancelled';
   static const COMPLETED = '/completed';

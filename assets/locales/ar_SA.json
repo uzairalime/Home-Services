@@ -31,6 +31,7 @@
       "home": "الصفحة الرئيسية",
       "bookings": "الحجوزات",
       "start_earning": "ابدأ الربح",
+      "my_jobs": "وظائفي",
       "faq": "الأسئلة الشائعة",
       "profile": "الملف الشخصي"
     },
@@ -170,11 +171,13 @@
   },
   "verifyOtp_items": {
     "enter_pin": "أدخل رمز التحقق",
-    "name": "التحقق من OTP",
+    "name": "التحقق من رمز التحقق",
     "code_msg": "تم إرسال الرمز إلى",
-    "resend": "إعادة إرسال الرمز في...",
+    "enter_code_below": "الرجاء إدخال الرمز أدناه",
+    "resend": "إعادة إرسال الرمز في ...",
     "verify": "التحقق"
   },
+
   "home_screen_items": {
     "search_for": "بحث عن:",
     "special_offer": "عروض خاصة",
@@ -448,6 +451,7 @@
   "completed": "مكتمل",
   "upcomming": "قادم",
   "no_jobs_found": "لم يتم العثور على وظائف",
+  "pending_jobs": "الوظائف معلقة، يرجى قبولها",
   "flat_number": "رقم الشقة #",
   "upcommming": {
     "pending": "قيد الانتظار",

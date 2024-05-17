@@ -34,6 +34,7 @@ class LocaleKeys {
   static const dashboard_items_home = 'dashboard_items_home';
   static const dashboard_items_bookings = 'dashboard_items_bookings';
   static const dashboard_items_start_earning = 'dashboard_items_start_earning';
+  static const dashboard_items_my_jobs = 'dashboard_items_my_jobs';
   static const dashboard_items_faq = 'dashboard_items_faq';
   static const dashboard_items_profile = 'dashboard_items_profile';
   static const dashboard_profile_name = 'dashboard_profile_name';
@@ -220,6 +221,8 @@ class LocaleKeys {
   static const verifyOtp_items_enter_pin = 'verifyOtp_items_enter_pin';
   static const verifyOtp_items_name = 'verifyOtp_items_name';
   static const verifyOtp_items_code_msg = 'verifyOtp_items_code_msg';
+  static const verifyOtp_items_enter_code_below =
+      'verifyOtp_items_enter_code_below';
   static const verifyOtp_items_resend = 'verifyOtp_items_resend';
   static const verifyOtp_items_verify = 'verifyOtp_items_verify';
   static const home_screen_items_search_for = 'home_screen_items_search_for';
@@ -508,6 +511,7 @@ class LocaleKeys {
   static const completed = 'completed';
   static const upcomming = 'upcomming';
   static const no_jobs_found = 'no_jobs_found';
+  static const pending_jobs = 'pending_jobs';
   static const flat_number = 'flat_number';
   static const upcommming_pending = 'upcommming_pending';
   static const upcommming_accepted = 'upcommming_accepted';
@@ -546,6 +550,7 @@ class Locales {
     'dashboard_items_home': 'الصفحة الرئيسية',
     'dashboard_items_bookings': 'الحجوزات',
     'dashboard_items_start_earning': 'ابدأ الربح',
+    'dashboard_items_my_jobs': 'وظائفي',
     'dashboard_items_faq': 'الأسئلة الشائعة',
     'dashboard_items_profile': 'الملف الشخصي',
     'dashboard_profile_name': 'الاسم',
@@ -672,9 +677,10 @@ class Locales {
     'log_in_item_or': 'ليس لديك حساب',
     'log_in_item_sign_up': 'إنشاء حساب',
     'verifyOtp_items_enter_pin': 'أدخل رمز التحقق',
-    'verifyOtp_items_name': 'التحقق من OTP',
+    'verifyOtp_items_name': 'التحقق من رمز التحقق',
     'verifyOtp_items_code_msg': 'تم إرسال الرمز إلى',
-    'verifyOtp_items_resend': 'إعادة إرسال الرمز في...',
+    'verifyOtp_items_enter_code_below': 'الرجاء إدخال الرمز أدناه',
+    'verifyOtp_items_resend': 'إعادة إرسال الرمز في ...',
     'verifyOtp_items_verify': 'التحقق',
     'home_screen_items_search_for': 'بحث عن:',
     'home_screen_items_special_offer': 'عروض خاصة',
@@ -908,6 +914,7 @@ class Locales {
     'completed': 'مكتمل',
     'upcomming': 'قادم',
     'no_jobs_found': 'لم يتم العثور على وظائف',
+    'pending_jobs': 'الوظائف معلقة، يرجى قبولها',
     'flat_number': 'رقم الشقة #',
     'upcommming_pending': 'قيد الانتظار',
     'upcommming_accepted': 'تم القبول',
@@ -938,6 +945,7 @@ class Locales {
     'connectivity_refresh': 'Refresh',
     'dashboard_items_home': 'Home',
     'dashboard_items_bookings': 'Bookings',
+    'dashboard_items_my_jobs': 'My Jobs',
     'dashboard_items_start_earning': 'Start Earning',
     'dashboard_items_faq': 'FAQs',
     'dashboard_items_profile': 'Profile',
@@ -1072,6 +1080,7 @@ class Locales {
     'verifyOtp_items_enter_pin': 'Enter OTP',
     'verifyOtp_items_name': 'Verify OTP',
     'verifyOtp_items_code_msg': 'Code has been send to',
+    'verifyOtp_items_enter_code_below': 'Please enter the below',
     'verifyOtp_items_resend': 'Resend code in...',
     'verifyOtp_items_verify': 'Verify',
     'home_screen_items_search_for': 'Search for:',
@@ -1311,6 +1320,7 @@ class Locales {
     'completed': 'Completed',
     'upcomming': 'Upcoming',
     'no_jobs_found': 'No jobs found',
+    'pending_jobs': 'Jobs are pending, Please accepted',
     'flat_number': 'Flat #',
     'upcommming_pending': 'Pending',
     'upcommming_accepted': 'Accepted',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:home_brigadier/connectivity_service.dart';
 import 'package:home_brigadier/consts/app_color.dart';
+import 'package:home_brigadier/services/apis/api_endpoints.dart';
 import 'package:home_brigadier/widget/cText.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,7 +12,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
 
@@ -19,7 +21,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void initState() {
     super.initState();
 
-    controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    print("Working BaseUrl ${ApiEndpoints.BASEURL}");
+    controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     animation = Tween<double>(begin: 0, end: 1).animate(controller);
     controller.forward();
     ConnectivityService.checkInternetConnectivity(controller: controller);

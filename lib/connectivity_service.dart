@@ -5,29 +5,32 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:home_brigadier/app/default_screen.dart';
-import 'package:home_brigadier/app/modules/login/email_login/views/email_login_view.dart';
-import 'package:home_brigadier/app/user/dashboard/views/dashboard_view.dart';
 import 'package:home_brigadier/user_role/user_role.dart';
 import 'package:home_brigadier/utils/isolate_manager.dart';
 import 'package:home_brigadier/utils/shared_preferance.dart';
 
+import 'app/modules/email_login/views/email_login_view.dart';
+import 'app/modules/seller/dashboard/views/dashboard_view.dart';
+import 'app/modules/user/dashboard/views/dashboard_view.dart';
 import 'app/routes/app_pages.dart';
-import 'app/seller/dashboard/views/dashboard_view.dart';
 import 'consts/static_data.dart';
 
 class ConnectivityService {
+  static Connectivity connectivity = Connectivity();
   static final getStorage = GetStorage();
-  static connectivity() {
-    Connectivity().onConnectivityChanged.listen((result) {
-      if (result == ConnectivityResult.none) {
+  static checkConnectivity() {
+    connectivity.onConnectivityChanged
+        .listen((List<ConnectivityResult> result) {
+      if (result.contains(ConnectivityResult.none)) {
         Get.to(() => const DefaultScreen());
       }
     });
   }
 
-  static checkInternetConnectivity({required AnimationController controller}) async {
-    var connectivityResult = await Connectivity().checkConnectivity();
-    if (connectivityResult != ConnectivityResult.none) {
+  static checkInternetConnectivity(
+      {required AnimationController controller}) async {
+    var connectivityResult = await connectivity.checkConnectivity();
+    if (!connectivityResult.contains(ConnectivityResult.none)) {
       controller.addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           ConnectivityService.checkUserStatus();
@@ -64,12 +67,12 @@ class ConnectivityService {
             );
           } else {
             Get.offAll(() => const EmailLoginView(
-                  role: 'seller',
+                // role: 'seller',
                 ));
           }
         } else {
           Get.offAll(() => const EmailLoginView(
-                role: 'seller',
+              // role: 'seller',
               ));
         }
       } else if (StaticData.role == "buyer") {

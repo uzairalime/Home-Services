@@ -111,7 +111,7 @@ class CTextField extends StatelessWidget {
               borderSide: BorderSide.none, borderRadius: BorderRadius.circular(borderRadius))),
       validator: validator,
       textInputAction: textInputAction,
-      // onTapOutside: onTapOutside ?? (_) => FocusScope.of(context).unfocus()
+      onTapOutside: onTapOutside ?? (_) => FocusScope.of(context).unfocus()
     );
   }
 }

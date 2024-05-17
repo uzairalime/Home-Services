@@ -1,33 +1,45 @@
 // ignore_for_file: constant_identifier_names
 
-const BASEURL = "https://homebrigadier.fly.dev/api/";
-const SERVICE = "service/'";
-const CATEGORY = "service/category/";
+import 'package:flutter/foundation.dart';
 
-const GENERATE_OTP = "generate-otp/";
-const IM = "iam/'";
-const JOBS = "jobs/'";
-const METADATA = "metadata/";
+class ApiEndpoints {
+  static const String BASEURL = kReleaseMode
+      ? "https://prod-gotalented.fly.dev/api/"
+      : "https://homebrigadier.fly.dev/api/";
 
-const FILE = "file/'";
+  static const String IMGBASE = kReleaseMode
+      ? "https://prod-gotalented.fly.dev"
+      : "https://homebrigadier.fly.dev";
+  static const String SERVICE = "service/";
+  static const String CATEGORY = "service/category/";
 
-const SINGLE_SERVICE = "service/";
+  static const String GENERATE_OTP = "generate-otp/";
+  static const String IM = "iam/";
+  static const String JOBS = "jobs/";
+  static const String METADATA = "metadata/";
 
-const STRIPE = "stripe/webhook/";
-const TOKEN = "token/'";
-const RERESH_TOKEN = "token/refresh/";
-const UPDATE_MODILE = "update-mobile/";
+  static const String FILE = "file/";
+  static const String SERVICE_FILE = "service/file/";
 
-const USER_BOOKING = "user/booking/";
+  static const String SINGLE_SERVICE = "service/";
 
-const USER_SINGLE_BOOKING = "user/booking/";
-const PATCH_USER_SINGLE_BOOKING = "user/booking/";
+  static const String STRIPE = "stripe/webhook/";
+  static const String TOKEN = "token/";
+  static const String RERESH_TOKEN = "token/refresh/";
+  static const String UPDATE_MODILE = "update-mobile/";
 
-//SEE SWAGGER
-const POST_USER_SINGLE_BOOKING = "user/booking/ID/payment-sheet/";
+  static const String USER_BOOKING = "user/booking/";
 
-const USER_OFFER = "user/offer/";
-const USER_SERVICE = "user/service/";
-const SINGLE_USER_SERVICE = "user/service/";
+  static const String USER_SINGLE_BOOKING = "user/booking/";
+  static const String PATCH_USER_SINGLE_BOOKING = "user/booking/";
 
-const VARIFY_UPDATE_MOBILE = "user/service/";
+  // SEE SWAGGER
+  static const String POST_USER_SINGLE_BOOKING =
+      "user/booking/ID/payment-sheet/";
+
+  static const String USER_OFFER = "user/offer/";
+  static const String USER_SERVICE = "user/service/";
+  static const String SINGLE_USER_SERVICE = "user/service/";
+
+  static const String VARIFY_UPDATE_MOBILE = "user/service/";
+}

@@ -30,6 +30,7 @@
     "items": {
       "home": "Home",
       "bookings": "Bookings",
+      "my_jobs": "My Jobs",
       "start_earning": "Start Earning",
       "faq": "FAQs",
       "profile": "Profile"
@@ -172,6 +173,7 @@
     "enter_pin": "Enter OTP",
     "name": "Verify OTP",
     "code_msg": "Code has been send to",
+    "enter_code_below": "Please enter the below",
     "resend": "Resend code in...",
     "verify": "Verify"
   },
@@ -448,6 +450,7 @@
   "completed": "Completed",
   "upcomming": "Upcoming",
   "no_jobs_found": "No jobs found",
+  "pending_jobs": "Jobs are pending, Please accepted",
   "flat_number": "Flat #",
   "upcommming": {
     "pending": "Pending",
