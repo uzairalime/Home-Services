@@ -15,7 +15,10 @@ class PaymentController extends GetxController {
   Map<String, dynamic>? paymentIntent;
 
   Future<void> makePayment(
-      {required var intents, required context, required String amount}) async {
+      {required var intents,
+      required context,
+      required String amount,
+      String? name}) async {
     try {
       // STEP 1: Create Payment Intent
       paymentIntent =

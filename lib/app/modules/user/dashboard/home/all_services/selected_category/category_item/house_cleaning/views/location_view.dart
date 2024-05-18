@@ -213,7 +213,7 @@ class LocationView extends GetView<BookingController> {
                               borderSide: BorderSide.none,
                             )),
                       ),
-                      obj.placeprediction.length == 0
+                      obj.placeprediction.isEmpty
                           ? const SizedBox()
                           : Expanded(
                               child: locationTile(obj),

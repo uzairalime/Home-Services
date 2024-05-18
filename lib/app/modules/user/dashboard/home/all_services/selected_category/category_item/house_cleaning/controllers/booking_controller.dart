@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -259,6 +260,7 @@ class BookingController extends GetxController {
 
     late int? id;
     late String amount;
+    late String? name;
     try {
       var response = await _apiHelper2.request(
           endpoint: ApiEndpoints.USER_SINGLE_BOOKING,
@@ -268,6 +270,7 @@ class BookingController extends GetxController {
       if (response.statusCode == 201) {
         id = response.data["id"];
         amount = response.data["price"];
+        name = response.data["user"]["first_name"];
 
         if (kDebugMode) {
           print(StaticData.accessToken);
@@ -279,9 +282,13 @@ class BookingController extends GetxController {
           var paymentResponse = await _apiHelper2.request(
               endpoint: paymentSheetUrl, method: 'POST');
           var paymentIntent = paymentResponse.data;
-          print(StaticData.accessToken);
-          print("paymentIntent id $id");
 
+          /// for testing purpose only
+          if (kDebugMode) {
+            print(StaticData.accessToken);
+            print("paymentIntent id $id");
+            print("Booking data ${jsonEncode(response.data)}");
+          }
           DialogHelper.hideLoading();
           Get.offNamed(Routes.DASHBOARD);
           HomeController.to.startLoop();
@@ -298,7 +305,10 @@ class BookingController extends GetxController {
           placeprediction.clear();
 
           await PaymentController.to.makePayment(
-              intents: paymentIntent, amount: amount, context: context);
+              name: name ?? '',
+              intents: paymentIntent,
+              amount: amount,
+              context: context);
         }
       } else {
         DialogHelper.hideLoading();
