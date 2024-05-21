@@ -1,10 +1,6 @@
 on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+
 name: "Build & Release"
 jobs:
   build:
@@ -20,7 +16,7 @@ jobs:
         with:
           channel: 'stable'
           architecture: x64
-
+      - run: flutter config --no-cli-animations
       - run: flutter build apk --release --split-per-abi
       - run: |
           flutter build ios --no-codesign
