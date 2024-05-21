@@ -40,7 +40,7 @@ class PaymentController extends GetxController {
           customerEphemeralKeySecret: intents["ephemeral_key"],
           billingDetails: const BillingDetails(),
           applePay: const PaymentSheetApplePay(merchantCountryCode: "AED"),
-          merchantDisplayName: 'Muhammad ',
+          merchantDisplayName: name ?? "",
           customerId: intents["customer_id"],
           googlePay: gpay,
         ),
