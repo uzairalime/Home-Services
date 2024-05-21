@@ -17,7 +17,7 @@ jobs:
           channel: 'stable'
           architecture: x64
       - run: flutter config --no-cli-animations
-      - run: flutter build apk --release --split-per-abi
+      - run: flutter build apk --release --split-per-abi --debug
       - run: |
           flutter build ios --no-codesign
           cd build/ios/iphoneos
