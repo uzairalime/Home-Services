@@ -17,7 +17,7 @@ jobs:
         - uses: actions/setup-java@v2
           with:
             distribution: 'oracle'
-            java-version: '11'
+            java-version: '19'
         - uses: subosito/flutter-action@v2
           with:
             flutter-version: '3.19.6'
@@ -27,7 +27,7 @@ jobs:
         - run: flutter clean
         - run: flutter pub get
 
-              # Build APK with debug and split-abi flags
+
         - run: flutter build apk --release
         # - run: |
         #     flutter build ios --no-codesign
