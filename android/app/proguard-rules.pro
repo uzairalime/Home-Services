@@ -4,6 +4,8 @@
 -keep class io.flutter.view.**  { *; }
 -keep class io.flutter.**  { *; }
 -keep class io.flutter.plugins.**  { *; }
+-keep class kotlin.Metadata { *; }
+-keep class kotlin.** { *; }
 
 -dontwarn com.stripe.android.pushProvisioning.PushProvisioningActivity$g
 -dontwarn com.stripe.android.pushProvisioning.PushProvisioningActivityStarter$Args
