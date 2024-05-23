@@ -2,6 +2,7 @@ on:
   pull_request:
     branches:
       - main
+
   push:
     branches:
       - main
@@ -10,10 +11,10 @@ name: "Build & Release"
 jobs:
   build:
     name: Build & Release
-    runs-on: macos-latest
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '12'
@@ -22,6 +23,7 @@ jobs:
           channel: 'stable'
           architecture: x64
 
+      - run: flutter clean
       - run: flutter build apk --release --split-per-abi
 #      - run: |
 #          flutter build ios --no-codesign
@@ -37,4 +39,3 @@ jobs:
           artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
-
