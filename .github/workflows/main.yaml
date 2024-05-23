@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         flutter: [ 3.19.6 ]  # Specify your desired Flutter version
-        java: [ 19 ]         # Specify your desired Java version
+        java: [ 19.0.2 ]         # Specify your desired Java version
 
     steps:
       - name: Checkout repository
