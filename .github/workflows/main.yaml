@@ -12,17 +12,43 @@ jobs:
   build:
     name: Build & Release
     runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '19'
-          distribution: 'temurin'
+    strategy:
+      matrix:
+        flutter: [ 3.19.6 ]  # Specify your desired Flutter version
+        java: [ 19 ]         # Specify your desired Java version
 
-      - uses: subosito/flutter-action@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
-          channel: 'stable'
-          architecture: x64
+          distribution: 'temurin' # You can choose other distributions like 'zulu', 'adopt', etc.
+          java-version: ${{ matrix.java }}
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ matrix.flutter }}
+
+      - name: Flutter Clean
+        run: flutter clean
+
+      - name: Install dependencies
+        run: flutter pub get
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-java@v3
+#        with:
+#          java-version: '19'
+#          distribution: 'temurin'
+#
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          channel: 'stable'
+#          flutter-version: "3.19.6"
+#          architecture: x64
 
       - run: flutter clean
       - run: flutter build apk --release
