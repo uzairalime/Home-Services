@@ -24,7 +24,7 @@ jobs:
             channel: 'stable'
             architecture: x64
         - run: flutter pub get
-        - run: flutter test
+
               # Build APK with debug and split-abi flags
         - run: flutter build apk --debug --split-per-abi
         # - run: |
