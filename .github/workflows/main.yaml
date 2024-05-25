@@ -4,9 +4,7 @@ name: CI_STORE_DEPLOY_ANDROID
 on:
   # Run this workflow when any new code is pushed into the main branch
   push:
-    branches:
-      - main
-      - usman
+    branches: [usman]
 
 
 jobs:
