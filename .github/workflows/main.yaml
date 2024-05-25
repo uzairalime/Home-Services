@@ -1,90 +1,44 @@
-## Github Actions CI workflow to deploy to Internal testing in the Play Store
-name: CI_STORE_DEPLOY_ANDROID
+# Name of the workflow
+name: Build
 
+  # Controls what will trigger the workflow.
+  # Change it to your needs.
 on:
-  # Run this workflow when any new code is pushed into the main branch
-  push:
-    branches: [usman]
+    # A new push to the "main" branch.
+    push:
+      branches: [ "usman" ]
+    # A new pull request to the "main" branch.
+    pull_request:
+      branches: [ "usman" ]
 
+      # Allows to trigger the workflow from GitHub interfaces.
+      workflow_dispatch:
 
+# A single workflow can have multiple jobs.
 jobs:
-  store_deploy_android:
-    # Only run this job if the branch name starts with 'release/'
-#    if:  startsWith(github.head_ref, 'release/')
-    name: android store release
+  # 'A new job is defined with the name: "build_android"
+  build_android:
+    # Defines what operating system will be used for the actions.
+    # For android, we will use Linux GitHub-Hosted Runner.
     runs-on: ubuntu-latest
-    env:
-      # Setup env variables that will be used throughout the workflow
-      JAVA_VERSION: 19.0.2
-      FLUTTER_VERSION: 3.19.6
-      AAB_PATH: build/app/outputs/bundle/release/app-release.aab
-      KEYSTORE_PATH: android/key.jks
-      KEY_PROPS_PATH: android/key.properties
-      SERVICE_ACCOUNT_PATH: store_credentials.json
+    # Defines what step should be passed for successful run
     steps:
-      # Checkout repository codebase
-      - name: Checkout the code
-        uses: actions/checkout@v2
-
-      # Setup Java in the VM
-      - name: Setup Java to compile the Android project
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: ${{ env.JAVA_VERSION }}
-
-      # Setup Flutter in the VM
-      - name: Setup Flutter
+      # Checkout to the selected branch
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Download and install flutter packages
+      - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-
-      # Decode Android env variables
-      - name: Decode Android keystore
-        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > ${{ env.KEYSTORE_PATH }}
-
-      - name: Decode Android key properties
-        run: echo "${{ secrets.KEY_PROPERTIES_BASE64 }}" | base64 --decode > ${{ env.KEY_PROPS_PATH }}
-
-      # Decode Android release Service Account
-      - name: Decode Android Service Account
-        run: echo "${{ secrets.SERVICE_ACCOUNT }}" | base64 --decode > ${{ env.SERVICE_ACCOUNT_PATH }}
-
-      # Run flutter commands
-      - name: Run flutter pub get
+          # Define which stable flutter version should be used
+          flutter-version: "3.19.6"
+          channel: 'stable'
+          # Enables cache for flutter packages
+          # Speed up the process
+          cache: true
+      # Get Flutter project dependencies
+      - name: Get dependencies
         run: flutter pub get
-
-      - name: 📦 Install dependencies
-        run: flutter pub get
-
-      - name: 🕵️ Analyze to check for bad Dart/Flutter practices
-        run: flutter analyze
-
-      - name: 📉 Run all app tests
-        run: flutter test
-
-      # Build Android Bundle release file
-      - name: Build aab
-        run: |
-          flutter build appbundle 
-          --release
-
-      # Upload generated aab to project artifacts
-      - name: Upload generated aab to the artifacts
-        uses: actions/upload-artifact@master
-        with:
-          name: aab-stores
-          path: {{ env.AAB_PATH }}
-
-      # Deploy bundle to Google Play internal testing
-      - name: Deploy to Play Store (Internal testing)
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJson: {{ env.SERVICE_ACCOUNT_PATH }}
-          packageName: com.yourapp.package
-          releaseFiles: {{ env.AAB_PATH }}
-          track: internal
-
 #on:
 #  pull_request:
 #    branches:
