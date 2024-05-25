@@ -1,11 +1,11 @@
 on:
   pull_request:
     branches:
-      - usman
+      - main
 
   push:
     branches:
-      - usman
+      - main
 name: "Build & Release"
 jobs:
   build:
@@ -40,27 +40,6 @@ jobs:
       - run: flutter clean
       - run: flutter build appbundle --release
 
-      # Sign App Bundle
-      - name: Sign App Bundle
-        uses: r0adkll/sign-android-release@v1
-        id: sign_app
-        with:
-          releaseDirectory: build/app/outputs/bundle/release/
-          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
-          alias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-
-
-      # Upload to Play Store (Internal Testing)
-      - name: Upload to Play Store (Internal Testing)
-        uses: r0adkll/upload-google-play@v1.0.18
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT }}
-          packageName: com.owisoft.homebrigade
-          releaseFiles: ${{ steps.sign_app.outputs.signedReleaseFile }}
-          mappingFile: ./build/app/outputs/mapping/release/mapping.txt
-          track: internal
 
 #      - run: |
 #          flutter build ios --no-codesign
@@ -76,64 +55,3 @@ jobs:
           artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
-
-
-
-
-#on:
-#  pull_request:
-#    branches:
-#      - main
-#
-#  push:
-#    branches:
-#      - main
-#name: "Build & Release"
-#jobs:
-#  build:
-#    name: Build & Release
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        flutter: [ 3.19.6 ]  # Specify your desired Flutter version
-#        java: [ 19.0.2 ]         # Specify your desired Java version
-#
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v2
-#
-#      - name: Set up Java
-#        uses: actions/setup-java@v3
-#        with:
-#          distribution: 'temurin' # You can choose other distributions like 'zulu', 'adopt', etc.
-#          java-version: ${{ matrix.java }}
-#
-#      - name: Set up Flutter
-#        uses: subosito/flutter-action@v2
-#        with:
-#          flutter-version: ${{ matrix.flutter }}
-#
-#      - name: Flutter Clean
-#        run: flutter clean
-#
-#      - name: Install dependencies
-#        run: flutter pub get
-#
-#      - run: flutter clean
-#      - run: flutter build appbundle --release
-#
-#
-##      - run: |
-##          flutter build ios --no-codesign
-##          cd build/ios/iphoneos
-##          mkdir Payload
-##          cd Payload
-##          ln -s ../Runner.app
-##          cd ..
-##          zip -r app.ipa Payload
-#      - name: Push to Releases
-#        uses: ncipollo/release-action@v1
-#        with:
-#          artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
-#          tag: v1.0.${{ github.run_number }}
-#          token: ${{ secrets.TOKEN }}
