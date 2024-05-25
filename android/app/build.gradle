@@ -27,6 +27,11 @@ def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
+//def keystoreProperties = new Properties()
+//def keystorePropertiesFile = rootProject.file('key.properties')
+//if (keystorePropertiesFile.exists()) {
+//    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//}
 
 
 
@@ -59,12 +64,11 @@ android {
         versionName flutterVersionName
     }
 
-
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
             storePassword keystoreProperties['storePassword']
         }
     }
@@ -73,6 +77,8 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+
 
 
 //    buildTypes {
@@ -88,7 +94,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    implementation 'com.google.android.material:material:1.12.0'
-
-}
+dependencies {}
